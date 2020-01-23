@@ -1,0 +1,268 @@
+﻿@model VerserHRManagement.Models.Candidate
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.1.1/css/mdb.min.css" rel="stylesheet">
+<br>
+<div>
+
+    <div class="table-bordered" style="width:900px;">
+        <div class="panel-heading" align="center" style="height:30PX;background-color:#FFA500;color:white;vertical-align:top">RESOURCE DETAILS</div>
+        <div class="panel-body" style="font-size:x-small;color:grey;border-color:gray;padding:0px">
+          
+            <br>
+            <dl class="dl-horizontal " style="column-span:all;text-align:left;">
+                <div class="col-md-6">
+                    <dt>
+                        @Html.DisplayName("Candidate Name")
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.CandidateName)
+                    </dd>
+
+                    <br />
+                    <dt>
+                        @Html.DisplayName("Candidate Skills")
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.CandidateSkills)
+                    </dd>
+                    <br />
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Email)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Email)
+                    </dd>
+                    <br />
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Phone)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Phone)
+                    </dd>
+                    <br />
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Address)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Address)
+                    </dd>
+                    <br />
+                    <dt>
+                        @Html.DisplayNameFor(model => model.City)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.City)
+                    </dd>
+                    <br />
+
+                    <dt>
+                        @Html.DisplayName("State")
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.state)
+                    </dd>
+                    <br />
+
+                    <dt>
+                        @Html.DisplayName("Postcode")
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.postcode)
+                    </dd>
+                    <br />
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Experience)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Experience)
+                    </dd>
+                    <br />
+                    <dt>
+                        @Html.DisplayName("Job Title")
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.JobTitle)
+                    </dd>
+                    <br />
+                    <dt>
+                        @Html.DisplayName("PayFrequency")
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.PayFrequency)
+                    </dd>
+                    <br />
+                    <dt>
+                        @Html.DisplayName("Employee ID")
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.ADP_EmployeeID)
+                    </dd>
+                    <br />
+                    <dt>
+                        @Html.DisplayName("Resouce Assigned")
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.AssignResource)
+                    </dd>
+                    <br />
+
+                </div>
+                <div class="col-md-6">
+                    <dt>
+                        @Html.DisplayName("Annual Salary")
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Annualsalary)
+                    </dd>
+                    <br />
+                    <dt>
+                        @Html.DisplayName("Hourly Rate")
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.HourlyRate)
+                    </dd>
+                    <br />
+                    <dt>
+                        @Html.DisplayName("Daily Rate")
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.DailyRate)
+                    </dd>
+                    <br />
+
+
+                    <dt>
+                        @Html.DisplayName("Technician Level")
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.TechnicianLevel)
+                    </dd>
+                    <br />
+                    <dt>
+                        @Html.DisplayName("Work Rights")
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.WorkRights)
+                    </dd>
+                    <br />
+                    <dt>
+                        @Html.DisplayName("EmployeeStatus")
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.EmployeeStatus)
+                    </dd>
+                    <br />
+                    <dt>
+                        @Html.DisplayName("Employment Type")
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.EmployementType)
+                    </dd>
+                    <br />
+                    <dt>
+                        @Html.DisplayName("Notice Period")
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.NoticePeriod)
+                    </dd>
+                    <br />
+                    <dt>
+                        @Html.DisplayName("Availability")
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Availability)
+                    </dd>
+                    <br />
+                    <dt>
+                        @Html.DisplayName("Skill Rate")
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.RateOfSkillExperties)
+                    </dd>
+                    <br />
+                    <dt>
+                        @Html.DisplayName("Recruiter Comments")
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.RecruiterComments)
+                    </dd>
+                    <br />
+                    <dt>
+                        @Html.DisplayName("Resume")
+                    </dt>
+
+                    <dd>
+                        @Html.HiddenFor(model => model.FilePath)
+                        @if (!string.IsNullOrEmpty(Model.FilePath))
+                        {@Html.ActionLink(Model.FilePath, "Download", "Candidates", new { file = Model.FilePath }, null)}
+                    </dd>
+
+                </div>
+            </dl>
+            <div class="panel-footer pull-left" align="left" style="height:50px;width:100% ;vertical-align:top;padding-bottom:0px;margin-left:0px;padding-left:0px">
+                @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary btn-large" })
+                @Html.ActionLink("Edit", "Edit", new { id = Model.ID }, new { @class = "btn btn-warning btn-large" })
+                @*@Html.ActionLink("Delete", "Delete", new { id = Model.ID }, new { @class = "btn btn-danger btn-large" })*@
+            </div>
+        </div>
+    </div>
+</div>
+@*<p>
+    @Html.ActionLink("Back to List", "Index", null,new { @class = "btn btn-primary btn-large" })
+     @Html.ActionLink("Edit", "Edit", new { id = Model.ID }, new { @class = "btn btn-warning btn-large" }) 
+    @Html.ActionLink("Delete", "Delete", new { id = Model.ID },new { @class = "btn btn-danger btn-large" })
+   
+</p>*@
+
+<style>
+    .dl-horizontal {
+        margin-bottom: 2px;
+        padding-right: 0;
+        padding-left: 0;
+        font-size: 14px;
+        border-radius: 9px;
+        padding-bottom: 5px;
+        margin-top: 2px;
+    }
+
+    .btn-warning {
+        background-color: #FFA500;
+        font-size: 14px;
+    }
+
+    .panel-footer {
+        padding: 0px 0px;
+        background-color: #f5f5f5;
+        border-top: 1px solid #dddddd;
+        border-bottom-right-radius: 3px;
+        border-bottom-left-radius: 3px;
+    }
+</style>

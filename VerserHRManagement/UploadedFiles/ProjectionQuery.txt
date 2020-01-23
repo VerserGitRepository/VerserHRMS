@@ -1,0 +1,157 @@
+SELECT   c.Quantity, r.ProjectManagerName ,c.Created, s.PricePerUnit,c.Quantity as [Projected Quantity], o.OpportunityNumber,  p.ProjectName,
+a.ServiceActivityDescription,w.WarehouseName,c.Comments,c.DateInvoiced ,sm.SalesManagerName,
+
+case
+when r.ProjectManagerName = 'Zaffer Mannan' then 'Mannan, Zaffer' 
+when r.ProjectManagerName = 'Rhiannon Morrison' then 'Morrison, Rhiannon' 
+when r.ProjectManagerName = 'Rizwan Rimshard' then 'Rimshard, Rizwan' 
+when r.ProjectManagerName = 'Sharon Lomat' then 'Lomat, Sharon' 
+when r.ProjectManagerName = 'Donne Niland' then 'Niland, Donne' 
+when r.ProjectManagerName = 'Nancy Chen' then 'Chen, Nancy' 
+when r.ProjectManagerName = 'Sandeep Verma' then 'Verma, Sandeep' 
+when r.ProjectManagerName = 'Despina Efthimiadis' then 'Efthimiadis, Despina' 
+when r.ProjectManagerName = 'Paul De Boos' then 'De Boos, Paul' 
+when r.ProjectManagerName = 'Tahlia Paskin' then 'Paskin, Tahlia' 
+when r.ProjectManagerName = 'Dawn Wright-Ellis' then 'Wright-Ellis, Dawn' 
+when r.ProjectManagerName = 'Arman Rahman' then 'RAHMAN, Arman' 
+when r.ProjectManagerName = 'Daniel Necovski' then 'Necovski, Daniel' 
+
+end as [ProjectManager]
+from    Projection c
+                  Left join OpportunityNumbers as o on c.OpportunityID = o.Id
+                    Left join Warehouse as w on c.WarehouseID = w.Id
+                    Left join ServiceRevenue as s  on o.Id = s.OpportunityNumberID and s.ServiceActivityID = c.ServiceActivityId
+                    Left join ServiceActivities as a on c.ServiceActivityId = a.Id
+                    Left join  ProjectManagers as r on  c.ProjectManagerID = r.Id
+		   Left join  SalesManagers as sm on  c.ProjectManagerID = sm.Id
+                    Left join  Projects as p on  c.ProjectID = p.Id
+					--where c.DateInvoiced between '2019-11-01' and '2019-11-30'
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------					
+
+SELECT        j.JobNo, j.OpportunityNumber, j.InternalComments, j.ClientRef, j.ClientPO, j.DateReceived, j.SLA AS PreJobSLA, j.PostJobSLA, 
+              j.JobDate, j.DateCompleted, j.JobType, j.OrderNo, j.WorkInstructions, j.Department, j.Building, j.Floor, j.RunNo, j.ContactPerson, 
+                         j.Phone1, j.Phone2, j.Fax, j.Email, j.NetTotal AS JobTotalEx, j.BundleTotal AS BundleTotalEx, 
+						 j.AssetPurchaseTotal AS AssetPurchaseTotalEx, j.InvoiceNotes, c.CostCentreName AS Branch, 
+                         e.Name AS ProjectAdmin,  sm.SalesManagerName,
+						 dbo.JobBundles.Summary AS ServiceDescription, dbo.Bundles.Price AS UnitPrice, 
+						 dbo.JobBundles.BundleQty AS Qty, 
+						 dbo.JobBundles.Price AS TotalPrice, 
+                         dbo.JobStatusSet.Description AS Status, dbo.JobStatusSet.DisplayOrder AS SortOrder, 
+						 dbo.Projects.Summary AS Project, dbo.Invoices.InvoiceNo, dbo.Invoices.InvoiceDate, 
+						 dbo.Sites.SiteName, 
+                         dbo.Sites.AddressLine1, dbo.Sites.AddressLine2, dbo.Sites.Suburb, 
+						 dbo.Sites.State, dbo.Sites.Postcode, dbo.Sites.ContactPerson AS Expr1, dbo.Sites.Phone1 AS Expr2, 
+case
+when dbo.JobStatusSet.Description = 'New' then 'Jobs – Scheduled' 
+when dbo.JobStatusSet.Description = 'Scheduled' then 'Jobs – Scheduled' 
+when dbo.JobStatusSet.Description = 'Invoiced' then 'Month to Date Invoice Actuals' 
+when dbo.JobStatusSet.Description = 'Invoiced (No RC)' then 'Invoiced (RC Pending)' 
+when dbo.JobStatusSet.Description = 'Invoiced (Partial RC)' then 'Invoiced (RC Pending)' 
+when dbo.JobStatusSet.Description = 'Invoiced (RC Received)' then 'Month to Date Invoice Actuals' 
+when dbo.JobStatusSet.Description = 'Ready to Invoice' then 'Jobs - Ready to Invoice' 
+when dbo.JobStatusSet.Description = 'Requested' then 'In Progress' 
+when dbo.JobStatusSet.Description = 'In Progress' then 'In Progress' 
+when dbo.JobStatusSet.Description = 'On Hold' then 'In Progress' 
+when dbo.JobStatusSet.Description = 'Onsite Work in Progress' then 'In Progress' 
+when dbo.JobStatusSet.Description = 'Onsite Work Complete' then 'In Progress' 
+when dbo.JobStatusSet.Description = 'Configuration Complete' then 'In Progress' 
+when dbo.JobStatusSet.Description = 'Picked' then 'In Progress'
+when dbo.JobStatusSet.Description = 'Packed' then 'In Progress' 
+when dbo.JobStatusSet.Description = 'Requestor Action Required' then 'In Progress' 
+when dbo.JobStatusSet.Description = 'Responded' then 'In Progress'  
+when dbo.JobStatusSet.Description = 'Work Complete' then 'In Progress' 
+when dbo.JobStatusSet.Description = 'Despatched ' then 'In Progress' 
+when dbo.JobStatusSet.Description = 'Resolved' then 'In Progress'  
+when dbo.JobStatusSet.Description = 'To Be Built' then 'In Progress' 
+when dbo.JobStatusSet.Description = 'To Be Picked' then 'In Progress' 
+when dbo.JobStatusSet.Description = 'Out of Stock' then 'In Progress'  
+when dbo.JobStatusSet.Description = 'Recycled' then 'In Progress' 
+when dbo.JobStatusSet.Description = 'Finance to Investigate' then 'In Progress' 
+when dbo.JobStatusSet.Description = 'Out of Stock' then 'In Progress'  
+when dbo.JobStatusSet.Description = 'Pending Stock (SSICT)' then 'In Progress'  
+when dbo.JobStatusSet.Description = 'Pending Date (Refresh)' then 'In Progress' 
+when dbo.JobStatusSet.Description = 'Received' then 'In Progress' 
+when dbo.JobStatusSet.Description = 'Closed' then 'In Progress'  
+when dbo.JobStatusSet.Description = 'Recycled' then 'In Progress' 
+when dbo.JobStatusSet.Description = 'Asset Received' then 'In Progress' 
+when dbo.JobStatusSet.Description = 'Asset Partially Received' then 'In Progress' 
+when dbo.JobStatusSet.Description = 'Requested' then 'In Progress'   
+when dbo.JobStatusSet.Description = 'Pending Stock Return (Flexi)' then 'In Progress' 
+end as JobStatus
+FROM            dbo.Jobs AS j LEFT JOIN
+                         MYOB.myob.dbo.costcentres AS c ON j.MYOBCostCentre_CostCentreID = c.CostCentreID LEFT JOIN
+                         MYOB.myob.dbo.employees AS e ON j.MYOBEmployee_EmployeeID = e.EmployeeID LEFT JOIN
+                         dbo.JobBundles ON j.Id = dbo.JobBundles.JobServiceBundle_Job left JOIN
+                         dbo.Bundles ON dbo.JobBundles.JobBundle_Bundle = dbo.Bundles.Id left JOIN
+                         dbo.JobStatusSet ON j.Job_JobStatus = dbo.JobStatusSet.Id LEFT JOIN
+                         dbo.Projects ON j.Job_Project = dbo.Projects.Id LEFT JOIN
+                         dbo.Sites ON j.Job_Site = dbo.Sites.Id LEFT OUTER JOIN
+                         dbo.Invoices ON j.Job_Invoice = dbo.Invoices.Id 
+		               LEFT OUTER JOIN  CostModelTimesheet.dbo.opportunitynumbers as op on op.opportunitynumber = j.OpportunityNumber 
+						 Left OUTER join  CostModelTimesheet.dbo.SalesManagers as sm on op.SalesManagerId = sm.Id
+----------------------------------------------------------------------------------------------------------------------------------------------------------
+		     		where 		dbo.Invoices.InvoiceDate between '2019-11-01' and '2019-11-30'
+SELECT        j.JobNo, j.OpportunityNumber, j.InternalComments, j.ClientRef, j.ClientPO, j.DateReceived, j.SLA AS PreJobSLA, j.PostJobSLA, 
+              j.JobDate, j.DateCompleted, j.JobType, j.OrderNo, j.WorkInstructions, j.Department, j.Building, j.Floor, j.RunNo, j.ContactPerson, 
+                         j.Phone1, j.Phone2, j.Fax, j.Email, j.NetTotal AS JobTotalEx, j.BundleTotal AS BundleTotalEx, 
+						 j.AssetPurchaseTotal AS AssetPurchaseTotalEx, j.InvoiceNotes, c.CostCentreName AS Branch, 
+                         e.Name AS ProjectAdmin, sm.SalesManagerName,
+						 dbo.JobBundles.Summary AS ServiceDescription, dbo.Bundles.Price AS UnitPrice, 
+						 dbo.JobBundles.BundleQty AS Qty, 
+						 dbo.JobBundles.Price AS TotalPrice, 
+                         dbo.JobStatusSet.Description AS Status, dbo.JobStatusSet.DisplayOrder AS SortOrder, 
+						 dbo.Projects.Summary AS Project, dbo.Invoices.InvoiceNo, dbo.Invoices.InvoiceDate, 
+						 dbo.Sites.SiteName, 
+                         dbo.Sites.AddressLine1, dbo.Sites.AddressLine2, dbo.Sites.Suburb, 
+						 dbo.Sites.State, dbo.Sites.Postcode, dbo.Sites.ContactPerson AS Expr1, dbo.Sites.Phone1 AS Expr2,
+case
+when dbo.JobStatusSet.Description = 'New' then 'Jobs – Scheduled' 
+when dbo.JobStatusSet.Description = 'Scheduled' then 'Jobs – Scheduled' 
+when dbo.JobStatusSet.Description = 'Invoiced' then 'Month to Date Invoice Actuals' 
+when dbo.JobStatusSet.Description = 'Invoiced (No RC)' then 'Month to Date Invoice Actuals' 
+when dbo.JobStatusSet.Description = 'Invoiced (Partial RC)' then 'Month to Date Invoice Actuals' 
+when dbo.JobStatusSet.Description = 'Ready to Invoice' then 'Jobs - Ready to Invoice' 
+when dbo.JobStatusSet.Description = 'Requested' then 'In Progress' 
+when dbo.JobStatusSet.Description = 'In Progress' then 'In Progress' 
+when dbo.JobStatusSet.Description = 'On Hold' then 'In Progress' 
+when dbo.JobStatusSet.Description = 'Onsite Work in Progress' then 'In Progress' 
+when dbo.JobStatusSet.Description = 'Onsite Work Complete' then 'In Progress' 
+when dbo.JobStatusSet.Description = 'Configuration Complete' then 'In Progress' 
+when dbo.JobStatusSet.Description = 'Picked' then 'In Progress'
+when dbo.JobStatusSet.Description = 'Packed' then 'In Progress' 
+when dbo.JobStatusSet.Description = 'Requestor Action Required' then 'In Progress' 
+when dbo.JobStatusSet.Description = 'Responded' then 'In Progress'  
+when dbo.JobStatusSet.Description = 'Work Complete' then 'In Progress' 
+when dbo.JobStatusSet.Description = 'Despatched ' then 'In Progress' 
+when dbo.JobStatusSet.Description = 'Resolved' then 'In Progress'  
+when dbo.JobStatusSet.Description = 'To Be Built' then 'In Progress' 
+when dbo.JobStatusSet.Description = 'To Be Picked' then 'In Progress' 
+when dbo.JobStatusSet.Description = 'Out of Stock' then 'In Progress'  
+when dbo.JobStatusSet.Description = 'Recycled' then 'In Progress' 
+when dbo.JobStatusSet.Description = 'Finance to Investigate' then 'In Progress' 
+when dbo.JobStatusSet.Description = 'Out of Stock' then 'In Progress'  
+when dbo.JobStatusSet.Description = 'Pending Stock (SSICT)' then 'In Progress'  
+when dbo.JobStatusSet.Description = 'Pending Date (Refresh)' then 'In Progress' 
+when dbo.JobStatusSet.Description = 'Received' then 'In Progress' 
+when dbo.JobStatusSet.Description = 'Closed' then 'In Progress'  
+when dbo.JobStatusSet.Description = 'Recycled' then 'In Progress' 
+when dbo.JobStatusSet.Description = 'Asset Received' then 'In Progress' 
+when dbo.JobStatusSet.Description = 'Asset Partially Received' then 'In Progress' 
+when dbo.JobStatusSet.Description = 'Requested' then 'In Progress'   
+when dbo.JobStatusSet.Description = 'Pending Stock Return (Flexi)' then 'In Progress' 
+end as JobStatus
+FROM            dbo.Jobs AS j LEFT JOIN
+                         MYOB.myob.dbo.costcentres AS c ON j.MYOBCostCentre_CostCentreID = c.CostCentreID LEFT JOIN
+                         MYOB.myob.dbo.employees AS e ON j.MYOBEmployee_EmployeeID = e.EmployeeID LEFT JOIN
+                         dbo.JobBundles ON j.Id = dbo.JobBundles.JobServiceBundle_Job left JOIN
+                         dbo.Bundles ON dbo.JobBundles.JobBundle_Bundle = dbo.Bundles.Id left JOIN
+                         dbo.JobStatusSet ON j.Job_JobStatus = dbo.JobStatusSet.Id LEFT JOIN
+                         dbo.Projects ON j.Job_Project = dbo.Projects.Id LEFT JOIN
+                         dbo.Sites ON j.Job_Site = dbo.Sites.Id LEFT OUTER JOIN
+                         dbo.Invoices ON j.Job_Invoice = dbo.Invoices.Id 
+						  LEFT OUTER JOIN  CostModelTimesheet.dbo.opportunitynumbers as op on op.opportunitynumber = j.OpportunityNumber 
+						 Left OUTER join  CostModelTimesheet.dbo.SalesManagers as sm on op.SalesManagerId = sm.Id
+
+     where 	 dbo.JobStatusSet.Id not in (23,7,9,31,37)  and j.JobType = 'Services Job' 
+

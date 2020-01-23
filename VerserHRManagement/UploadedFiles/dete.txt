@@ -1,0 +1,1 @@
+insert into Dell_DETE( date,SERVICETAG,CaseNumber, IncidentNumber,CFTAssetTag,Model,SuggestedFaults,JobNumber,Status,StatusDate, PartOrderedDate, PartReceivedDate, Qty, SKU, ActualFaults, ReturnConNote, OmegaHardware, OmegaService, HardwareCost, ServiceCost,  ReQuoteOmegaHW, ReQuoteOmegaService, ReQuoteHardwareCost)

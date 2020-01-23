@@ -1,0 +1,61 @@
+update assets set Asset_AssetStatus = 36 where ssn = ''
+
+select * from MobileBattery where ssn = '16045134'
+
+delete MobileBattery where id = 198693
+
+
+select * from blancco.blancco.dbo.mcqfeedmatchedreport  where ssn = '16045271'
+
+delete blancco.blancco.dbo.mcqfeedmatchedreport  where id = 240767
+
+select * from blancco.blancco.dbo.diagnosticreport where reportid in (select id from blancco.blancco.dbo.report where ssn in
+
+select * from AssetStatusSet
+
+select * from MRAGrades where mra_ssn in ('16045883',
+'17104616'
+
+)
+
+delete mragrades where id in (206661,214128)
+
+
+
+Charging:high charge counts (less than 80% battery capacity remaining and/or equal to or greater than 500 charge cycles completed), low max charge state (20% or less if battery capacity is over 80%); 
+Battery won’t take or retain charge; 
+Swollen and/or damaged battery; or 
+Battery temperature during charge exceeds 45 degrees Celsius. 
+
+
+update blancco.blancco.dbo.disk set disksize = '512GB'  where reportid in (select id from blancco.blancco.dbo.report where ssn in
+('17326606',
+'17326680',
+'17327087',
+'17327422',
+'17326457',
+'17327094',
+'17327067',
+'17326042',
+'17327270',
+'17327398',
+'17327001',
+'17326287',
+'17326470',
+'17327091'))
+---------------------------
+select * from MintServiceOrders where verserorderid = 'ORD01362'
+
+Salesforce, Tower 3, Level 12, 201 Sussex St, Sydney 2000
+
+update MintServiceOrders  set AddressLine1='Salesforce Tower 3 Level 12 201 SUSSEX ST'where verserorderid = 'ORD01362'
+
+
+----------------------------------------------------------------------------------------------
+update orders set OrderStatus = 'SHIPPED' where orderno = 25380
+select * from orders where orderno in ()
+-------------------------------
+select * from AndroidInternalModels
+
+
+insert into AndroidInternalModels (InternalModel, GeneralModel, Brand, Weight) values('iPhone XR GSM+CDMA 64GB Coral','iPhone XR','Apple',194)

@@ -1,0 +1,15 @@
+﻿
+@Html.DevExpress().GridView(settings => {
+    settings.Name = "GridView";
+    settings.CallbackRouteValues = new { Controller = "Home", Action = "GridViewPartial" };
+    settings.KeyFieldName = "CustomerID";
+    settings.Columns.Add("ContactName");
+    settings.Columns.Add("CompanyName");
+    settings.Columns.Add("City");
+    settings.Columns.Add("Region");
+    settings.Columns.Add("Country");
+
+    settings.CommandColumn.ShowSelectCheckbox = true;
+    settings.CommandColumn.Visible = true;
+    settings.ClientSideEvents.SelectionChanged = "SelectionChanged";
+}).Bind(Model).GetHtml()

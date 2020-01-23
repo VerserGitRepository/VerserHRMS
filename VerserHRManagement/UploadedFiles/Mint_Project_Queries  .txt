@@ -1,0 +1,28 @@
+
+select a.SSN, s.Manufacturer, s.Model,s.DiskSize,s.Colour from assets  a
+Left Outer Join System s on a.ReportId = s.ReportId
+Right outer JOIN  MintSKUCodeBase as m on  s.manufacturer= m.make and s.model=m.model  and  s.colour=m.colour and s.DiskSize=m.Capacity
+where Asset_AssetStatus=19 and Asset_ItemType1=15 and Asset_Project=798 and m.SKU='IP732BK'
+
+
+select * from assets -- Cheeck Asset status and Change TO Ready For Sale
+select * from jobs -- Delete JOb If not Required 
+select * from JobAssets --Delete jobasset entry by jobasset_job -jobid
+select * from Dispatches -- jobid delete dispatch
+select * from Shipments  -- delelte dispatchid of the above jobid
+select * from ShipmentOrder  -- by date and Only If required 
+select * from MintServiceOrders -- change the order status or delete
+select * from MintServiceOrderSIM -- delete entry by mintorderno
+
+
+--delete JobAssets where JobAsset_Job in (64789,64790)
+--delete [dbo].[MintServiceOrderAsset] where MintOrderID in(973,974)
+--delete Dispatches where Dispatch_Job in(64789,64790)
+--delete Shipments where Shipment_DispatchID in( 6717,6727)
+
+
+ALTER DATABASE Blancco REBUILD LOG ON ( NAME = xyz_log, FILENAME ='C:\Program Files\Microsoft SQL Server\MSSQL13.MSSQLSERVER\MSSQL\DATA\Blanccolog.ldf');
+DBCC CHECKDB (Blancco);
+ALTER DATABASE Blancco SET SINGLE_USER;
+DBCC CHECKDB (Blancco, REPAIR_ALLOW_DATA_LOSS);
+ALTER DATABASE Blancco SET MULTI_USER;
