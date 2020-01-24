@@ -38,7 +38,6 @@
                 <ul class="nav navbar-nav">
                     @if (Session["FullUserName"] != null)
                     {
-                        @Html.ActionLink("HRMS", "Index", "Candidates", new { area = "" }, new { @class = "navbar-brand" })
                     <li>@Html.ActionLink("HOME", "Index", "Candidates")</li>
                     <li>@Html.ActionLink("REGISTER NEW PROFILE", "Create", "Candidates")</li>
                     <li>@Html.ActionLink("BULK SMS", "Index", "MultiSelectDropDown")</li>
@@ -96,18 +95,19 @@
 
 
     .navbar-inverse {
-        background-color: #e2e2e2 !important;
-        border-color: #D3D3D3 !important;
+        background-color: #F5F5F5 !important;
+        border-color: #FFFFFF !important;
     }
 
         .navbar-inverse .navbar-nav > li > a {
-            color: #959ca1;
+            color: #1372AB;
             font-family: sans-serif;
             font-weight: 600;
         }
 
             .navbar-inverse .navbar-nav > li > a:hover {
-                color: #f79636;
+                background-color: #1372AB !important;
+                color: #FFFFFF;
             }
 
     a {
