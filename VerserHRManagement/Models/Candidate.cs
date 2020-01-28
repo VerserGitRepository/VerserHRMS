@@ -14,9 +14,11 @@ namespace VerserHRManagement.Models
             [Required]
             public string CandidateName { get; set; }
             [Required]
-            public string CandidateSkills { get; set; }
+        [DataType(DataType.MultilineText)]
+        public string CandidateSkills { get; set; }
             [Required]
-            [EmailAddress]
+       
+        [EmailAddress]
             public string Email { get; set; }
             [Required]
             //[MaxLength(10)]
