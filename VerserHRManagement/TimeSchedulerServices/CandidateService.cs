@@ -34,7 +34,7 @@ namespace VerserHRManagement.TimeSchedulerServices
         }
         public static async Task<Candidate> FindCandidate(int candidateid)
         {
-           Candidate CandidatList = new Candidate();
+           var CandidatDetail = new Candidate();
             using (HttpClient client = new HttpClient())
             {
                 client.BaseAddress = new Uri(TimeSheetAPIURl);
@@ -44,42 +44,44 @@ namespace VerserHRManagement.TimeSchedulerServices
                     var _candidate = await response.Content.ReadAsAsync<Candidate>();
                     if (_candidate != null)
                     {
-                        CandidatList = new Candidate
-                        {
-                            CandidateName = _candidate.CandidateName,
-                            CandidateSkills = _candidate.CandidateSkills,
-                            Email = _candidate.Email,
-                            Phone = _candidate.Phone,
-                            Address = _candidate.Address,
-                            Experience = _candidate.Experience,
-                            City = _candidate.City,
-                            JobTitle = _candidate.JobTitle,
-                            FilePath = _candidate.FilePath,
-                            Annualsalary = _candidate.Annualsalary,
-                            NoticePeriod = _candidate.NoticePeriod,
-                            WorkRights = _candidate.WorkRights,
-                            RecruiterComments = _candidate.RecruiterComments,
-                            postcode = _candidate.postcode,
-                            EmployeeStatus = _candidate.EmployeeStatus,
-                            EmployementType=_candidate.EmployementType,
-                            TechnicianLevel = _candidate.TechnicianLevel,
-                            Availability = _candidate.Availability,
-                            HourlyRate = _candidate.HourlyRate,
-                            DailyRate = _candidate.DailyRate,
-                            state = _candidate.state,
-                            PayFrequency=_candidate.PayFrequency,
-                            DateCreated = _candidate.DateCreated,
-                            ADP_EmployeeID=_candidate.ADP_EmployeeID,                           
-                            AssignResource =_candidate.AssignResource,                           
-                            RateOfSkillExperties = _candidate.RateOfSkillExperties
-                            //EmployementTypeId = _candidate.EmployementTypeId,
-                            //WarehouseID = _candidate.WarehouseID
-                        };
+                        CandidatDetail = _candidate;
+
+                        //CandidatDetail = new Candidate
+                        //{
+                        //    CandidateName = _candidate.CandidateName,
+                        //    CandidateSkills = _candidate.CandidateSkills,
+                        //    Email = _candidate.Email,
+                        //    Phone = _candidate.Phone,
+                        //    Address = _candidate.Address,
+                        //    Experience = _candidate.Experience,
+                        //    City = _candidate.City,
+                        //    JobTitle = _candidate.JobTitle,
+                        //    FilePath = _candidate.FilePath,
+                        //    Annualsalary = _candidate.Annualsalary,
+                        //    NoticePeriod = _candidate.NoticePeriod,
+                        //    WorkRights = _candidate.WorkRights,
+                        //    RecruiterComments = _candidate.RecruiterComments,
+                        //    postcode = _candidate.postcode,
+                        //    EmployeeStatus = _candidate.EmployeeStatus,
+                        //    EmployementType=_candidate.EmployementType,
+                        //    TechnicianLevel = _candidate.TechnicianLevel,
+                        //    Availability = _candidate.Availability,
+                        //    HourlyRate = _candidate.HourlyRate,
+                        //    DailyRate = _candidate.DailyRate,
+                        //    state = _candidate.state,
+                        //    PayFrequency=_candidate.PayFrequency,
+                        //    DateCreated = _candidate.DateCreated,
+                        //    ADP_EmployeeID=_candidate.ADP_EmployeeID,                           
+                        //    AssignResource =_candidate.AssignResource,                           
+                        //    RateOfSkillExperties = _candidate.RateOfSkillExperties
+                        //    //EmployementTypeId = _candidate.EmployementTypeId,
+                        //    //WarehouseID = _candidate.WarehouseID
+                        //};
                     }
 
                 }
             }
-            return CandidatList;
+            return CandidatDetail;
         }
         public static async Task<bool> DeleteHRMSCandidate(int candidateid)
         {
