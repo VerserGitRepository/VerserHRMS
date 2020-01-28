@@ -20,7 +20,7 @@
                 <thead style="background-color: #428bca; color:white">
                     <tr>
                         <th>
-                            @Html.DisplayName("Candidate")
+                            @Html.DisplayName("CANDIDATES")
                         </th>
                     </tr>
                 </thead>
@@ -28,13 +28,11 @@
                     @foreach (var item in Model)
                     {
                         <tr>
-                            <td onclick="LoadAddressData(@item.ID,'@item.CandidateName','@item.DateCreated','@item.Address','@item.City','@item.state','@item.postcode','@item.Email','@item.Phone','@Convert.ToBase64String(@item.ProfilePic)');">
+                            <td onclick="LoadAddressData(@item.ID,'@item.CandidateName','@item.DateCreated','@item.Address','@item.City','@item.state','@item.postcode','@item.Email','@item.Phone','@Convert.ToBase64String(@item.profilePicture)');">
                                 <font style="font-weight:800;color:#515151">
                                     @Html.DisplayFor(modelItem => item.CandidateName)
                                     <input type="hidden" value="@item" id="hiddenModelId" />
                                 </font> <br />
-                               
-                               
                             </td>
                         </tr>
                     }
@@ -90,7 +88,6 @@
                                                     <label>DOB</label>
 
                                                     <input type="date" class="form-control-override" id="txtDOB" placeholder="DOB">
-
                                                 </div>
 
                                                 <div class="col-md-5">
@@ -107,7 +104,6 @@
                                                         <option>Male</option>
                                                         <option>Female</option>
                                                     </select>
-
                                                 </div>
                                                 <div class="col-md-5">
                                                     <label>Marital Status</label>
@@ -116,7 +112,6 @@
                                                         <option>Married</option>
                                                         <option>Single</option>
                                                     </select>
-
                                                 </div>
                                             </div>
                                             <div style="font-size:smaller;color:deepskyblue">
@@ -203,21 +198,20 @@
                                                                 <i class="glyphicon glyphicon-earphone"></i>
                                                             </span><input id="txtPhoneNumber" placeholder="Phone Number" class="form-control" required="true" value="" type="text">
                                                         </div>
-                                                        <br /><br />
 
-                                                        <div class="pull-left">
-                                                            <input type="submit" value="SAVE CHANGES" class="btn btn-outline-secondary" style="height:32px;vertical-align:top;background-color:#1372AB;color:white" id="updateBtn" />
-                                                        </div>
                                                     </div>
+
                                                 </div>
                                             </div>
                                         </fieldset>
 
                                     </div>
                                 </div>
+                                <div class="pull-left" style="margin-left:4px;">
+                                    <input type="submit" value="SAVE CHANGES" class="btn btn-outline-secondary" style="height:32px;vertical-align:top;background-color:#1372AB;color:white" id="updateBtn" />
+                                </div>
                             </div>
                         </div>
-
                         <div class="tab-pane fade" id="tab2default">
 
                             <div class="row pull-left" style="margin-left:-1px">
@@ -301,7 +295,7 @@
                             <div class="row pull-left" style="margin-left:-1px">
                                 <div class="row pull-left" style="margin-left:-1px">
                                     <div class="form-group row">
-                                        <div class="col-md-10" style="margin-left:10px;">
+                                        <div class="col-md-5" style="margin-left:10px;">
                                             <label class="col-sm-9 col-form-label col-form-label-sm">Candidate Skills</label>
 
                                             <input type="text" id="candidateskills" class="form-control form-control-sm" placeholder="candidateskills">
@@ -418,43 +412,43 @@
                                                 <!-- don't give a name === doesn't send on POST/GET -->
                                                 <span class="input-group-btn">
 
-                                                    <button type="button" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Browse</button>
-                                                    <button type="button" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-upload"></i> </span>Upload</button>
-                                                </span>
-                                            </div>
+                                                <button type="button" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Browse</button>
+                                                <button type="button" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-upload"></i> </span>Upload</button>
+                                            </span>
                                         </div>
+                                    </div>
 
-                                        <div class="panel-heading"><strong>PERSONAL DETAILS</strong> <small> </small></div>
-                                        <div class="panel-body">
-                                            <div class="input-group image-preview">
-                                                <input placeholder="Super Choice" type="text" class="form-control image-preview-filename" disabled="disabled">
-                                                <!-- don't give a name === doesn't send on POST/GET -->
-                                                <span class="input-group-btn">
+                                    <div class="panel-heading"><strong>PERSONAL DETAILS</strong> <small> </small></div>
+                                    <div class="panel-body">
+                                        <div class="input-group image-preview">
+                                            <input placeholder="Super Choice" type="text" class="form-control image-preview-filename" disabled="disabled">
+                                            <!-- don't give a name === doesn't send on POST/GET -->
+                                            <span class="input-group-btn">
 
-                                                    <button type="button" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Browse</button>
-                                                    <button type="button" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-upload"></i> </span>Upload</button>
-                                                </span>
-                                            </div><br>
-                                            <div class="input-group image-preview">
-                                                <input placeholder="TFN Declaration" type="text" class="form-control image-preview-filename" disabled="disabled">
-                                                <!-- don't give a name === doesn't send on POST/GET -->
-                                                <span class="input-group-btn">
+                                                <button type="button" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Browse</button>
+                                                <button type="button" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-upload"></i> </span>Upload</button>
+                                            </span>
+                                        </div><br>
+                                        <div class="input-group image-preview">
+                                            <input placeholder="TFN Declaration" type="text" class="form-control image-preview-filename" disabled="disabled">
+                                            <!-- don't give a name === doesn't send on POST/GET -->
+                                            <span class="input-group-btn">
 
-                                                    <button type="button" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Browse</button>
-                                                    <button type="button" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-upload"></i> </span>Upload</button>
-                                                </span>
-                                            </div>
-                                            <br>
-                                            <div class="input-group image-preview">
-                                                <input placeholder="Bank details" type="text" class="form-control image-preview-filename" disabled="disabled">
-                                                <!-- don't give a name === doesn't send on POST/GET -->
-                                                <span class="input-group-btn">
-
-                                                    <button type="button" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Browse</button>
-                                                    <button type="button" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-upload"></i> </span>Upload</button>
-                                                </span>
-                                            </div>
+                                                <button type="button" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Browse</button>
+                                                <button type="button" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-upload"></i> </span>Upload</button>
+                                            </span>
                                         </div>
+                                        <br>
+                                        <div class="input-group image-preview">
+                                            <input placeholder="Bank details" type="text" class="form-control image-preview-filename" disabled="disabled">
+                                            <!-- don't give a name === doesn't send on POST/GET -->
+                                            <span class="input-group-btn">
+
+                                                <button type="button" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Browse</button>
+                                                <button type="button" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-upload"></i> </span>Upload</button>
+                                            </span>
+                                        </div>
+                                    </div>
 
                                         <div class="panel-heading"><strong>POLICIES</strong> <small> </small></div>
                                         <div class="panel-body">
@@ -495,16 +489,13 @@
 
                     </div>
 
-                    </div>
                 </div>
             </div>
         </div>
-
-
     </div>
 </div>
-<body>
 
+<body>
     <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.15/js/jquery.dataTables.js"></script>
     <script src="https://cdn.datatables.net/plug-ins/1.10.15/api/row().show().js"></script>
 </body>
@@ -545,7 +536,7 @@
         }
 
         function LoadAddressData(ID, CandidateName, DateCreated, Address, City, state, postcode, Email, Phone,logo) {
-         
+
 
             $("#txtfName").val(CandidateName.split(' ')[0]);
             $("#txtlName").val(CandidateName.split(' ')[1]);
@@ -567,11 +558,11 @@
                 $("#image").hide();
             }
 
-            
+
         }
         function ReadFileName(input,controlName) {
             var ctrl = document.getElementById(controlName);
-            
+
         }
         function readURL(input) {
             $('#image').show();
@@ -600,11 +591,8 @@
             CandidateEdit.PostalCode = $("#txtPostalCode").val();
             CandidateEdit.Email = $("#txtEMail").val();
             CandidateEdit.Phone = $("#txtMobile").val();
-            CandidateEdit.ProfilePic = $("#image")[0].src.split(',')[1];
-          
+            CandidateEdit.profilepicture = $("#image")[0].src.split(',')[1];
 
-            
-            
             var updateCandidateData = '@Url.Action("Edit", "Candidates")';
             $.ajax({
 
@@ -638,9 +626,6 @@
             console.log(filePath);
         });
     </script>
-    <body>
-
-    </body>
 }
 <style>
     .row.vdivide [class*='col-']:not(:last-child):after {
@@ -679,6 +664,7 @@
     .image-preview-input-title {
         margin-left: 2px;
     }
+
     .col-padding {
         padding: 0 15px;
     }
@@ -903,8 +889,7 @@
     }
 
         .with-nav-tabs.panel-primary .nav-tabs > li.dropdown .dropdown-menu > li > a {
-            color:#FFFFFF
-;
+            color: #FFFFFF;
         }
 
             .with-nav-tabs.panel-primary .nav-tabs > li.dropdown .dropdown-menu > li > a:hover,
@@ -917,6 +902,7 @@
         .with-nav-tabs.panel-primary .nav-tabs > li.dropdown .dropdown-menu > .active > a:focus {
             background-color: #4a9fe9;
         }
+
     .form-control-override {
         display: block;
         width: 70%;
@@ -929,6 +915,5 @@
         background-color: #ffffff;
         border: 1px solid #cccccc;
         border-radius: 4px;
-       
     }
 </style>

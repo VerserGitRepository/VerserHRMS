@@ -14,6 +14,7 @@ namespace VerserHRManagement.Models
         [Required]
         public string CandidateName { get; set; }
         [Required]
+    [DataType(DataType.MultilineText)]
         public string CandidateSkills { get; set; }
         [Required]
         [EmailAddress]
@@ -56,10 +57,25 @@ namespace VerserHRManagement.Models
         public int ADP_EmployeeID { get; set; }
         public int WarehouseID { get; set; }
         public int EmployementTypeId { get; set; }
-        public bool isactive { get; set; }
-        public byte[] ProfilePic { get; set; } = new byte[0];
-        public DateTime DOB { get; set; }
+        public bool isactive { get; set; }     
+
+        public Byte[] profilePicture { get; set; } = new byte[0];
+        public string certificate1 { get; set; }
+        public string certificate2 { get; set; }
+        public string certificate3 { get; set; }
+        public string DriverLicense { get; set; }
+
+        public string PoliceCheckReport { get; set; }
+        public string Visa { get; set; }
+        public string SuperChoice { get; set; }
+        public string TFNDeclaration { get; set; }
+
+        public string BankDetails { get; set; }
+        public string CodeOFConduct { get; set; }
+        public string WHS { get; set; }
         public string Gender { get; set; }
         public string MaritalStatus { get; set; }
+        public int? Age { get; set; }
+        public DateTime? DOB { get; set; }
     }
 }
