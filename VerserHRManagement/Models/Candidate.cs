@@ -59,7 +59,7 @@ namespace VerserHRManagement.Models
         public int EmployementTypeId { get; set; }
         public bool isactive { get; set; }     
 
-        public Byte[] profilePicture { get; set; } = new byte[0];
+        public Byte[] profilePicture { get; set; } =new Byte[0];
         public string certificate1 { get; set; }
         public string certificate2 { get; set; }
         public string certificate3 { get; set; }

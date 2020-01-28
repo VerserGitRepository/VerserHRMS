@@ -28,7 +28,8 @@
                     @foreach (var item in Model)
                     {
                         <tr>
-                            <td onclick="LoadAddressData(@item.ID,'@item.CandidateName','@item.DateCreated','@item.Address','@item.City','@item.state','@item.postcode','@item.Email','@item.Phone','@Convert.ToBase64String(@item.profilePicture)');">
+                            <td onclick="LoadAddressData(@item.ID,'@item.CandidateName','@item.DateCreated','@item.Address','@item.City','@item.state','@item.postcode','@item.Email','@item.Phone',
+                                '@if(item.profilePicture != null) { @Convert.ToBase64String(@item.profilePicture)}');">
                                 <font style="font-weight:800;color:#515151">
                                     @Html.DisplayFor(modelItem => item.CandidateName)
                                     <input type="hidden" value="@item" id="hiddenModelId" />
@@ -133,10 +134,7 @@
                                                                 <i class="glyphicon glyphicon-home"></i>
                                                             </span><input id="txtAddress1" placeholder="Address Line 1" class="form-control" required="true" value="" type="text">
                                                         </div>
-
-
                                                     </div>
-
                                                     <br /><br /><br /><br />
                                                     <div class="col-md-3" style="margin-left:10px;">
                                                         <label>City:</label>
@@ -145,10 +143,7 @@
                                                                 <i class="glyphicon glyphicon-home"></i>
                                                             </span><input id="txtCity" placeholder="Suburb" class="form-control" required="true" value="" type="text">
                                                         </div>
-
-
                                                     </div>
-
                                                     <div class="col-md-3">
                                                         <label>State:</label>
                                                         <div class="input-group">
@@ -156,8 +151,6 @@
                                                                 <i class="glyphicon glyphicon-home"></i>
                                                             </span><input id="txtState" placeholder="State" class="form-control" required="true" value="" type="text">
                                                         </div>
-
-
                                                     </div>
                                                     <div class="col-md-3">
                                                         <label>Postal Code:</label>
@@ -166,8 +159,6 @@
                                                                 <i class="glyphicon glyphicon-home"></i>
                                                             </span><input id="txtPostalCode" placeholder="Postal Code" class="form-control" required="true" value="" type="text">
                                                         </div>
-
-
                                                     </div>
                                                     <div class="col-md-3" style="margin-left:10px;">
                                                         <label>Email:</label>
@@ -412,43 +403,43 @@
                                                 <!-- don't give a name === doesn't send on POST/GET -->
                                                 <span class="input-group-btn">
 
-                                                <button type="button" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Browse</button>
-                                                <button type="button" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-upload"></i> </span>Upload</button>
-                                            </span>
+                                                    <button type="button" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Browse</button>
+                                                    <button type="button" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-upload"></i> </span>Upload</button>
+                                                </span>
+                                            </div>
                                         </div>
-                                    </div>
 
-                                    <div class="panel-heading"><strong>PERSONAL DETAILS</strong> <small> </small></div>
-                                    <div class="panel-body">
-                                        <div class="input-group image-preview">
-                                            <input placeholder="Super Choice" type="text" class="form-control image-preview-filename" disabled="disabled">
-                                            <!-- don't give a name === doesn't send on POST/GET -->
-                                            <span class="input-group-btn">
+                                        <div class="panel-heading"><strong>PERSONAL DETAILS</strong> <small> </small></div>
+                                        <div class="panel-body">
+                                            <div class="input-group image-preview">
+                                                <input placeholder="Super Choice" type="text" class="form-control image-preview-filename" disabled="disabled">
+                                                <!-- don't give a name === doesn't send on POST/GET -->
+                                                <span class="input-group-btn">
 
-                                                <button type="button" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Browse</button>
-                                                <button type="button" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-upload"></i> </span>Upload</button>
-                                            </span>
-                                        </div><br>
-                                        <div class="input-group image-preview">
-                                            <input placeholder="TFN Declaration" type="text" class="form-control image-preview-filename" disabled="disabled">
-                                            <!-- don't give a name === doesn't send on POST/GET -->
-                                            <span class="input-group-btn">
+                                                    <button type="button" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Browse</button>
+                                                    <button type="button" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-upload"></i> </span>Upload</button>
+                                                </span>
+                                            </div><br>
+                                            <div class="input-group image-preview">
+                                                <input placeholder="TFN Declaration" type="text" class="form-control image-preview-filename" disabled="disabled">
+                                                <!-- don't give a name === doesn't send on POST/GET -->
+                                                <span class="input-group-btn">
 
-                                                <button type="button" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Browse</button>
-                                                <button type="button" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-upload"></i> </span>Upload</button>
-                                            </span>
+                                                    <button type="button" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Browse</button>
+                                                    <button type="button" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-upload"></i> </span>Upload</button>
+                                                </span>
+                                            </div>
+                                            <br>
+                                            <div class="input-group image-preview">
+                                                <input placeholder="Bank details" type="text" class="form-control image-preview-filename" disabled="disabled">
+                                                <!-- don't give a name === doesn't send on POST/GET -->
+                                                <span class="input-group-btn">
+
+                                                    <button type="button" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Browse</button>
+                                                    <button type="button" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-upload"></i> </span>Upload</button>
+                                                </span>
+                                            </div>
                                         </div>
-                                        <br>
-                                        <div class="input-group image-preview">
-                                            <input placeholder="Bank details" type="text" class="form-control image-preview-filename" disabled="disabled">
-                                            <!-- don't give a name === doesn't send on POST/GET -->
-                                            <span class="input-group-btn">
-
-                                                <button type="button" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Browse</button>
-                                                <button type="button" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-upload"></i> </span>Upload</button>
-                                            </span>
-                                        </div>
-                                    </div>
 
                                         <div class="panel-heading"><strong>POLICIES</strong> <small> </small></div>
                                         <div class="panel-body">
@@ -534,7 +525,6 @@
 
             });
         }
-
         function LoadAddressData(ID, CandidateName, DateCreated, Address, City, state, postcode, Email, Phone,logo) {
 
 
@@ -618,7 +608,6 @@
         $('#btnPC').click(function () { $('#PCimgupload').trigger('click'); });
         $('#btnVisa').click(function () { $('#Visaimgupload').trigger('click'); });
         $('#btnCertificates').click(function () { $('#Certificatesimgupload').trigger('click'); });
-
 
         $('#CVimgupload').on('change', function (event) {
             var tmppath = URL.createObjectURL(event.target.files[0]);
