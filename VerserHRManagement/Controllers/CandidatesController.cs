@@ -13,17 +13,17 @@ using System.Collections.Generic;
 
 namespace VerserHRManagement
 {
-    
+
     public class CandidatesController : Controller
     {
-        public  ActionResult Index()
+        public ActionResult Index()
         {
-            
+
             if (UserRoles.UserCanView() != true)
             {
-                return RedirectToAction("Login", "Login");                
-            }            
-            return View( CandidateService.CandidateList().Result);
+                return RedirectToAction("Login", "Login");
+            }
+            return View(CandidateService.CandidateList().Result);
         }
         public ActionResult Details(int id)
         {
@@ -31,11 +31,11 @@ namespace VerserHRManagement
             {
                 RedirectToAction("Login", "Login");
             }
-            if (id <=0)
+            if (id <= 0)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var  _candidate = CandidateService.FindCandidate(id).Result;
+            var _candidate = CandidateService.FindCandidate(id).Result;
             _candidate.ID = id;
             return View(_candidate);
         }
@@ -45,9 +45,9 @@ namespace VerserHRManagement
             return View();
         }
         [HttpPost]
-        public ActionResult Create( Candidate candidate, string submitButton)
+        public ActionResult Create(Candidate candidate, string submitButton)
         {
-            
+
             if (UserRoles.UserCanCreate() != true)
             {
                 RedirectToAction("Login", "Login");
@@ -91,7 +91,7 @@ namespace VerserHRManagement
                 {
                     candidate.EmployementTypeId = 3;
                 }
-                string _filename;               
+                string _filename;
                 HttpPostedFileBase file = Request.Files["UploadResumeFile"];
                 if (file.ContentLength > 0)
                 {
@@ -129,14 +129,22 @@ namespace VerserHRManagement
                 return View(candidate);
             }
             else { return RedirectToAction("Index", "Candidates"); }
-           
+
         }
         [HttpPost]
-       // [ValidateAntiForgeryToken]
+        // [ValidateAntiForgeryToken]
         public ActionResult Edit(Candidate candidate)
         {
             if (UserRoles.UserCanEdit() == true)
             {
+                HttpPostedFileBase file = Request.Files["CVimgupload"];
+                if (file.ContentLength > 0)
+                {
+                    var _filename = Path.GetFileName(file.FileName);
+                    string _path = Path.Combine(Server.MapPath("~/UploadedFiles"), _filename);
+                    file.SaveAs(_path);
+                    candidate.FilePath = _filename;
+                }
 
                 if (ModelState.IsValid)
                 {
@@ -189,8 +197,8 @@ namespace VerserHRManagement
             {
                 return RedirectToAction("Index", "Candidates");
             }
-       }
-         
+        }
+
         //public ActionResult Delete(int id)
         //{
         //    if (string.IsNullOrEmpty(Session["FullUserName"].ToString()))
@@ -226,7 +234,7 @@ namespace VerserHRManagement
         [HttpPost]
         public ActionResult ExportTimesSheetToExcel()
         {
-           var candidateList =new List<Candidate>();          
+            var candidateList = new List<Candidate>();
 
             if (string.IsNullOrEmpty(Session["FullUserName"].ToString()))
             {
@@ -259,9 +267,9 @@ namespace VerserHRManagement
             {
                 RedirectToAction("Login", "Login");
             }
-            return View( CandidateService.CandidateList().Result);
+            return View(CandidateService.CandidateList().Result);
         }
-     
+
 
         //protected override void Dispose(bool disposing)
         //{
@@ -271,5 +279,25 @@ namespace VerserHRManagement
         //    }
         //    base.Dispose(disposing);
         //}
+
+        [HttpPost]
+        // [ValidateAntiForgeryToken]
+        public ActionResult UploadDocument(int candidateId)
+        {
+            Candidate theCandidate = new Candidate();
+            theCandidate.ID = candidateId;
+            if (UserRoles.UserCanEdit() == true)
+            {
+
+                if (Request.Files["CVimgupload"].ContentLength > 0)
+                {
+                    var _filename = Path.GetFileName(Request.Files["CVimgupload"].FileName);
+                    string _path = Path.Combine(Server.MapPath("~/UploadedFiles"), _filename);
+                    Request.Files["CVimgupload"].SaveAs(_path);
+                    theCandidate.FilePath = _filename;
+                }
+            }
+            return null;
+        }
     }
 }

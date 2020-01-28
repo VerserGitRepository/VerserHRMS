@@ -66,8 +66,8 @@
                                                 <div class="col-sm-6">
 
                                                     <div class="col-sm-10">
-                                                        
-                                                        <img class="preview-img" src="http://simpleicon.com/wp-content/uploads/account.png" alt="Preview Image" width="200" height="100" id="previewImage" onchange="readURL(this);"/>
+
+                                                        <img class="preview-img" src="http://simpleicon.com/wp-content/uploads/account.png" alt="Preview Image" width="200" height="100" id="previewImage" onchange="readURL(this);" />
                                                         <img id="image" class="image-border form-control form-control-sm" width="200" height="100">
                                                         <input type="file" id="imgupload" style="display:none" onchange="readURL(this);" />
                                                     </div>
@@ -119,10 +119,10 @@
 
                                                 </div>
                                             </div>
-                                                <div style="font-size:smaller;color:deepskyblue">
+                                            <div style="font-size:smaller;color:deepskyblue">
 
-                                                </div>
                                             </div>
+                                        </div>
                                     </form>
                                 </div>
                                 <div class="row grid-divider">
@@ -141,7 +141,7 @@
 
 
                                                     </div>
-                                                   
+
                                                     <br /><br /><br /><br />
                                                     <div class="col-md-3" style="margin-left:10px;">
                                                         <label>City:</label>
@@ -212,14 +212,14 @@
                                                 </div>
                                             </div>
                                         </fieldset>
-                                  
+
                                     </div>
                                 </div>
                             </div>
                         </div>
 
                         <div class="tab-pane fade" id="tab2default">
-                            
+
                             <div class="row pull-left" style="margin-left:-1px">
                                 <div class="form-group row">
                                     <div class="col-md-5" style="margin-left:10px;">
@@ -286,7 +286,7 @@
                                         <input type="text" class="form-control form-control-sm" id="txtAge" placeholder="Notice Period">
 
                                     </div><br /><br /><br /><br />
-                                    
+
 
                                     <div class="col-md-5 pull-left">
                                         <input type="submit" value="SAVE CHANGES" class="btn btn-outline-secondary" style="height:32px;vertical-align:top;background-color:#1372AB;color:white" id="updateBtn" />
@@ -296,7 +296,7 @@
                         </div>
 
                         <div class="tab-pane fade" id="tab3default">
-                       
+
                             <br>
                             <div class="row pull-left" style="margin-left:-1px">
                                 <div class="row pull-left" style="margin-left:-1px">
@@ -363,19 +363,21 @@
 
                             </div>
                         </div>
+                        @using (Html.BeginForm("Edit", "Candidates", FormMethod.Post, new { enctype = "multipart/form-data" }))
 
-                        <div class="tab-pane fade" id="tab4default" style="font:x-small">
+                        {
+                            <div class="tab-pane fade" id="tab4default" style="font:x-small">
                                 <div class="col-md-12">
                                     <div class="panel panel-default">
                                         <div class="panel-heading"><strong>RESUME</strong> <small> </small></div>
                                         <div class="panel-body">
                                             <div class="input-group image-preview">
-                                                <input placeholder="CV" type="text" class="form-control image-preview-filename" disabled="disabled">
+                                                <input placeholder="CV" type="text" class="form-control image-preview-filename" disabled="disabled" id="">
                                                 <!-- don't give a name === doesn't send on POST/GET -->
                                                 <span class="input-group-btn">
-                                                    <input type="file" id="CVimgupload" style="display:none" onchange="ReadFileName(this,'CVimgupload');" />
+                                                    <input type="file" id="CVimgupload" name="CVimgupload" style="display:none" />
                                                     <button id="btnCV" type="button" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Browse</button>
-                                                    <button type="button" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-upload"></i> </span>Upload</button>
+                                                    <button type="submit" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-upload"></i> </span>Upload</button>
                                                 </span>
                                             </div>
                                             <br>
@@ -405,7 +407,7 @@
                                                 <input placeholder="Police Check" type="text" class="form-control image-preview-filename" disabled="disabled">
                                                 <!-- don't give a name === doesn't send on POST/GET -->
                                                 <span class="input-group-btn">
-                                                    <input type="file" id="PCimgupload" style="display:none" onchange="ReadFileName(this,'PCimgupload');"/>
+                                                    <input type="file" id="PCimgupload" style="display:none" onchange="ReadFileName(this,'PCimgupload');" />
                                                     <button type="button" id="btnPC" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Browse</button>
                                                     <button type="button" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-upload"></i> </span>Upload</button>
                                                 </span>
@@ -460,7 +462,7 @@
                                                 <input placeholder="Code of Conduct" type="text" class="form-control image-preview-filename" disabled="disabled">
                                                 <!-- don't give a name === doesn't send on POST/GET -->
                                                 <span class="input-group-btn">
-                                                    <input type="file" id="Visaimgupload" style="display:none" onchange="ReadFileName(this,'Visaimgupload');"/>
+                                                    <input type="file" id="Visaimgupload" style="display:none" onchange="ReadFileName(this,'Visaimgupload');" />
                                                     <button type="button" id="btnVisa" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Browse</button>
                                                     <button type="button" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-upload"></i> </span>Upload</button>
                                                 </span>
@@ -486,11 +488,12 @@
                                             </div>
                                         </div>
                                     </div>
-                                    </div>
                                 </div>
-                            @*</div>*@
-                           
-                        </div>
+                            </div>
+                        }
+                        @*</div>*@
+
+                    </div>
 
                     </div>
                 </div>
@@ -627,6 +630,13 @@
         $('#btnPC').click(function () { $('#PCimgupload').trigger('click'); });
         $('#btnVisa').click(function () { $('#Visaimgupload').trigger('click'); });
         $('#btnCertificates').click(function () { $('#Certificatesimgupload').trigger('click'); });
+
+
+        $('#CVimgupload').on('change', function (event) {
+            var tmppath = URL.createObjectURL(event.target.files[0]);
+            var filePath = $(this).val();
+            console.log(filePath);
+        });
     </script>
     <body>
 
