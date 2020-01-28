@@ -28,20 +28,13 @@
                     @foreach (var item in Model)
                     {
                         <tr>
-                            <td onclick="LoadAddressData(@item.ID,'@item.CandidateName','@item.DateCreated','@item.Address','@item.City','@item.state','@item.postcode','@item.Email','@item.Phone');">
+                            <td onclick="LoadAddressData(@item.ID,'@item.CandidateName','@item.DateCreated','@item.Address','@item.City','@item.state','@item.postcode','@item.Email','@item.Phone','@Convert.ToBase64String(@item.ProfilePic)');">
                                 <font style="font-weight:800;color:#515151">
                                     @Html.DisplayFor(modelItem => item.CandidateName)
                                     <input type="hidden" value="@item" id="hiddenModelId" />
                                 </font> <br />
-                                <font style="color:gray">
-                                    @*@Html.DisplayFor(modelItem => item.addressLine1)*@
-                                </font>
-                                @*@if (Convert.ToBase64String(@item.logo).Length > 0)
-                                    {
-                                        <br />
-                                        <img src="data:image/jpeg;base64,@(Convert.ToBase64String(@item.logo))" style="height:45px; width:65px;" class="image-border">
-                                        <input type="hidden" value="@Convert.ToBase64String(@item.logo)" id="hiddenLogo" />
-                                    }*@
+                               
+                               
                             </td>
                         </tr>
                     }
@@ -73,9 +66,10 @@
                                                 <div class="col-sm-6">
 
                                                     <div class="col-sm-10">
-                                                        <img class="preview-img" src="http://simpleicon.com/wp-content/uploads/account.png" alt="Preview Image" width="200" height="100" />
-                                                        @*<img id="image" class="image-border form-control form-control-sm">
-                                                        <input type="file" id="imgupload" style="display:none" onchange="readURL(this);" />*@
+                                                        
+                                                        <img class="preview-img" src="http://simpleicon.com/wp-content/uploads/account.png" alt="Preview Image" width="200" height="100" id="previewImage" onchange="readURL(this);"/>
+                                                        <img id="image" class="image-border form-control form-control-sm">
+                                                        <input type="file" id="imgupload" style="display:none" onchange="readURL(this);" />
                                                     </div>
                                                 </div>
                                             </div>
@@ -142,28 +136,19 @@
                                                         <div class="input-group">
                                                             <span class="input-group-addon">
                                                                 <i class="glyphicon glyphicon-home"></i>
-                                                            </span><input id="addressLine1" name="addressLine1" placeholder="Address Line 1" class="form-control" required="true" value="" type="text">
+                                                            </span><input id="txtAddress1" placeholder="Address Line 1" class="form-control" required="true" value="" type="text">
                                                         </div>
 
 
                                                     </div>
-                                                    @*<div class="col-md-5">
-                                                        <label>Address Line 2:</label>
-                                                        <div class="input-group">
-                                                            <span class="input-group-addon">
-                                                                <i class="glyphicon glyphicon-home"></i>
-                                                            </span><input id="addressLine2" name="addressLine1" placeholder="Address Line 2" class="form-control" required="true" value="" type="text">
-                                                        </div>
-
-
-                                                    </div>*@
+                                                   
                                                     <br /><br /><br /><br />
                                                     <div class="col-md-3" style="margin-left:10px;">
                                                         <label>City:</label>
                                                         <div class="input-group">
                                                             <span class="input-group-addon">
                                                                 <i class="glyphicon glyphicon-home"></i>
-                                                            </span><input id="Suburb" name="Suburb" placeholder="Suburb" class="form-control" required="true" value="" type="text">
+                                                            </span><input id="txtSuburb" placeholder="Suburb" class="form-control" required="true" value="" type="text">
                                                         </div>
 
 
@@ -174,7 +159,7 @@
                                                         <div class="input-group">
                                                             <span class="input-group-addon">
                                                                 <i class="glyphicon glyphicon-home"></i>
-                                                            </span><input id="State" name="addressLine1" placeholder="State" class="form-control" required="true" value="" type="text">
+                                                            </span><input id="txtState" placeholder="State" class="form-control" required="true" value="" type="text">
                                                         </div>
 
 
@@ -184,7 +169,7 @@
                                                         <div class="input-group">
                                                             <span class="input-group-addon">
                                                                 <i class="glyphicon glyphicon-home"></i>
-                                                            </span><input id="Postal Code" name="Postal Code" placeholder="Postal Code" class="form-control" required="true" value="" type="text">
+                                                            </span><input id="txtPostalCode" placeholder="Postal Code" class="form-control" required="true" value="" type="text">
                                                         </div>
 
 
@@ -194,7 +179,7 @@
                                                         <div class="input-group">
                                                             <span class="input-group-addon">
                                                                 <i class="glyphicon glyphicon-envelope"></i>
-                                                            </span><input id="email" name="email" placeholder="Email" class="form-control" required="true" value="" type="text">
+                                                            </span><input id="txtEmail" placeholder="Email" class="form-control" required="true" value="" type="text">
                                                         </div>
 
 
@@ -205,7 +190,7 @@
                                                         <div class="input-group">
                                                             <span class="input-group-addon">
                                                                 <i class="glyphicon glyphicon-earphone"></i>
-                                                            </span><input id="phoneNumber" name="phoneNumber" placeholder="Phone Number" class="form-control" required="true" value="" type="text">
+                                                            </span><input id="txtMobile" placeholder="Phone Number" class="form-control" required="true" value="" type="text">
                                                         </div>
 
 
@@ -216,7 +201,7 @@
                                                         <div class="input-group">
                                                             <span class="input-group-addon">
                                                                 <i class="glyphicon glyphicon-earphone"></i>
-                                                            </span><input id="phoneNumber" name="phoneNumber" placeholder="Phone Number" class="form-control" required="true" value="" type="text">
+                                                            </span><input id="txtPhoneNumber" placeholder="Phone Number" class="form-control" required="true" value="" type="text">
                                                         </div>
                                                         <br /><br />
 
@@ -447,6 +432,14 @@
             $('#mainTable3').DataTable();
             $('#mainTable4').DataTable();
             $('#mainTable5').DataTable();
+            if ($("#image").src == null) {
+                $("#image").hide();
+                $("#previewImage").show();
+            }
+            else {
+                $("#image").show();
+                $("#previewImage").hide();
+            }
         });
         //  ExportTimesSheetToExcel", "Candidates"
 
@@ -460,7 +453,7 @@
             });
         }
 
-        function LoadAddressData(ID, CandidateName, DateCreated, Address, City, state, postcode, Email, Phone) {
+        function LoadAddressData(ID, CandidateName, DateCreated, Address, City, state, postcode, Email, Phone,logo) {
          
 
             $("#txtfName").val(CandidateName.split(' ')[0]);
@@ -472,17 +465,36 @@
             $("#txtPostalCode").val(postcode);
             $("#txtEmail").val(Email);
             $("#txtMobile").val(Phone);
-           
+            if (logo == !"")
+            {
+                $("#previewImage").hide();
+                $("#image").show();
+                $("#image").attr("src", "data:image/jpeg;base64," + logo + "").height(80).width(80);
+            }
+            else {
+                $("#previewImage").show();
+                $("#image").hide();
+            }
 
-            var loadUrl = '@Url.Action("GetCompanyData", "Company")';
-            var loadAssetsUrl = '@Url.Action("GetAssetsData", "Assets")';
-            var loadContractsUrl = '@Url.Action("GetContractsData", "Contracts")';
-            var loadCatalogueUrl = '@Url.Action("GetCatalogueData", "Catalogue")';
-            var loadEndusersUrl = '@Url.Action("GetEndusersData", "Endusers")';
+            
+        }
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
 
+                reader.onload = function (e) {
+                    $('#image')
+                        .attr('src', e.target.result);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+        $("#updateBtn").click(function () {
+            var updateCandidateData = '@Url.Action("Edit", "Candidates")';
             $.ajax({
 
-                type: "GET",
+                type: "POST",
                 url: loadUrl,
                 contentType: "application/json; charset=utf-8",
                 data: { "Id": theId },
@@ -495,7 +507,8 @@
                     alert("Dynamic content load failed.");
                 }
             });
-        }
+        });
+        $('#image,#previewImage').click(function () { $('#imgupload').trigger('click'); });
     </script>
     <body>
 
