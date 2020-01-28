@@ -13,7 +13,8 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.1.1/css/mdb.min.css" rel="stylesheet">
 <link href="@Url.Content("https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css")" rel="stylesheet" type="text/css" />
 <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js" type="text/javascript"></script>
-<script src="bootstrap-select.js"></script>
+<script src="~/Scripts/bootstrap-multiselect.js"></script>
+<link href="~/Content/bootstrap-multiselect.css" rel="stylesheet" />
 <br />
 <div class="row">
     <div class="col-md-offset-0 col-md-4 col-md-push-0">
@@ -22,22 +23,22 @@
             {
                 @Html.AntiForgeryToken()
 
-               
+
                 <div class="well" style="width:170%; height:770px">
                     <br />
                     <div class="row">
                         <div class="col-md-12 col-md-push-0">
 
                             <div class="form-group" style="height:100%">
-                            <div class="input-group" style="height:500px; width:280px; vertical-align:top">
-                                <span style="height:450px" class="input-group-addon icon-custom">
+                                <div class="input-group" style="height:500px; width:280px; vertical-align:top">
+                                    <span style="height:450px" class="input-group-addon icon-custom">
 
-                                </span>
+                                    </span>
 
-                                @Html.ListBoxFor(m => m.SelectedMultiCandidateId, this.ViewBag.CountryList as SelectList, new { id = "CountryList", @class = "selectpicker show-menu-arrow form-control input-lg", @style = "width:550px;height:100%;" })
+                                    @Html.DropDownListFor(m => m.CandidateId, this.ViewBag.CountryList as SelectList, new { id = "CountryList", @class = "form-control", @multiple = "multiple" })
 
+                                </div>
                             </div>
-                        </div>
 
 
 
@@ -60,39 +61,7 @@
 
             }
         </section>
-    </div>
-
-
-    @if (Model.CandidateList != null &&
-         Model.CandidateList.Count > 0)
-    {
-        <br>
-        <div class="row">
-            <div class="col-md-4">
-
-                <table class="table table-bordered table-striped" style="width:50%; background-color:white">
-                    <thead>
-                        <tr>
-
-                            <th style="text-align: center;background-color:#FF9933">Resources Selected</th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        @for (int i = 0; i < Model.CandidateList.Count; i++)
-                        {
-                            <tr>
-                                <td style="text-align:center;">@Model.CandidateList[i].CandidateName</td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
-
-            </div>
-        </div>
-    }
-
-
+    </div>   
 </div>
 
 @*<div class="col-md-12 col-md-push-2">
@@ -106,21 +75,13 @@
 <script>
     $(document).ready(function () {
         // Enable Live Search.
-        $('#CountryList').attr('data-live-search', true);
-
-        //// Enable multiple select.
-        $('#CountryList').attr('multiple', true);
-        $('#CountryList').attr('data-selected-text-format', 'count');
-
-        $('.selectCountry').selectpicker(
-            {
-                showTick: true,
-                width: '200%',
-                style: 'btn-warning',
-                size: 8,
-                iconBase: 'fontawesome',
-                tickIcon: 'fa fa-check'
-            });
+        $('#CountryList').multiselect({
+            includeSelectAllOption: true,
+            maxHeight: 250,
+            buttonWidth: '280px',
+            enableFiltering: true,
+            enableCaseInsensitiveFiltering: true
+        });
     });
 
 

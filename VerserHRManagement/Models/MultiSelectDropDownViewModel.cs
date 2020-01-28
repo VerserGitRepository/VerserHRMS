@@ -13,6 +13,7 @@ namespace VerserHRManagement.Models
         [Required]
         [Display(Name = "Choose Multiple Candidates")]
         public List<int> SelectedMultiCandidateId { get; set; }
+        public int CandidateId{ get; set; }
 
         [Required]
         [AllowHtml]
@@ -24,6 +25,7 @@ namespace VerserHRManagement.Models
         public List<CandidateListItems> CandidateList { get; set; }
 
         public string ReturnMessage { get; set; }
+        public SelectList CandidatesList { get; set; }
 
         // public SelectList CandidateList { get; set; }
 
