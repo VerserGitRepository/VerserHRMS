@@ -38,8 +38,8 @@
                 <ul class="nav navbar-nav">
                     @if (Session["FullUserName"] != null)
                     {
-                    <li>@Html.ActionLink("HOME", "Index", "Candidates")</li>
-                    <li>@Html.ActionLink("REGISTER NEW PROFILE", "Create", "Candidates")</li>
+                    <li>@Html.ActionLink("PROFILES", "Index", "Candidates")</li>
+                    <li>@Html.ActionLink("NEW PROFILE", "Create", "Candidates")</li>
                     <li>@Html.ActionLink("BULK SMS", "Index", "MultiSelectDropDown")</li>
                     @*<li>@Html.ActionLink("LIST", "SMSBroadcast", "Candidates")</li>*@
                     <li>@Html.ActionLink("CONTACT", "Contact", "Home")</li>

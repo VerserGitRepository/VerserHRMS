@@ -301,7 +301,7 @@
                             <div class="row pull-left" style="margin-left:-1px">
                                 <div class="row pull-left" style="margin-left:-1px">
                                     <div class="form-group row">
-                                        <div class="col-md-5" style="margin-left:10px;">
+                                        <div class="col-md-10" style="margin-left:10px;">
                                             <label class="col-sm-9 col-form-label col-form-label-sm">Candidate Skills</label>
 
                                             <input type="text" id="candidateskills" class="form-control form-control-sm" placeholder="candidateskills">
@@ -364,7 +364,7 @@
                             </div>
                         </div>
 
-                        <div class="tab-pane fade" id="tab4default">
+                        <div class="tab-pane fade" id="tab4default" style="font:x-small">
                                 <div class="col-md-12">
                                     <div class="panel panel-default">
                                         <div class="panel-heading"><strong>RESUME</strong> <small> </small></div>
@@ -378,7 +378,16 @@
                                                     <button type="button" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-upload"></i> </span>Upload</button>
                                                 </span>
                                             </div>
+                                            <br>
+                                            <div class="input-group image-preview">
+                                                <input placeholder="Certificates" type="text" class="form-control image-preview-filename" disabled="disabled">
+                                                <!-- don't give a name === doesn't send on POST/GET -->
+                                                <span class="input-group-btn">
 
+                                                    <button type="button" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Browse</button>
+                                                    <button type="button" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-upload"></i> </span>Upload</button>
+                                                </span>
+                                            </div>
                                         </div>
 
                                         <div class="panel-heading"><strong>LEGAL</strong> <small> </small></div>
@@ -401,11 +410,54 @@
                                                     <button type="button" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-upload"></i> </span>Upload</button>
                                                 </span>
                                             </div>
-                                        </div>
-                                        <div class="panel-heading"><strong>ADDITIONAL</strong> <small> </small></div>
-                                        <div class="panel-body">
+                                            <br>
                                             <div class="input-group image-preview">
                                                 <input placeholder="Visa" type="text" class="form-control image-preview-filename" disabled="disabled">
+                                                <!-- don't give a name === doesn't send on POST/GET -->
+                                                <span class="input-group-btn">
+
+                                                    <button type="button" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Browse</button>
+                                                    <button type="button" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-upload"></i> </span>Upload</button>
+                                                </span>
+                                            </div>
+                                        </div>
+
+                                        <div class="panel-heading"><strong>PERSONAL DETAILS</strong> <small> </small></div>
+                                        <div class="panel-body">
+                                            <div class="input-group image-preview">
+                                                <input placeholder="Super Choice" type="text" class="form-control image-preview-filename" disabled="disabled">
+                                                <!-- don't give a name === doesn't send on POST/GET -->
+                                                <span class="input-group-btn">
+
+                                                    <button type="button" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Browse</button>
+                                                    <button type="button" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-upload"></i> </span>Upload</button>
+                                                </span>
+                                            </div><br>
+                                            <div class="input-group image-preview">
+                                                <input placeholder="TFN Declaration" type="text" class="form-control image-preview-filename" disabled="disabled">
+                                                <!-- don't give a name === doesn't send on POST/GET -->
+                                                <span class="input-group-btn">
+
+                                                    <button type="button" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Browse</button>
+                                                    <button type="button" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-upload"></i> </span>Upload</button>
+                                                </span>
+                                            </div>
+                                            <br>
+                                            <div class="input-group image-preview">
+                                                <input placeholder="Bank details" type="text" class="form-control image-preview-filename" disabled="disabled">
+                                                <!-- don't give a name === doesn't send on POST/GET -->
+                                                <span class="input-group-btn">
+
+                                                    <button type="button" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Browse</button>
+                                                    <button type="button" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-upload"></i> </span>Upload</button>
+                                                </span>
+                                            </div>
+                                        </div>
+
+                                        <div class="panel-heading"><strong>POLICIES</strong> <small> </small></div>
+                                        <div class="panel-body">
+                                            <div class="input-group image-preview">
+                                                <input placeholder="Code of Conduct" type="text" class="form-control image-preview-filename" disabled="disabled">
                                                 <!-- don't give a name === doesn't send on POST/GET -->
                                                 <span class="input-group-btn">
                                                     <input type="file" id="Visaimgupload" style="display:none" onchange="ReadFileName(this,'Visaimgupload');"/>
@@ -414,7 +466,17 @@
                                                 </span>
                                             </div><br>
                                             <div class="input-group image-preview">
-                                                <input placeholder="Certificates" type="text" class="form-control image-preview-filename" disabled="disabled">
+                                                <input placeholder="WHS" type="text" class="form-control image-preview-filename" disabled="disabled">
+                                                <!-- don't give a name === doesn't send on POST/GET -->
+                                                <span class="input-group-btn">
+
+                                                    <button type="button" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Browse</button>
+                                                    <button type="button" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-upload"></i> </span>Upload</button>
+                                                </span>
+                                            </div>
+                                            <br>
+                                            <div class="input-group image-preview">
+                                                <input placeholder="" type="text" class="form-control image-preview-filename" disabled="disabled">
                                                 <!-- don't give a name === doesn't send on POST/GET -->
                                                 <span class="input-group-btn">
                                                     <input type="file" id="Certificatesimgupload" style="display:none" />
@@ -423,6 +485,7 @@
                                                 </span>
                                             </div>
                                         </div>
+                                    </div>
                                     </div>
                                 </div>
                             @*</div>*@
