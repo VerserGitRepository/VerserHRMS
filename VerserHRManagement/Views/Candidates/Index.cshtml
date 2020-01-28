@@ -206,7 +206,7 @@
                                                         <br /><br />
 
                                                         <div class="pull-left">
-                                                            <input type="submit" value="UPDATE" class="btn btn-outline-secondary" style="height:32px;vertical-align:top;background-color:#1372AB;color:white" id="updateBtn" />
+                                                            <input type="submit" value="SAVE CHANGES" class="btn btn-outline-secondary" style="height:32px;vertical-align:top;background-color:#1372AB;color:white" id="updateBtn" />
                                                         </div>
                                                     </div>
                                                 </div>
@@ -288,8 +288,8 @@
                                     </div><br /><br /><br /><br />
                                     
 
-                                    <div class="col-md-5 pull-left col-md-offset-4">
-                                        <input type="submit" value="UPDATE" class="btn btn-outline-secondary" style="height:32px;vertical-align:top;background-color:#1372AB;color:white" id="updateBtn" />
+                                    <div class="col-md-5 pull-left">
+                                        <input type="submit" value="SAVE CHANGES" class="btn btn-outline-secondary" style="height:32px;vertical-align:top;background-color:#1372AB;color:white" id="updateBtn" />
                                     </div>
                                 </div>
                             </div>
@@ -335,8 +335,8 @@
 
                                         <br /><br /><br /><br />
 
-                                        <div class="col-md-5 pull-left col-md-offset-4">
-                                            <input type="submit" value="UPDATE" class="btn btn-outline-secondary" style="height:32px;vertical-align:top;background-color:#1372AB;color:white" id="updateBtn" />
+                                        <div class="col-md-5 pull-left">
+                                            <input type="submit" value="SAVE CHANGES" class="btn btn-outline-secondary" style="height:32px;vertical-align:top;background-color:#1372AB;color:white" id="updateBtn" />
                                         </div>
                                     </div>
                                 </div>
@@ -365,43 +365,68 @@
                         </div>
 
                         <div class="tab-pane fade" id="tab4default">
-                            @*<div class="row pull-right">*@
-
                                 <div class="col-md-12">
                                     <div class="panel panel-default">
-                                        <div class="panel-heading"><strong>Upload files</strong> <small> </small></div>
+                                        <div class="panel-heading"><strong>RESUME</strong> <small> </small></div>
                                         <div class="panel-body">
                                             <div class="input-group image-preview">
-                                                <input placeholder="" type="text" class="form-control image-preview-filename" disabled="disabled">
+                                                <input placeholder="CV" type="text" class="form-control image-preview-filename" disabled="disabled">
                                                 <!-- don't give a name === doesn't send on POST/GET -->
                                                 <span class="input-group-btn">
-                                                    <!-- image-preview-clear button -->
-                                                    <button type="button" class="btn btn-default image-preview-clear" style="display:none;"> <span class="glyphicon glyphicon-remove"></span> Clear </button>
-                                                    <!-- image-preview-input -->
-                                                    <div class="btn btn-default image-preview-input">
-                                                        <span class="glyphicon glyphicon-folder-open"></span> <span class="image-preview-input-title">Browse</span>
-                                                        <input type="file" accept="image/png, image/jpeg, image/gif" name="input-file-preview" />
-                                                        <!-- rename it -->
-                                                    </div>
-                                                    <button type="button" class="btn btn-labeled btn-primary"> <span class="btn-label"><i class="glyphicon glyphicon-upload"></i> </span>Upload</button>
+
+                                                    <button type="button" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Browse</button>
+                                                    <button type="button" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-upload"></i> </span>Upload</button>
                                                 </span>
                                             </div>
-                                            <!-- /input-group image-preview [TO HERE]-->
 
-                                            <br />
+                                        </div>
 
-                                            <!-- Progress Bar -->
-                                            @*<div class="progress">
-                                                <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;"> <span class="sr-only">60% Complete</span> </div>
-                                            </div>*@
-                                            <br />
+                                        <div class="panel-heading"><strong>LEGAL</strong> <small> </small></div>
+                                        <div class="panel-body">
+                                            <div class="input-group image-preview">
+                                                <input placeholder="Drivers License" type="text" class="form-control image-preview-filename" disabled="disabled">
+                                                <!-- don't give a name === doesn't send on POST/GET -->
+                                                <span class="input-group-btn">
+
+                                                    <button type="button" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Browse</button>
+                                                    <button type="button" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-upload"></i> </span>Upload</button>
+                                                </span>
+                                            </div><br>
+                                            <div class="input-group image-preview">
+                                                <input placeholder="Police Check" type="text" class="form-control image-preview-filename" disabled="disabled">
+                                                <!-- don't give a name === doesn't send on POST/GET -->
+                                                <span class="input-group-btn">
+
+                                                    <button type="button" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Browse</button>
+                                                    <button type="button" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-upload"></i> </span>Upload</button>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="panel-heading"><strong>ADDITIONAL</strong> <small> </small></div>
+                                        <div class="panel-body">
+                                            <div class="input-group image-preview">
+                                                <input placeholder="Visa" type="text" class="form-control image-preview-filename" disabled="disabled">
+                                                <!-- don't give a name === doesn't send on POST/GET -->
+                                                <span class="input-group-btn">
+
+                                                    <button type="button" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Browse</button>
+                                                    <button type="button" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-upload"></i> </span>Upload</button>
+                                                </span>
+                                            </div><br>
+                                            <div class="input-group image-preview">
+                                                <input placeholder="Certificates" type="text" class="form-control image-preview-filename" disabled="disabled">
+                                                <!-- don't give a name === doesn't send on POST/GET -->
+                                                <span class="input-group-btn">
+
+                                                    <button type="button" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Browse</button>
+                                                    <button type="button" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-upload"></i> </span>Upload</button>
+                                                </span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             @*</div>*@
-                            <div class="row pull-left" style="margin-left:-1px">
-                                Performance
-                            </div>
+                           
                         </div>
 
                     </div>
