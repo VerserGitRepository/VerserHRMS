@@ -45,7 +45,6 @@ namespace VerserHRManagement
             return View();
         }
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult Create( Candidate candidate, string submitButton)
         {
             
@@ -133,7 +132,7 @@ namespace VerserHRManagement
            
         }
         [HttpPost]
-        [ValidateAntiForgeryToken]
+       // [ValidateAntiForgeryToken]
         public ActionResult Edit(Candidate candidate)
         {
             if (UserRoles.UserCanEdit() == true)
