@@ -68,7 +68,7 @@
                                                     <div class="col-sm-10">
                                                         
                                                         <img class="preview-img" src="http://simpleicon.com/wp-content/uploads/account.png" alt="Preview Image" width="200" height="100" id="previewImage" onchange="readURL(this);"/>
-                                                        <img id="image" class="image-border form-control form-control-sm">
+                                                        <img id="image" class="image-border form-control form-control-sm" width="200" height="100">
                                                         <input type="file" id="imgupload" style="display:none" onchange="readURL(this);" />
                                                     </div>
                                                 </div>
@@ -148,7 +148,7 @@
                                                         <div class="input-group">
                                                             <span class="input-group-addon">
                                                                 <i class="glyphicon glyphicon-home"></i>
-                                                            </span><input id="txtSuburb" placeholder="Suburb" class="form-control" required="true" value="" type="text">
+                                                            </span><input id="txtCity" placeholder="Suburb" class="form-control" required="true" value="" type="text">
                                                         </div>
 
 
@@ -373,8 +373,8 @@
                                                 <input placeholder="CV" type="text" class="form-control image-preview-filename" disabled="disabled">
                                                 <!-- don't give a name === doesn't send on POST/GET -->
                                                 <span class="input-group-btn">
-
-                                                    <button type="button" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Browse</button>
+                                                    <input type="file" id="CVimgupload" style="display:none" onchange="ReadFileName(this,'CVimgupload');" />
+                                                    <button id="btnCV" type="button" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Browse</button>
                                                     <button type="button" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-upload"></i> </span>Upload</button>
                                                 </span>
                                             </div>
@@ -387,8 +387,8 @@
                                                 <input placeholder="Drivers License" type="text" class="form-control image-preview-filename" disabled="disabled">
                                                 <!-- don't give a name === doesn't send on POST/GET -->
                                                 <span class="input-group-btn">
-
-                                                    <button type="button" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Browse</button>
+                                                    <input type="file" id="DLimgupload" style="display:none" onchange="ReadFileName(this,'DLimgupload');" />
+                                                    <button id="btnDL" type="button" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Browse</button>
                                                     <button type="button" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-upload"></i> </span>Upload</button>
                                                 </span>
                                             </div><br>
@@ -396,8 +396,8 @@
                                                 <input placeholder="Police Check" type="text" class="form-control image-preview-filename" disabled="disabled">
                                                 <!-- don't give a name === doesn't send on POST/GET -->
                                                 <span class="input-group-btn">
-
-                                                    <button type="button" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Browse</button>
+                                                    <input type="file" id="PCimgupload" style="display:none" onchange="ReadFileName(this,'PCimgupload');"/>
+                                                    <button type="button" id="btnPC" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Browse</button>
                                                     <button type="button" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-upload"></i> </span>Upload</button>
                                                 </span>
                                             </div>
@@ -408,8 +408,8 @@
                                                 <input placeholder="Visa" type="text" class="form-control image-preview-filename" disabled="disabled">
                                                 <!-- don't give a name === doesn't send on POST/GET -->
                                                 <span class="input-group-btn">
-
-                                                    <button type="button" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Browse</button>
+                                                    <input type="file" id="Visaimgupload" style="display:none" onchange="ReadFileName(this,'Visaimgupload');"/>
+                                                    <button type="button" id="btnVisa" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Browse</button>
                                                     <button type="button" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-upload"></i> </span>Upload</button>
                                                 </span>
                                             </div><br>
@@ -417,8 +417,8 @@
                                                 <input placeholder="Certificates" type="text" class="form-control image-preview-filename" disabled="disabled">
                                                 <!-- don't give a name === doesn't send on POST/GET -->
                                                 <span class="input-group-btn">
-
-                                                    <button type="button" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Browse</button>
+                                                    <input type="file" id="Certificatesimgupload" style="display:none" />
+                                                    <button type="button" id="btnCertificate" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Browse</button>
                                                     <button type="button" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-upload"></i> </span>Upload</button>
                                                 </span>
                                             </div>
@@ -494,7 +494,7 @@
             {
                 $("#previewImage").hide();
                 $("#image").show();
-                $("#image").attr("src", "data:image/jpeg;base64," + logo + "").height(80).width(80);
+                $("#image").attr("src", "data:image/jpeg;base64," + logo + "").height(100).width(200);
             }
             else {
                 $("#previewImage").show();
@@ -503,7 +503,14 @@
 
             
         }
+        function ReadFileName(input,controlName) {
+            var ctrl = document.getElementById(controlName);
+            
+        }
         function readURL(input) {
+            $('#image').show();
+            $("#image").height(100).width(200);
+            $('#previewImage').hide();
             if (input.files && input.files[0]) {
                 var reader = new FileReader();
 
@@ -516,17 +523,34 @@
             }
         }
         $("#updateBtn").click(function () {
+            var CandidateEdit = {};
+            CandidateEdit.CandidateName = $("#txtfName").val() + ' ' + $("#txtlName").val();
+            CandidateEdit.Address = $("#txtAddress1").val();
+            CandidateEdit.DOB = $("#txtDOB").val();
+            CandidateEdit.Gender = $("#txtGender").val();
+            CandidateEdit.MaritalStatus = $("#txtStatus").val();
+            CandidateEdit.City = $("#txtCity").val();
+            CandidateEdit.State = $("#txtState").val();
+            CandidateEdit.PostalCode = $("#txtPostalCode").val();
+            CandidateEdit.Email = $("#txtEMail").val();
+            CandidateEdit.Phone = $("#txtMobile").val();
+            CandidateEdit.ProfilePic = $("#image")[0].src.split(',')[1];
+          
+
+            
+            
             var updateCandidateData = '@Url.Action("Edit", "Candidates")';
             $.ajax({
 
                 type: "POST",
-                url: loadUrl,
+                url: updateCandidateData,
                 contentType: "application/json; charset=utf-8",
-                data: { "Id": theId },
+                data: JSON.stringify(CandidateEdit),
                 datatype: "json",
-                success: function (data) {
-                    // debugger;
-                    populateDataTable(data);
+                success: function (result) {
+
+                    debugger;
+                    $("#txtCompany").text(result);
                 },
                 error: function () {
                     alert("Dynamic content load failed.");
@@ -534,6 +558,12 @@
             });
         });
         $('#image,#previewImage').click(function () { $('#imgupload').trigger('click'); });
+
+        $('#btnCV').click(function () { $('#CVimgupload').trigger('click'); });
+        $('#btnDL').click(function () { $('#DLimgupload').trigger('click'); });
+        $('#btnPC').click(function () { $('#PCimgupload').trigger('click'); });
+        $('#btnVisa').click(function () { $('#Visaimgupload').trigger('click'); });
+        $('#btnCertificates').click(function () { $('#Certificatesimgupload').trigger('click'); });
     </script>
     <body>
 
