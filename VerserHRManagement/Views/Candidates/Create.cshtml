@@ -16,14 +16,14 @@
     @Html.AntiForgeryToken()
 
     <br>
-    <div class="table-bordered" style="width:900px">
-        <div class="panel-heading" align="center" style="height:30PX;background-color:#FFA500;color:white; vertical-align:top">REGISTER NEW RESOURCE</div>
+    <div class="table-bordered" style="width:1200px">
+        <div class="panel-heading" align="center" style="height:30PX;background-color: #428bca;color:white; vertical-align:top">REGISTER NEW RESOURCE</div>
         <div class="panel-body" style="font-size:x-small;color:grey;border-color:gray">
             <br>
             <div class="form-horizontal">
                 <div class="form-group">
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                             <div class="form-group required">
                                 @Html.Label("Candidate Name", htmlAttributes: new { @class = "control-label col-md-4" })
@@ -76,28 +76,7 @@
                                 </div>
                             </div>
 
-                            <div class="form-group required">
-                                @Html.Label("Postcode", htmlAttributes: new { @class = "control-label col-md-4" })
-                                <div class="col-md-6">
-                                    @Html.EditorFor(model => model.postcode, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.postcode, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                @Html.Label("Experience", htmlAttributes: new { @class = "control-label col-md-4" })
-                                <div class="col-md-6">
-                                    @Html.EditorFor(model => model.Experience, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.Experience, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                @Html.Label("Job Title", htmlAttributes: new { @class = "control-label col-md-4" })
-                                <div class="col-md-6">
-                                    @Html.EditorFor(model => model.JobTitle, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.JobTitle, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
+                         
                             <div class="form-group required">
                                 @Html.Label("State", htmlAttributes: new { @class = "control-label col-md-4" })
                                 <div class="col-md-6">
@@ -133,7 +112,7 @@
 
 
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-4">
 
                             <div class="form-group required">
                                 @Html.Label("Employee ID", htmlAttributes: new { @class = "control-label col-md-4" })
@@ -143,7 +122,13 @@
                                 </div>
                             </div>
 
-
+                            <div class="form-group required">
+                                @Html.Label("Postcode", htmlAttributes: new { @class = "control-label col-md-4" })
+                                <div class="col-md-6">
+                                    @Html.EditorFor(model => model.postcode, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.postcode, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
                             <div class="form-group required">
                                 @Html.Label("Work Rights", htmlAttributes: new { @class = "control-label col-md-4" })
                                 <div class="col-md-6">
@@ -219,18 +204,24 @@
                                     @Html.ValidationMessageFor(model => model.Annualsalary, "", new { @class = "text-danger" })
                                 </div>
                             </div>
-                            <div class="form-group required">
-                                @Html.Label("Hourly Rate", htmlAttributes: new { @class = "control-label col-md-4" })
+
+                        </div>
+
+                        <div class="col-md-4">
+                      
+
+                            <div class="form-group">
+                                @Html.Label("Experience", htmlAttributes: new { @class = "control-label col-md-4" })
                                 <div class="col-md-6">
-                                    @Html.EditorFor(model => model.HourlyRate, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.HourlyRate, "", new { @class = "text-danger" })
+                                    @Html.EditorFor(model => model.Experience, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Experience, "", new { @class = "text-danger" })
                                 </div>
                             </div>
                             <div class="form-group">
-                                @Html.Label("Daily Rate", htmlAttributes: new { @class = "control-label col-md-4" })
+                                @Html.Label("Job Title", htmlAttributes: new { @class = "control-label col-md-4" })
                                 <div class="col-md-6">
-                                    @Html.EditorFor(model => model.DailyRate, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.DailyRate, "", new { @class = "text-danger" })
+                                    @Html.EditorFor(model => model.JobTitle, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.JobTitle, "", new { @class = "text-danger" })
                                 </div>
                             </div>
                             <div class="form-group required">
@@ -254,6 +245,20 @@
                                     @Html.ValidationMessageFor(model => model.Availability, "", new { @class = "text-danger" })
                                 </div>
                             </div>
+                            <div class="form-group required">
+                                @Html.Label("Hourly Rate", htmlAttributes: new { @class = "control-label col-md-4" })
+                                <div class="col-md-6">
+                                    @Html.EditorFor(model => model.HourlyRate, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.HourlyRate, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.Label("Daily Rate", htmlAttributes: new { @class = "control-label col-md-4" })
+                                <div class="col-md-6">
+                                    @Html.EditorFor(model => model.DailyRate, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.DailyRate, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
 
                             <div class="form-group">
                                 @Html.Label("Upload Resume", htmlAttributes: new { @class = "control-label col-md-4" })
@@ -263,14 +268,15 @@
 
                                 </div>
                             </div>
+
                         </div>
-                        @*<div class="form-group">
-                                <div class="col-md-offset-2 col-md-10">
-                                    <input type="submit" name="submitButton" value="Create" class="btn btn-default btn-primary" />
-                                </div>
-                            </div>*@
-                    </div>
+                            @*<div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" name="submitButton" value="Create" class="btn btn-default btn-primary" />
                 </div>
+            </div>*@
+                        </div>
+                    </div>
             </div>
         </div>
         <div class="panel-footer primary" align="left" style="height:50px;vertical-align:top;">
@@ -314,7 +320,8 @@
         }
 
     .btn-warning {
-        background-color: #FFA500;
+        background-color: darkgrey;
+        border-color:lightgray;
         font-size: 14px;
     }
 
