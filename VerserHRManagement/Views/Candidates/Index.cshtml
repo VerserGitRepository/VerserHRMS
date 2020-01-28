@@ -16,7 +16,7 @@
 <div class="container-fluid" style="margin-left:0px;padding-top:0px">
     <div class="container" style="width:170%; padding-top:15px; margin-left:0px; border-color:lightgray;padding-left:0px">
         <div class="col-md-4">
-            <table class="table table-bordered  table-responsive table-hover table-dark" id="mainTable">
+            <table class="table table-bordered  table-responsive table-hover table-dark" id="mainTable" @*style="width:300Px"*@>
                 <thead style="background-color: #428bca; color:white">
                     <tr>
                         <th>
@@ -73,8 +73,9 @@
                                                 <div class="col-sm-6">
 
                                                     <div class="col-sm-10">
-                                                        <img id="image" class="image-border form-control form-control-sm">
-                                                        <input type="file" id="imgupload" style="display:none" onchange="readURL(this);" />
+                                                        <img class="preview-img" src="http://simpleicon.com/wp-content/uploads/account.png" alt="Preview Image" width="200" height="100" />
+                                                        @*<img id="image" class="image-border form-control form-control-sm">
+                                                        <input type="file" id="imgupload" style="display:none" onchange="readURL(this);" />*@
                                                     </div>
                                                 </div>
                                             </div>
@@ -122,10 +123,6 @@
                                                         <option>Single</option>
                                                     </select>
 
-                                                </div><br /><br /><br /><br /><br /><br />
-
-                                                <div class="col-md-5 pull-right">
-                                                    <input type="submit" value="UPDATE" class="btn btn-outline-secondary" style="height:32px;vertical-align:top;background-color:#1372AB" id="updateBtn" />
                                                 </div>
                                             </div>
                                                 <div style="font-size:smaller;color:deepskyblue">
@@ -137,59 +134,100 @@
                                 <div class="row grid-divider">
                                     <div class="row" style="margin-left:20px;">
                                         <fieldset>
-                                            <legend>Contact Details</legend>
+                                            @*<legend>Contact Details</legend>*@
                                             <div class="form-group row">
-                                                <div class="col-md-5" style="margin-left:10px;">
-                                                    <label>Address Line1:</label>
+                                                <div class="container table-bordered" style="margin:20px; width:1000px;padding-top:5px;padding-bottom:5px">
+                                                    <div class="col-md-8" style="margin-left:10px;">
+                                                        <label>Address:</label>
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon">
+                                                                <i class="glyphicon glyphicon-home"></i>
+                                                            </span><input id="addressLine1" name="addressLine1" placeholder="Address Line 1" class="form-control" required="true" value="" type="text">
+                                                        </div>
 
-                                                    <input type="text" id="txtAddress1" class="form-control-override" placeholder="Address Line 1">
 
+                                                    </div>
+                                                    @*<div class="col-md-5">
+                                                        <label>Address Line 2:</label>
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon">
+                                                                <i class="glyphicon glyphicon-home"></i>
+                                                            </span><input id="addressLine2" name="addressLine1" placeholder="Address Line 2" class="form-control" required="true" value="" type="text">
+                                                        </div>
+
+
+                                                    </div>*@
+                                                    <br /><br /><br /><br />
+                                                    <div class="col-md-3" style="margin-left:10px;">
+                                                        <label>City:</label>
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon">
+                                                                <i class="glyphicon glyphicon-home"></i>
+                                                            </span><input id="Suburb" name="Suburb" placeholder="Suburb" class="form-control" required="true" value="" type="text">
+                                                        </div>
+
+
+                                                    </div>
+
+                                                    <div class="col-md-3">
+                                                        <label>State:</label>
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon">
+                                                                <i class="glyphicon glyphicon-home"></i>
+                                                            </span><input id="State" name="addressLine1" placeholder="State" class="form-control" required="true" value="" type="text">
+                                                        </div>
+
+
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <label>Postal Code:</label>
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon">
+                                                                <i class="glyphicon glyphicon-home"></i>
+                                                            </span><input id="Postal Code" name="Postal Code" placeholder="Postal Code" class="form-control" required="true" value="" type="text">
+                                                        </div>
+
+
+                                                    </div>
+                                                    <div class="col-md-3" style="margin-left:10px;">
+                                                        <label>Email:</label>
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon">
+                                                                <i class="glyphicon glyphicon-envelope"></i>
+                                                            </span><input id="email" name="email" placeholder="Email" class="form-control" required="true" value="" type="text">
+                                                        </div>
+
+
+                                                    </div>
+
+                                                    <div class="col-md-3">
+                                                        <label>Mobile</label>
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon">
+                                                                <i class="glyphicon glyphicon-earphone"></i>
+                                                            </span><input id="phoneNumber" name="phoneNumber" placeholder="Phone Number" class="form-control" required="true" value="" type="text">
+                                                        </div>
+
+
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <label>Phone</label>
+
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon">
+                                                                <i class="glyphicon glyphicon-earphone"></i>
+                                                            </span><input id="phoneNumber" name="phoneNumber" placeholder="Phone Number" class="form-control" required="true" value="" type="text">
+                                                        </div>
+                                                        <br /><br />
+
+                                                        <div class="pull-left">
+                                                            <input type="submit" value="UPDATE" class="btn btn-outline-secondary" style="height:32px;vertical-align:top;background-color:#1372AB;color:white" id="updateBtn" />
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                                <div class="col-md-5">
-                                                    <label>Address Line 2:</label>
-
-                                                    <input type="text" id="txtAddress2" class="form-control-override" placeholder="Address Line 2">
-
-                                                </div><br /><br /><br /><br />
-                                                <div class="col-md-3" style="margin-left:10px;">
-                                                    <label>Suburb</label>
-
-                                                    <input type="text" class="form-control-override" id="txtSuburb" placeholder="Suburb">
-
-                                                </div>
-
-                                                <div class="col-md-3">
-                                                    <label>State</label>
-
-                                                    <input type="text" class="form-control-override" id="txtState" placeholder="State">
-
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <label>Postal Code</label>
-
-                                                    <input type="text" class="form-control-override" id="txtPostalCode" placeholder="Postal Code">
-
-                                                </div><br /><br /><br /><br />
-                                                <div class="col-md-3" style="margin-left:10px;">
-                                                    <label>Email</label>
-
-                                                    <input type="text" class="form-control-override" id="txtEmail" placeholder="Email">
-
-                                                </div>
-
-                                                <div class="col-md-3">
-                                                    <label>Mobile</label>
-
-                                                    <input type="text" class="form-control-override" id="txtMobile" placeholder="Mobile">
-
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <label>Phone</label>
-
-                                                    <input type="text" class="form-control-override" id="txtPhone" placeholder="Phone">
-
-                                                </div>
+                                            </div>
                                         </fieldset>
+                                  
                                     </div>
                                 </div>
                             </div>
@@ -265,36 +303,63 @@
                                     </div><br /><br /><br /><br />
                                     
 
-                                    <div class="col-md-5 pull-right">
-                                        <input type="submit" value="UPDATE" class="btn btn-outline-secondary" style="height:32px;vertical-align:top;background-color:#1372AB" id="updateBtn" />
+                                    <div class="col-md-5 pull-left col-md-offset-4">
+                                        <input type="submit" value="UPDATE" class="btn btn-outline-secondary" style="height:32px;vertical-align:top;background-color:#1372AB;color:white" id="updateBtn" />
                                     </div>
                                 </div>
                             </div>
                         </div>
 
                         <div class="tab-pane fade" id="tab3default">
-                            <div class="row pull-right" style="margin-bottom:5px">
-                                <div class="col-md-1">
-                                    @using (Html.BeginForm("ExportTimesSheetToExcel", "Assets", FormMethod.Post))
-                                    {
-                                        <input type="image" src="~/Images/excel.png" alt="Submit" width="20" height="20">
-                                    }
-                                </div>
-                                <div class="col-md-1">
-                                    <input type="image" src="~/Images/plus.png" alt="Submit" width="20" height="20" id="addContract">
-                                </div>
-                                <div class="col-md-1">
-                                    <input type="image" src="~/Images/pencil.png" alt="Submit" width="20" height="20" id="editContract">
-                                </div>
-                            </div>
+                       
                             <br>
                             <div class="row pull-left" style="margin-left:-1px">
+                                <div class="row pull-left" style="margin-left:-1px">
+                                    <div class="form-group row">
+                                        <div class="col-md-5" style="margin-left:10px;">
+                                            <label class="col-sm-9 col-form-label col-form-label-sm">Candidate Skills</label>
 
-                                
+                                            <input type="text" id="candidateskills" class="form-control form-control-sm" placeholder="candidateskills">
+
+                                        </div>
+                                        <div class="col-md-5">
+                                            <label class="col-sm-9 col-form-label col-form-label-sm">Experience</label>
+
+                                            <input type="text" id="experience" class="form-control form-control-sm" placeholder="experience">
+
+                                        </div><br /><br /><br /><br />
+                                        <div class="col-md-5" style="margin-left:10px;">
+                                            <label class="col-sm-9 col-form-label col-form-label-sm">Job Title</label>
+
+                                            <input type="text" class="form-control form-control-sm" id="JobTitle" placeholder="JobTitle">
+
+                                        </div>
+
+                                        <div class="col-md-5">
+                                            <label class="col-sm-9 col-form-label col-form-label-sm">Technician Level</label>
+
+                                            <input type="text" class="form-control form-control-sm" id="TechnicianLevel" placeholder="TechnicianLevel">
+
+                                        </div><br /><br /><br /><br />
+                                        <div class="col-md-5" style="margin-left:10px;">
+                                            <label class="col-sm-9 col-form-label col-form-label-sm">Skill Rate</label>
+
+                                            <input type="text" class="form-control form-control-sm" id="skillrate" placeholder="skillrate">
+
+                                        </div>
+
+                                        <br /><br /><br /><br />
+
+                                        <div class="col-md-5 pull-left col-md-offset-4">
+                                            <input type="submit" value="UPDATE" class="btn btn-outline-secondary" style="height:32px;vertical-align:top;background-color:#1372AB;color:white" id="updateBtn" />
+                                        </div>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
 
-                        <div class="tab-pane fade" id="tab4default">
+                        <div class="tab-pane fade" id="tab5default">
                             <div class="row pull-right">
                                 <div class="row pull-right">
                                     <div class="col-md-1">
@@ -314,21 +379,41 @@
                             </div>
                         </div>
 
-                        <div class="tab-pane fade" id="tab5default">
-                            <div class="row pull-right">
-                                <div class="col-md-1">
-                                    @using (Html.BeginForm("ExportTimesSheetToExcel", "Assets", FormMethod.Post))
-                                    {
-                                        <input type="image" src="~/Images/excel.png" alt="Submit" width="20" height="20">
-                                    }
+                        <div class="tab-pane fade" id="tab4default">
+                            @*<div class="row pull-right">*@
+
+                                <div class="col-md-12">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading"><strong>Upload files</strong> <small> </small></div>
+                                        <div class="panel-body">
+                                            <div class="input-group image-preview">
+                                                <input placeholder="" type="text" class="form-control image-preview-filename" disabled="disabled">
+                                                <!-- don't give a name === doesn't send on POST/GET -->
+                                                <span class="input-group-btn">
+                                                    <!-- image-preview-clear button -->
+                                                    <button type="button" class="btn btn-default image-preview-clear" style="display:none;"> <span class="glyphicon glyphicon-remove"></span> Clear </button>
+                                                    <!-- image-preview-input -->
+                                                    <div class="btn btn-default image-preview-input">
+                                                        <span class="glyphicon glyphicon-folder-open"></span> <span class="image-preview-input-title">Browse</span>
+                                                        <input type="file" accept="image/png, image/jpeg, image/gif" name="input-file-preview" />
+                                                        <!-- rename it -->
+                                                    </div>
+                                                    <button type="button" class="btn btn-labeled btn-primary"> <span class="btn-label"><i class="glyphicon glyphicon-upload"></i> </span>Upload</button>
+                                                </span>
+                                            </div>
+                                            <!-- /input-group image-preview [TO HERE]-->
+
+                                            <br />
+
+                                            <!-- Progress Bar -->
+                                            @*<div class="progress">
+                                                <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;"> <span class="sr-only">60% Complete</span> </div>
+                                            </div>*@
+                                            <br />
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="col-md-1">
-                                    <input type="image" src="~/Images/plus.png" alt="Submit" width="20" height="20" id="addEnduser">
-                                </div>
-                                <div class="col-md-1">
-                                    <input type="image" src="~/Images/pencil.png" alt="Submit" width="20" height="20" id="editEnduser">
-                                </div>
-                            </div>
+                            @*</div>*@
                             <div class="row pull-left" style="margin-left:-1px">
                                 Performance
                             </div>
@@ -429,6 +514,30 @@
         min-height: 70px;
     }
 
+    .image-preview-input {
+        position: relative;
+        overflow: hidden;
+        margin: 0px;
+        color: #333;
+        background-color: #fff;
+        border-color: #ccc;
+    }
+
+        .image-preview-input input[type=file] {
+            position: absolute;
+            top: 0;
+            right: 0;
+            margin: 0;
+            padding: 0;
+            font-size: 20px;
+            cursor: pointer;
+            opacity: 0;
+            filter: alpha(opacity=0);
+        }
+
+    .image-preview-input-title {
+        margin-left: 2px;
+    }
     .col-padding {
         padding: 0 15px;
     }
