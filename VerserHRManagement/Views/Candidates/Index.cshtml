@@ -357,9 +357,7 @@
 
                             </div>
                         </div>
-                        @using (Html.BeginForm("Edit", "Candidates", FormMethod.Post, new { enctype = "multipart/form-data" }))
-
-                        {
+                      
                             <div class="tab-pane fade" id="tab4default" style="font:x-small">
                                 <div class="col-md-12">
                                     <div class="panel panel-default">
@@ -369,7 +367,7 @@
                                                 <input placeholder="CV" type="text" class="form-control image-preview-filename" disabled="disabled" id="">
                                                 <!-- don't give a name === doesn't send on POST/GET -->
                                                 <span class="input-group-btn">
-                                                    <input type="file" id="CVimgupload" name="CVimgupload" style="display:none" />
+                                                    
                                                     <button id="btnCV" type="button" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Browse</button>
                                                     <button type="submit" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-upload"></i> </span>Upload</button>
                                                 </span>
@@ -484,7 +482,7 @@
                                     </div>
                                 </div>
                             </div>
-                        }
+                        
                         @*</div>*@
 
                     </div>
@@ -613,18 +611,18 @@
         });
         $('#image,#previewImage').click(function () { $('#imgupload').trigger('click'); });
 
-        $('#btnCV').click(function () { $('#CVimgupload').trigger('click'); });
-        $('#btnDL').click(function () { $('#DLimgupload').trigger('click'); });
-        $('#btnPC').click(function () { $('#PCimgupload').trigger('click'); });
-        $('#btnVisa').click(function () { $('#Visaimgupload').trigger('click'); });
-        $('#btnCertificates').click(function () { $('#Certificatesimgupload').trigger('click'); });
+        //$('#btnCV').click(function () { $('#CVimgupload').trigger('click'); });
+        //$('#btnDL').click(function () { $('#DLimgupload').trigger('click'); });
+        //$('#btnPC').click(function () { $('#PCimgupload').trigger('click'); });
+        //$('#btnVisa').click(function () { $('#Visaimgupload').trigger('click'); });
+        //$('#btnCertificates').click(function () { $('#Certificatesimgupload').trigger('click'); });
 
 
-        $('#CVimgupload').on('change', function (event) {
-            var tmppath = URL.createObjectURL(event.target.files[0]);
-            var filePath = $(this).val();
-            console.log(filePath);
-        });
+        //$('#CVimgupload').on('change', function (event) {
+        //    var tmppath = URL.createObjectURL(event.target.files[0]);
+        //    var filePath = $(this).val();
+        //    console.log(filePath);
+        //});
     </script>
 }
 <style>
