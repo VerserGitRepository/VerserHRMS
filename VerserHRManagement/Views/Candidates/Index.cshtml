@@ -29,17 +29,20 @@
                 <tbody>
                     @foreach (var item in Model)
                     {
-                        <tr>
-                            <td onclick="LoadAddressData(@item.ID,'@item.CandidateName','@item.DateCreated','@item.Address','@item.City','@item.state','@item.postcode','@item.Email','@item.Phone',
+                    <tr>
+                        
+                        <td onclick="LoadAddressData(@item.ID,'@item.CandidateName','@item.DateCreated','@item.Address','@item.City','@item.state','@item.postcode','@item.Email','@item.Phone',
                                 '@if(item.profilePicture != null) { @Convert.ToBase64String(@item.profilePicture)}','@item.DOB','@item.Age','@item.Gender','@item.MaritalStatus');
                                 LoadEmployment('@item.PayFrequency','@item.ADP_EmployeeID','@item.AssignResource','@item.Annualsalary','@item.HourlyRate','@item.DailyRate','@item.WorkRights',
-                                '@item.EmployeeStatus','@item.EmployementType','@item.NoticePeriod');">
-                                <font style="font-weight:800;color:#515151">
-                                    @Html.DisplayFor(modelItem => item.CandidateName)
-                                    <input type="hidden" value="@item.ID" id="hiddenModelId" />
-                                </font> <br />
-                            </td>
-                        </tr>
+                                '@item.EmployeeStatus','@item.EmployementType','@item.NoticePeriod');
+                                LoadDocuments('@Path.Combine(@Server.MapPath("~/UploadedFiles"))','@item.FilePath','@item.certificate1','@item.DriverLicense','@item.PoliceCheckReport','@item.Visa','@item.SuperChoice','@item.TFNDeclaration',
+                                '@item.BankDetails','@item.CodeOFConduct','@item.WHS');">
+                            <font style="font-weight:800;color:#515151">
+                                @Html.DisplayFor(modelItem => item.CandidateName)
+                                <input type="hidden" value="@item.ID" id="hiddenModelId" />
+                            </font> <br />
+                        </td>
+                    </tr>
                     }
                 </tbody>
             </table>
@@ -380,7 +383,7 @@
                                                 <!-- don't give a name === doesn't send on POST/GET -->
                                                 <span class="input-group-btn">
                                                     <input id="Certificateimgupload" type="file" style="display:none;">
-                                                    <button type="button" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Browse</button>
+                                                    <button type="button" id="btnCertificates" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Browse</button>
                                                     <button type="button" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-upload"></i> </span>Upload</button>
                                                 </span>
                                             </div>
@@ -412,7 +415,7 @@
                                                 <!-- don't give a name === doesn't send on POST/GET -->
                                                 <span class="input-group-btn">
                                                     <input type="file" id="Visaimgupload" style="display:none" onchange="ReadFileName(this,'Visaimgupload');" />
-                                                    <button type="button" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Browse</button>
+                                                    <button type="button" id="btnVisa" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Browse</button>
                                                     <button type="button" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-upload"></i> </span>Upload</button>
                                                 </span>
                                             </div>
@@ -425,7 +428,7 @@
                                                 <!-- don't give a name === doesn't send on POST/GET -->
                                                 <span class="input-group-btn">
                                                     <input type="file" id="Superimgupload" style="display:none" onchange="ReadFileName(this,'Superimgupload');" />
-                                                    <button type="button" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Browse</button>
+                                                    <button type="button" id="btnSuper" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Browse</button>
                                                     <button type="button" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-upload"></i> </span>Upload</button>
                                                 </span>
                                             </div><br>
@@ -434,7 +437,7 @@
                                                 <!-- don't give a name === doesn't send on POST/GET -->
                                                 <span class="input-group-btn">
                                                     <input type="file" id="TNFimgupload" style="display:none" onchange="ReadFileName(this,'TNFimgupload');" />
-                                                    <button type="button" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Browse</button>
+                                                    <button type="button" id="btnTNF" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Browse</button>
                                                     <button type="button" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-upload"></i> </span>Upload</button>
                                                 </span>
                                             </div>
@@ -444,7 +447,7 @@
                                                 <!-- don't give a name === doesn't send on POST/GET -->
                                                 <span class="input-group-btn">
                                                     <input type="file" id="Bankimgupload" style="display:none" onchange="ReadFileName(this,'Bankimgupload');" />
-                                                    <button type="button" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Browse</button>
+                                                    <button type="button" id="btnBank" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Browse</button>
                                                     <button type="button" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-upload"></i> </span>Upload</button>
                                                 </span>
                                             </div>
@@ -457,7 +460,7 @@
                                                 <!-- don't give a name === doesn't send on POST/GET -->
                                                 <span class="input-group-btn">
                                                     <input type="file" id="Codeimgupload" style="display:none" onchange="ReadFileName(this,'Codeimgupload');" />
-                                                    <button type="button" id="btnVisa" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Browse</button>
+                                                    <button type="button" id="btnCode" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Browse</button>
                                                     <button type="button" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-upload"></i> </span>Upload</button>
                                                 </span>
                                             </div><br>
@@ -466,7 +469,7 @@
                                                 <!-- don't give a name === doesn't send on POST/GET -->
                                                 <span class="input-group-btn">
                                                     <input type="file" id="Whsimgupload" style="display:none" onchange="ReadFileName(this,'Whsimgupload');" />
-                                                    <button type="button" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Browse</button>
+                                                    <button type="button" id="btnWhs" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Browse</button>
                                                     <button type="button" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-upload"></i> </span>Upload</button>
                                                 </span>
                                             </div>
@@ -554,6 +557,9 @@
 
 
         }
+        function LoadDocuments(path, FilePath, certificate1, DriverLicense, PoliceCheckReport, Visa, SuperChoice, TFNDeclaration, BankDetails, CodeOFConduct, WHS) {
+            alert(path);
+        }
         function ReadFileName(input,controlName) {
             var ctrl = document.getElementById(controlName);
 
@@ -611,10 +617,15 @@
         $('#image,#previewImage').click(function () { $('#imgupload').trigger('click'); });
 
         $('#btnCV').click(function () { $('#CVimgupload').trigger('click'); });
-        //$('#btnDL').click(function () { $('#DLimgupload').trigger('click'); });
-        //$('#btnPC').click(function () { $('#PCimgupload').trigger('click'); });
-        //$('#btnVisa').click(function () { $('#Visaimgupload').trigger('click'); });
-        //$('#btnCertificates').click(function () { $('#Certificatesimgupload').trigger('click'); });
+        $('#btnDL').click(function () { $('#DLimgupload').trigger('click'); });
+        $('#btnPC').click(function () { $('#PCimgupload').trigger('click'); });
+        $('#btnVisa').click(function () { $('#Visaimgupload').trigger('click'); });
+        $('#btnCertificates').click(function () { $('#Certificateimgupload').trigger('click'); });
+        $('#btnSuper').click(function () { $('#Superimgupload').trigger('click'); });
+        $('#btnBank').click(function () { $('#Bankimgupload').trigger('click'); });
+        $('#btnWhs').click(function () { $('#Whsimgupload').trigger('click'); });
+        $('#btnCode').click(function () { $('#Codeimgupload').trigger('click'); });
+        $('#btnTNF').click(function () { $('#TNFimgupload').trigger('click'); });
 
 
         $('#CVimgupload').on('change', function (event) {
