@@ -35,11 +35,12 @@
                                 '@if(item.profilePicture != null) { @Convert.ToBase64String(@item.profilePicture)}','@item.DOB','@item.Age','@item.Gender','@item.MaritalStatus');
                                 LoadEmployment('@item.PayFrequency','@item.ADP_EmployeeID','@item.AssignResource','@item.Annualsalary','@item.HourlyRate','@item.DailyRate','@item.WorkRights',
                                 '@item.EmployeeStatus','@item.EmployementType','@item.NoticePeriod');
-                                LoadDocuments('@Path.Combine(@Server.MapPath("~/UploadedFiles"))','@item.FilePath','@item.certificate1','@item.DriverLicense','@item.PoliceCheckReport','@item.Visa','@item.SuperChoice','@item.TFNDeclaration',
+                                LoadDocuments('@item.FilePath','@item.certificate1','@item.DriverLicense','@item.PoliceCheckReport','@item.Visa','@item.SuperChoice','@item.TFNDeclaration',
                                 '@item.BankDetails','@item.CodeOFConduct','@item.WHS');">
                             <font style="font-weight:800;color:#515151">
                                 @Html.DisplayFor(modelItem => item.CandidateName)
                                 <input type="hidden" value="@item.ID" id="hiddenModelId" />
+                                <input type="hidden" value='@Server.MapPath("~/UploadedFiles")' id="hiddenPath" />
                             </font> <br />
                         </td>
                     </tr>
@@ -369,7 +370,7 @@
                                         <div class="panel-heading"><strong>RESUME</strong> <small> </small></div>
                                         <div class="panel-body">
                                             <div class="input-group image-preview">
-                                                <input placeholder="CV" type="text" class="form-control image-preview-filename" disabled="disabled" id="">
+                                                <input placeholder="CV" type="text" class="form-control image-preview-filename" disabled="disabled" id="cvph">
                                                 <!-- don't give a name === doesn't send on POST/GET -->
                                                 <span class="input-group-btn">
                                                     <input id="CVimgupload" type="file" style="display:none;">
@@ -558,7 +559,8 @@
 
         }
         function LoadDocuments(path, FilePath, certificate1, DriverLicense, PoliceCheckReport, Visa, SuperChoice, TFNDeclaration, BankDetails, CodeOFConduct, WHS) {
-            alert(path);
+        //alert(FilePath);
+          $("#cvph").val($("#hiddenPath").val()+'\\'+FilePath);
         }
         function ReadFileName(input,controlName) {
             var ctrl = document.getElementById(controlName);
