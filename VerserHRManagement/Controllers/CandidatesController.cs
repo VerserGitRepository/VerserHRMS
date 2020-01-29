@@ -13,7 +13,6 @@ using System.Collections.Generic;
 
 namespace VerserHRManagement
 {
-
     public class CandidatesController : Controller
     {
         public ActionResult Index()
