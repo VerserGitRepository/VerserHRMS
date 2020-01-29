@@ -136,5 +136,22 @@ namespace VerserHRManagement.TimeSchedulerServices
             }
             return false;
         }
+        public static bool EditCandidate(CandidateEdit CandidateModel)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(TimeSheetAPIURl);
+                HttpResponseMessage response = client.PostAsJsonAsync(string.Format("Resource/HRMSResourceEdit"), CandidateModel).Result;
+                if (response.IsSuccessStatusCode)
+                {
+                    return true;
+                }
+                else
+                {
+                    // HttpContext.Current.Session["ErrorMessage"] = ReturnResult.Message;
+                }
+            }
+            return false;
+        }
     }
 }

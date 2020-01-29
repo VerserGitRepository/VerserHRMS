@@ -283,6 +283,16 @@ namespace VerserHRManagement
         // [ValidateAntiForgeryToken]
         public ActionResult UploadDocument(int candidateId)
         {
+            for (int i = 0; i < Request.Files.Count; i++)
+            {
+                HttpPostedFileBase file = Request.Files[i];
+                int fileSize = file.ContentLength;
+                string fileName = file.FileName;
+                string mimeType = file.ContentType;
+                System.IO.Stream fileContent = file.InputStream;
+                //To save file, use SaveAs method
+                file.SaveAs(Server.MapPath("~/") + fileName);
+            }
             Candidate theCandidate = new Candidate();
             theCandidate.ID = candidateId;
             if (UserRoles.UserCanEdit() == true)
@@ -295,8 +305,39 @@ namespace VerserHRManagement
                     Request.Files["CVimgupload"].SaveAs(_path);
                     theCandidate.FilePath = _filename;
                 }
+
             }
             return null;
+        }
+        [HttpPost]
+        public ActionResult UpdateCandidate(CandidateEdit candidate)
+        {
+            if (UserRoles.UserCanEdit() == true)
+            {
+                //HttpPostedFileBase file = Request.Files["CVimgupload"];
+                //if (file.ContentLength > 0)
+                //{
+                //    var _filename = Path.GetFileName(file.FileName);
+                //    string _path = Path.Combine(Server.MapPath("~/UploadedFiles"), _filename);
+                //    file.SaveAs(_path);
+                //    candidate.FilePath = _filename;
+                //}
+
+                if (ModelState.IsValid)
+                {
+
+                    CandidateService.EditCandidate(candidate);
+                    //db.Entry(candidate).State = EntityState.Modified;
+                    //await db.SaveChangesAsync();
+
+                    return RedirectToAction("Index");
+                }
+                return View(candidate);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Candidates");
+            }
         }
     }
 }

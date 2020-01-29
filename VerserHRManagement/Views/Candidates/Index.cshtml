@@ -36,7 +36,7 @@
                                 '@item.EmployeeStatus','@item.EmployementType','@item.NoticePeriod');">
                                 <font style="font-weight:800;color:#515151">
                                     @Html.DisplayFor(modelItem => item.CandidateName)
-                                    <input type="hidden" value="@item" id="hiddenModelId" />
+                                    <input type="hidden" value="@item.ID" id="hiddenModelId" />
                                 </font> <br />
                             </td>
                         </tr>
@@ -92,7 +92,7 @@
                                                 <div class="col-md-5" style="margin-left:10px;">
                                                     <label>DOB</label>
 
-                                                    <input type="date" class="form-control-override" id="txtDOB" placeholder="DOB">
+                                                    <input type="date" class="form-control-override" id="txtDOB" placeholder="DOB" onchange="calculateAge(this);">
                                                 </div>
 
                                                 <div class="col-md-5">
@@ -207,7 +207,7 @@
                                     </div>
                                 </div>
                                 <div class="panel-footer primary" align="left" style="height:30px;vertical-align:top;width:920px;background-color:#428bca">
-                                    <input type="submit" value="SAVE CHANGES" class="btn btn-primary btn-lg btn-block col-md-offset-4" style="height:25px;vertical-align:top;padding:0px;background-color:#428bca;border-color:#428bca" />
+                                    <input type="submit" value="SAVE CHANGES" class="btn btn-primary btn-lg btn-block col-md-offset-4" style="height:25px;vertical-align:top;padding:0px;background-color:#428bca;border-color:#428bca" id="updateBtn" />
 
                                 </div>
                                 @*<div class="pull-left" style="margin-left:4px;">
@@ -580,6 +580,7 @@
         }
         $("#updateBtn").click(function () {
             var CandidateEdit = {};
+            CandidateEdit.ID = $("#hiddenModelId").val();
             CandidateEdit.CandidateName = $("#txtfName").val() + ' ' + $("#txtlName").val();
             CandidateEdit.Address = $("#txtAddress1").val();
             CandidateEdit.DOB = $("#txtDOB").val();
@@ -588,11 +589,12 @@
             CandidateEdit.City = $("#txtCity").val();
             CandidateEdit.State = $("#txtState").val();
             CandidateEdit.PostalCode = $("#txtPostalCode").val();
-            CandidateEdit.Email = $("#txtEMail").val();
+            CandidateEdit.Email = $("#txtEmail").val();
             CandidateEdit.Phone = $("#txtMobile").val();
+            CandidateEdit.Age = $("#txtAge").val();
             CandidateEdit.profilepicture = $("#image")[0].src.split(',')[1];
 
-            var updateCandidateData = '@Url.Action("Edit", "Candidates")';
+            var updateCandidateData = '@Url.Action("UpdateCandidate", "Candidates")';
             $.ajax({
 
                 type: "POST",
@@ -673,6 +675,16 @@
                 }
             });
         });
+
+        function calculateAge(dateString) {
+
+            var val = $("#txtDOB").val();
+            var birthdate = new Date(val);
+            var cur = new Date();
+            var diff = cur - birthdate; // This is the difference in milliseconds
+            var age = Math.floor(diff / 31557600000);
+            $("#txtAge").val(age);
+        }
     </script>
 }
 <style>
