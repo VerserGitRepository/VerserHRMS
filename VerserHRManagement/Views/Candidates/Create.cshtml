@@ -13,11 +13,11 @@
 
 {
     @Html.AntiForgeryToken()
-
+    <br>
     <div class="table-bordered" style="width:1220px">
-        <div class="panel-heading" align="center" style="height:25PX;background-color: #428bca;color:white; vertical-align:top">REGISTER NEW RESOURCE</div>
+        <div class="panel-heading" align="center" style="height:25PX;background-color: #428bca;color:white; vertical-align:top;padding-top:2px">REGISTER NEW RESOURCE</div>
         <div class="panel-body" style="font-size:x-small;color:grey;border-color:gray">
-            <br>
+          
             <div class="form-horizontal">
                 <div class="form-group">
                  
@@ -290,8 +290,8 @@
             </div>
         </div>
     </div>
-    <div class="panel-footer primary" align="left" style="height:50px;vertical-align:top;width:1220px">
-        <input type="submit" value="REGISTER" class="btn btn-primary btn-large" style="height:32px;vertical-align:top" />
+    <div class="panel-footer primary" align="left" style="height:30px;vertical-align:top;width:1220px;background-color:#428bca">
+        <input type="submit" value="REGISTER" class="btn btn-primary btn-lg btn-block col-md-offset-4" style="height:25px;vertical-align:top" />
 
     </div>
 
@@ -308,6 +308,20 @@
 
 }
 <style>
+    .btn {
+        display: block;
+        width: 900px;
+        border: none;
+        height:33px;
+        background-color: #428bca;
+        color: white;
+        padding: 1px 28px;
+        font-display:block;
+        font-size: 14px;
+        cursor: pointer;
+        text-align: center;
+    }
+
     .well {
         width: 1200px;
         margin-left: 10px;

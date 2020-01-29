@@ -62,7 +62,7 @@
                             <div class="col-md-6" style="padding-left:0px">
                                 <div class="row">
                                     <form>
-                                        <div class="container table-bordered" style="margin:20px; width:1000px;padding-top:5px;padding-bottom:5px">
+                                        <div class="container table-bordered" style="margin:20px; width:1000px;padding-top:0px;padding-bottom:0px;margin-top:2px">
                                             <div class="form-group row">
                                                 <div class="col-sm-6">
 
@@ -165,7 +165,7 @@
                                                                 <i class="glyphicon glyphicon-home"></i>
                                                             </span><input id="txtPostalCode" placeholder="Postal Code" class="form-control" required="true" value="" type="text">
                                                         </div>
-                                                    </div>
+                                                    </div><br /><br /><br />
                                                     <div class="col-md-3" style="margin-left:10px;">
                                                         <label>Email:</label>
                                                         <div class="input-group">
@@ -204,86 +204,93 @@
 
                                     </div>
                                 </div>
-                                <div class="pull-left" style="margin-left:4px;">
-                                    <input type="submit" value="SAVE CHANGES" class="btn btn-outline-secondary" style="height:32px;vertical-align:top;background-color:#1372AB;color:white" id="updateBtn" />
+                                <div class="panel-footer primary" align="left" style="height:30px;vertical-align:top;width:920px;background-color:#428bca">
+                                    <input type="submit" value="SAVE CHANGES" class="btn btn-primary btn-lg btn-block col-md-offset-4" style="height:25px;vertical-align:top;padding:0px;background-color:#428bca;border-color:#428bca" />
+
                                 </div>
+                                @*<div class="pull-left" style="margin-left:4px;">
+                                    <input type="submit" value="SAVE CHANGES" class="btn btn-outline-secondary" style="height:32px;vertical-align:top;background-color:#1372AB;color:white" id="updateBtn" />
+                                </div>*@
                             </div>
                         </div>
                         <div class="tab-pane fade" id="tab2default">
 
-                            <div class="row pull-left" style="margin-left:-1px">
+                            <div class="row" style="margin-left:10px">
                                 <div class="form-group row">
-                                    <div class="col-md-5" style="margin-left:10px;">
-                                        <label class="col-sm-9 col-form-label col-form-label-sm">Pay Frequency</label>
+                                    <div class=" row col-md-6 well" style="width:370px;height:390px">
+                                        <div class="col-md-12" style="margin-top:15px;">
+                                            <label class="col-sm-9 col-form-label col-form-label-sm">Pay Frequency</label>
 
-                                        <input type="text" id="txtfName" class="form-control form-control-sm" placeholder="Pay Frequency">
+                                            <input type="text" id="txtfName" class="form-control form-control-sm" placeholder="Pay Frequency">
 
+                                        </div>
+                                        <div class="col-md-12" style="margin-top:15px;">
+                                            <label class="col-sm-9 col-form-label col-form-label-sm">ADP Employee Id</label>
+
+                                            <input type="text" id="txtlName" class="form-control form-control-sm" placeholder="ADP Employee Id">
+
+                                        </div>
+                                        <div class="col-md-12" style="margin-top:15px;">
+                                            <label class="col-sm-9 col-form-label col-form-label-sm">Resource Assigned</label>
+
+                                            <input type="text" class="form-control form-control-sm" id="txtDOB" placeholder="Resource Assigned">
+
+                                        </div>
+
+                                        <div class="col-md-12" style="margin-top:15px;">
+                                            <label class="col-sm-9 col-form-label col-form-label-sm">Annual Salary</label>
+
+                                            <input type="text" class="form-control form-control-sm" id="txtAge" placeholder="Annual Salary">
+
+                                        </div>
+                                        <div class="col-md-12" style="margin-top:15px;">
+                                            <label class="col-sm-9 col-form-label col-form-label-sm">Hourly Rate</label>
+
+                                            <input type="text" class="form-control form-control-sm" id="txtDOB" placeholder="Hourly Rate">
+
+                                        </div>
                                     </div>
-                                    <div class="col-md-5">
-                                        <label class="col-sm-9 col-form-label col-form-label-sm">ADP Employee Id</label>
+                                    <div class=" row col-md-6 well" style="width:370px;height:390px">
+                                        <div class="col-md-12" style="margin-top:15px;">
+                                            <label class="col-sm-9 col-form-label col-form-label-sm">Daily Rate</label>
 
-                                        <input type="text" id="txtlName" class="form-control form-control-sm" placeholder="ADP Employee Id">
+                                            <input type="text" class="form-control form-control-sm" id="txtAge" placeholder="Daily Rate">
 
-                                    </div><br /><br /><br /><br />
-                                    <div class="col-md-5" style="margin-left:10px;">
-                                        <label class="col-sm-9 col-form-label col-form-label-sm">Resource Assigned</label>
+                                        </div>
+                                        <div class="col-md-12" style="margin-top:15px;">
+                                            <label class="col-sm-9 col-form-label col-form-label-sm">Work Rights</label>
 
-                                        <input type="text" class="form-control form-control-sm" id="txtDOB" placeholder="Resource Assigned">
+                                            <input type="text" class="form-control form-control-sm" id="txtDOB" placeholder="Work Rights">
 
-                                    </div>
+                                        </div>
 
-                                    <div class="col-md-5">
-                                        <label class="col-sm-9 col-form-label col-form-label-sm">Annual Salary</label>
+                                        <div class="col-md-12" style="margin-top:15px;">
+                                            <label class="col-sm-9 col-form-label col-form-label-sm">Employment Status</label>
 
-                                        <input type="text" class="form-control form-control-sm" id="txtAge" placeholder="Annual Salary">
+                                            <input type="text" class="form-control form-control-sm" id="txtAge" placeholder="Employee Status">
 
-                                    </div><br /><br /><br /><br />
-                                    <div class="col-md-5" style="margin-left:10px;">
-                                        <label class="col-sm-9 col-form-label col-form-label-sm">Hourly Rate</label>
+                                        </div>
+                                        <div class="col-md-12" style="margin-top:15px;">
+                                            <label class="col-sm-9 col-form-label col-form-label-sm">Employment Type</label>
 
-                                        <input type="text" class="form-control form-control-sm" id="txtDOB" placeholder="Hourly Rate">
+                                            <input type="text" class="form-control form-control-sm" id="txtDOB" placeholder="Employment Type">
 
-                                    </div>
+                                        </div>
 
-                                    <div class="col-md-5">
-                                        <label class="col-sm-9 col-form-label col-form-label-sm">Daily Rate</label>
+                                        <div class="col-md-12" style="margin-top:15px;">
+                                            <label class="col-sm-9 col-form-label col-form-label-sm">Notice Period</label>
 
-                                        <input type="text" class="form-control form-control-sm" id="txtAge" placeholder="Daily Rate">
+                                            <input type="text" class="form-control form-control-sm" id="txtAge" placeholder="Notice Period">
 
-                                    </div><br /><br /><br /><br />
-                                    <div class="col-md-5" style="margin-left:10px;">
-                                        <label class="col-sm-9 col-form-label col-form-label-sm">Work Rights</label>
-
-                                        <input type="text" class="form-control form-control-sm" id="txtDOB" placeholder="Work Rights">
-
-                                    </div>
-
-                                    <div class="col-md-5">
-                                        <label class="col-sm-9 col-form-label col-form-label-sm">Employment Status</label>
-
-                                        <input type="text" class="form-control form-control-sm" id="txtAge" placeholder="Employee Status">
-
-                                    </div><br /><br /><br /><br />
-                                    <div class="col-md-5" style="margin-left:10px;">
-                                        <label class="col-sm-9 col-form-label col-form-label-sm">Employment Type</label>
-
-                                        <input type="text" class="form-control form-control-sm" id="txtDOB" placeholder="Employment Type">
-
-                                    </div>
-
-                                    <div class="col-md-5">
-                                        <label class="col-sm-9 col-form-label col-form-label-sm">Notice Period</label>
-
-                                        <input type="text" class="form-control form-control-sm" id="txtAge" placeholder="Notice Period">
-
-                                    </div><br /><br /><br /><br />
-
-
-                                    <div class="col-md-5 pull-left">
-                                        <input type="submit" value="SAVE CHANGES" class="btn btn-outline-secondary" style="height:32px;vertical-align:top;background-color:#1372AB;color:white" id="updateBtn" />
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                         <div class="panel-footer primary" align="left" style="height:30px;vertical-align:top;width:820px;background-color:#428bca;margin-left:10px">
+                       <input type="submit" value="SAVE CHANGES" class="btn btn-primary btn-lg btn-block col-md-offset-4" style="height:25px;vertical-align:top;padding:0px;background-color:#428bca;border-color:#428bca" />
+
+                      </div>
+       
+                                </div>
                         </div>
 
                         <div class="tab-pane fade" id="tab3default">
@@ -321,8 +328,9 @@
 
                                         <br /><br /><br /><br />
 
-                                        <div class="col-md-5 pull-left">
-                                            <input type="submit" value="SAVE CHANGES" class="btn btn-outline-secondary" style="height:32px;vertical-align:top;background-color:#1372AB;color:white" id="updateBtn" />
+                                        <div class="panel-footer primary" align="left" style="height:30px;vertical-align:top;width:820px;background-color:#428bca;margin-left:10px">
+                                            <input type="submit" value="SAVE CHANGES" class="btn btn-primary btn-lg btn-block col-md-offset-4" style="height:25px;vertical-align:top;padding:0px;background-color:#428bca;border-color:#428bca" />
+
                                         </div>
                                     </div>
                                 </div>
@@ -617,6 +625,11 @@
     </script>
 }
 <style>
+
+    .well {
+        margin-left: 10px;
+        margin-right: 10px;padding-top:10px
+    }
     .row.vdivide [class*='col-']:not(:last-child):after {
         background: #e0e0e0;
         width: 1px;
@@ -628,7 +641,16 @@
         right: 0;
         min-height: 70px;
     }
-
+    .block {
+        display: block;
+        width: 100%;
+        border: none;
+        background-color: #4CAF50;
+        padding: 14px 28px;
+        font-size: 16px;
+        cursor: pointer;
+        text-align: center;
+    }
     .image-preview-input {
         position: relative;
         overflow: hidden;
