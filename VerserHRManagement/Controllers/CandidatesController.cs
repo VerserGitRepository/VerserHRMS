@@ -281,20 +281,23 @@ namespace VerserHRManagement
 
         [HttpPost]
         // [ValidateAntiForgeryToken]
-        public ActionResult UploadDocument(int candidateId)
+        public ActionResult UploadDocument()
         {
+            var data = Request.Form["CandidateId"];
             for (int i = 0; i < Request.Files.Count; i++)
             {
-                HttpPostedFileBase file = Request.Files[i];
+                HttpPostedFileBase file = Request.Files[i]; //Uploaded file
+                                                            //Use the following properties to get file's name, size and MIMEType
                 int fileSize = file.ContentLength;
                 string fileName = file.FileName;
                 string mimeType = file.ContentType;
                 System.IO.Stream fileContent = file.InputStream;
                 //To save file, use SaveAs method
-                file.SaveAs(Server.MapPath("~/") + fileName);
+                file.SaveAs(Path.Combine(Server.MapPath("~/UploadedFiles"), fileName)); //File will be saved in application root
+                //string _path = Path.Combine(Server.MapPath("~/UploadedFiles"), _filename);
             }
             Candidate theCandidate = new Candidate();
-            theCandidate.ID = candidateId;
+            //theCandidate.ID = candidateId;
             if (UserRoles.UserCanEdit() == true)
             {
 

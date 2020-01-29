@@ -31,7 +31,7 @@
                     {
                         <tr>
                             <td onclick="LoadAddressData(@item.ID,'@item.CandidateName','@item.DateCreated','@item.Address','@item.City','@item.state','@item.postcode','@item.Email','@item.Phone',
-                                '@if(item.profilePicture != null) { @Convert.ToBase64String(@item.profilePicture)}');
+                                '@if(item.profilePicture != null) { @Convert.ToBase64String(@item.profilePicture)}','@item.DOB','@item.Age','@item.Gender','@item.MaritalStatus');
                                 LoadEmployment('@item.PayFrequency','@item.ADP_EmployeeID','@item.AssignResource','@item.Annualsalary','@item.HourlyRate','@item.DailyRate','@item.WorkRights',
                                 '@item.EmployeeStatus','@item.EmployementType','@item.NoticePeriod');">
                                 <font style="font-weight:800;color:#515151">
@@ -369,7 +369,7 @@
                                                 <input placeholder="CV" type="text" class="form-control image-preview-filename" disabled="disabled" id="">
                                                 <!-- don't give a name === doesn't send on POST/GET -->
                                                 <span class="input-group-btn">
-                                                    
+                                                    <input id="CVimgupload" type="file" style="display:none;">
                                                     <button id="btnCV" type="button" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Browse</button>
                                                     <button type="submit" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-upload"></i> </span>Upload</button>
                                                 </span>
@@ -534,7 +534,7 @@
 
             });
         }
-        function LoadAddressData(ID, CandidateName, DateCreated, Address, City, state, postcode, Email, Phone,logo) {
+        function LoadAddressData(ID, CandidateName, DateCreated, Address, City, state, postcode, Email, Phone, logo, dob, age, gender, maritalstatus) {
 
 
             $("#txtfName").val(CandidateName.split(' ')[0]);
@@ -546,6 +546,10 @@
             $("#txtPostalCode").val(postcode);
             $("#txtEmail").val(Email);
             $("#txtMobile").val(Phone);
+            $("#txtDOB").val(dob);
+            $("#txtAge").val(age);
+            $("#txtGender").val(gender);
+            $("#txtStatus").val(maritalstatus);
             if (logo == !"")
             {
                 $("#previewImage").hide();
@@ -614,18 +618,32 @@
         });
         $('#image,#previewImage').click(function () { $('#imgupload').trigger('click'); });
 
-        //$('#btnCV').click(function () { $('#CVimgupload').trigger('click'); });
+        $('#btnCV').click(function () { $('#CVimgupload').trigger('click'); });
         //$('#btnDL').click(function () { $('#DLimgupload').trigger('click'); });
         //$('#btnPC').click(function () { $('#PCimgupload').trigger('click'); });
         //$('#btnVisa').click(function () { $('#Visaimgupload').trigger('click'); });
         //$('#btnCertificates').click(function () { $('#Certificatesimgupload').trigger('click'); });
 
 
-        //$('#CVimgupload').on('change', function (event) {
-        //    var tmppath = URL.createObjectURL(event.target.files[0]);
-        //    var filePath = $(this).val();
-        //    console.log(filePath);
-        //});
+        $('#CVimgupload').on('change', function (event) {
+            var formdata = new FormData(); //FormData object
+            var fileInput = document.getElementById('CVimgupload');
+            //Iterating through each files selected in fileInput
+            for (i = 0; i < fileInput.files.length; i++) {
+                //Appending each file to FormData object
+                formdata.append(fileInput.files[i].name, fileInput.files[i]);
+            }
+            formdata.append("CandidateId", $("#hiddenModelId").val());
+            //Creating an XMLHttpRequest and sending
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', '/Candidates/UploadDocument');
+            xhr.send(formdata);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    alert(xhr.responseText);
+                }
+            }
+        });
 
 
         function LoadEmployment(PayFrequency, ADP_EmployeeID, AssignResource, Annualsalary, HourlyRate, DailyRate, WorkRights,
