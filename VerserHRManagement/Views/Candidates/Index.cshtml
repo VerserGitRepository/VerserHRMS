@@ -1,37 +1,36 @@
 ﻿@model IEnumerable<VerserHRManagement.Models.Candidate>
 
-<script src="~/Scripts/jquery-3.4.1.min.js" type="text/javascript"></script>
-<link href="~/Content/bootstrap.css" rel="stylesheet" />
-<script src="~/Scripts/jquery-3.4.1.min.js" type="text/javascript"></script>
-<link href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" />
-<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-<script src=" https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
-<script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap4.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
-<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
-<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+    <script src="~/Scripts/jquery-3.4.1.min.js" type="text/javascript"></script>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.4.1.min.js" type="text/javascript"></script>
+    <link href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src=" https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
+    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 
-<div class="container-fluid" style="margin-left:0px;padding-top:0px">
-    <div class="container" style="width:170%; padding-top:15px; margin-left:0px; border-color:lightgray;padding-left:0px">
-        <div class="col-md-4">
-            <table class="table table-bordered  table-responsive table-hover table-dark" id="mainTable" @*style="width:300Px"*@>
-                <thead style="background-color: #428bca; color:white">
-                    <tr>
-                        <th>
-                            @Html.DisplayName("CANDIDATES")
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var item in Model)
-                    {
-                    <tr>
-                        
-                        <td onclick="LoadAddressData(@item.ID,'@item.CandidateName','@item.DateCreated','@item.Address','@item.City','@item.state','@item.postcode','@item.Email','@item.Phone',
+    <div class="container-fluid" style="margin-left:0px;padding-top:0px">
+        <div class="container" style="width:170%; padding-top:15px; margin-left:0px; border-color:lightgray;padding-left:0px">
+            <div class="col-md-4">
+                <table class="table table-bordered  table-responsive table-hover table-dark" id="mainTable" @*style="width:300Px" *@>
+                    <thead style="background-color: #428bca; color:white">
+                        <tr>
+                            <th>
+                                @Html.DisplayName("CANDIDATES")
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                        <tr>
+                            <td onclick="LoadAddressData(@item.ID,'@item.CandidateName','@item.DateCreated','@item.Address','@item.City','@item.state','@item.postcode','@item.Email','@item.Phone',
                                 '@if(item.profilePicture != null) { @Convert.ToBase64String(@item.profilePicture)}','@item.DOB','@item.Age','@item.Gender','@item.MaritalStatus');
                                 LoadEmployment('@item.PayFrequency','@item.ADP_EmployeeID','@item.AssignResource','@item.Annualsalary','@item.HourlyRate','@item.DailyRate','@item.WorkRights',
                                 '@item.EmployeeStatus','@item.EmployementType','@item.NoticePeriod');
@@ -49,321 +48,257 @@
             </table>
         </div>
 
-        <div class="col-md-6">
-            <div class="panel with-nav-tabs panel-default" style="width:200%">
-                <div class="panel-heading">
-                    <ul class="nav nav-tabs">
-                        <li class="active"><a href="#tab1default" data-toggle="tab">PERSONAL</a></li>
-                        <li><a href="#tab2default" data-toggle="tab">EMPLOYMENT</a></li>
-                        <li><a href="#tab3default" data-toggle="tab">SKILLS</a></li>
-                        <li><a href="#tab4default" data-toggle="tab">DOCUMENTS</a></li>
-                        <li><a href="#tab5default" data-toggle="tab">PERFORMANCE</a></li>
-
-                    </ul>
-                </div>
-                <div class="panel-body">
-                    <div class="tab-content">
-                        <div class="tab-pane fade in active" id="tab1default">
-
-                            <div class="col-md-6" style="padding-left:0px">
-                                <div class="row">
-                                    <form>
-                                        <div class="container table-bordered" style="margin:20px; width:1000px;padding-top:0px;padding-bottom:0px;margin-top:2px">
-                                            <div class="form-group row">
-                                                <div class="col-sm-6">
-
-                                                    <div class="col-sm-10">
-
-                                                        <img class="preview-img" src="http://simpleicon.com/wp-content/uploads/account.png" alt="Preview Image" width="120" height="120" id="previewImage" onchange="readURL(this);" />
-                                                        <img id="image" class="image-border form-control form-control-sm" width="120" height="120">
-                                                        <input type="file" id="imgupload" style="display:none" onchange="readURL(this);" />
+            <div class="col-md-6">
+                <div class="panel with-nav-tabs panel-default" style="width:200%">
+                    <div class="panel-heading">
+                        <ul class="nav nav-tabs">
+                            <li class="active"><a href="#tab1default" data-toggle="tab">PERSONAL</a></li>
+                            <li><a href="#tab2default" data-toggle="tab">EMPLOYMENT</a></li>
+                            <li><a href="#tab3default" data-toggle="tab">SKILLS</a></li>
+                            <li><a href="#tab4default" data-toggle="tab">DOCUMENTS</a></li>
+                            <li><a href="#tab5default" data-toggle="tab">PERFORMANCE</a></li>
+                        </ul>
+                    </div>
+                    <div class="panel-body">
+                        <div class="tab-content">
+                            <div class="tab-pane fade in active" id="tab1default">
+                                <div class="col-md-6" style="padding-left:0px">
+                                    <div class="row">
+                                        <form>
+                                            <div class="container table-bordered" style="margin:20px; width:1000px;padding-top:0px;padding-bottom:0px;margin-top:2px">
+                                                <div class="form-group row">
+                                                    <div class="col-sm-6">
+                                                        <div class="col-sm-10">
+                                                            <img class="preview-img" src="http://simpleicon.com/wp-content/uploads/account.png" alt="Preview Image" width="120" height="120" id="previewImage" onchange="readURL(this);" />
+                                                            <img id="image" class="image-border form-control form-control-sm" width="120" height="120">
+                                                            <input type="file" id="imgupload" style="display:none" onchange="readURL(this);" />
+                                                        </div>
                                                     </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <div class="col-md-5" style="margin-left:10px;">
+                                                        <label>First Name</label>
+                                                        <input type="text" id="txtfName" class="form-control-override" placeholder="First Name">
+                                                    </div>
+                                                    <div class="col-md-5">
+                                                        <label>Last Name</label>
+                                                        <input type="text" id="txtlName" class="form-control-override" placeholder="Last Name">
+                                                    </div><br /><br /><br /><br />
+                                                    <div class="col-md-5" style="margin-left:10px;">
+                                                        <label>DOB</label>
+                                                        <input type="date" class="form-control-override" id="txtDOB" placeholder="DOB" onchange="calculateAge(this);">
+                                                    </div>
+                                                    <div class="col-md-5">
+                                                        <label>Age</label>
+                                                        <input type="text" class="form-control-override" id="txtAge" placeholder="Age">
+                                                    </div><br />
+                                                    <div class="col-md-5" style="margin-left:10px;">
+                                                        <label>Gender</label>
+                                                        <select class="form-control-override" id="txtGender">
+                                                            <option>Select</option>
+                                                            <option>Male</option>
+                                                            <option>Female</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-md-5">
+                                                        <label>Marital Status</label>
+                                                        <select class="form-control-override" id="txtStatus">
+                                                            <option>Married</option>
+                                                            <option>Single</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-md-5" style="margin-left:10px;">
+                                                        <label>Active</label>
+                                                        <input type="checkbox" checked data-toggle="toggle" data-onstyle="info" id="chkIsActive">
+                                                    </div>
+                                                </div>
+                                                <div style="font-size:smaller;color:deepskyblue">
                                                 </div>
                                             </div>
-                                            <div class="form-group row">
-                                                <div class="col-md-5" style="margin-left:10px;">
-                                                    <label>First Name</label>
-
-                                                    <input type="text" id="txtfName" class="form-control-override" placeholder="First Name">
-
-                                                </div>
-                                                <div class="col-md-5">
-                                                    <label>Last Name</label>
-
-                                                    <input type="text" id="txtlName" class="form-control-override" placeholder="Last Name">
-
-                                                </div><br /><br /><br /><br />
-                                                <div class="col-md-5" style="margin-left:10px;">
-                                                    <label>DOB</label>
-
-                                                    <input type="date" class="form-control-override" id="txtDOB" placeholder="DOB" onchange="calculateAge(this);">
-                                                </div>
-
-                                                <div class="col-md-5">
-                                                    <label>Age</label>
-
-                                                    <input type="text" class="form-control-override" id="txtAge" placeholder="Age">
-
-                                                </div><br /><br /><br /><br />
-                                                <div class="col-md-5" style="margin-left:10px;">
-                                                    <label>Gender</label>
-
-                                                    <select class="form-control-override" id="txtGender">
-                                                        <option>Select</option>
-                                                        <option>Male</option>
-                                                        <option>Female</option>
-                                                    </select>
-                                                </div><br />
-                                                <div class="col-md-5">
-                                                    <label>Marital Status</label>
-
-                                                    <select class="form-control-override" id="txtStatus">
-                                                        <option>Married</option>
-                                                        <option>Single</option>
-                                                    </select>
-                                                </div>
-                                                <div class="col-md-5" style="margin-left:10px;">
-                                                    <label>Active</label>
-                                                    <input type="checkbox" checked data-toggle="toggle" data-onstyle="info" id="isActive">
-                                                </div>
-                                            </div>
-                                            <div style="font-size:smaller;color:deepskyblue">
-
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                                <div class="row grid-divider">
-                                    <div class="row" style="margin-left:20px;">
-                                        <fieldset>
-                                          
-                                            <div class="form-group row">
-                                                <div class="container table-bordered" style="margin:20px; width:1000px;padding-top:5px;padding-bottom:5px">
-                                                    <div class="col-md-8" style="margin-left:10px;">
-                                                        <label>Address:</label>
-                                                        <div class="input-group">
-                                                            <span class="input-group-addon">
-                                                                <i class="glyphicon glyphicon-home"></i>
-                                                            </span><input id="txtAddress1" placeholder="Address Line 1" class="form-control" required="true" value="" type="text">
-                                                        </div>
-                                                    </div>
-                                                    <br /><br /><br /><br />
-                                                    <div class="col-md-3" style="margin-left:10px;">
-                                                        <label>City:</label>
-                                                        <div class="input-group">
-                                                            <span class="input-group-addon">
-                                                                <i class="glyphicon glyphicon-home"></i>
-                                                            </span><input id="txtCity" placeholder="Suburb" class="form-control" required="true" value="" type="text">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        <label>State:</label>
-                                                        <div class="input-group">
-                                                            <span class="input-group-addon">
-                                                                <i class="glyphicon glyphicon-home"></i>
-                                                            </span><input id="txtState" placeholder="State" class="form-control" required="true" value="" type="text">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        <label>Postal Code:</label>
-                                                        <div class="input-group">
-                                                            <span class="input-group-addon">
-                                                                <i class="glyphicon glyphicon-home"></i>
-                                                            </span><input id="txtPostalCode" placeholder="Postal Code" class="form-control" required="true" value="" type="text">
-                                                        </div>
-                                                    </div><br /><br /><br />
-                                                    <div class="col-md-3" style="margin-left:10px;">
-                                                        <label>Email:</label>
-                                                        <div class="input-group">
-                                                            <span class="input-group-addon">
-                                                                <i class="glyphicon glyphicon-envelope"></i>
-                                                            </span><input id="txtEmail" placeholder="Email" class="form-control" required="true" value="" type="text">
-                                                        </div>
-
-
-                                                    </div>
-
-                                                    <div class="col-md-3">
-                                                        <label>Mobile</label>
-                                                        <div class="input-group">
-                                                            <span class="input-group-addon">
-                                                                <i class="glyphicon glyphicon-earphone"></i>
-                                                            </span><input id="txtMobile" placeholder="Phone Number" class="form-control" required="true" value="" type="text">
-                                                        </div>
-
-
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        <label>Phone</label>
-
-                                                        <div class="input-group">
-                                                            <span class="input-group-addon">
-                                                                <i class="glyphicon glyphicon-earphone"></i>
-                                                            </span><input id="txtPhoneNumber" placeholder="Phone Number" class="form-control" required="true" value="" type="text">
-                                                        </div>
-
-                                                    </div>
-
-                                                </div>
-                                            </div>
-                                        </fieldset>
-
+                                        </form>
                                     </div>
-                                </div>
-                                <div class="panel-footer primary" align="left" style="height:30px;vertical-align:top;width:920px;background-color:#428bca">
-                                    <input type="submit" value="SAVE CHANGES" class="btn btn-primary btn-lg btn-block col-md-offset-4" style="height:25px;vertical-align:top;padding:0px;background-color:#428bca;border-color:#428bca" id="updateBtn" />
+                                    <div class="row grid-divider">
+                                        <div class="row" style="margin-left:20px;">
+                                            <fieldset>
+                                                <div class="form-group row">
+                                                    <div class="container table-bordered" style="margin:20px; width:1000px;padding-top:5px;padding-bottom:5px">
+                                                        <div class="col-md-8" style="margin-left:10px;">
+                                                            <label>Address:</label>
+                                                            <div class="input-group">
+                                                                <span class="input-group-addon">
+                                                                    <i class="glyphicon glyphicon-home"></i>
+                                                                </span><input id="txtAddress1" placeholder="Address Line 1" class="form-control" required="true" value="" type="text">
+                                                            </div>
+                                                        </div>
+                                                        <br /><br /><br /><br />
+                                                        <div class="col-md-3" style="margin-left:10px;">
+                                                            <label>City:</label>
+                                                            <div class="input-group">
+                                                                <span class="input-group-addon">
+                                                                    <i class="glyphicon glyphicon-home"></i>
+                                                                </span><input id="txtCity" placeholder="Suburb" class="form-control" required="true" value="" type="text">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <label>State:</label>
+                                                            <div class="input-group">
+                                                                <span class="input-group-addon">
+                                                                    <i class="glyphicon glyphicon-home"></i>
+                                                                </span><input id="txtState" placeholder="State" class="form-control" required="true" value="" type="text">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <label>Postal Code:</label>
+                                                            <div class="input-group">
+                                                                <span class="input-group-addon">
+                                                                    <i class="glyphicon glyphicon-home"></i>
+                                                                </span><input id="txtPostalCode" placeholder="Postal Code" class="form-control" required="true" value="" type="text">
+                                                            </div>
+                                                        </div><br /><br /><br />
+                                                        <div class="col-md-3" style="margin-left:10px;">
+                                                            <label>Email:</label>
+                                                            <div class="input-group">
+                                                                <span class="input-group-addon">
+                                                                    <i class="glyphicon glyphicon-envelope"></i>
+                                                                </span><input id="txtEmail" placeholder="Email" class="form-control" required="true" value="" type="text">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <label>Mobile</label>
+                                                            <div class="input-group">
+                                                                <span class="input-group-addon">
+                                                                    <i class="glyphicon glyphicon-earphone"></i>
+                                                                </span><input id="txtMobile" placeholder="Phone Number" class="form-control" required="true" value="" type="text">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <label>Phone</label>
 
+                                                            <div class="input-group">
+                                                                <span class="input-group-addon">
+                                                                    <i class="glyphicon glyphicon-earphone"></i>
+                                                                </span><input id="txtPhoneNumber" placeholder="Phone Number" class="form-control" required="true" value="" type="text">
+                                                            </div>
+
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </fieldset>
+                                        </div>
+                                    </div>
+                                    @*<div class="panel-footer primary" align="left" style="height:30px;vertical-align:top;width:920px;background-color:#428bca">
+                                        <input type="submit" value="SAVE CHANGES" class="btn btn-primary btn-lg btn-block col-md-offset-4" style="height:25px;vertical-align:top;padding:0px;background-color:#428bca;border-color:#428bca" id="updateBtn" />
+                                    </div>*@
                                 </div>
-                                @*<div class="pull-left" style="margin-left:4px;">
-                                    <input type="submit" value="SAVE CHANGES" class="btn btn-outline-secondary" style="height:32px;vertical-align:top;background-color:#1372AB;color:white" id="updateBtn" />
-                                </div>*@
                             </div>
-                        </div>
-                        <div class="tab-pane fade" id="tab2default">
-
-                            <div class="row" style="margin-left:10px">
-                                <div class="form-group row">
-                                    <div class=" row col-md-6 well" style="width:370px;height:390px">
-                                        <div class="col-md-12" style="margin-top:15px;">
-                                            <label class="col-sm-9 col-form-label col-form-label-sm">Pay Frequency</label>
-
-                                            <input type="text" id="txtPayFrequency" class="form-control form-control-sm" placeholder="Pay Frequency">
-
-                                        </div>
-                                        <div class="col-md-12" style="margin-top:15px;">
-                                            <label class="col-sm-9 col-form-label col-form-label-sm">ADP Employee Id</label>
-
-                                            <input type="text" id="txtADPEmployeeId" class="form-control form-control-sm" placeholder="ADP Employee Id">
-
-                                        </div>
-                                        <div class="col-md-12" style="margin-top:15px;">
-                                            <label class="col-sm-9 col-form-label col-form-label-sm">Resource Assigned</label>
-
-                                            <input type="text" class="form-control form-control-sm" id="txtResourceAssigned" placeholder="Resource Assigned">
-
-                                        </div>
-
-                                        <div class="col-md-12" style="margin-top:15px;">
-                                            <label class="col-sm-9 col-form-label col-form-label-sm">Annual Salary</label>
-
-                                            <input type="text" class="form-control form-control-sm" id="txtAnnualSalary" placeholder="Annual Salary">
-
-                                        </div>
-                                        <div class="col-md-12" style="margin-top:15px;">
-                                            <label class="col-sm-9 col-form-label col-form-label-sm">Hourly Rate</label>
-
-                                            <input type="text" class="form-control form-control-sm" id="txtHourlyRate" placeholder="Hourly Rate">
-
-                                        </div>
-                                    </div>
-                                    <div class=" row col-md-6 well" style="width:370px;height:390px">
-                                        <div class="col-md-12" style="margin-top:15px;">
-                                            <label class="col-sm-9 col-form-label col-form-label-sm">Daily Rate</label>
-
-                                            <input type="text" class="form-control form-control-sm" id="txtDailyRate" placeholder="Daily Rate">
-
-                                        </div>
-                                        <div class="col-md-12" style="margin-top:15px;">
-                                            <label class="col-sm-9 col-form-label col-form-label-sm">Work Rights</label>
-
-                                            <input type="text" class="form-control form-control-sm" id="txtWorkRights" placeholder="Work Rights">
-
-                                        </div>
-
-                                        <div class="col-md-12" style="margin-top:15px;">
-                                            <label class="col-sm-9 col-form-label col-form-label-sm">Employment Status</label>
-
-                                            <input type="text" class="form-control form-control-sm" id="txtEmploymentStatus" placeholder="Employee Status">
-
-                                        </div>
-                                        <div class="col-md-12" style="margin-top:15px;">
-                                            <label class="col-sm-9 col-form-label col-form-label-sm">Employment Type</label>
-
-                                            <input type="text" class="form-control form-control-sm" id="txtEmploymentType" placeholder="Employment Type">
-
-                                        </div>
-
-                                        <div class="col-md-12" style="margin-top:15px;">
-                                            <label class="col-sm-9 col-form-label col-form-label-sm">Notice Period</label>
-
-                                            <input type="text" class="form-control form-control-sm" id="txtNoticePeriod" placeholder="Notice Period">
-
-                                        </div>
-                                    </div>
-                                </div>
-                         <div class="panel-footer primary" align="left" style="height:30px;vertical-align:top;width:820px;background-color:#428bca;margin-left:10px">
-                       <input type="submit" value="SAVE CHANGES" class="btn btn-primary btn-lg btn-block col-md-offset-4" style="height:25px;vertical-align:top;padding:0px;background-color:#428bca;border-color:#428bca" id="updateEmploymentDetailsBtn" />
-
-                      </div>
-       
-                                </div>
-                        </div>
-
-                        <div class="tab-pane fade" id="tab3default">
-
-                            <br>
-                            <div class="row pull-left" style="margin-left:-1px">
-                                <div class="row pull-left" style="margin-left:-1px">
+                            <div class="tab-pane fade" id="tab2default">
+                                <div class="row" style="margin-left:10px">
                                     <div class="form-group row">
-                                        <div class="col-md-5" style="margin-left:10px;">
-                                            <label class="col-sm-9 col-form-label col-form-label-sm">Candidate Skills</label>
+                                        <div class=" row col-md-6 well" style="width:370px;height:390px">
+                                            <div class="col-md-12" style="margin-top:15px;">
+                                                <label class="col-sm-9 col-form-label col-form-label-sm">Pay Frequency</label>
+                                                <input type="text" id="txtPayFrequency" class="form-control form-control-sm" placeholder="Pay Frequency">
+                                            </div>
+                                            <div class="col-md-12" style="margin-top:15px;">
+                                                <label class="col-sm-9 col-form-label col-form-label-sm">ADP Employee Id</label>
+                                                <input type="text" id="txtADPEmployeeId" class="form-control form-control-sm" placeholder="ADP Employee Id">
+                                            </div>
+                                            <div class="col-md-12" style="margin-top:15px;">
+                                                <label class="col-sm-9 col-form-label col-form-label-sm">Resource Assigned</label>
+                                                <input type="text" class="form-control form-control-sm" id="txtResourceAssigned" placeholder="Resource Assigned">
+                                            </div>
 
-                                            <input type="text" id="candidateskills" class="form-control form-control-sm" placeholder="candidateskills">
-
+                                            <div class="col-md-12" style="margin-top:15px;">
+                                                <label class="col-sm-9 col-form-label col-form-label-sm">Annual Salary</label>
+                                                <input type="text" class="form-control form-control-sm" id="txtAnnualSalary" placeholder="Annual Salary">
+                                            </div>
+                                            <div class="col-md-12" style="margin-top:15px;">
+                                                <label class="col-sm-9 col-form-label col-form-label-sm">Hourly Rate</label>
+                                                <input type="text" class="form-control form-control-sm" id="txtHourlyRate" placeholder="Hourly Rate">
+                                            </div>
                                         </div>
-                                        <div class="col-md-5">
-                                            <label class="col-sm-9 col-form-label col-form-label-sm">Experience</label>
-
-                                            <input type="text" id="experience" class="form-control form-control-sm" placeholder="experience">
-
-                                        </div><br /><br /><br /><br />
-                                        <div class="col-md-5" style="margin-left:10px;">
-                                            <label class="col-sm-9 col-form-label col-form-label-sm">Job Title</label>
-
-                                            <input type="text" class="form-control form-control-sm" id="JobTitle" placeholder="JobTitle">
+                                        <div class=" row col-md-6 well" style="width:370px;height:390px">
+                                            <div class="col-md-12" style="margin-top:15px;">
+                                                <label class="col-sm-9 col-form-label col-form-label-sm">Daily Rate</label>
+                                                <input type="text" class="form-control form-control-sm" id="txtDailyRate" placeholder="Daily Rate">
+                                            </div>
+                                            <div class="col-md-12" style="margin-top:15px;">
+                                                <label class="col-sm-9 col-form-label col-form-label-sm">Work Rights</label>
+                                                <input type="text" class="form-control form-control-sm" id="txtWorkRights" placeholder="Work Rights">
+                                            </div>
+                                            <div class="col-md-12" style="margin-top:15px;">
+                                                <label class="col-sm-9 col-form-label col-form-label-sm">Employment Status</label>
+                                                <input type="text" class="form-control form-control-sm" id="txtEmploymentStatus" placeholder="Employee Status">
+                                            </div>
+                                            <div class="col-md-12" style="margin-top:15px;">
+                                                <label class="col-sm-9 col-form-label col-form-label-sm">Employment Type</label>
+                                                <input type="text" class="form-control form-control-sm" id="txtEmploymentType" placeholder="Employment Type">
+                                            </div>
+                                            <div class="col-md-12" style="margin-top:15px;">
+                                                <label class="col-sm-9 col-form-label col-form-label-sm">Notice Period</label>
+                                                <input type="text" class="form-control form-control-sm" id="txtNoticePeriod" placeholder="Notice Period">
+                                            </div>
                                         </div>
-                                        <div class="col-md-5">
-                                            <label class="col-sm-9 col-form-label col-form-label-sm">Technician Level</label>
-                                            <input type="text" class="form-control form-control-sm" id="TechnicianLevel" placeholder="TechnicianLevel">
-                                        </div><br /><br /><br /><br />
-                                        <div class="col-md-5" style="margin-left:10px;">
-                                            <label class="col-sm-9 col-form-label col-form-label-sm">Skill Rate</label>
-                                            <input type="text" class="form-control form-control-sm" id="skillrate" placeholder="skillrate">
+                                    </div>
+                                    @*<div class="panel-footer primary" align="left" style="height:30px;vertical-align:top;width:820px;background-color:#428bca;margin-left:10px">
+                                        <input type="submit" value="SAVE CHANGES" class="btn btn-primary btn-lg btn-block col-md-offset-4" style="height:25px;vertical-align:top;padding:0px;background-color:#428bca;border-color:#428bca" id="updateEmploymentDetailsBtn" />
 
-                                        </div>
+                                    </div>*@
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="tab3default">
+                                <br>
+                                <div class="row pull-left" style="margin-left:-1px">
+                                    <div class="row pull-left" style="margin-left:-1px">
+                                        <div class="form-group row">
+                                            <div class="col-md-5" style="margin-left:10px;">
+                                                <label class="col-sm-9 col-form-label col-form-label-sm">Candidate Skills</label>
 
-                                        <br /><br /><br /><br />
+                                                <input type="text" id="candidateskills" class="form-control form-control-sm" placeholder="candidateskills">
 
-                                        <div class="panel-footer primary" align="left" style="height:30px;vertical-align:top;width:820px;background-color:#428bca;margin-left:10px">
-                                            <input type="submit" value="SAVE CHANGES" class="btn btn-primary btn-lg btn-block col-md-offset-4" style="height:25px;vertical-align:top;padding:0px;background-color:#428bca;border-color:#428bca" />
+                                            </div>
+                                            <div class="col-md-5">
+                                                <label class="col-sm-9 col-form-label col-form-label-sm">Experience</label>
 
+                                                <input type="text" id="experience" class="form-control form-control-sm" placeholder="experience">
+
+                                            </div><br /><br /><br /><br />
+                                            <div class="col-md-5" style="margin-left:10px;">
+                                                <label class="col-sm-9 col-form-label col-form-label-sm">Job Title</label>
+
+                                                <input type="text" class="form-control form-control-sm" id="JobTitle" placeholder="JobTitle">
+                                            </div>
+                                            <div class="col-md-5">
+                                                <label class="col-sm-9 col-form-label col-form-label-sm">Technician Level</label>
+                                                <input type="text" class="form-control form-control-sm" id="TechnicianLevel" placeholder="TechnicianLevel">
+                                            </div><br /><br /><br /><br />
+                                            <div class="col-md-5" style="margin-left:10px;">
+                                                <label class="col-sm-9 col-form-label col-form-label-sm">Skill Rate</label>
+                                                <input type="text" class="form-control form-control-sm" id="skillrate" placeholder="skillrate">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-
                             </div>
-                        </div>
-
-                        <div class="tab-pane fade" id="tab5default">
-                            <div class="row pull-right">
+                            <div class="tab-pane fade" id="tab5default">
                                 <div class="row pull-right">
-                                    <div class="col-md-1">
-                                        @using (Html.BeginForm("ExportTimesSheetToExcel", "Assets", FormMethod.Post))
-                                        {
+                                    <div class="row pull-right">
+                                        <div class="col-md-1">
+                                            @using (Html.BeginForm("ExportTimesSheetToExcel", "Assets", FormMethod.Post))
+                                            {
                                             <input type="image" src="~/Images/excel.png" alt="Submit" width="20" height="20">
-                                        }
-                                    </div>
-                                    <div class="col-md-1">
-                                        <input type="image" src="~/Images/plus.png" alt="Submit" width="20" height="20" id="addEndUser">
-                                    </div>
-                                    <div class="col-md-1">
-                                        <input type="image" src="~/Images/pencil.png" alt="Submit" width="20" height="20" id="editEnduser">
+                                            }
+                                        </div>
+                                        <div class="col-md-1">
+                                            <input type="image" src="~/Images/plus.png" alt="Submit" width="20" height="20" id="addEndUser">
+                                        </div>
+                                        <div class="col-md-1">
+                                            <input type="image" src="~/Images/pencil.png" alt="Submit" width="20" height="20" id="editEnduser">
+                                        </div>
                                     </div>
                                 </div>
-
                             </div>
-                        </div>
-                      
                             <div class="tab-pane fade" id="tab4default" style="font:x-small">
                                 <div class="col-md-12">
                                     <div class="panel panel-default">
@@ -384,7 +319,7 @@
                                                 <!-- don't give a name === doesn't send on POST/GET -->
                                                 <span class="input-group-btn">
                                                     <input id="Certificateimgupload" type="file" style="display:none;">
-                                                    <button type="button" id="btnCertificates" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Browse</button>
+                                                    <button type="button" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Browse</button>
                                                     <button type="button" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-upload"></i> </span>Upload</button>
                                                 </span>
                                             </div>
@@ -416,12 +351,11 @@
                                                 <!-- don't give a name === doesn't send on POST/GET -->
                                                 <span class="input-group-btn">
                                                     <input type="file" id="Visaimgupload" style="display:none" onchange="ReadFileName(this,'Visaimgupload');" />
-                                                    <button type="button" id="btnVisa" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Browse</button>
+                                                    <button type="button" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Browse</button>
                                                     <button type="button" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-upload"></i> </span>Upload</button>
                                                 </span>
                                             </div>
                                         </div>
-
                                         <div class="panel-heading"><strong>PERSONAL DETAILS</strong> <small> </small></div>
                                         <div class="panel-body">
                                             <div class="input-group image-preview">
@@ -429,7 +363,7 @@
                                                 <!-- don't give a name === doesn't send on POST/GET -->
                                                 <span class="input-group-btn">
                                                     <input type="file" id="Superimgupload" style="display:none" onchange="ReadFileName(this,'Superimgupload');" />
-                                                    <button type="button" id="btnSuper" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Browse</button>
+                                                    <button type="button" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Browse</button>
                                                     <button type="button" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-upload"></i> </span>Upload</button>
                                                 </span>
                                             </div><br>
@@ -438,7 +372,7 @@
                                                 <!-- don't give a name === doesn't send on POST/GET -->
                                                 <span class="input-group-btn">
                                                     <input type="file" id="TNFimgupload" style="display:none" onchange="ReadFileName(this,'TNFimgupload');" />
-                                                    <button type="button" id="btnTNF" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Browse</button>
+                                                    <button type="button" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Browse</button>
                                                     <button type="button" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-upload"></i> </span>Upload</button>
                                                 </span>
                                             </div>
@@ -448,12 +382,11 @@
                                                 <!-- don't give a name === doesn't send on POST/GET -->
                                                 <span class="input-group-btn">
                                                     <input type="file" id="Bankimgupload" style="display:none" onchange="ReadFileName(this,'Bankimgupload');" />
-                                                    <button type="button" id="btnBank" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Browse</button>
+                                                    <button type="button" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Browse</button>
                                                     <button type="button" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-upload"></i> </span>Upload</button>
                                                 </span>
                                             </div>
                                         </div>
-
                                         <div class="panel-heading"><strong>POLICIES</strong> <small> </small></div>
                                         <div class="panel-body">
                                             <div class="input-group image-preview">
@@ -461,7 +394,7 @@
                                                 <!-- don't give a name === doesn't send on POST/GET -->
                                                 <span class="input-group-btn">
                                                     <input type="file" id="Codeimgupload" style="display:none" onchange="ReadFileName(this,'Codeimgupload');" />
-                                                    <button type="button" id="btnCode" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Browse</button>
+                                                    <button type="button" id="btnVisa" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Browse</button>
                                                     <button type="button" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-upload"></i> </span>Upload</button>
                                                 </span>
                                             </div><br>
@@ -470,39 +403,40 @@
                                                 <!-- don't give a name === doesn't send on POST/GET -->
                                                 <span class="input-group-btn">
                                                     <input type="file" id="Whsimgupload" style="display:none" onchange="ReadFileName(this,'Whsimgupload');" />
-                                                    <button type="button" id="btnWhs" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Browse</button>
+                                                    <button type="button" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Browse</button>
                                                     <button type="button" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-upload"></i> </span>Upload</button>
                                                 </span>
                                             </div>
-                                            <br>                                            
+                                            <br>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        
-                        @*</div>*@
-
+                        </div>
                     </div>
-
+                    <div class="panel-footer primary" align="left" style="height:40px;vertical-align:top;background-color:lightgrey">
+                        <input type="submit" value="SAVE CHANGES" class="btn btn-primary"
+                               style="background-color:#428bca;border-color:#428bca"
+                               id="updateEmploymentDetailsBtn" />
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
-<body>
-    <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.15/js/jquery.dataTables.js"></script>
-    <script src="https://cdn.datatables.net/plug-ins/1.10.15/api/row().show().js"></script>
-</body>
+    <body>
+        <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.15/js/jquery.dataTables.js"></script>
+        <script src="https://cdn.datatables.net/plug-ins/1.10.15/api/row().show().js"></script>
+    </body>
 
-@section Scripts {
+    @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 
     <script type="text/javascript">
         $(document).ready(function () {
             $('#mainTable').DataTable({
-            "pageLength": 20,
-            "lengthMenu": [10, 15,20, 25, 50]
+                "pageLength": 20,
+                "lengthMenu": [10, 15, 20, 25, 50]
             });
             $('#mainTable1').DataTable();
             $('#mainTable2').DataTable();
@@ -529,9 +463,7 @@
 
             });
         }
-        function LoadAddressData(ID, CandidateName, DateCreated, Address, City, state, postcode, Email, Phone, logo, dob, age, gender, maritalstatus) {
-
-
+        function LoadAddressData(ID, CandidateName, DateCreated, Address, City, state, postcode, Email, Phone, logo, dob, age, gender, maritalstatus,isactive) {
             $("#txtfName").val(CandidateName.split(' ')[0]);
             $("#txtlName").val(CandidateName.split(' ')[1]);
             $("#txtAddress1").val(Address);
@@ -544,9 +476,10 @@
             $("#txtDOB").val(dob);
             $("#txtAge").val(age);
             $("#txtGender").val(gender);
+            $("#chkIsActive").val(isactive);
+           // $('#yourCheckboxId').prop('checked', true);
             $("#txtStatus").val(maritalstatus);
-            if (logo != "")
-            {
+            if (logo != "") {
                 $("#previewImage").hide();
                 $("#image").show();
                 $("#image").attr("src", "data:image/jpeg;base64," + logo + "").height(100).width(200);
@@ -562,9 +495,8 @@
         //alert(FilePath);
           $("#cvph").val($("#hiddenPath").val()+'\\'+FilePath);
         }
-        function ReadFileName(input,controlName) {
+        function ReadFileName(input, controlName) {
             var ctrl = document.getElementById(controlName);
-
         }
         function readURL(input) {
             $('#image').show();
@@ -572,16 +504,14 @@
             $('#previewImage').hide();
             if (input.files && input.files[0]) {
                 var reader = new FileReader();
-
                 reader.onload = function (e) {
                     $('#image')
                         .attr('src', e.target.result);
                 };
-
                 reader.readAsDataURL(input.files[0]);
             }
         }
-        $("#updateBtn").click(function () {
+        @* $("#updateBtn").click(function () {
             var CandidateEdit = {};
             CandidateEdit.ID = $("#hiddenModelId").val();
             CandidateEdit.CandidateName = $("#txtfName").val() + ' ' + $("#txtlName").val();
@@ -615,21 +545,13 @@
                     alert("Dynamic content load failed.");
                 }
             });
-        });
+        });*@
         $('#image,#previewImage').click(function () { $('#imgupload').trigger('click'); });
-
         $('#btnCV').click(function () { $('#CVimgupload').trigger('click'); });
-        $('#btnDL').click(function () { $('#DLimgupload').trigger('click'); });
-        $('#btnPC').click(function () { $('#PCimgupload').trigger('click'); });
-        $('#btnVisa').click(function () { $('#Visaimgupload').trigger('click'); });
-        $('#btnCertificates').click(function () { $('#Certificateimgupload').trigger('click'); });
-        $('#btnSuper').click(function () { $('#Superimgupload').trigger('click'); });
-        $('#btnBank').click(function () { $('#Bankimgupload').trigger('click'); });
-        $('#btnWhs').click(function () { $('#Whsimgupload').trigger('click'); });
-        $('#btnCode').click(function () { $('#Codeimgupload').trigger('click'); });
-        $('#btnTNF').click(function () { $('#TNFimgupload').trigger('click'); });
-
-
+        //$('#btnDL').click(function () { $('#DLimgupload').trigger('click'); });
+        //$('#btnPC').click(function () { $('#PCimgupload').trigger('click'); });
+        //$('#btnVisa').click(function () { $('#Visaimgupload').trigger('click'); });
+        //$('#btnCertificates').click(function () { $('#Certificatesimgupload').trigger('click'); });
         $('#CVimgupload').on('change', function (event) {
             var formdata = new FormData(); //FormData object
             var fileInput = document.getElementById('CVimgupload');
@@ -699,7 +621,7 @@
                 formdata.append(fileInput.files[i].name, fileInput.files[i]);
             }
             formdata.append("CandidateId", $("#hiddenModelId").val());
-            formdata.append("FileUpload","PC");
+            formdata.append("FileUpload", "PC");
             //Creating an XMLHttpRequest and sending
             var xhr = new XMLHttpRequest();
             xhr.open('POST', '/Candidates/UploadDocument');
@@ -719,7 +641,7 @@
                 formdata.append(fileInput.files[i].name, fileInput.files[i]);
             }
             formdata.append("CandidateId", $("#hiddenModelId").val());
-            formdata.append("FileUpload","Visa");
+            formdata.append("FileUpload", "Visa");
             //Creating an XMLHttpRequest and sending
             var xhr = new XMLHttpRequest();
             xhr.open('POST', '/Candidates/UploadDocument');
@@ -759,7 +681,7 @@
                 formdata.append(fileInput.files[i].name, fileInput.files[i]);
             }
             formdata.append("CandidateId", $("#hiddenModelId").val());
-            formdata.append("FileUpload","TNF");
+            formdata.append("FileUpload", "TNF");
             //Creating an XMLHttpRequest and sending
             var xhr = new XMLHttpRequest();
             xhr.open('POST', '/Candidates/UploadDocument');
@@ -830,12 +752,8 @@
                 }
             }
         });
-
-
         function LoadEmployment(PayFrequency, ADP_EmployeeID, AssignResource, Annualsalary, HourlyRate, DailyRate, WorkRights,
             EmployeeStatus, EmployementType, NoticePeriod) {
-
-
             $("#txtPayFrequency").val(PayFrequency);
             $("#txtADPEmployeeId").val(ADP_EmployeeID);
             $("#txtResourceAssigned").val(AssignResource);
@@ -846,7 +764,6 @@
             $("#txtEmploymentStatus").val(EmployeeStatus);
             $("#txtEmploymentType").val(EmployementType);
             $("#txtNoticePeriod").val(NoticePeriod);
-
         }
         $("#updateEmploymentDetailsBtn").click(function () {
             var CandidateEdit = {};
@@ -861,27 +778,34 @@
             CandidateEdit.EmployeeStatus = $("#txtEmploymentStatus").val();
             CandidateEdit.EmployementType = $("#txtEmploymentType").val();
             CandidateEdit.NoticePeriod = $("#txtNoticePeriod").val();
-
-
+            CandidateEdit.CandidateName = $("#txtfName").val() + ' ' + $("#txtlName").val();
+            CandidateEdit.Address = $("#txtAddress1").val();
+            CandidateEdit.DOB = $("#txtDOB").val();
+            CandidateEdit.Gender = $("#txtGender").val();
+            CandidateEdit.MaritalStatus = $("#txtStatus").val();
+            CandidateEdit.City = $("#txtCity").val();
+            CandidateEdit.State = $("#txtState").val();
+            CandidateEdit.PostalCode = $("#txtPostalCode").val();
+            CandidateEdit.Email = $("#txtEmail").val();
+            CandidateEdit.Phone = $("#txtMobile").val();
+            CandidateEdit.Age = $("#txtAge").val();
+            CandidateEdit.isactive = $("#isActive").val();
+            CandidateEdit.profilepicture = $("#image")[0].src.split(',')[1];
             var updateCandidateData = '@Url.Action("UpdateCandidate", "Candidates")';
             $.ajax({
-
                 type: "POST",
                 url: updateCandidateData,
                 contentType: "application/json; charset=utf-8",
                 data: JSON.stringify(CandidateEdit),
                 datatype: "json",
                 success: function (result) {
-
                 },
                 error: function () {
                     alert("Dynamic content load failed.");
                 }
             });
         });
-
         function calculateAge(dateString) {
-
             var val = $("#txtDOB").val();
             var birthdate = new Date(val);
             var cur = new Date();
@@ -890,308 +814,312 @@
             $("#txtAge").val(age);
         }
     </script>
-}
-<style>
+    }
+    <style>
 
-    .well {
-        margin-left: 10px;
-        margin-right: 10px;padding-top:10px
-    }
-    .row.vdivide [class*='col-']:not(:last-child):after {
-        background: #e0e0e0;
-        width: 1px;
-        content: "";
-        display: block;
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        right: 0;
-        min-height: 70px;
-    }
-    .block {
-        display: block;
-        width: 100%;
-        border: none;
-        background-color: #4CAF50;
-        padding: 14px 28px;
-        font-size: 16px;
-        cursor: pointer;
-        text-align: center;
-    }
-    .image-preview-input {
-        position: relative;
-        overflow: hidden;
-        margin: 0px;
-        color: #333;
-        background-color: #fff;
-        border-color: #ccc;
-    }
-
-        .image-preview-input input[type=file] {
-            position: absolute;
-            top: 0;
-            right: 0;
-            margin: 0;
-            padding: 0;
-            font-size: 20px;
-            cursor: pointer;
-            opacity: 0;
-            filter: alpha(opacity=0);
+        .well {
+            margin-left: 10px;
+            margin-right: 10px;
+            padding-top: 10px
         }
 
-    .image-preview-input-title {
-        margin-left: 2px;
-    }
-
-    .col-padding {
-        padding: 0 15px;
-    }
-
-    .panel-footer {
-        padding: 3px 30px;
-        background-color: #f5f5f5;
-        border-top: 1px solid #dddddd;
-        border-bottom-right-radius: 0px;
-        border-bottom-left-radius: 0px;
-        width: 100%
-    }
-
-    .glyphicon {
-        font-size: 14px;
-        color: black;
-    }
-
-    .grid-divider {
-        position: relative;
-        padding: 0;
-        width: 1000px;
-    }
-
-    image-border {
-        padding: 1px;
-        border: 1px solid #021a40;
-    }
-
-    .grid-divider > [class*='col-'] {
-        position: static;
-    }
-
-        .grid-divider > [class*='col-']:nth-child(n+2):before {
+        .row.vdivide [class*='col-']:not(:last-child):after {
+            background: #e0e0e0;
+            width: 1px;
             content: "";
-            border-left: 1px solid #DDD;
+            display: block;
             position: absolute;
             top: 0;
             bottom: 0;
+            right: 0;
+            min-height: 70px;
         }
 
-    .col-padding {
-        padding: 0 15px;
-    }
+        .block {
+            display: block;
+            width: 100%;
+            border: none;
+            background-color: #4CAF50;
+            padding: 14px 28px;
+            font-size: 16px;
+            cursor: pointer;
+            text-align: center;
+        }
 
-    .btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
-        background-color: #FFA500;
-        border-color: white;
-    }
+        .image-preview-input {
+            position: relative;
+            overflow: hidden;
+            margin: 0px;
+            color: #333;
+            background-color: #fff;
+            border-color: #ccc;
+        }
 
-    .btn-warning {
-        background-color: #FFA500;
-        font-size: 11px;
-    }
+            .image-preview-input input[type=file] {
+                position: absolute;
+                top: 0;
+                right: 0;
+                margin: 0;
+                padding: 0;
+                font-size: 20px;
+                cursor: pointer;
+                opacity: 0;
+                filter: alpha(opacity=0);
+            }
 
-    .black {
-        color: black;
-    }
+        .image-preview-input-title {
+            margin-left: 2px;
+        }
 
-    body {
-        padding-top: 40px;
-        padding-bottom: 5px;
-        /*margin-left:5px;*/
-    }
+        .col-padding {
+            padding: 0 15px;
+        }
 
-    /* Set padding to keep content from hitting the edges */
-    .body-content {
-        padding-left: 0px;
-        padding-right: 5px;
-        margin-left: 5px;
-    }
+        .panel-footer {
+            padding: 3px 20px;
+            background-color: #f5f5f5;
+            border-top: 1px solid #dddddd;
+            border-bottom-right-radius: 0px;
+            border-bottom-left-radius: 0px;
+            width: 100%
+        }
 
-    .dataTables_filter {
-        float: right;
-    }
+        .glyphicon {
+            font-size: 14px;
+            color: black;
+        }
 
-    .container {
-        font-size: 12px;
-        padding-left: 5px;
-        padding-right: 5px;
-    }
+        .grid-divider {
+            position: relative;
+            padding: 0;
+            width: 1000px;
+        }
 
-    .page-item.active .page-link {
-        color: white !important;
-        background-color: orange !important;
-        border-color: gray !important;
-    }
+        image-border {
+            padding: 1px;
+            border: 1px solid #021a40;
+        }
 
-    .btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
-        background-color: #FFA500;
-        border-color: white;
-    }
+        .grid-divider > [class*='col-'] {
+            position: static;
+        }
+
+            .grid-divider > [class*='col-']:nth-child(n+2):before {
+                content: "";
+                border-left: 1px solid #DDD;
+                position: absolute;
+                top: 0;
+                bottom: 0;
+            }
+
+        .col-padding {
+            padding: 0 15px;
+        }
 
         .btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
             background-color: #FFA500;
             border-color: white;
         }
 
-    .tab-pane {
-        border-color: lightgray
-    }
-
-    .page-item.active .page-link {
-        color: white !important;
-        background-color: orange !important;
-        border-color: gray !important;
-    }
-
-    .col-md-6 {
-        -webkit-box-flex: 0;
-        -ms-flex: 0 0 50%;
-        flex: 0 0 50%;
-        max-width: 50%
-    }
-
-    .col-md-6 {
-        position: relative;
-        width: 100%;
-        min-height: 1px;
-        padding-top: 10px;
-        padding-bottom: 10px;
-        padding-right: 15px;
-        padding-left: 5px
-    }
-
-    .table-hover tbody tr:hover > td {
-        background-color: gra;
-    }
-
-    .datatable tr:nth-child(odd) {
-        background-color: #dfe7f2;
-        color: #000;
-    }
-
-    table.dataTable.row-border tbody th, table.dataTable.row-border tbody td, table.dataTable.display tbody th, table.dataTable.display tbody td {
-        border-top: 1px solid #ddd;
-    }
-
-    table.dataTable, table.dataTable th, table.dataTable td {
-        box-sizing: content-box;
-    }
-
-        table.dataTable tbody th, table.dataTable tbody td {
-            padding: 8px 10px;
+        .btn-warning {
+            background-color: #FFA500;
+            font-size: 11px;
         }
 
-    .with-nav-tabs.panel-default .nav-tabs > li > a,
-    .with-nav-tabs.panel-default .nav-tabs > li > a:hover,
-    .with-nav-tabs.panel-default .nav-tabs > li > a:focus {
-        color: #777;
-    }
+        .black {
+            color: black;
+        }
 
-        .with-nav-tabs.panel-default .nav-tabs > .open > a,
-        .with-nav-tabs.panel-default .nav-tabs > .open > a:hover,
-        .with-nav-tabs.panel-default .nav-tabs > .open > a:focus,
+        body {
+            padding-top: 40px;
+            padding-bottom: 5px;
+            /*margin-left:5px;*/
+        }
+
+        /* Set padding to keep content from hitting the edges */
+        .body-content {
+            padding-left: 0px;
+            padding-right: 5px;
+            margin-left: 5px;
+        }
+
+        .dataTables_filter {
+            float: right;
+        }
+
+        .container {
+            font-size: 12px;
+            padding-left: 5px;
+            padding-right: 5px;
+        }
+
+        .page-item.active .page-link {
+            color: white !important;
+            background-color: orange !important;
+            border-color: gray !important;
+        }
+
+        .btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
+            background-color: #FFA500;
+            border-color: white;
+        }
+
+            .btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
+                background-color: #FFA500;
+                border-color: white;
+            }
+
+        .tab-pane {
+            border-color: lightgray
+        }
+
+        .page-item.active .page-link {
+            color: white !important;
+            background-color: orange !important;
+            border-color: gray !important;
+        }
+
+        .col-md-6 {
+            -webkit-box-flex: 0;
+            -ms-flex: 0 0 50%;
+            flex: 0 0 50%;
+            max-width: 50%
+        }
+
+        .col-md-6 {
+            position: relative;
+            width: 100%;
+            min-height: 1px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            padding-right: 15px;
+            padding-left: 5px
+        }
+
+        .table-hover tbody tr:hover > td {
+            background-color: gra;
+        }
+
+        .datatable tr:nth-child(odd) {
+            background-color: #dfe7f2;
+            color: #000;
+        }
+
+        table.dataTable.row-border tbody th, table.dataTable.row-border tbody td, table.dataTable.display tbody th, table.dataTable.display tbody td {
+            border-top: 1px solid #ddd;
+        }
+
+        table.dataTable, table.dataTable th, table.dataTable td {
+            box-sizing: content-box;
+        }
+
+            table.dataTable tbody th, table.dataTable tbody td {
+                padding: 8px 10px;
+            }
+
+        .with-nav-tabs.panel-default .nav-tabs > li > a,
         .with-nav-tabs.panel-default .nav-tabs > li > a:hover,
         .with-nav-tabs.panel-default .nav-tabs > li > a:focus {
             color: #777;
-            background-color: #ddd;
-            border-color: transparent;
         }
 
-    .with-nav-tabs.panel-default .nav-tabs > li.active > a,
-    .with-nav-tabs.panel-default .nav-tabs > li.active > a:hover,
-    .with-nav-tabs.panel-default .nav-tabs > li.active > a:focus {
-        color: #FFFFFF;
-        background-color: #1372AB;
-        border-color: #FFFFFF;
-        border-bottom-color: transparent;
-    }
-
-    .with-nav-tabs.panel-default .nav-tabs > li.dropdown .dropdown-menu {
-        background-color: #f5f5f5;
-        border-color: #ddd;
-    }
-
-        .with-nav-tabs.panel-default .nav-tabs > li.dropdown .dropdown-menu > li > a {
-            color: #777;
-        }
-
-            .with-nav-tabs.panel-default .nav-tabs > li.dropdown .dropdown-menu > li > a:hover,
-            .with-nav-tabs.panel-default .nav-tabs > li.dropdown .dropdown-menu > li > a:focus {
+            .with-nav-tabs.panel-default .nav-tabs > .open > a,
+            .with-nav-tabs.panel-default .nav-tabs > .open > a:hover,
+            .with-nav-tabs.panel-default .nav-tabs > .open > a:focus,
+            .with-nav-tabs.panel-default .nav-tabs > li > a:hover,
+            .with-nav-tabs.panel-default .nav-tabs > li > a:focus {
+                color: #777;
                 background-color: #ddd;
+                border-color: transparent;
             }
 
-        .with-nav-tabs.panel-default .nav-tabs > li.dropdown .dropdown-menu > .active > a,
-        .with-nav-tabs.panel-default .nav-tabs > li.dropdown .dropdown-menu > .active > a:hover,
-        .with-nav-tabs.panel-default .nav-tabs > li.dropdown .dropdown-menu > .active > a:focus {
-            color: #fff;
-            background-color: #555;
+        .with-nav-tabs.panel-default .nav-tabs > li.active > a,
+        .with-nav-tabs.panel-default .nav-tabs > li.active > a:hover,
+        .with-nav-tabs.panel-default .nav-tabs > li.active > a:focus {
+            color: #FFFFFF;
+            background-color: #1372AB;
+            border-color: #FFFFFF;
+            border-bottom-color: transparent;
         }
-    /********************************************************************/
-    /*** PANEL PRIMARY ***/
-    .with-nav-tabs.panel-primary .nav-tabs > li > a,
-    .with-nav-tabs.panel-primary .nav-tabs > li > a:hover,
-    .with-nav-tabs.panel-primary .nav-tabs > li > a:focus {
-        color: #fff;
-    }
 
-        .with-nav-tabs.panel-primary .nav-tabs > .open > a,
-        .with-nav-tabs.panel-primary .nav-tabs > .open > a:hover,
-        .with-nav-tabs.panel-primary .nav-tabs > .open > a:focus,
+        .with-nav-tabs.panel-default .nav-tabs > li.dropdown .dropdown-menu {
+            background-color: #f5f5f5;
+            border-color: #ddd;
+        }
+
+            .with-nav-tabs.panel-default .nav-tabs > li.dropdown .dropdown-menu > li > a {
+                color: #777;
+            }
+
+                .with-nav-tabs.panel-default .nav-tabs > li.dropdown .dropdown-menu > li > a:hover,
+                .with-nav-tabs.panel-default .nav-tabs > li.dropdown .dropdown-menu > li > a:focus {
+                    background-color: #ddd;
+                }
+
+            .with-nav-tabs.panel-default .nav-tabs > li.dropdown .dropdown-menu > .active > a,
+            .with-nav-tabs.panel-default .nav-tabs > li.dropdown .dropdown-menu > .active > a:hover,
+            .with-nav-tabs.panel-default .nav-tabs > li.dropdown .dropdown-menu > .active > a:focus {
+                color: #fff;
+                background-color: #555;
+            }
+        /********************************************************************/
+        /*** PANEL PRIMARY ***/
+        .with-nav-tabs.panel-primary .nav-tabs > li > a,
         .with-nav-tabs.panel-primary .nav-tabs > li > a:hover,
         .with-nav-tabs.panel-primary .nav-tabs > li > a:focus {
             color: #fff;
-            background-color: #FFFFFF;
-            border-color: transparent;
         }
 
-    .with-nav-tabs.panel-primary .nav-tabs > li.active > a,
-    .with-nav-tabs.panel-primary .nav-tabs > li.active > a:hover,
-    .with-nav-tabs.panel-primary .nav-tabs > li.active > a:focus {
-        color: #428bca;
-        background-color: #fff;
-        border-color: #428bca;
-        border-bottom-color: transparent;
-    }
-
-    .with-nav-tabs.panel-primary .nav-tabs > li.dropdown .dropdown-menu {
-        background-color: #FFFFFF;
-        border-color: #3071a9;
-    }
-
-        .with-nav-tabs.panel-primary .nav-tabs > li.dropdown .dropdown-menu > li > a {
-            color: #FFFFFF;
-        }
-
-            .with-nav-tabs.panel-primary .nav-tabs > li.dropdown .dropdown-menu > li > a:hover,
-            .with-nav-tabs.panel-primary .nav-tabs > li.dropdown .dropdown-menu > li > a:focus {
-                background-color: #3071a9;
+            .with-nav-tabs.panel-primary .nav-tabs > .open > a,
+            .with-nav-tabs.panel-primary .nav-tabs > .open > a:hover,
+            .with-nav-tabs.panel-primary .nav-tabs > .open > a:focus,
+            .with-nav-tabs.panel-primary .nav-tabs > li > a:hover,
+            .with-nav-tabs.panel-primary .nav-tabs > li > a:focus {
+                color: #fff;
+                background-color: #FFFFFF;
+                border-color: transparent;
             }
 
-        .with-nav-tabs.panel-primary .nav-tabs > li.dropdown .dropdown-menu > .active > a,
-        .with-nav-tabs.panel-primary .nav-tabs > li.dropdown .dropdown-menu > .active > a:hover,
-        .with-nav-tabs.panel-primary .nav-tabs > li.dropdown .dropdown-menu > .active > a:focus {
-            background-color: #4a9fe9;
+        .with-nav-tabs.panel-primary .nav-tabs > li.active > a,
+        .with-nav-tabs.panel-primary .nav-tabs > li.active > a:hover,
+        .with-nav-tabs.panel-primary .nav-tabs > li.active > a:focus {
+            color: #428bca;
+            background-color: #fff;
+            border-color: #428bca;
+            border-bottom-color: transparent;
         }
 
-    .form-control-override {
-        display: block;
-        width: 70%;
-        height: 30px;
-        padding: 6px 8px;
-        font-size: 12px;
-        line-height: 1.428571429;
-        color: #555555;
-        vertical-align: middle;
-        background-color: #ffffff;
-        border: 1px solid #cccccc;
-        border-radius: 4px;
-    }
-</style>
+        .with-nav-tabs.panel-primary .nav-tabs > li.dropdown .dropdown-menu {
+            background-color: #FFFFFF;
+            border-color: #3071a9;
+        }
+
+            .with-nav-tabs.panel-primary .nav-tabs > li.dropdown .dropdown-menu > li > a {
+                color: #FFFFFF;
+            }
+
+                .with-nav-tabs.panel-primary .nav-tabs > li.dropdown .dropdown-menu > li > a:hover,
+                .with-nav-tabs.panel-primary .nav-tabs > li.dropdown .dropdown-menu > li > a:focus {
+                    background-color: #3071a9;
+                }
+
+            .with-nav-tabs.panel-primary .nav-tabs > li.dropdown .dropdown-menu > .active > a,
+            .with-nav-tabs.panel-primary .nav-tabs > li.dropdown .dropdown-menu > .active > a:hover,
+            .with-nav-tabs.panel-primary .nav-tabs > li.dropdown .dropdown-menu > .active > a:focus {
+                background-color: #4a9fe9;
+            }
+
+        .form-control-override {
+            display: block;
+            width: 70%;
+            height: 30px;
+            padding: 6px 8px;
+            font-size: 12px;
+            line-height: 1.428571429;
+            color: #555555;
+            vertical-align: middle;
+            background-color: #ffffff;
+            border: 1px solid #cccccc;
+            border-radius: 4px;
+        }
+    </style>
