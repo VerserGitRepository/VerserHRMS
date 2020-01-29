@@ -298,18 +298,7 @@ namespace VerserHRManagement
             }
             Candidate theCandidate = new Candidate();
             //theCandidate.ID = candidateId;
-            if (UserRoles.UserCanEdit() == true)
-            {
-
-                if (Request.Files["CVimgupload"].ContentLength > 0)
-                {
-                    var _filename = Path.GetFileName(Request.Files["CVimgupload"].FileName);
-                    string _path = Path.Combine(Server.MapPath("~/UploadedFiles"), _filename);
-                    Request.Files["CVimgupload"].SaveAs(_path);
-                    theCandidate.FilePath = _filename;
-                }
-
-            }
+         
             return null;
         }
         [HttpPost]

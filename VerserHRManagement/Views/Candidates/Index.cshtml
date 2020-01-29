@@ -120,7 +120,7 @@
                                                 </div>
                                                 <div class="col-md-5" style="margin-left:10px;">
                                                     <label>Active</label>
-                                                    <input type="checkbox" checked data-toggle="toggle" data-onstyle="info">
+                                                    <input type="checkbox" checked data-toggle="toggle" data-onstyle="info" id="isActive">
                                                 </div>
                                             </div>
                                             <div style="font-size:smaller;color:deepskyblue">
@@ -132,7 +132,7 @@
                                 <div class="row grid-divider">
                                     <div class="row" style="margin-left:20px;">
                                         <fieldset>
-                                            @*<legend>Contact Details</legend>*@
+                                          
                                             <div class="form-group row">
                                                 <div class="container table-bordered" style="margin:20px; width:1000px;padding-top:5px;padding-bottom:5px">
                                                     <div class="col-md-8" style="margin-left:10px;">
@@ -596,6 +596,7 @@
             CandidateEdit.Email = $("#txtEmail").val();
             CandidateEdit.Phone = $("#txtMobile").val();
             CandidateEdit.Age = $("#txtAge").val();
+            CandidateEdit.isactive = $("#isActive").val();
             CandidateEdit.profilepicture = $("#image")[0].src.split(',')[1];
 
             var updateCandidateData = '@Url.Action("UpdateCandidate", "Candidates")';
@@ -634,6 +635,7 @@
                 formdata.append(fileInput.files[i].name, fileInput.files[i]);
             }
             formdata.append("CandidateId", $("#hiddenModelId").val());
+            formdata.append("CVUpload", $("#hiddenModelId").val());
             //Creating an XMLHttpRequest and sending
             var xhr = new XMLHttpRequest();
             xhr.open('POST', '/Candidates/UploadDocument');
