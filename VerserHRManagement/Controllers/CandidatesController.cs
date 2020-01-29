@@ -1,15 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using System.IO;
-using System.Linq;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using VerserHRManagement.HelperServices;
 using VerserHRManagement.Models;
 using VerserHRManagement.TimeSchedulerServices;
-using VerserHRManagement.HelperServices;
-using System.Web.UI.WebControls;
-using System.Web.UI;
-using System.Collections.Generic;
 
 namespace VerserHRManagement
 {
@@ -38,7 +37,6 @@ namespace VerserHRManagement
             _candidate.ID = id;
             return View(_candidate);
         }
-
         public ActionResult Create()
         {
             return View();
@@ -102,9 +100,6 @@ namespace VerserHRManagement
                 candidate.DateCreated = DateTime.Now;
                 candidate.isactive = true;
                 CandidateService.Create(candidate);
-
-                //db.Candidate.Add(candidate);
-                //await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
             return View(candidate);
@@ -113,7 +108,6 @@ namespace VerserHRManagement
         public ActionResult Edit(int id)
         {
             if (UserRoles.UserCanEdit() == true)
-            //if (Session["UserName"] != null && Session["Administrator"] != null)
             {
                 if (id <= 0)
                 {
@@ -131,7 +125,7 @@ namespace VerserHRManagement
 
         }
         [HttpPost]
-        // [ValidateAntiForgeryToken]
+
         public ActionResult Edit(Candidate candidate)
         {
             if (UserRoles.UserCanEdit() == true)
@@ -198,38 +192,6 @@ namespace VerserHRManagement
             }
         }
 
-        //public ActionResult Delete(int id)
-        //{
-        //    if (string.IsNullOrEmpty(Session["FullUserName"].ToString()))
-        //    {
-        //        return RedirectToAction("Login", "Login");
-        //    }
-        //    else
-        //    {
-        //        if (id <= 0)
-        //        {
-        //            return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //        }
-        //        var candidate = CandidateService.FindCandidate(id).Result;
-        //        if (candidate == null)
-        //        {
-        //            return HttpNotFound();
-        //        }
-        //        return View(candidate);
-        //    }
-        //}
-
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            var candidate = CandidateService.DeleteHRMSCandidate(id);
-            //Candidate candidate = await db.Candidate.FindAsync(id);
-            //db.Candidate.Remove(candidate);
-            //await db.SaveChangesAsync();
-            return RedirectToAction("Index");
-        }
-
         [HttpPost]
         public ActionResult ExportTimesSheetToExcel()
         {
@@ -270,17 +232,7 @@ namespace VerserHRManagement
         }
 
 
-        //protected override void Dispose(bool disposing)
-        //{
-        //    if (disposing)
-        //    {
-        //        db.Dispose();
-        //    }
-        //    base.Dispose(disposing);
-        //}
-
         [HttpPost]
-        // [ValidateAntiForgeryToken]
         public ActionResult UploadDocument()
         {
             var data = Request.Form["CandidateId"];
@@ -296,28 +248,48 @@ namespace VerserHRManagement
                 System.IO.Stream fileContent = file.InputStream;
                 //To save file, use SaveAs method
                 file.SaveAs(Path.Combine(Server.MapPath("~/UploadedFiles"), fileName)); //File will be saved in application root
-              
-                theCandidate.ID =int.Parse( data);
-                if(fileType == "CVUpload")
+
+                theCandidate.ID = int.Parse(data);
+                if (fileType == "CVUpload")
+                {
                     theCandidate.FilePath = fileName;
-                else if(fileType == "CertificateUpload")
-                   theCandidate.certificate1 = fileName;
+                }
+                else if (fileType == "CertificateUpload")
+                {
+                    theCandidate.certificate1 = fileName;
+                }
                 else if (fileType == "DL")
+                {
                     theCandidate.DriverLicense = fileName;
+                }
                 else if (fileType == "PC")
+                {
                     theCandidate.PoliceCheckReport = fileName;
+                }
                 else if (fileType == "Visa")
+                {
                     theCandidate.Visa = fileName;
+                }
                 else if (fileType == "Super")
+                {
                     theCandidate.SuperChoice = fileName;
+                }
                 else if (fileType == "TNF")
+                {
                     theCandidate.TFNDeclaration = fileName;
+                }
                 else if (fileType == "Bank")
+                {
                     theCandidate.BankDetails = fileName;
+                }
                 else if (fileType == "Code")
+                {
                     theCandidate.CodeOFConduct = fileName;
+                }
                 else if (fileType == "WHS")
+                {
                     theCandidate.WHS = fileName;
+                }
                 //string _path = Path.Combine(Server.MapPath("~/UploadedFiles"), _filename);
             }
             CandidateService.EditCandidate(theCandidate);
@@ -325,7 +297,7 @@ namespace VerserHRManagement
 
             //theCandidate.ID = candidateId;
 
-           
+
         }
         [HttpPost]
         public ActionResult UpdateCandidate(CandidateEdit candidate)
