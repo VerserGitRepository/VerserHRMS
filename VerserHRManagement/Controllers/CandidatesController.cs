@@ -284,6 +284,8 @@ namespace VerserHRManagement
         public ActionResult UploadDocument()
         {
             var data = Request.Form["CandidateId"];
+            var fileType = Request.Form["FileUpload"];
+            CandidateEdit theCandidate = new CandidateEdit();
             for (int i = 0; i < Request.Files.Count; i++)
             {
                 HttpPostedFileBase file = Request.Files[i]; //Uploaded file
@@ -294,12 +296,36 @@ namespace VerserHRManagement
                 System.IO.Stream fileContent = file.InputStream;
                 //To save file, use SaveAs method
                 file.SaveAs(Path.Combine(Server.MapPath("~/UploadedFiles"), fileName)); //File will be saved in application root
+              
+                theCandidate.ID =int.Parse( data);
+                if(fileType == "CVUpload")
+                    theCandidate.FilePath = fileName;
+                else if(fileType == "CertificateUpload")
+                   theCandidate.certificate1 = fileName;
+                else if (fileType == "DL")
+                    theCandidate.DriverLicense = fileName;
+                else if (fileType == "PC")
+                    theCandidate.PoliceCheckReport = fileName;
+                else if (fileType == "Visa")
+                    theCandidate.Visa = fileName;
+                else if (fileType == "Super")
+                    theCandidate.SuperChoice = fileName;
+                else if (fileType == "TNF")
+                    theCandidate.TFNDeclaration = fileName;
+                else if (fileType == "Bank")
+                    theCandidate.BankDetails = fileName;
+                else if (fileType == "Code")
+                    theCandidate.CodeOFConduct = fileName;
+                else if (fileType == "WHS")
+                    theCandidate.WHS = fileName;
                 //string _path = Path.Combine(Server.MapPath("~/UploadedFiles"), _filename);
             }
-            Candidate theCandidate = new Candidate();
+            CandidateService.EditCandidate(theCandidate);
+            return RedirectToAction("Index");
+
             //theCandidate.ID = candidateId;
-         
-            return null;
+
+           
         }
         [HttpPost]
         public ActionResult UpdateCandidate(CandidateEdit candidate)

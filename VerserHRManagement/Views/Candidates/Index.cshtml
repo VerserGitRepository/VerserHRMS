@@ -379,7 +379,7 @@
                                                 <input placeholder="Certificates" type="text" class="form-control image-preview-filename" disabled="disabled">
                                                 <!-- don't give a name === doesn't send on POST/GET -->
                                                 <span class="input-group-btn">
-
+                                                    <input id="Certificateimgupload" type="file" style="display:none;">
                                                     <button type="button" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Browse</button>
                                                     <button type="button" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-upload"></i> </span>Upload</button>
                                                 </span>
@@ -411,7 +411,7 @@
                                                 <input placeholder="Visa" type="text" class="form-control image-preview-filename" disabled="disabled">
                                                 <!-- don't give a name === doesn't send on POST/GET -->
                                                 <span class="input-group-btn">
-
+                                                    <input type="file" id="Visaimgupload" style="display:none" onchange="ReadFileName(this,'Visaimgupload');" />
                                                     <button type="button" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Browse</button>
                                                     <button type="button" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-upload"></i> </span>Upload</button>
                                                 </span>
@@ -424,7 +424,7 @@
                                                 <input placeholder="Super Choice" type="text" class="form-control image-preview-filename" disabled="disabled">
                                                 <!-- don't give a name === doesn't send on POST/GET -->
                                                 <span class="input-group-btn">
-
+                                                    <input type="file" id="Superimgupload" style="display:none" onchange="ReadFileName(this,'Superimgupload');" />
                                                     <button type="button" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Browse</button>
                                                     <button type="button" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-upload"></i> </span>Upload</button>
                                                 </span>
@@ -433,7 +433,7 @@
                                                 <input placeholder="TFN Declaration" type="text" class="form-control image-preview-filename" disabled="disabled">
                                                 <!-- don't give a name === doesn't send on POST/GET -->
                                                 <span class="input-group-btn">
-
+                                                    <input type="file" id="TNFimgupload" style="display:none" onchange="ReadFileName(this,'TNFimgupload');" />
                                                     <button type="button" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Browse</button>
                                                     <button type="button" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-upload"></i> </span>Upload</button>
                                                 </span>
@@ -443,7 +443,7 @@
                                                 <input placeholder="Bank details" type="text" class="form-control image-preview-filename" disabled="disabled">
                                                 <!-- don't give a name === doesn't send on POST/GET -->
                                                 <span class="input-group-btn">
-
+                                                    <input type="file" id="Bankimgupload" style="display:none" onchange="ReadFileName(this,'Bankimgupload');" />
                                                     <button type="button" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Browse</button>
                                                     <button type="button" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-upload"></i> </span>Upload</button>
                                                 </span>
@@ -456,7 +456,7 @@
                                                 <input placeholder="Code of Conduct" type="text" class="form-control image-preview-filename" disabled="disabled">
                                                 <!-- don't give a name === doesn't send on POST/GET -->
                                                 <span class="input-group-btn">
-                                                    <input type="file" id="Visaimgupload" style="display:none" onchange="ReadFileName(this,'Visaimgupload');" />
+                                                    <input type="file" id="Codeimgupload" style="display:none" onchange="ReadFileName(this,'Codeimgupload');" />
                                                     <button type="button" id="btnVisa" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Browse</button>
                                                     <button type="button" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-upload"></i> </span>Upload</button>
                                                 </span>
@@ -465,21 +465,12 @@
                                                 <input placeholder="WHS" type="text" class="form-control image-preview-filename" disabled="disabled">
                                                 <!-- don't give a name === doesn't send on POST/GET -->
                                                 <span class="input-group-btn">
-
+                                                    <input type="file" id="Whsimgupload" style="display:none" onchange="ReadFileName(this,'Whsimgupload');" />
                                                     <button type="button" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Browse</button>
                                                     <button type="button" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-upload"></i> </span>Upload</button>
                                                 </span>
                                             </div>
-                                            <br>
-                                            <div class="input-group image-preview">
-                                                <input placeholder="" type="text" class="form-control image-preview-filename" disabled="disabled">
-                                                <!-- don't give a name === doesn't send on POST/GET -->
-                                                <span class="input-group-btn">
-                                                    <input type="file" id="Certificatesimgupload" style="display:none" />
-                                                    <button type="button" id="btnCertificate" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Browse</button>
-                                                    <button type="button" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-upload"></i> </span>Upload</button>
-                                                </span>
-                                            </div>
+                                            <br>                                            
                                         </div>
                                     </div>
                                 </div>
@@ -635,7 +626,187 @@
                 formdata.append(fileInput.files[i].name, fileInput.files[i]);
             }
             formdata.append("CandidateId", $("#hiddenModelId").val());
-            formdata.append("CVUpload", $("#hiddenModelId").val());
+            formdata.append("FileUpload", "CVUpload");
+            //Creating an XMLHttpRequest and sending
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', '/Candidates/UploadDocument');
+            xhr.send(formdata);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    alert(xhr.responseText);
+                }
+            }
+        });
+        $('#Certificateimgupload').on('change', function (event) {
+            var formdata = new FormData(); //FormData object
+            var fileInput = document.getElementById('Certificateimgupload');
+            //Iterating through each files selected in fileInput
+            for (i = 0; i < fileInput.files.length; i++) {
+                //Appending each file to FormData object
+                formdata.append(fileInput.files[i].name, fileInput.files[i]);
+            }
+            formdata.append("CandidateId", $("#hiddenModelId").val());
+            formdata.append("FileUpload", "CertificateUpload");
+            //Creating an XMLHttpRequest and sending
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', '/Candidates/UploadDocument');
+            xhr.send(formdata);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    alert(xhr.responseText);
+                }
+            }
+        });
+        $('#DLimgupload').on('change', function (event) {
+            var formdata = new FormData(); //FormData object
+            var fileInput = document.getElementById('DLimgupload');
+            //Iterating through each files selected in fileInput
+            for (i = 0; i < fileInput.files.length; i++) {
+                //Appending each file to FormData object
+                formdata.append(fileInput.files[i].name, fileInput.files[i]);
+            }
+            formdata.append("CandidateId", $("#hiddenModelId").val());
+            formdata.append("FileUpload", "DL");
+            //Creating an XMLHttpRequest and sending
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', '/Candidates/UploadDocument');
+            xhr.send(formdata);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    alert(xhr.responseText);
+                }
+            }
+        });
+        $('#PCimgupload').on('change', function (event) {
+            var formdata = new FormData(); //FormData object
+            var fileInput = document.getElementById('PCimgupload');
+            //Iterating through each files selected in fileInput
+            for (i = 0; i < fileInput.files.length; i++) {
+                //Appending each file to FormData object
+                formdata.append(fileInput.files[i].name, fileInput.files[i]);
+            }
+            formdata.append("CandidateId", $("#hiddenModelId").val());
+            formdata.append("FileUpload","PC");
+            //Creating an XMLHttpRequest and sending
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', '/Candidates/UploadDocument');
+            xhr.send(formdata);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    alert(xhr.responseText);
+                }
+            }
+        });
+        $('#Visaimgupload').on('change', function (event) {
+            var formdata = new FormData(); //FormData object
+            var fileInput = document.getElementById('Visaimgupload');
+            //Iterating through each files selected in fileInput
+            for (i = 0; i < fileInput.files.length; i++) {
+                //Appending each file to FormData object
+                formdata.append(fileInput.files[i].name, fileInput.files[i]);
+            }
+            formdata.append("CandidateId", $("#hiddenModelId").val());
+            formdata.append("FileUpload","Visa");
+            //Creating an XMLHttpRequest and sending
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', '/Candidates/UploadDocument');
+            xhr.send(formdata);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    alert(xhr.responseText);
+                }
+            }
+        });
+        $('#Superimgupload').on('change', function (event) {
+            var formdata = new FormData(); //FormData object
+            var fileInput = document.getElementById('Superimgupload');
+            //Iterating through each files selected in fileInput
+            for (i = 0; i < fileInput.files.length; i++) {
+                //Appending each file to FormData object
+                formdata.append(fileInput.files[i].name, fileInput.files[i]);
+            }
+            formdata.append("CandidateId", $("#hiddenModelId").val());
+            formdata.append("FileUpload", "Super");
+            //Creating an XMLHttpRequest and sending
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', '/Candidates/UploadDocument');
+            xhr.send(formdata);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    alert(xhr.responseText);
+                }
+            }
+        });
+        $('#TNFimgupload').on('change', function (event) {
+            var formdata = new FormData(); //FormData object
+            var fileInput = document.getElementById('TNFimgupload');
+            //Iterating through each files selected in fileInput
+            for (i = 0; i < fileInput.files.length; i++) {
+                //Appending each file to FormData object
+                formdata.append(fileInput.files[i].name, fileInput.files[i]);
+            }
+            formdata.append("CandidateId", $("#hiddenModelId").val());
+            formdata.append("FileUpload","TNF");
+            //Creating an XMLHttpRequest and sending
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', '/Candidates/UploadDocument');
+            xhr.send(formdata);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    alert(xhr.responseText);
+                }
+            }
+        });
+        $('#Bankimgupload').on('change', function (event) {
+            var formdata = new FormData(); //FormData object
+            var fileInput = document.getElementById('Bankimgupload');
+            //Iterating through each files selected in fileInput
+            for (i = 0; i < fileInput.files.length; i++) {
+                //Appending each file to FormData object
+                formdata.append(fileInput.files[i].name, fileInput.files[i]);
+            }
+            formdata.append("CandidateId", $("#hiddenModelId").val());
+            formdata.append("FileUpload", "Bank");
+            //Creating an XMLHttpRequest and sending
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', '/Candidates/UploadDocument');
+            xhr.send(formdata);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    alert(xhr.responseText);
+                }
+            }
+        });
+        $('#Codeimgupload').on('change', function (event) {
+            var formdata = new FormData(); //FormData object
+            var fileInput = document.getElementById('Codeimgupload');
+            //Iterating through each files selected in fileInput
+            for (i = 0; i < fileInput.files.length; i++) {
+                //Appending each file to FormData object
+                formdata.append(fileInput.files[i].name, fileInput.files[i]);
+            }
+            formdata.append("CandidateId", $("#hiddenModelId").val());
+            formdata.append("FileUpload", "Code");
+            //Creating an XMLHttpRequest and sending
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', '/Candidates/UploadDocument');
+            xhr.send(formdata);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    alert(xhr.responseText);
+                }
+            }
+        });
+        $('#WHS').on('change', function (event) {
+            var formdata = new FormData(); //FormData object
+            var fileInput = document.getElementById('WHS');
+            //Iterating through each files selected in fileInput
+            for (i = 0; i < fileInput.files.length; i++) {
+                //Appending each file to FormData object
+                formdata.append(fileInput.files[i].name, fileInput.files[i]);
+            }
+            formdata.append("CandidateId", $("#hiddenModelId").val());
+            formdata.append("FileUpload", "WHS");
             //Creating an XMLHttpRequest and sending
             var xhr = new XMLHttpRequest();
             xhr.open('POST', '/Candidates/UploadDocument');
