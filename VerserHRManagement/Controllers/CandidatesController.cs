@@ -317,22 +317,10 @@ namespace VerserHRManagement
         {
             if (UserRoles.UserCanEdit() == true)
             {
-                //HttpPostedFileBase file = Request.Files["CVimgupload"];
-                //if (file.ContentLength > 0)
-                //{
-                //    var _filename = Path.GetFileName(file.FileName);
-                //    string _path = Path.Combine(Server.MapPath("~/UploadedFiles"), _filename);
-                //    file.SaveAs(_path);
-                //    candidate.FilePath = _filename;
-                //}
-
                 if (ModelState.IsValid)
                 {
 
                     CandidateService.EditCandidate(candidate);
-                    //db.Entry(candidate).State = EntityState.Modified;
-                    //await db.SaveChangesAsync();
-
                     return RedirectToAction("Index");
                 }
                 return View(candidate);
