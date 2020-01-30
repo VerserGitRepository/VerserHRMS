@@ -307,14 +307,32 @@ namespace VerserHRManagement
                 if (ModelState.IsValid)
                 {
 
-                    CandidateService.EditCandidate(candidate);
-                    return RedirectToAction("Index");
+                    bool isupdated = CandidateService.EditCandidate(candidate);
+                    if(isupdated)
+                        return new JsonResult { Data = "The update has been successful.", JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+                    else
+                        return new JsonResult { Data = "The update is not successful.", JsonRequestBehavior = JsonRequestBehavior.AllowGet };
                 }
                 return View(candidate);
             }
             else
             {
                 return RedirectToAction("Index", "Candidates");
+            }
+        }
+        public ActionResult DownloadFile(string textval)
+        {
+            try
+            {
+                var data = Request.Form["Resume"];
+                string path = Path.Combine(Server.MapPath("~/UploadedFiles"), textval);
+                byte[] fileBytes = System.IO.File.ReadAllBytes(path);
+                string fileName = textval;
+                return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, fileName);
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("Index");
             }
         }
     }
