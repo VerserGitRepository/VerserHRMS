@@ -43,9 +43,10 @@
                                     @Html.DisplayFor(modelItem => item.CandidateName)
                                     <input type="hidden" value="@item.ID" id="hiddenModelId" />
                                     <input type="hidden" value='@Server.MapPath("~/UploadedFiles")' id="hiddenPath" />
-                                </font> <br />
+                                </font> <font style="font-size:xx-small">@item.City @item.state </font> <br />
                             </td>
                         </tr>
+
                     }
                 </tbody>
             </table>
