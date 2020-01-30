@@ -31,7 +31,7 @@
                         {
                         <tr>
                             <td onclick="LoadAddressData(@item.ID,'@item.CandidateName','@item.DateCreated','@item.Address','@item.City','@item.state','@item.postcode','@item.Email','@item.Phone',
-                                '@if(item.profilePicture != null) { @Convert.ToBase64String(@item.profilePicture)}','@item.DOB','@item.Age','@item.Gender','@item.MaritalStatus');
+                                '@if(item.profilePicture != null) { @Convert.ToBase64String(@item.profilePicture)}','@item.DOB','@item.Age','@item.Gender','@item.MaritalStatus',@Json.Encode(item.isactive));
                                 LoadEmployment('@item.PayFrequency','@item.ADP_EmployeeID','@item.AssignResource','@item.Annualsalary','@item.HourlyRate','@item.DailyRate','@item.WorkRights',
                                 '@item.EmployeeStatus','@item.EmployementType','@item.NoticePeriod');
                                 LoadDocuments('@item.FilePath','@item.certificate1','@item.DriverLicense','@item.PoliceCheckReport','@item.Visa','@item.SuperChoice','@item.TFNDeclaration',
@@ -106,7 +106,7 @@
                                                             <option>Married</option>
                                                             <option>Single</option>
                                                         </select>
-                                                    </div>
+                                                    </div><br /><br /><br /><br /><br /><br />
                                                     <div class="col-md-5" style="margin-left:10px;">
                                                         <label>Active</label>
                                                         <input type="checkbox" checked data-toggle="toggle" data-onstyle="info" id="chkIsActive">
@@ -478,7 +478,7 @@
             $("#txtDOB").val(dob);
             $("#txtAge").val(age);
             $("#txtGender").val(gender);
-            $("#chkIsActive").val(isactive);
+            $("#chkIsActive").prop('checked', isactive).change();
            // $('#yourCheckboxId').prop('checked', true);
             $("#txtStatus").val(maritalstatus);
             if (logo != "") {
