@@ -506,13 +506,12 @@
 
 
         }
-        function LoadDocuments(path, FilePath, certificate1, DriverLicense, PoliceCheckReport, Visa, SuperChoice, TFNDeclaration, BankDetails, CodeOFConduct, WHS) {
+        function LoadDocuments(FilePath, certificate1, DriverLicense, PoliceCheckReport, Visa, SuperChoice, TFNDeclaration, BankDetails, CodeOFConduct, WHS) {
         //alert(FilePath);
 
-          $("#cvph").val();
-           $("a#idcv").attr('href', $("#hiddenPath").val().replace('//','\\')+'\\'+path);
+          
 
-        $("#hiddenResume").val(path);
+        $("#hiddenResume").val(FilePath);
         $("#hiddenCertificate").val(certificate1);
         $("#hiddenDL").val(DriverLicense);
         $("#hiddenPC").val(PoliceCheckReport);
@@ -521,7 +520,7 @@
         $("#hiddenTNF").val(TFNDeclaration);
         $("#hiddenBank").val(BankDetails);
         $("#hiddenCode").val(CodeOFConduct);
-        $("#hiddenWhs").val(CodeOFConduct);
+        $("#hiddenWhs").val(WHS);
 
 
         }
@@ -572,7 +571,7 @@
 
         $("#visa").click(function() {
             //Get the id of the selected item in dropdown
-         $('#resume').attr('href', function () {
+         $('#visa').attr('href', function () {
 
         return "@Url.Action("DownloadFile")"+ "/?textval="  +$("#hiddenVisa").val();
 
@@ -958,9 +957,9 @@
                 }
             }
         });
-        $('#WHS').on('change', function (event) {
+        $('#Whsimgupload').on('change', function (event) {
             var formdata = new FormData(); //FormData object
-            var fileInput = document.getElementById('WHS');
+            var fileInput = document.getElementById('Whsimgupload');
             //Iterating through each files selected in fileInput
             for (i = 0; i < fileInput.files.length; i++) {
                 //Appending each file to FormData object
