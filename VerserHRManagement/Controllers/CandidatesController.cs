@@ -46,6 +46,7 @@ namespace VerserHRManagement
             model.TechnicianLevelList = new SelectList(ListItemService.TechnicianLevel().Result, "ID", "Value");
             model.AssignResourceList = new SelectList(ListItemService.AssignResources().Result, "ID", "Value");
             model.EmployeeStatusList = new SelectList(ListItemService.EmployeeStatusSet().Result, "ID", "Value");
+            model.WorkRightsList = new SelectList(ListItemService.WorkRights().Result, "ID", "Value");
             return View("Create",model);
         }
         [HttpPost]

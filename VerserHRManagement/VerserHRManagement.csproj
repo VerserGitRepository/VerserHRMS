@@ -188,6 +188,7 @@
     <Compile Include="Models\PayFrequencyViewModel.cs" />
     <Compile Include="Models\TechnicalLevels.cs" />
     <Compile Include="Models\WarehouseViewModel.cs" />
+    <Compile Include="Models\WorkRightsViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TimeSchedulerServices\CandidateService.cs" />
     <Compile Include="TimeSchedulerServices\ListItemService.cs" />

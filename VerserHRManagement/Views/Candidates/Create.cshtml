@@ -161,16 +161,7 @@
                             <div class="form-group required">
                                 @Html.Label("Work Rights", htmlAttributes: new { @class = "control-label col-md-4" })
                                 <div class="col-md-6">
-                                    @Html.DropDownListFor(Model => Model.WorkRights, new List<SelectListItem>
-
-                                { new SelectListItem {Text="Australian Citizen",Value="Australian Citizen" },
-                                new SelectListItem {Text="Australian Permanent Resident", Value="Australian Permanent Resident" },
-                                new SelectListItem {Text="Australian Working Visa", Value="Australian Working Visa" },
-                                new SelectListItem {Text="Australian Student Visa", Value="Australian student Visa" },
-
-
-                                }, "Select Work Rights", new { @class = "form-control" })
-                                    @Html.ValidationMessageFor(model => model.WorkRights, "", new { @class = "text-danger" })
+                                    @Html.DropDownListFor(model => model.WorkRights, Model.WorkRightsList, "Works Rights", new { @class = "form-control", id = "ddlEmploymentId" })
                                 </div>
                             </div>
                             <div class="form-group required">
@@ -186,7 +177,7 @@
                             <div class="form-group">
                                 @Html.Label("Employee Status", htmlAttributes: new { @class = "control-label col-md-4" })
                                 <div class="col-md-6">
-                                    @Html.DropDownListFor(model => model.EmployeeStatuslID, Model.EmployeeStatusList, "Pay Frequency", new { @class = "form-control", id = "ddlEmploymentId" })
+                                    @Html.DropDownListFor(model => model.EmployeeStatusID, Model.EmployeeStatusList, "Pay Frequency", new { @class = "form-control", id = "ddlEmploymentId" })
                                 </div>
                             </div>
                             <div class="form-group required">

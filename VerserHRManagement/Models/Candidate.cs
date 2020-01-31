@@ -33,12 +33,14 @@ namespace VerserHRManagement.Models
         public string NoticePeriod { get; set; }
         [Required]
         public string WorkRights { get; set; }
+        public int? WorkRightsID { get; set; }
+        public SelectList WorkRightsList { get; set; }
         public string RecruiterComments { get; set; }
         [Required]
         //[MaxLength(4)]
         //[MinLength(3)]
         public string postcode { get; set; }
-        public int? EmployeeStatuslID { get; set; }
+        public int? EmployeeStatusID { get; set; }
         public SelectList EmployeeStatusList { get; set; }
         public string EmployeeStatus { get; set; }
         [Required]

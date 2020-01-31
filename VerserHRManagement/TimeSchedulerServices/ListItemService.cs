@@ -129,5 +129,25 @@ namespace VerserHRManagement.TimeSchedulerServices
             }
             return AssignResourcesList;
         }
+
+        public static async Task<List<ListItemViewModel>> WorkRights()
+        {
+            List<ListItemViewModel> WorkRightsList = new List<ListItemViewModel>();
+            using (HttpClient client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(TimeSheetAPIURl);
+                HttpResponseMessage response = client.GetAsync(string.Format("ListItems/AssignResources")).Result;
+                if (response.IsSuccessStatusCode)
+                {
+                    var Warehouses = await response.Content.ReadAsAsync<List<WorkRightsViewModel>>();
+
+                    foreach (var w in Warehouses)
+                    {
+                        WorkRightsList.Add(new ListItemViewModel() { Id = w.Id, Value = w.Value });
+                    }
+                }
+            }
+            return WorkRightsList;
+        }
     }
     }
