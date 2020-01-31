@@ -31,5 +31,103 @@ namespace VerserHRManagement.TimeSchedulerServices
             }
             return EmploymentList;
         }
+
+        public static async Task<List<ListItemViewModel>> Warehouses()
+        {
+            List<ListItemViewModel> WarehousesList = new List<ListItemViewModel>();
+            using (HttpClient client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(TimeSheetAPIURl);
+                HttpResponseMessage response = client.GetAsync(string.Format("ListItems/WarehouseList")).Result;
+                if (response.IsSuccessStatusCode)
+                {
+                    var Warehouses = await response.Content.ReadAsAsync<List<WarehouseViewModel>>();
+
+                    foreach (var w in Warehouses)
+                    {
+                        WarehousesList.Add(new ListItemViewModel() { Id = w.Id, Value = w.WarehouseName });
+                    }
+                }
+            }
+            return WarehousesList;
+        }
+        public static async Task<List<ListItemViewModel>> PayFrequency()
+        {
+            List<ListItemViewModel> PayFrequencyList = new List<ListItemViewModel>();
+            using (HttpClient client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(TimeSheetAPIURl);
+                HttpResponseMessage response = client.GetAsync(string.Format("ListItems/PayFrequencies")).Result;
+                if (response.IsSuccessStatusCode)
+                {
+                    var Warehouses = await response.Content.ReadAsAsync<List<PayFrequencyViewModel>>();
+
+                    foreach (var w in Warehouses)
+                    {
+                        PayFrequencyList.Add(new ListItemViewModel() { Id = w.Id, Value = w.Value });
+                    }
+                }
+            }
+            return PayFrequencyList;
+        }
+        public static async Task<List<ListItemViewModel>> TechnicianLevel()
+        {
+            List<ListItemViewModel> TechnicianLevelList = new List<ListItemViewModel>();
+            using (HttpClient client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(TimeSheetAPIURl);
+                HttpResponseMessage response = client.GetAsync(string.Format("ListItems/TechnicalLevels")).Result;
+                if (response.IsSuccessStatusCode)
+                {
+                    var Warehouses = await response.Content.ReadAsAsync<List<TechnicalLevels>>();
+
+                    foreach (var w in Warehouses)
+                    {
+                        TechnicianLevelList.Add(new ListItemViewModel() { Id = w.Id, Value = w.Value });
+                    }
+                }
+            }
+            return TechnicianLevelList;
+        }
+
+        public static async Task<List<ListItemViewModel>> EmployeeStatusSet()
+        {
+            List<ListItemViewModel> EmployeeStatusSetList = new List<ListItemViewModel>();
+            using (HttpClient client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(TimeSheetAPIURl);
+                HttpResponseMessage response = client.GetAsync(string.Format("ListItems/EmployeeStatusSet")).Result;
+                if (response.IsSuccessStatusCode)
+                {
+                    var Warehouses = await response.Content.ReadAsAsync<List<EmployeeStatusSetViewModel>>();
+
+                    foreach (var w in Warehouses)
+                    {
+                        EmployeeStatusSetList.Add(new ListItemViewModel() { Id = w.Id, Value = w.Value });
+                    }
+                }
+            }
+            return EmployeeStatusSetList;
+        }
+
+        public static async Task<List<ListItemViewModel>> AssignResources()
+        {
+            List<ListItemViewModel> AssignResourcesList = new List<ListItemViewModel>();
+            using (HttpClient client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(TimeSheetAPIURl);
+                HttpResponseMessage response = client.GetAsync(string.Format("ListItems/AssignResources")).Result;
+                if (response.IsSuccessStatusCode)
+                {
+                    var Warehouses = await response.Content.ReadAsAsync<List<AssignResourceViewModel>>();
+
+                    foreach (var w in Warehouses)
+                    {
+                        AssignResourcesList.Add(new ListItemViewModel() { Id = w.Id, Value = w.Value });
+                    }
+                }
+            }
+            return AssignResourcesList;
+        }
     }
-}
+    }

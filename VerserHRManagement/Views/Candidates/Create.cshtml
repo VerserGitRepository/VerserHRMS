@@ -71,20 +71,9 @@
                                 <div class="form-group required">
                                     @Html.Label("State", htmlAttributes: new { @class = "control-label col-md-4" })
                                     <div class="col-md-6">
-                                        @Html.DropDownListFor(Model => Model.state, new List<SelectListItem>
-
-                                    { new SelectListItem {Text="NSW",Value="NSW" },
-                                    new SelectListItem {Text="VIC", Value="VIC" },
-                                    new SelectListItem {Text="ACT", Value="ACT" },
-                                    new SelectListItem {Text="WA", Value="WA" },
-                                    new SelectListItem {Text="QLD", Value="QLD" },
-                                    new SelectListItem {Text="SA", Value="SA" },
-                                     new SelectListItem {Text="TAS", Value="Tasmania" },
-                                    new SelectListItem {Text="NT", Value="NT" },
-
-
-                                    }, "Select State", new { @class = "form-control" })
-                                        @Html.ValidationMessageFor(model => model.state, "", new { @class = "text-danger" })
+                                        @Html.DropDownListFor(model => model.WarehouseID, Model.WarehouseNameList, "WAREHOUSE", new { @class = "form-control", id = "ddlWarehouseId" })
+    
+                                       
                                     </div>
                                 </div>
                                 <div class="form-group required">
@@ -128,17 +117,7 @@
                             <div class="form-group required">
                                 @Html.Label("Technician Level", htmlAttributes: new { @class = "control-label col-md-4" })
                                 <div class="col-md-6">
-                                    @Html.DropDownListFor(Model => Model.TechnicianLevel, new List<SelectListItem>
-
-                                { new SelectListItem {Text="Level 1",Value="Level 1" },
-                                new SelectListItem {Text="Level 2", Value="Level 2" },
-                                new SelectListItem {Text="Level 3", Value="Level 3" },
-                                new SelectListItem {Text="Level 4", Value="Level 4" },
-                                new SelectListItem {Text="Level 5", Value="Level 5" },
-                                new SelectListItem {Text="Level 6", Value="Level 6" },
-
-                                }, "Select Technician Level", new { @class = "form-control" })
-                                    @Html.ValidationMessageFor(model => model.TechnicianLevel, "", new { @class = "text-danger" })
+                                    @Html.DropDownListFor(model => model.TechnicianLevelID, Model.TechnicianLevelList, "Technician Level", new { @class = "form-control" })
                                 </div>
                             </div>
 
@@ -172,13 +151,8 @@
                             <div class="form-group required">
                                 @Html.Label("Assigned Type", htmlAttributes: new { @class = "control-label col-md-4" })
                                 <div class="col-md-6">
-                                    @Html.DropDownListFor(Model => Model.state, new List<SelectListItem>
+                                    @Html.DropDownListFor(model => model.AssignResourceID, Model.AssignResourceList, "AssignResource", new { @class = "form-control", id = "ddlWarehouseId" })
 
-                                { new SelectListItem {Text="Direct",Value="NSW" },
-                                new SelectListItem {Text="Overhead", Value="VIC" },
-                                new SelectListItem {Text="Remarketing", Value="ACT" },
-                                }, "Select Resource Assigned Type", new { @class = "form-control" })
-                                    @Html.ValidationMessageFor(model => model.state, "", new { @class = "text-danger" })
                                 </div>
                             </div>
 
@@ -202,15 +176,8 @@
                             <div class="form-group required">
                                 @Html.Label("Pay Frequency", htmlAttributes: new { @class = "control-label col-md-4" })
                                 <div class="col-md-6">
-                                    @Html.DropDownListFor(Model => Model.PayFrequency, new List<SelectListItem>
-
-                                { new SelectListItem {Text="Monthly",Value="NSW" },
-                                new SelectListItem {Text="Weekly", Value="VIC" },
-
-
-
-                                }, "Pay Frequency", new { @class = "form-control" })
-                                    @Html.ValidationMessageFor(model => model.PayFrequency, "", new { @class = "text-danger" })
+                                    @Html.DropDownListFor(model => model.PayFrequencyID, Model.PayFrequencyList, "Pay Frequency", new { @class = "form-control", id = "ddlEmploymentId" })
+         
                                 </div>
                             </div>
                         </div>
@@ -219,20 +186,13 @@
                             <div class="form-group">
                                 @Html.Label("Employee Status", htmlAttributes: new { @class = "control-label col-md-4" })
                                 <div class="col-md-6">
-                                    @Html.DropDownListFor(Model => Model.EmployeeStatus, new List<SelectListItem>
-
-                                { new SelectListItem {Text="Employed Before",Value="Employed Before" },
-                                new SelectListItem {Text="Never Employed", Value=" Never Employed" },
-
-
-                                }, "Select Employee Status", new { @class = "form-control" })
-                                    @Html.ValidationMessageFor(model => model.EmployeeStatus, "", new { @class = "text-danger" })
+                                    @Html.DropDownListFor(model => model.EmployeeStatuslID, Model.EmployeeStatusList, "Pay Frequency", new { @class = "form-control", id = "ddlEmploymentId" })
                                 </div>
                             </div>
                             <div class="form-group required">
                                 @Html.Label("Employment Type", htmlAttributes: new { @class = "control-label col-md-4" })
                                 <div class="col-md-6">
-                                    @Html.DropDownListFor(model => model.EmploymentTypeID, Model.EmploymentList, "RESOURCE TYPE", new { @class = "form-control", id = "ddlEmploymentId" })
+                                    @Html.DropDownListFor(model => model.EmploymentTypeID, Model.EmploymentList, "Employment Type", new { @class = "form-control", id = "ddlEmploymentId" })
                                 </div>
                             </div>
                             <div class="form-group">

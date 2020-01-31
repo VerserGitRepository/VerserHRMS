@@ -38,9 +38,13 @@ namespace VerserHRManagement.Models
         //[MaxLength(4)]
         //[MinLength(3)]
         public string postcode { get; set; }
+        public int? EmployeeStatuslID { get; set; }
+        public SelectList EmployeeStatusList { get; set; }
         public string EmployeeStatus { get; set; }
         [Required]
         public string TechnicianLevel { get; set; }
+        public int? TechnicianLevelID { get; set; }
+        public SelectList TechnicianLevelList { get; set; }
         public string Availability { get; set; }
         [Required]
         public string EmployementType { get; set; }
@@ -55,24 +59,27 @@ namespace VerserHRManagement.Models
         public string RateOfSkillExperties { get; set; }
         [Required]
         public string PayFrequency { get; set; }
+        public SelectList PayFrequencyList { get; set; }
+        public int? PayFrequencyID { get; set; }
+        public SelectList AssignResourceList { get; set; }
+        public int? AssignResourceID { get; set; }
         public string AssignResource { get; set; }
         [Required]
         public int ADP_EmployeeID { get; set; }
-        public int WarehouseID { get; set; }
+        public int? WarehouseID { get; set; }
+        public string WarehouseName { get; set; }
+        public SelectList WarehouseNameList { get; set; }
         public int EmployementTypeId { get; set; }
         public bool isactive { get; set; }     
-
         public Byte[] profilePicture { get; set; } =new Byte[0];
         public string certificate1 { get; set; }
         public string certificate2 { get; set; }
         public string certificate3 { get; set; }
         public string DriverLicense { get; set; }
-
         public string PoliceCheckReport { get; set; }
         public string Visa { get; set; }
         public string SuperChoice { get; set; }
         public string TFNDeclaration { get; set; }
-
         public string BankDetails { get; set; }
         public string CodeOFConduct { get; set; }
         public string WHS { get; set; }
