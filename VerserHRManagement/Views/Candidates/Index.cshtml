@@ -34,11 +34,11 @@
                         <tr>
                             <td onclick="LoadAddressData(@item.ID,'@item.CandidateName','@item.DateCreated','@item.Address','@item.City','@item.state','@item.postcode','@item.Email','@item.Phone',
                                 '@if(item.profilePicture != null) { @Convert.ToBase64String(@item.profilePicture)}','@item.DOB','@item.Age','@item.Gender','@item.MaritalStatus',@Json.Encode(item.isactive));
-                                LoadEmployment('@item.PayFrequency','@item.ADP_EmployeeID','@item.AssignResource','@item.Annualsalary','@item.HourlyRate','@item.DailyRate','@item.WorkRights',
+                                LoadEmployment(@item.ID,'@item.PayFrequency','@item.ADP_EmployeeID','@item.AssignResource','@item.Annualsalary','@item.HourlyRate','@item.DailyRate','@item.WorkRights',
                                 '@item.EmployeeStatus','@item.EmployementType','@item.NoticePeriod');
-                                LoadDocuments('@item.FilePath','@item.certificate1','@item.DriverLicense','@item.PoliceCheckReport','@item.Visa','@item.SuperChoice','@item.TFNDeclaration',
+                                LoadDocuments(@item.ID,'@item.FilePath','@item.certificate1','@item.DriverLicense','@item.PoliceCheckReport','@item.Visa','@item.SuperChoice','@item.TFNDeclaration',
                                 '@item.BankDetails','@item.CodeOFConduct','@item.WHS');
-                                LoadSkills('@item.CandidateSkills','@item.Experience','@item.JobTitle','@item.TechnicianLevel','@item.RateOfSkillExperties');">
+                                LoadSkills(@item.ID,'@item.CandidateSkills','@item.Experience','@item.JobTitle','@item.TechnicianLevel','@item.RateOfSkillExperties');">
                                 <font style="font-weight:800;color:#515151">
                                     @Html.DisplayFor(modelItem => item.CandidateName)
                                     <input type="hidden" value="@item.ID" id="hiddenModelId" />
@@ -447,7 +447,7 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 
-    <script type="text/javascript">
+<script type="text/javascript">
         $(document).ready(function () {
             $('#mainTable').DataTable({
                 "pageLength": 20,
@@ -506,10 +506,10 @@
 
 
         }
-        function LoadDocuments(FilePath, certificate1, DriverLicense, PoliceCheckReport, Visa, SuperChoice, TFNDeclaration, BankDetails, CodeOFConduct, WHS) {
+        function LoadDocuments(id,FilePath, certificate1, DriverLicense, PoliceCheckReport, Visa, SuperChoice, TFNDeclaration, BankDetails, CodeOFConduct, WHS) {
         //alert(FilePath);
 
-          
+
 
         $("#hiddenResume").val(FilePath);
         $("#hiddenCertificate").val(certificate1);
@@ -521,16 +521,18 @@
         $("#hiddenBank").val(BankDetails);
         $("#hiddenCode").val(CodeOFConduct);
         $("#hiddenWhs").val(WHS);
+        $("#hiddenModelId").val(id);
 
 
         }
-        function LoadSkills(CandidateSkills,Experience,JobTitle,TechnicianLevel,RateOfSkillExperties) {
-        
+        function LoadSkills(id,CandidateSkills,Experience,JobTitle,TechnicianLevel,RateOfSkillExperties) {
+
         $("#candidateskills").val(CandidateSkills);
         $("#experience").val(Experience);
         $("#JobTitle").val(JobTitle);
         $("#TechnicianLevel").val(TechnicianLevel);
         $("#skillrate").val(RateOfSkillExperties);
+        $("#hiddenModelId").val(id);
 }
 
         $("#resume").click(function() {
@@ -552,7 +554,7 @@
             //Get the id of the selected item in dropdown
          $('#resume').attr('href', function () {
 
-        return "@Url.Action("DownloadFile")"+ "/?textval="  +$("#hiddenResume").val();
+        return "@Url.Action("DownloadFile")"+ "/?textval="  +'@System.Configuration.ConfigurationManager.AppSettings["FileUploadPath"]'+'@System.Configuration.ConfigurationManager.AppSettings["Resume"]'+'\\'+$("#hiddenResume").val();
 
         });
         });
@@ -577,7 +579,7 @@
             //Get the id of the selected item in dropdown
          $('#certificate').attr('href', function () {
 
-        return "@Url.Action("DownloadFile")"+ "/?textval="  +$("#hiddenCertificate").val();
+        return "@Url.Action("DownloadFile")"+ "/?textval="  +'@System.Configuration.ConfigurationManager.AppSettings["FileUploadPath"]'+'@System.Configuration.ConfigurationManager.AppSettings["Certificates"]'+'\\'+$("#hiddenCertificate").val();
 
     });
         });
@@ -602,7 +604,7 @@
             //Get the id of the selected item in dropdown
          $('#DL').attr('href', function () {
 
-        return "@Url.Action("DownloadFile")"+ "/?textval="  +$("#hiddenDL").val();
+        return "@Url.Action("DownloadFile")"+ "/?textval="  +'@System.Configuration.ConfigurationManager.AppSettings["FileUploadPath"]'+'@System.Configuration.ConfigurationManager.AppSettings["DL"]'+'\\'+$("#hiddenDL").val();
 
     });
 });
@@ -626,7 +628,7 @@
             //Get the id of the selected item in dropdown
          $('#PC').attr('href', function () {
 
-        return "@Url.Action("DownloadFile")"+ "/?textval="  +$("#hiddenPC").val();
+        return "@Url.Action("DownloadFile")"+ "/?textval="  +'@System.Configuration.ConfigurationManager.AppSettings["FileUploadPath"]'+'@System.Configuration.ConfigurationManager.AppSettings["PC"]'+'\\'+$("#hiddenPC").val();
 
     });
 });
@@ -649,7 +651,7 @@
         }
          $('#visa').attr('href', function () {
 
-        return "@Url.Action("DownloadFile")"+ "/?textval="  +$("#hiddenVisa").val();
+        return "@Url.Action("DownloadFile")"+ "/?textval="  +'@System.Configuration.ConfigurationManager.AppSettings["FileUploadPath"]'+'@System.Configuration.ConfigurationManager.AppSettings["Visa"]'+'\\'+$("#hiddenVisa").val();
 
     });
 });
@@ -672,7 +674,7 @@
         }
          $('#super').attr('href', function () {
 
-        return "@Url.Action("DownloadFile")"+ "/?textval="  +$("#hiddenSuper").val();
+        return "@Url.Action("DownloadFile")"+ "/?textval="  +'@System.Configuration.ConfigurationManager.AppSettings["FileUploadPath"]'+'@System.Configuration.ConfigurationManager.AppSettings["Super"]'+'\\'+$("#hiddenSuper").val();
 
     });
 });
@@ -695,7 +697,7 @@
         }
          $('#bank').attr('href', function () {
 
-        return "@Url.Action("DownloadFile")"+ "/?textval="  +$("#hiddenBank").val();
+        return "@Url.Action("DownloadFile")"+ "/?textval="  +'@System.Configuration.ConfigurationManager.AppSettings["FileUploadPath"]'+'@System.Configuration.ConfigurationManager.AppSettings["Bank"]'+'\\'+$("#hiddenBank").val();
 
     });
 });
@@ -717,7 +719,7 @@
         }
          $('#tnf').attr('href', function () {
 
-        return "@Url.Action("DownloadFile")"+ "/?textval="  +$("#hiddenTNF").val();
+        return "@Url.Action("DownloadFile")"+ "/?textval="  +'@System.Configuration.ConfigurationManager.AppSettings["FileUploadPath"]'+'@System.Configuration.ConfigurationManager.AppSettings["TNF"]'+'\\'+$("#hiddenTNF").val();
 
     });
   });
@@ -739,7 +741,7 @@
         }
          $('#code').attr('href', function () {
 
-        return "@Url.Action("DownloadFile")"+ "/?textval="  +$("#hiddenCode").val();
+        return "@Url.Action("DownloadFile")"+ "/?textval="  +'@System.Configuration.ConfigurationManager.AppSettings["FileUploadPath"]'+'@System.Configuration.ConfigurationManager.AppSettings["Code"]'+'\\'+$("#hiddenCode").val();
 
     });
 });
@@ -762,7 +764,7 @@
         }
          $('#whs').attr('href', function (data) {
 
-        return "@Url.Action("DownloadFile")"+ "/?textval="  +$("#hiddenWhs").val();
+        return "@Url.Action("DownloadFile")"+ "/?textval="  +'@System.Configuration.ConfigurationManager.AppSettings["FileUploadPath"]'+'@System.Configuration.ConfigurationManager.AppSettings["WHS"]'+'\\'+$("#hiddenWhs").val();
 
     });
 
@@ -850,7 +852,7 @@
             xhr.onreadystatechange = function () {
                 if (xhr.readyState == 4 && xhr.status == 200) {
                      $.confirm({
-               
+
                 content: 'The file has been uploaded successfully.',
                 boxWidth: '370px',
                 useBootstrap: false,
@@ -880,7 +882,7 @@
             xhr.onreadystatechange = function () {
                 if (xhr.readyState == 4 && xhr.status == 200) {
                      $.confirm({
-               
+
                 content: 'The file has been uploaded successfully.',
                 boxWidth: '370px',
                 useBootstrap: false,
@@ -910,7 +912,7 @@
             xhr.onreadystatechange = function () {
                 if (xhr.readyState == 4 && xhr.status == 200) {
                     $.confirm({
-               
+
                 content: 'The file has been uploaded successfully.',
                 boxWidth: '370px',
                 useBootstrap: false,
@@ -940,7 +942,7 @@
             xhr.onreadystatechange = function () {
                 if (xhr.readyState == 4 && xhr.status == 200) {
                     $.confirm({
-               
+
                 content: 'The file has been uploaded successfully.',
                 boxWidth: '370px',
                 useBootstrap: false,
@@ -970,7 +972,7 @@
             xhr.onreadystatechange = function () {
                 if (xhr.readyState == 4 && xhr.status == 200) {
                     $.confirm({
-               
+
                 content: 'The file has been uploaded successfully.',
                 boxWidth: '370px',
                 useBootstrap: false,
@@ -1000,7 +1002,7 @@
             xhr.onreadystatechange = function () {
                 if (xhr.readyState == 4 && xhr.status == 200) {
                      $.confirm({
-               
+
                 content: 'The file has been uploaded successfully.',
                 boxWidth: '370px',
                 useBootstrap: false,
@@ -1030,7 +1032,7 @@
             xhr.onreadystatechange = function () {
                 if (xhr.readyState == 4 && xhr.status == 200) {
                     $.confirm({
-               
+
                 content: 'The file has been uploaded successfully.',
                 boxWidth: '370px',
                 useBootstrap: false,
@@ -1060,7 +1062,7 @@
             xhr.onreadystatechange = function () {
                 if (xhr.readyState == 4 && xhr.status == 200) {
                     $.confirm({
-               
+
                 content: 'The file has been uploaded successfully.',
                 boxWidth: '370px',
                 useBootstrap: false,
@@ -1090,7 +1092,7 @@
             xhr.onreadystatechange = function () {
                 if (xhr.readyState == 4 && xhr.status == 200) {
                     $.confirm({
-               
+
                 content: 'The file has been uploaded successfully.',
                 boxWidth: '370px',
                 useBootstrap: false,
@@ -1120,7 +1122,7 @@
             xhr.onreadystatechange = function () {
                 if (xhr.readyState == 4 && xhr.status == 200) {
                     $.confirm({
-               
+
                 content: 'The file has been uploaded successfully.',
                 boxWidth: '370px',
                 useBootstrap: false,
@@ -1178,7 +1180,7 @@
             CandidateEdit.TechnicianLevel = $("#TechnicianLevel").val();
             CandidateEdit.RateOfSkillExperties = $("#skillrate").val();
 
-         
+
             var updateCandidateData = '@Url.Action("UpdateCandidate", "Candidates")';
             $.ajax({
                 type: "POST",
@@ -1213,7 +1215,7 @@
             var age = Math.floor(diff / 31557600000);
             $("#txtAge").val(age);
         }
-    </script>
+</script>
 }
 <style>
 
