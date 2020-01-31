@@ -547,7 +547,7 @@
                     }
                 }
                     });
-        return;
+        return false;
         }
             //Get the id of the selected item in dropdown
          $('#resume').attr('href', function () {
@@ -572,7 +572,7 @@
                     }
                 }
                     });
-        return;
+        return false;
         }
             //Get the id of the selected item in dropdown
          $('#certificate').attr('href', function () {
@@ -597,7 +597,7 @@
                     }
                 }
                     });
-        return;
+        return false;
         }
             //Get the id of the selected item in dropdown
          $('#DL').attr('href', function () {
@@ -621,7 +621,7 @@
                     }
                 }
                     });
-        return;
+        return false;
         }
             //Get the id of the selected item in dropdown
          $('#PC').attr('href', function () {
@@ -645,7 +645,7 @@
                     }
                 }
                     });
-        return;
+        return false;
         }
          $('#visa').attr('href', function () {
 
@@ -668,7 +668,7 @@
                     }
                 }
                     });
-        return;
+        return false;
         }
          $('#super').attr('href', function () {
 
@@ -691,7 +691,7 @@
                     }
                 }
                     });
-        return;
+        return false;
         }
          $('#bank').attr('href', function () {
 
@@ -713,7 +713,7 @@
                     }
                 }
                     });
-        return;
+        return false;
         }
          $('#tnf').attr('href', function () {
 
@@ -735,7 +735,7 @@
                     }
                 }
                     });
-        return;
+        return false;
         }
          $('#code').attr('href', function () {
 
@@ -758,9 +758,9 @@
                     }
                 }
                     });
-        return;
+        return false;
         }
-         $('#whs').attr('href', function () {
+         $('#whs').attr('href', function (data) {
 
         return "@Url.Action("DownloadFile")"+ "/?textval="  +$("#hiddenWhs").val();
 
