@@ -232,15 +232,7 @@
                             <div class="form-group required">
                                 @Html.Label("Employment Type", htmlAttributes: new { @class = "control-label col-md-4" })
                                 <div class="col-md-6">
-                                    @Html.DropDownListFor(Model => Model.EmployementType, new List<SelectListItem>
-
-                                { new SelectListItem {Text="Permanent",Value="Permanent" },
-                                new SelectListItem {Text="Casual", Value="Casual" },
-                                new SelectListItem {Text="Contract", Value="Contract" },
-
-
-                                }, "Select Employment Type", new { @class = "form-control" })
-                                    @Html.ValidationMessageFor(model => model.EmployementType, "", new { @class = "text-danger" })
+                                    @Html.DropDownListFor(model => model.EmploymentTypeID, Model.EmploymentList, "RESOURCE TYPE", new { @class = "form-control", id = "ddlEmploymentId" })
                                 </div>
                             </div>
                             <div class="form-group">

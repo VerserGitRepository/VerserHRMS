@@ -178,11 +178,14 @@
     <Compile Include="HelperServices\UserRoles.cs" />
     <Compile Include="Models\CandidateEdit.cs" />
     <Compile Include="Models\Candidate.cs" />
+    <Compile Include="Models\EmploymentTypeViewModel.cs" />
     <Compile Include="Models\ListItems.cs" />
+    <Compile Include="Models\ListItemViewModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\MultiSelectDropDownViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TimeSchedulerServices\CandidateService.cs" />
+    <Compile Include="TimeSchedulerServices\ListItemService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />

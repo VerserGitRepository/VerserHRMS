@@ -155,5 +155,26 @@ namespace VerserHRManagement.TimeSchedulerServices
             }
             return false;
         }
+
+        public static async Task<List<ListItemViewModel>> EmploymentType()
+        {
+            List<ListItemViewModel> EmploymentList = new List<ListItemViewModel>();
+            using (HttpClient client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(TimeSheetAPIURl);
+                HttpResponseMessage response = client.GetAsync(string.Format("Resource/ResourceEmploymentType")).Result;
+                if (response.IsSuccessStatusCode)
+                {
+                    var Warehouses = await response.Content.ReadAsAsync<List<EmploymentTypeViewModel>>();
+
+                    foreach (var w in Warehouses)
+                    {
+                        EmploymentList.Add(new ListItemViewModel() { Id = w.Id, Value = w.Value });
+                    }
+                }
+            }
+            return EmploymentList;
+        }
+
     }
 }

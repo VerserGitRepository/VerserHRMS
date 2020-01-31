@@ -46,7 +46,6 @@
                                 </font> <font style="font-size:xx-small">@item.City @item.state </font> <br />
                             </td>
                         </tr>
-
                     }
                 </tbody>
             </table>
@@ -63,8 +62,13 @@
                         {
                             <li><a href="#tab4default" data-toggle="tab">DOCUMENTS</a></li>
                         }
-                            <li><a href="#tab5default" data-toggle="tab">PERFORMANCE</a></li>
-                        </ul>
+                        <li><a href="#tab5default" data-toggle="tab">PERFORMANCE</a></li>
+                        <li class="pull-right" style="margin-right:100px">
+                            @using (Html.BeginForm("ExportTimesSheetToExcel", "Candidates", FormMethod.Post))
+                            {
+                                <input type="image" src="~/Images/excel.png" alt="Submit" width="20" height="20">
+                            }</li>
+</ul>    
                 </div>
                 <div class="panel-body">
                     <div class="tab-content">
@@ -432,8 +436,7 @@
                         </div>
                     </div>
                 </div>
-
-                <div class="panel-footer primary" align="left" style="height:40px;vertical-align:top;background-color:lightgrey">
+                     <div class="panel-footer primary" align="left" style="height:40px;vertical-align:top;background-color:lightgrey">
                     @if (UserRoles.UserCanEdit() == true)
                     {
                     <input type="submit" value="SAVE CHANGES" class="btn btn-primary"

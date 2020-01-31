@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Web.Mvc;
 
 namespace VerserHRManagement.Models
 {
@@ -43,6 +44,8 @@ namespace VerserHRManagement.Models
         public string Availability { get; set; }
         [Required]
         public string EmployementType { get; set; }
+        public int? EmploymentTypeID { get; set; }
+        public SelectList EmploymentList { get; set; }
         [Required]
         public string HourlyRate { get; set; }
         public string DailyRate { get; set; }

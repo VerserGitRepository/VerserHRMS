@@ -51,58 +51,63 @@ namespace VerserHRManagement
             }
             if (ModelState.IsValid)
             {
-                if (candidate.state == "NSW")
-                {
-                    candidate.WarehouseID = 1;
-                }
-                else if (candidate.state == "VIC")
-                {
-                    candidate.WarehouseID = 2;
-                }
-                else if (candidate.state == "QLD")
-                {
-                    candidate.WarehouseID = 5;
-                }
-                else if (candidate.state == "ACT")
-                {
-                    candidate.WarehouseID = 3;
-                }
-                else if (candidate.state == "WA")
-                {
-                    candidate.WarehouseID = 4;
-                }
-                else if (candidate.state == "TAS")
-                {
-                    candidate.WarehouseID = 6;
-                }
+                //if (candidate.state == "NSW")
+                //{
+                //    candidate.WarehouseID = 1;
+                //}
+                //else if (candidate.state == "VIC")
+                //{
+                //    candidate.WarehouseID = 2;
+                //}
+                //else if (candidate.state == "QLD")
+                //{
+                //    candidate.WarehouseID = 5;
+                //}
+                //else if (candidate.state == "ACT")
+                //{
+                //    candidate.WarehouseID = 3;
+                //}
+                //else if (candidate.state == "WA")
+                //{
+                //    candidate.WarehouseID = 4;
+                //}
+                //else if (candidate.state == "TAS")
+                //{
+                //    candidate.WarehouseID = 6;
+                //}
 
-                if (candidate.EmployementType.Contains("Permanent"))
-                {
-                    candidate.EmployementTypeId = 1;
-                }
-                else if (candidate.EmployementType.Contains("Casual"))
-                {
-                    candidate.EmployementTypeId = 2;
-                }
-                else if (candidate.EmployementType.Contains("Permanent Part-time"))
-                {
-                    candidate.EmployementTypeId = 3;
-                }
-                string _filename;
-                HttpPostedFileBase file = Request.Files["UploadResumeFile"];
-                if (file.ContentLength > 0)
-                {
-                    _filename = Path.GetFileName(file.FileName);
-                    string _path = Path.Combine(Server.MapPath("~/UploadedFiles"), _filename);
-                    file.SaveAs(_path);
-                    candidate.FilePath = _filename;
-                }
+                //if (candidate.EmployementType.Contains("Permanent"))
+                //{
+                //    candidate.EmployementTypeId = 1;
+                //}
+                //else if (candidate.EmployementType.Contains("Casual"))
+                //{
+                //    candidate.EmployementTypeId = 2;
+                //}
+                //else if (candidate.EmployementType.Contains("Permanent Part-time"))
+                //{
+                //    candidate.EmployementTypeId = 3;
+                //}
+                //string _filename;
+                //HttpPostedFileBase file = Request.Files["UploadResumeFile"];
+                //if (file.ContentLength > 0)
+                //{
+                //    _filename = Path.GetFileName(file.FileName);
+                //    string _path = Path.Combine(Server.MapPath("~/UploadedFiles"), _filename);
+                //    file.SaveAs(_path);
+                //    candidate.FilePath = _filename;
+                //}
+
+              Candidate model = new Candidate();
+                 model.EmploymentList = new SelectList(ListItemService.EmploymentTypeList().Result, "ID", "Value");
+     
                 candidate.DateCreated = DateTime.Now;
                 candidate.isactive = true;
                 CandidateService.Create(candidate);
-                return RedirectToAction("Index");
+                return View(candidate);
+               
             }
-            return View(candidate);
+            return RedirectToAction("Index");
         }
 
         public ActionResult Edit(int id)
