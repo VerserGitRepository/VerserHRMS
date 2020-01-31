@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.IO;
 using System.Net;
 using System.Web;
@@ -236,6 +237,11 @@ namespace VerserHRManagement
         public ActionResult UploadDocument()
         {
             var data = Request.Form["CandidateId"];
+            var FolderPath = System.Configuration.ConfigurationManager.AppSettings["FileUploadPath"];
+            if (FolderPath == null || FolderPath == "")
+            {
+                FolderPath = @"C:\VerserHRMS\Files\";
+            }
             var fileType = Request.Form["FileUpload"];
             CandidateEdit theCandidate = new CandidateEdit();
             for (int i = 0; i < Request.Files.Count; i++)
@@ -247,47 +253,97 @@ namespace VerserHRManagement
                 string mimeType = file.ContentType;
                 System.IO.Stream fileContent = file.InputStream;
                 //To save file, use SaveAs method
-                file.SaveAs(Path.Combine(Server.MapPath("~/UploadedFiles"), fileName)); //File will be saved in application root
+                
 
                 theCandidate.ID = int.Parse(data);
                 if (fileType == "CVUpload")
                 {
+                    if (!Directory.Exists(FolderPath +"//Resume"))
+                    {
+                        Directory.CreateDirectory(FolderPath + "//Resume");
+                    }
                     theCandidate.FilePath = fileName;
+                    file.SaveAs(Path.Combine(FolderPath + "//Resume", fileName)); //File will be saved in application root
                 }
                 else if (fileType == "CertificateUpload")
                 {
+                    if (!Directory.Exists(FolderPath + "//Certificates"))
+                    {
+                        Directory.CreateDirectory(FolderPath + "//Certificates");
+                    }
+                    file.SaveAs(Path.Combine(FolderPath + "//Certificates", fileName)); //File will be saved in application root
                     theCandidate.certificate1 = fileName;
                 }
                 else if (fileType == "DL")
                 {
+                    if (!Directory.Exists(FolderPath + "//DL"))
+                    {
+                        Directory.CreateDirectory(FolderPath + "//DL");
+                    }
+                    file.SaveAs(Path.Combine(FolderPath + "//DL", fileName)); //File will be saved in application root
                     theCandidate.DriverLicense = fileName;
                 }
                 else if (fileType == "PC")
                 {
+                    if (!Directory.Exists(FolderPath + "//PC"))
+                    {
+                        Directory.CreateDirectory(FolderPath + "//PC");
+                    }
+                    file.SaveAs(Path.Combine(FolderPath + "//PC", fileName)); //File will be saved in application root
                     theCandidate.PoliceCheckReport = fileName;
                 }
                 else if (fileType == "Visa")
                 {
+                    if (!Directory.Exists(FolderPath + "//Visa"))
+                    {
+                        Directory.CreateDirectory(FolderPath + "//Visa");
+                    }
+                    file.SaveAs(Path.Combine(FolderPath + "//Visa", fileName)); //File will be saved in application root
                     theCandidate.Visa = fileName;
                 }
                 else if (fileType == "Super")
                 {
+                    if (!Directory.Exists(FolderPath + "//Super"))
+                    {
+                        Directory.CreateDirectory(FolderPath + "//Super");
+                    }
+                    file.SaveAs(Path.Combine(FolderPath + "//Super", fileName)); //File will be saved in application root
                     theCandidate.SuperChoice = fileName;
                 }
                 else if (fileType == "TNF")
                 {
+                    if (!Directory.Exists(FolderPath + "//TNF"))
+                    {
+                        Directory.CreateDirectory(FolderPath + "//TNF");
+                    }
+                    file.SaveAs(Path.Combine(FolderPath + "//TNF", fileName)); //File will be saved in application root
                     theCandidate.TFNDeclaration = fileName;
                 }
                 else if (fileType == "Bank")
                 {
+                    if (!Directory.Exists(FolderPath + "//Bank"))
+                    {
+                        Directory.CreateDirectory(FolderPath + "//Bank");
+                    }
+                    file.SaveAs(Path.Combine(FolderPath + "//Bank", fileName)); //File will be saved in application root
                     theCandidate.BankDetails = fileName;
                 }
                 else if (fileType == "Code")
                 {
+                    if (!Directory.Exists(FolderPath + "//Code"))
+                    {
+                        Directory.CreateDirectory(FolderPath + "//Code");
+                    }
+                    file.SaveAs(Path.Combine(FolderPath + "//Code", fileName)); //File will be saved in application root
                     theCandidate.CodeOFConduct = fileName;
                 }
                 else if (fileType == "WHS")
                 {
+                    if (!Directory.Exists(FolderPath + "//WHS"))
+                    {
+                        Directory.CreateDirectory(FolderPath + "//WHS");
+                    }
+                    file.SaveAs(Path.Combine(FolderPath + "//WHS", fileName)); //File will be saved in application root
                     theCandidate.WHS = fileName;
                 }
                 //string _path = Path.Combine(Server.MapPath("~/UploadedFiles"), _filename);
@@ -324,6 +380,10 @@ namespace VerserHRManagement
         {
             try
             {
+                if (textval == null || textval == "")
+                {
+                    return new JsonResult { Data = "There is no file present.", JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+                }
                 var data = Request.Form["Resume"];
                 string path = Path.Combine(Server.MapPath("~/UploadedFiles"), textval);
                 byte[] fileBytes = System.IO.File.ReadAllBytes(path);

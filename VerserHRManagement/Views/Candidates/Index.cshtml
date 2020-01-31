@@ -534,6 +534,21 @@
 }
 
         $("#resume").click(function() {
+        if($("#hiddenResume").val() == null || $("#hiddenResume").val() == "")
+        {
+             $.confirm({
+                title:'',
+                content: 'There is no file to download. Please upload the Resume.',
+                boxWidth: '370px',
+                useBootstrap: false,
+                buttons: {
+                    OK: function () {
+
+                    }
+                }
+                    });
+        return;
+        }
             //Get the id of the selected item in dropdown
          $('#resume').attr('href', function () {
 
@@ -543,6 +558,22 @@
         });
 
         $("#certificate").click(function() {
+
+        if($("#hiddenCertificate").val() == null || $("#hiddenCertificate").val() == "")
+        {
+             $.confirm({
+                title:'',
+                content: 'There is no file to download. Please upload the Certificates.',
+                boxWidth: '370px',
+                useBootstrap: false,
+                buttons: {
+                    OK: function () {
+
+                    }
+                }
+                    });
+        return;
+        }
             //Get the id of the selected item in dropdown
          $('#certificate').attr('href', function () {
 
@@ -552,6 +583,22 @@
         });
 
         $("#DL").click(function() {
+
+        if($("#hiddenDL").val() == null || $("#hiddenDL").val() == "")
+        {
+             $.confirm({
+                title:'',
+                content: 'There is no file to download. Please upload the DL.',
+                boxWidth: '370px',
+                useBootstrap: false,
+                buttons: {
+                    OK: function () {
+
+                    }
+                }
+                    });
+        return;
+        }
             //Get the id of the selected item in dropdown
          $('#DL').attr('href', function () {
 
@@ -561,6 +608,21 @@
 });
 
         $("#PC").click(function() {
+        if($("#hiddenPC").val() == null || $("#hiddenPC").val() == "")
+        {
+             $.confirm({
+                title:'',
+                content: 'There is no file to download. Please upload the PC.',
+                boxWidth: '370px',
+                useBootstrap: false,
+                buttons: {
+                    OK: function () {
+
+                    }
+                }
+                    });
+        return;
+        }
             //Get the id of the selected item in dropdown
          $('#PC').attr('href', function () {
 
@@ -570,7 +632,21 @@
 });
 
         $("#visa").click(function() {
-            //Get the id of the selected item in dropdown
+            if($("#hiddenVisa").val() == null || $("#hiddenVisa").val() == "")
+        {
+             $.confirm({
+                title:'',
+                content: 'There is no file to download. Please upload the Visa.',
+                boxWidth: '370px',
+                useBootstrap: false,
+                buttons: {
+                    OK: function () {
+
+                    }
+                }
+                    });
+        return;
+        }
          $('#visa').attr('href', function () {
 
         return "@Url.Action("DownloadFile")"+ "/?textval="  +$("#hiddenVisa").val();
@@ -579,7 +655,21 @@
 });
 
         $("#super").click(function() {
-            //Get the id of the selected item in dropdown
+      if($("#hiddenSuper").val() == null || $("#hiddenSuper").val() == "")
+        {
+             $.confirm({
+                title:'',
+                content: 'There is no file to download. Please upload the Super form.',
+                boxWidth: '370px',
+                useBootstrap: false,
+                buttons: {
+                    OK: function () {
+
+                    }
+                }
+                    });
+        return;
+        }
          $('#super').attr('href', function () {
 
         return "@Url.Action("DownloadFile")"+ "/?textval="  +$("#hiddenSuper").val();
@@ -588,7 +678,21 @@
 });
 
         $("#bank").click(function() {
-            //Get the id of the selected item in dropdown
+      if($("#hiddenBank").val() == null || $("#hiddenBank").val() == "")
+        {
+             $.confirm({
+                title:'',
+                content: 'There is no file to download. Please upload the Bank Details.',
+                boxWidth: '370px',
+                useBootstrap: false,
+                buttons: {
+                    OK: function () {
+
+                    }
+                }
+                    });
+        return;
+        }
          $('#bank').attr('href', function () {
 
         return "@Url.Action("DownloadFile")"+ "/?textval="  +$("#hiddenBank").val();
@@ -596,7 +700,21 @@
     });
 });
        $("#tnf").click(function() {
-            //Get the id of the selected item in dropdown
+     if($("#hiddenTNF").val() == null || $("#hiddenTNF").val() == "")
+        {
+             $.confirm({
+                title:'',
+                content: 'There is no file to download. Please upload the TNF Details.',
+                boxWidth: '370px',
+                useBootstrap: false,
+                buttons: {
+                    OK: function () {
+
+                    }
+                }
+                    });
+        return;
+        }
          $('#tnf').attr('href', function () {
 
         return "@Url.Action("DownloadFile")"+ "/?textval="  +$("#hiddenTNF").val();
@@ -604,7 +722,21 @@
     });
   });
         $("#code").click(function() {
-            //Get the id of the selected item in dropdown
+        if($("#hiddenCode").val() == null || $("#hiddenCode").val() == "")
+        {
+             $.confirm({
+                title:'',
+                content: 'There is no file to download. Please upload the Code Of Conduct Details.',
+                boxWidth: '370px',
+                useBootstrap: false,
+                buttons: {
+                    OK: function () {
+
+                    }
+                }
+                    });
+        return;
+        }
          $('#code').attr('href', function () {
 
         return "@Url.Action("DownloadFile")"+ "/?textval="  +$("#hiddenCode").val();
@@ -613,7 +745,21 @@
 });
 
         $("#whs").click(function() {
-            //Get the id of the selected item in dropdown
+        if($("#hiddenWhs").val() == null || $("#hiddenWhs").val() == "")
+        {
+             $.confirm({
+                title:'',
+                content: 'There is no file to download. Please upload the WHS Details.',
+                boxWidth: '370px',
+                useBootstrap: false,
+                buttons: {
+                    OK: function () {
+
+                    }
+                }
+                    });
+        return;
+        }
          $('#whs').attr('href', function () {
 
         return "@Url.Action("DownloadFile")"+ "/?textval="  +$("#hiddenWhs").val();
