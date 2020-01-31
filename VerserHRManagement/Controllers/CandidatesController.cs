@@ -390,7 +390,7 @@ namespace VerserHRManagement
         {
             try
             {
-               // textval = textval.Replace(" ","");
+               
                 if (textval == null || textval == "")
                 {
                     return new JsonResult { Data = "There is no file present.", JsonRequestBehavior = JsonRequestBehavior.AllowGet };
