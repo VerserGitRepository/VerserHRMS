@@ -197,10 +197,7 @@
                                             </div>
                                         </fieldset>
                                     </div>
-                                </div>
-                                @*<div class="panel-footer primary" align="left" style="height:30px;vertical-align:top;width:920px;background-color:#428bca">
-                                        <input type="submit" value="SAVE CHANGES" class="btn btn-primary btn-lg btn-block col-md-offset-4" style="height:25px;vertical-align:top;padding:0px;background-color:#428bca;border-color:#428bca" id="updateBtn" />
-                                    </div>*@
+                                </div>                           
                             </div>
                         </div>
                         <div class="tab-pane fade" id="tab2default">
@@ -251,11 +248,7 @@
                                             <input type="text" class="form-control form-control-sm" id="txtNoticePeriod" placeholder="Notice Period">
                                         </div>
                                     </div>
-                                </div>
-                                @*<div class="panel-footer primary" align="left" style="height:30px;vertical-align:top;width:820px;background-color:#428bca;margin-left:10px">
-                                        <input type="submit" value="SAVE CHANGES" class="btn btn-primary btn-lg btn-block col-md-offset-4" style="height:25px;vertical-align:top;padding:0px;background-color:#428bca;border-color:#428bca" id="updateEmploymentDetailsBtn" />
-
-                                    </div>*@
+                                </div>                              
                             </div>
                         </div>
                         <div class="tab-pane fade" id="tab3default">
@@ -317,22 +310,25 @@
                                     <div class="panel-body">
                                         <div class="input-group image-preview">
                                             @Html.Hidden("Resume", null, new { @id = "hiddenResume" })
-                                            @Html.ActionLink("DownloadResume", "DownloadFile", "Candidates", new { textval = "" }, new { @id = "resume", @class = "actionlink" })
+                                            @Html.ActionLink("Resume", "DownloadFile", "Candidates", new { textval = "" }, new { @id = "resume", @class = "actionlink" })
                                             <!-- don't give a name === doesn't send on POST/GET -->
                                             <span class="input-group-btn-override">
                                                 <input id="CVimgupload" type="file" style="display:none;">
-                                                <button id="btnCV" type="button" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Browse</button>
+                                                <button id="btnCV" type="button" class="btn btn-sm btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray">
+                                                    <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Resume
+                                                </button>
                                             </span>
                                         </div>
                                         <br>
                                         <div class="input-group image-preview">
                                             @Html.Hidden("Resume", null, new { @id = "hiddenCertificate" })
-                                            @Html.ActionLink("Download Certificates", "DownloadFile", "Candidates", new { textval = "" }, new { @id = "certificate", @class = "actionlink" })
+                                            @Html.ActionLink("Certificates", "DownloadFile", "Candidates", new { textval = "" }, new { @id = "certificate", @class = "actionlink" })
                                             <!-- don't give a name === doesn't send on POST/GET -->
                                             <span class="input-group-btn-override">
                                                 <input id="Certificateimgupload" type="file" style="display:none;">
-                                                <button type="button" id="btnCertificates" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Browse</button>
-
+                                                <button type="button" id="btnCertificates" class="btn btn-sm btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray">
+                                                    <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Certificate
+                                               </button>
                                             </span>
                                         </div>
                                     </div>
@@ -341,32 +337,38 @@
                                     <div class="panel-body">
                                         <div class="input-group image-preview">
                                             @Html.Hidden("Resume", null, new { @id = "hiddenDL" })
-                                            @Html.ActionLink("Download DL", "DownloadFile", "Candidates", new { textval = "" }, new { @id = "DL", @class = "actionlink" })
+                                            @Html.ActionLink("Driving License", "DownloadFile", "Candidates", new { textval = "" }, new { @id = "DL", @class = "actionlink" })
                                             <!-- don't give a name === doesn't send on POST/GET -->
                                             <span class="input-group-btn-override">
                                                 <input type="file" id="DLimgupload" style="display:none" onchange="ReadFileName(this,'DLimgupload');" />
-                                                <button id="btnDL" type="button" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Browse</button>
+                                                <button id="btnDL" type="button" class="btn btn-labeled btn-sm btn-outline-secondary" style="padding-left:20px;border-color:gray">
+                                                    <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>DL
+                                                </button>
 
                                             </span>
                                         </div><br>
                                         <div class="input-group image-preview">
                                             @Html.Hidden("Resume", null, new { @id = "hiddenPC" })
-                                            @Html.ActionLink("Download Police Check", "DownloadFile", "Candidates", new { textval = "" }, new { @id = "PC", @class = "actionlink" })
+                                            @Html.ActionLink("Police Check", "DownloadFile", "Candidates", new { textval = "" }, new { @id = "PC", @class = "actionlink" })
                                             <!-- don't give a name === doesn't send on POST/GET -->
                                             <span class="input-group-btn-override">
                                                 <input type="file" id="PCimgupload" style="display:none" onchange="ReadFileName(this,'PCimgupload');" />
-                                                <button type="button" id="btnPC" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Browse</button>
+                                                <button type="button" id="btnPC" class="btn btn-labeled btn-sm btn-outline-secondary" style="padding-left:20px;border-color:gray">
+                                                    <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Police Check
+                                                </button>
 
                                             </span>
                                         </div>
                                         <br>
                                         <div class="input-group image-preview">
                                             @Html.Hidden("Resume", null, new { @id = "hiddenVisa" })
-                                            @Html.ActionLink("Download Visa", "DownloadFile", "Candidates", new { textval = "" }, new { @id = "visa", @class = "actionlink" })
+                                            @Html.ActionLink("Visa", "DownloadFile", "Candidates", new { textval = "" }, new { @id = "visa", @class = "actionlink" })
                                             <!-- don't give a name === doesn't send on POST/GET -->
                                             <span class="input-group-btn-override">
                                                 <input type="file" id="Visaimgupload" style="display:none" onchange="ReadFileName(this,'Visaimgupload');" />
-                                                <button type="button" id="btnVisa" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Browse</button>
+                                                <button type="button" id="btnVisa" class="btn btn-labeled btn-sm btn-outline-secondary" style="padding-left:20px;border-color:gray">
+                                                    <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Visa
+                                                </button>
 
                                             </span>
                                         </div>
@@ -376,32 +378,38 @@
                                     <div class="panel-body">
                                         <div class="input-group image-preview">
                                             @Html.Hidden("Resume", null, new { @id = "hiddenSuper" })
-                                            @Html.ActionLink("Download Super Form", "DownloadFile", "Candidates", new { textval = "" }, new { @id = "super", @class = "actionlink" })
+                                            @Html.ActionLink("Super Form", "DownloadFile", "Candidates", new { textval = "" }, new { @id = "super", @class = "actionlink" })
                                             <!-- don't give a name === doesn't send on POST/GET -->
                                             <span class="input-group-btn-override">
                                                 <input type="file" id="Superimgupload" style="display:none" onchange="ReadFileName(this,'Superimgupload');" />
-                                                <button type="button" id="btnSuper" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Browse</button>
+                                                <button type="button" id="btnSuper" class="btn btn-labeled btn-sm btn-outline-secondary" style="padding-left:20px;border-color:gray">
+                                                    <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Super Form
+                                                </button>
 
                                             </span>
                                         </div><br>
                                         <div class="input-group image-preview">
                                             @Html.Hidden("Resume", null, new { @id = "hiddenTNF" })
-                                            @Html.ActionLink("Download TNF", "DownloadFile", "Candidates", new { textval = "" }, new { @id = "tnf", @class = "actionlink" })
+                                            @Html.ActionLink("TNF", "DownloadFile", "Candidates", new { textval = "" }, new { @id = "tnf", @class = "actionlink" })
                                             <!-- don't give a name === doesn't send on POST/GET -->
                                             <span class="input-group-btn-override">
                                                 <input type="file" id="TNFimgupload" style="display:none" onchange="ReadFileName(this,'TNFimgupload');" />
-                                                <button type="button" id="btnTNF" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Browse</button>
+                                                <button type="button" id="btnTNF" class="btn btn-labeled btn-sm btn-outline-secondary" style="padding-left:20px;border-color:gray">
+                                                    <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>TNF
+                                                </button>
 
                                             </span>
                                         </div>
                                         <br>
                                         <div class="input-group image-preview">
                                             @Html.Hidden("Resume", null, new { @id = "hiddenBank" })
-                                            @Html.ActionLink("Download Bank Details", "DownloadFile", "Candidates", new { textval = "" }, new { @id = "bank", @class = "actionlink" })
+                                            @Html.ActionLink("Bank Details", "DownloadFile", "Candidates", new { textval = "" }, new { @id = "bank", @class = "actionlink" })
                                             <!-- don't give a name === doesn't send on POST/GET -->
                                             <span class="input-group-btn-override">
                                                 <input type="file" id="Bankimgupload" style="display:none" onchange="ReadFileName(this,'Bankimgupload');" />
-                                                <button type="button" id="btnBank" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Browse</button>
+                                                <button type="button" id="btnBank" class="btn btn-labeled btn-sm btn-outline-secondary" style="padding-left:20px;border-color:gray">
+                                                    <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Bank Details
+                                                </button>
 
                                             </span>
                                         </div>
@@ -411,22 +419,25 @@
                                     <div class="panel-body">
                                         <div class="input-group image-preview">
                                             @Html.Hidden("Resume", null, new { @id = "hiddenCode" })
-                                            @Html.ActionLink("Download Code Of Conduct", "DownloadFile", "Candidates", new { textval = "" }, new { @id = "code", @class = "actionlink" })
+                                            @Html.ActionLink("Code Of Conduct", "DownloadFile", "Candidates", new { textval = "" }, new { @id = "code", @class = "actionlink" })
                                             <!-- don't give a name === doesn't send on POST/GET -->
                                             <span class="input-group-btn-override">
                                                 <input type="file" id="Codeimgupload" style="display:none" onchange="ReadFileName(this,'Codeimgupload');" />
-                                                <button type="button" id="btnCode" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Browse</button>
+                                                <button type="button" id="btnCode" class="btn btn-labeled btn-sm btn-outline-secondary" style="padding-left:20px;border-color:gray">
+                                                    <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Code-Of-Conduct
+                                                </button>
 
                                             </span>
                                         </div><br>
                                         <div class="input-group image-preview">
                                             @Html.Hidden("Resume", null, new { @id = "hiddenWhs" })
-                                            @Html.ActionLink("Download WHS", "DownloadFile", "Candidates", new { textval = "" }, new { @id = "whs", @class = "actionlink" })
+                                            @Html.ActionLink("WHS", "DownloadFile", "Candidates", new { textval = "" }, new { @id = "whs", @class = "actionlink" })
                                             <!-- don't give a name === doesn't send on POST/GET -->
                                             <span class="input-group-btn-override">
                                                 <input type="file" id="Whsimgupload" style="display:none" onchange="ReadFileName(this,'Whsimgupload');" />
-                                                <button type="button" id="btnWhs" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Browse</button>
-
+                                                <button type="button" id="btnWhs" class="btn btn-sm btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray">
+                                                    <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>WHS
+                                                </button>
                                             </span>
                                         </div>
                                         <br>
