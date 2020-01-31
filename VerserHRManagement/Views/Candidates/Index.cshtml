@@ -64,11 +64,15 @@
                         }
                         <li><a href="#tab5default" data-toggle="tab">PERFORMANCE</a></li>
                         <li class="pull-right" style="margin-right:100px">
-                            @using (Html.BeginForm("ExportTimesSheetToExcel", "Candidates", FormMethod.Post))
+
+                            @if (UserRoles.UserCanEdit() == true)
                             {
-                                <input type="image" src="~/Images/excel.png" alt="Submit" width="20" height="20">
-                            }</li>
-</ul>    
+                                using (Html.BeginForm("ExportTimesSheetToExcel", "Candidates", FormMethod.Post))
+                                {
+                                    <input type="image" src="~/Images/excel.png" alt="Submit" width="20" height="20">
+                                }
+                            }
+                        </li></ul>    
                 </div>
                 <div class="panel-body">
                     <div class="tab-content">
