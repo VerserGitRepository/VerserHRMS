@@ -1,5 +1,5 @@
 ﻿@model IEnumerable<VerserHRManagement.Models.Candidate>
-
+@using VerserHRManagement.HelperServices;
 <script src="~/Scripts/jquery-3.4.1.min.js" type="text/javascript"></script>
 <link href="~/Content/bootstrap.css" rel="stylesheet" />
 <script src="~/Scripts/jquery-3.4.1.min.js" type="text/javascript"></script>
@@ -59,9 +59,12 @@
                         <li class="active"><a href="#tab1default" data-toggle="tab">PERSONAL</a></li>
                         <li><a href="#tab2default" data-toggle="tab">EMPLOYMENT</a></li>
                         <li><a href="#tab3default" data-toggle="tab">SKILLS</a></li>
-                        <li><a href="#tab4default" data-toggle="tab">DOCUMENTS</a></li>
-                        <li><a href="#tab5default" data-toggle="tab">PERFORMANCE</a></li>
-                    </ul>
+                        @if (UserRoles.UserCanEdit() == true)
+                        {
+                            <li><a href="#tab4default" data-toggle="tab">DOCUMENTS</a></li>
+                        }
+                            <li><a href="#tab5default" data-toggle="tab">PERFORMANCE</a></li>
+                        </ul>
                 </div>
                 <div class="panel-body">
                     <div class="tab-content">
@@ -429,10 +432,14 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="panel-footer primary" align="left" style="height:40px;vertical-align:top;background-color:lightgrey">
+                    @if (UserRoles.UserCanEdit() == true)
+                    {
                     <input type="submit" value="SAVE CHANGES" class="btn btn-primary"
                            style="background-color:#428bca;border-color:#428bca"
                            id="updateEmploymentDetailsBtn" />
+                    }
                 </div>
             </div>
         </div>

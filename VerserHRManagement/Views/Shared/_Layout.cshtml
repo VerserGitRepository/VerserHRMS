@@ -45,7 +45,7 @@
                     <span class="icon-bar"></span>
                 </button>
                 <div id="LogoImage" style="text-align:left; padding-right:20px">
-                    <img src="~/Images/Verser.png" style="height:49px; width:150px ;vertical-align:top; background-color:#D3D3D3" />
+                    <img src="~/Images/CompanyLogo.jpg"  style="height:40px; width:150px ;vertical-align:bottom" />
                 </div>
 
             </div>
@@ -57,7 +57,7 @@
                         <li>@Html.ActionLink("NEW PROFILE", "Create", "Candidates")</li>
                         <li>@Html.ActionLink("BULK SMS", "Index", "MultiSelectDropDown")</li>
                         @*<li>@Html.ActionLink("LIST", "SMSBroadcast", "Candidates")</li>*@
-                        <li>@Html.ActionLink("CONTACT", "Contact", "Home")</li>
+                        @*<li>@Html.ActionLink("CONTACT", "Contact", "Home")</li>*@
                     }
 
                 </ul>
@@ -75,23 +75,25 @@
         </div>
     </div>
     <div class="container body-content">
-        @if (@HttpContext.Current.Session["SuccessMessage"] != null)
-        {
-            <div class="alert alert-info text-center  alert-dismissible" role="alert">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                @HttpContext.Current.Session["SuccessMessage"]
-            </div>
-@@HttpContext.Current.Session["SuccessMessage"] = null;
-        }
 
-        @if (@HttpContext.Current.Session["ErrorMessage"] != null)
-        {
-            <div class="alert alert-danger text-center  alert-dismissible" role="alert">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                @HttpContext.Current.Session["ErrorMessage"]
-            </div>
+@*@if (@HttpContext.Current.Session["SuccessMessage"] != null)
+{
+<div class="alert alert-info text-center  alert-dismissible" role="alert">
+<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+@HttpContext.Current.Session["SuccessMessage"]
+</div>
+@@HttpContext.Current.Session["SuccessMessage"] = null;
+}
+
+@if (@HttpContext.Current.Session["ErrorMessage"] != null)
+{
+<div class="alert alert-danger text-center  alert-dismissible" role="alert">
+<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+@HttpContext.Current.Session["ErrorMessage"]
+</div>
 @@HttpContext.Current.Session["ErrorMessage"] = null;
-        }
+}*@
+
         @RenderBody()
         <hr />
         <footer>
