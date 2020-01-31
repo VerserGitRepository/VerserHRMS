@@ -168,8 +168,9 @@ namespace VerserHRManagement
         [HttpPost]
         public ActionResult ExportTimesSheetToExcel()
         {
-            var candidateList = new List<Candidate>();
+            //var candidateList = new List<CandidateExportModel>();
 
+            var candidateList = new List<Candidate>();
             if (string.IsNullOrEmpty(Session["FullUserName"].ToString()))
             {
                 return RedirectToAction("Login", "Login");
@@ -177,6 +178,7 @@ namespace VerserHRManagement
             else
             {
                 candidateList = CandidateService.CandidateList().Result;
+             
                 GridView gv = new GridView();
                 gv.DataSource = candidateList;
                 gv.DataBind();
