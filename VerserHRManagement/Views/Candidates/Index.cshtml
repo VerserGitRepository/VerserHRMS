@@ -33,12 +33,12 @@
                     {
                         <tr>
                             <td onclick="LoadAddressData(@item.ID,'@item.CandidateName','@item.DateCreated','@item.Address','@item.City','@item.state','@item.postcode','@item.Email','@item.Phone',
-                                '@if(item.profilePicture != null) { @Convert.ToBase64String(@item.profilePicture)}','@item.DOB','@item.Age','@item.Gender','@item.MaritalStatus',@Json.Encode(item.isactive));
-                                LoadEmployment('@item.PayFrequency','@item.ADP_EmployeeID','@item.AssignResource','@item.Annualsalary','@item.HourlyRate','@item.DailyRate','@item.WorkRights',
+                                '@if(item.profilePicture != null) { @Convert.ToBase64String(@item.profilePicture)}','@if (item.DOB.HasValue) {@item.DOB.Value.ToString("yyyy-MM-dd")}','@item.Age','@item.Gender','@item.MaritalStatus',@Json.Encode(item.isactive));
+                                LoadEmployment(@item.ID,'@item.PayFrequency','@item.ADP_EmployeeID','@item.AssignResource','@item.Annualsalary','@item.HourlyRate','@item.DailyRate','@item.WorkRights',
                                 '@item.EmployeeStatus','@item.EmployementType','@item.NoticePeriod');
-                                LoadDocuments('@item.FilePath','@item.certificate1','@item.DriverLicense','@item.PoliceCheckReport','@item.Visa','@item.SuperChoice','@item.TFNDeclaration',
+                                LoadDocuments(@item.ID,'@item.FilePath','@item.certificate1','@item.DriverLicense','@item.PoliceCheckReport','@item.Visa','@item.SuperChoice','@item.TFNDeclaration',
                                 '@item.BankDetails','@item.CodeOFConduct','@item.WHS');
-                                LoadSkills('@item.CandidateSkills','@item.Experience','@item.JobTitle','@item.TechnicianLevel','@item.RateOfSkillExperties');">
+                                LoadSkills(@item.ID,'@item.CandidateSkills','@item.Experience','@item.JobTitle','@item.TechnicianLevel','@item.RateOfSkillExperties');">
                                 <font style="font-weight:800;color:#515151">
                                     @Html.DisplayFor(modelItem => item.CandidateName)
                                     <input type="hidden" value="@item.ID" id="hiddenModelId" />
@@ -64,11 +64,15 @@
                         }
                         <li><a href="#tab5default" data-toggle="tab">PERFORMANCE</a></li>
                         <li class="pull-right" style="margin-right:100px">
-                            @using (Html.BeginForm("ExportTimesSheetToExcel", "Candidates", FormMethod.Post))
+
+                            @if (UserRoles.UserCanEdit() == true)
                             {
-                                <input type="image" src="~/Images/excel.png" alt="Submit" width="20" height="20">
-                            }</li>
-</ul>    
+                                using (Html.BeginForm("ExportTimesSheetToExcel", "Candidates", FormMethod.Post))
+                                {
+                                    <input type="image" src="~/Images/excel.png" alt="Submit" width="20" height="20">
+                                }
+                            }
+                        </li></ul>    
                 </div>
                 <div class="panel-body">
                     <div class="tab-content">
@@ -197,10 +201,7 @@
                                             </div>
                                         </fieldset>
                                     </div>
-                                </div>
-                                @*<div class="panel-footer primary" align="left" style="height:30px;vertical-align:top;width:920px;background-color:#428bca">
-                                        <input type="submit" value="SAVE CHANGES" class="btn btn-primary btn-lg btn-block col-md-offset-4" style="height:25px;vertical-align:top;padding:0px;background-color:#428bca;border-color:#428bca" id="updateBtn" />
-                                    </div>*@
+                                </div>                           
                             </div>
                         </div>
                         <div class="tab-pane fade" id="tab2default">
@@ -251,11 +252,7 @@
                                             <input type="text" class="form-control form-control-sm" id="txtNoticePeriod" placeholder="Notice Period">
                                         </div>
                                     </div>
-                                </div>
-                                @*<div class="panel-footer primary" align="left" style="height:30px;vertical-align:top;width:820px;background-color:#428bca;margin-left:10px">
-                                        <input type="submit" value="SAVE CHANGES" class="btn btn-primary btn-lg btn-block col-md-offset-4" style="height:25px;vertical-align:top;padding:0px;background-color:#428bca;border-color:#428bca" id="updateEmploymentDetailsBtn" />
-
-                                    </div>*@
+                                </div>                              
                             </div>
                         </div>
                         <div class="tab-pane fade" id="tab3default">
@@ -317,22 +314,25 @@
                                     <div class="panel-body">
                                         <div class="input-group image-preview">
                                             @Html.Hidden("Resume", null, new { @id = "hiddenResume" })
-                                            @Html.ActionLink("DownloadResume", "DownloadFile", "Candidates", new { textval = "" }, new { @id = "resume", @class = "actionlink" })
+                                            @Html.ActionLink("Resume", "DownloadFile", "Candidates", new { textval = "" }, new { @id = "resume", @class = "actionlink" })
                                             <!-- don't give a name === doesn't send on POST/GET -->
                                             <span class="input-group-btn-override">
                                                 <input id="CVimgupload" type="file" style="display:none;">
-                                                <button id="btnCV" type="button" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Browse</button>
+                                                <button id="btnCV" type="button" class="btn btn-sm btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray">
+                                                    <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Resume
+                                                </button>
                                             </span>
                                         </div>
                                         <br>
                                         <div class="input-group image-preview">
                                             @Html.Hidden("Resume", null, new { @id = "hiddenCertificate" })
-                                            @Html.ActionLink("Download Certificates", "DownloadFile", "Candidates", new { textval = "" }, new { @id = "certificate", @class = "actionlink" })
+                                            @Html.ActionLink("Certificates", "DownloadFile", "Candidates", new { textval = "" }, new { @id = "certificate", @class = "actionlink" })
                                             <!-- don't give a name === doesn't send on POST/GET -->
                                             <span class="input-group-btn-override">
                                                 <input id="Certificateimgupload" type="file" style="display:none;">
-                                                <button type="button" id="btnCertificates" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Browse</button>
-
+                                                <button type="button" id="btnCertificates" class="btn btn-sm btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray">
+                                                    <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Certificate
+                                               </button>
                                             </span>
                                         </div>
                                     </div>
@@ -341,32 +341,38 @@
                                     <div class="panel-body">
                                         <div class="input-group image-preview">
                                             @Html.Hidden("Resume", null, new { @id = "hiddenDL" })
-                                            @Html.ActionLink("Download DL", "DownloadFile", "Candidates", new { textval = "" }, new { @id = "DL", @class = "actionlink" })
+                                            @Html.ActionLink("Driving License", "DownloadFile", "Candidates", new { textval = "" }, new { @id = "DL", @class = "actionlink" })
                                             <!-- don't give a name === doesn't send on POST/GET -->
                                             <span class="input-group-btn-override">
                                                 <input type="file" id="DLimgupload" style="display:none" onchange="ReadFileName(this,'DLimgupload');" />
-                                                <button id="btnDL" type="button" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Browse</button>
+                                                <button id="btnDL" type="button" class="btn btn-labeled btn-sm btn-outline-secondary" style="padding-left:20px;border-color:gray">
+                                                    <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>DL
+                                                </button>
 
                                             </span>
                                         </div><br>
                                         <div class="input-group image-preview">
                                             @Html.Hidden("Resume", null, new { @id = "hiddenPC" })
-                                            @Html.ActionLink("Download Police Check", "DownloadFile", "Candidates", new { textval = "" }, new { @id = "PC", @class = "actionlink" })
+                                            @Html.ActionLink("Police Check", "DownloadFile", "Candidates", new { textval = "" }, new { @id = "PC", @class = "actionlink" })
                                             <!-- don't give a name === doesn't send on POST/GET -->
                                             <span class="input-group-btn-override">
                                                 <input type="file" id="PCimgupload" style="display:none" onchange="ReadFileName(this,'PCimgupload');" />
-                                                <button type="button" id="btnPC" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Browse</button>
+                                                <button type="button" id="btnPC" class="btn btn-labeled btn-sm btn-outline-secondary" style="padding-left:20px;border-color:gray">
+                                                    <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Police Check
+                                                </button>
 
                                             </span>
                                         </div>
                                         <br>
                                         <div class="input-group image-preview">
                                             @Html.Hidden("Resume", null, new { @id = "hiddenVisa" })
-                                            @Html.ActionLink("Download Visa", "DownloadFile", "Candidates", new { textval = "" }, new { @id = "visa", @class = "actionlink" })
+                                            @Html.ActionLink("Visa", "DownloadFile", "Candidates", new { textval = "" }, new { @id = "visa", @class = "actionlink" })
                                             <!-- don't give a name === doesn't send on POST/GET -->
                                             <span class="input-group-btn-override">
                                                 <input type="file" id="Visaimgupload" style="display:none" onchange="ReadFileName(this,'Visaimgupload');" />
-                                                <button type="button" id="btnVisa" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Browse</button>
+                                                <button type="button" id="btnVisa" class="btn btn-labeled btn-sm btn-outline-secondary" style="padding-left:20px;border-color:gray">
+                                                    <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Visa
+                                                </button>
 
                                             </span>
                                         </div>
@@ -376,32 +382,38 @@
                                     <div class="panel-body">
                                         <div class="input-group image-preview">
                                             @Html.Hidden("Resume", null, new { @id = "hiddenSuper" })
-                                            @Html.ActionLink("Download Super Form", "DownloadFile", "Candidates", new { textval = "" }, new { @id = "super", @class = "actionlink" })
+                                            @Html.ActionLink("Super Form", "DownloadFile", "Candidates", new { textval = "" }, new { @id = "super", @class = "actionlink" })
                                             <!-- don't give a name === doesn't send on POST/GET -->
                                             <span class="input-group-btn-override">
                                                 <input type="file" id="Superimgupload" style="display:none" onchange="ReadFileName(this,'Superimgupload');" />
-                                                <button type="button" id="btnSuper" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Browse</button>
+                                                <button type="button" id="btnSuper" class="btn btn-labeled btn-sm btn-outline-secondary" style="padding-left:20px;border-color:gray">
+                                                    <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Super Form
+                                                </button>
 
                                             </span>
                                         </div><br>
                                         <div class="input-group image-preview">
                                             @Html.Hidden("Resume", null, new { @id = "hiddenTNF" })
-                                            @Html.ActionLink("Download TNF", "DownloadFile", "Candidates", new { textval = "" }, new { @id = "tnf", @class = "actionlink" })
+                                            @Html.ActionLink("TNF", "DownloadFile", "Candidates", new { textval = "" }, new { @id = "tnf", @class = "actionlink" })
                                             <!-- don't give a name === doesn't send on POST/GET -->
                                             <span class="input-group-btn-override">
                                                 <input type="file" id="TNFimgupload" style="display:none" onchange="ReadFileName(this,'TNFimgupload');" />
-                                                <button type="button" id="btnTNF" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Browse</button>
+                                                <button type="button" id="btnTNF" class="btn btn-labeled btn-sm btn-outline-secondary" style="padding-left:20px;border-color:gray">
+                                                    <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>TNF
+                                                </button>
 
                                             </span>
                                         </div>
                                         <br>
                                         <div class="input-group image-preview">
                                             @Html.Hidden("Resume", null, new { @id = "hiddenBank" })
-                                            @Html.ActionLink("Download Bank Details", "DownloadFile", "Candidates", new { textval = "" }, new { @id = "bank", @class = "actionlink" })
+                                            @Html.ActionLink("Bank Details", "DownloadFile", "Candidates", new { textval = "" }, new { @id = "bank", @class = "actionlink" })
                                             <!-- don't give a name === doesn't send on POST/GET -->
                                             <span class="input-group-btn-override">
                                                 <input type="file" id="Bankimgupload" style="display:none" onchange="ReadFileName(this,'Bankimgupload');" />
-                                                <button type="button" id="btnBank" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Browse</button>
+                                                <button type="button" id="btnBank" class="btn btn-labeled btn-sm btn-outline-secondary" style="padding-left:20px;border-color:gray">
+                                                    <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Bank Details
+                                                </button>
 
                                             </span>
                                         </div>
@@ -411,22 +423,25 @@
                                     <div class="panel-body">
                                         <div class="input-group image-preview">
                                             @Html.Hidden("Resume", null, new { @id = "hiddenCode" })
-                                            @Html.ActionLink("Download Code Of Conduct", "DownloadFile", "Candidates", new { textval = "" }, new { @id = "code", @class = "actionlink" })
+                                            @Html.ActionLink("Code Of Conduct", "DownloadFile", "Candidates", new { textval = "" }, new { @id = "code", @class = "actionlink" })
                                             <!-- don't give a name === doesn't send on POST/GET -->
                                             <span class="input-group-btn-override">
                                                 <input type="file" id="Codeimgupload" style="display:none" onchange="ReadFileName(this,'Codeimgupload');" />
-                                                <button type="button" id="btnCode" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Browse</button>
+                                                <button type="button" id="btnCode" class="btn btn-labeled btn-sm btn-outline-secondary" style="padding-left:20px;border-color:gray">
+                                                    <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Code-Of-Conduct
+                                                </button>
 
                                             </span>
                                         </div><br>
                                         <div class="input-group image-preview">
                                             @Html.Hidden("Resume", null, new { @id = "hiddenWhs" })
-                                            @Html.ActionLink("Download WHS", "DownloadFile", "Candidates", new { textval = "" }, new { @id = "whs", @class = "actionlink" })
+                                            @Html.ActionLink("WHS", "DownloadFile", "Candidates", new { textval = "" }, new { @id = "whs", @class = "actionlink" })
                                             <!-- don't give a name === doesn't send on POST/GET -->
                                             <span class="input-group-btn-override">
                                                 <input type="file" id="Whsimgupload" style="display:none" onchange="ReadFileName(this,'Whsimgupload');" />
-                                                <button type="button" id="btnWhs" class="btn btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray"> <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Browse</button>
-
+                                                <button type="button" id="btnWhs" class="btn btn-sm btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray">
+                                                    <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>WHS
+                                                </button>
                                             </span>
                                         </div>
                                         <br>
@@ -457,7 +472,7 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 
-    <script type="text/javascript">
+<script type="text/javascript">
         $(document).ready(function () {
             $('#mainTable').DataTable({
                 "pageLength": 20,
@@ -493,7 +508,7 @@
             $("#txtlName").val(CandidateName.split(' ')[1]);
             $("#txtAddress1").val(Address);
             $("#txtAddress2").val(Address);
-            $("#txtSuburb").val(City);
+            $("#txtCity").val(City);
             $("#txtState").val(state);
             $("#txtPostalCode").val(postcode);
             $("#txtEmail").val(Email);
@@ -516,13 +531,12 @@
 
 
         }
-        function LoadDocuments(path, FilePath, certificate1, DriverLicense, PoliceCheckReport, Visa, SuperChoice, TFNDeclaration, BankDetails, CodeOFConduct, WHS) {
+        function LoadDocuments(id,FilePath, certificate1, DriverLicense, PoliceCheckReport, Visa, SuperChoice, TFNDeclaration, BankDetails, CodeOFConduct, WHS) {
         //alert(FilePath);
 
-          $("#cvph").val();
-           $("a#idcv").attr('href', $("#hiddenPath").val().replace('//','\\')+'\\'+path);
 
-        $("#hiddenResume").val(path);
+
+        $("#hiddenResume").val(FilePath);
         $("#hiddenCertificate").val(certificate1);
         $("#hiddenDL").val(DriverLicense);
         $("#hiddenPC").val(PoliceCheckReport);
@@ -531,103 +545,251 @@
         $("#hiddenTNF").val(TFNDeclaration);
         $("#hiddenBank").val(BankDetails);
         $("#hiddenCode").val(CodeOFConduct);
-        $("#hiddenWhs").val(CodeOFConduct);
+        $("#hiddenWhs").val(WHS);
+        $("#hiddenModelId").val(id);
 
 
         }
-        function LoadSkills(CandidateSkills,Experience,JobTitle,TechnicianLevel,RateOfSkillExperties) {
-        
+        function LoadSkills(id,CandidateSkills,Experience,JobTitle,TechnicianLevel,RateOfSkillExperties) {
+
         $("#candidateskills").val(CandidateSkills);
         $("#experience").val(Experience);
         $("#JobTitle").val(JobTitle);
         $("#TechnicianLevel").val(TechnicianLevel);
         $("#skillrate").val(RateOfSkillExperties);
+        $("#hiddenModelId").val(id);
 }
 
         $("#resume").click(function() {
+        if($("#hiddenResume").val() == null || $("#hiddenResume").val() == "")
+        {
+             $.confirm({
+                title:'',
+                content: 'There is no file to download. Please upload the Resume.',
+                boxWidth: '370px',
+                useBootstrap: false,
+                buttons: {
+                    OK: function () {
+
+                    }
+                }
+                    });
+        return false;
+        }
             //Get the id of the selected item in dropdown
          $('#resume').attr('href', function () {
 
-        return "@Url.Action("DownloadFile")"+ "/?textval="  +$("#hiddenResume").val();
+        return "@Url.Action("DownloadFile")"+ "/?textval="  +'@System.Configuration.ConfigurationManager.AppSettings["FileUploadPath"]'+'@System.Configuration.ConfigurationManager.AppSettings["Resume"]'+'\\'+$("#hiddenResume").val();
 
         });
         });
 
         $("#certificate").click(function() {
+
+        if($("#hiddenCertificate").val() == null || $("#hiddenCertificate").val() == "")
+        {
+             $.confirm({
+                title:'',
+                content: 'There is no file to download. Please upload the Certificates.',
+                boxWidth: '370px',
+                useBootstrap: false,
+                buttons: {
+                    OK: function () {
+
+                    }
+                }
+                    });
+        return false;
+        }
             //Get the id of the selected item in dropdown
          $('#certificate').attr('href', function () {
 
-        return "@Url.Action("DownloadFile")"+ "/?textval="  +$("#hiddenCertificate").val();
+        return "@Url.Action("DownloadFile")"+ "/?textval="  +'@System.Configuration.ConfigurationManager.AppSettings["FileUploadPath"]'+'@System.Configuration.ConfigurationManager.AppSettings["Certificates"]'+'\\'+$("#hiddenCertificate").val();
 
     });
         });
 
         $("#DL").click(function() {
+
+        if($("#hiddenDL").val() == null || $("#hiddenDL").val() == "")
+        {
+             $.confirm({
+                title:'',
+                content: 'There is no file to download. Please upload the DL.',
+                boxWidth: '370px',
+                useBootstrap: false,
+                buttons: {
+                    OK: function () {
+
+                    }
+                }
+                    });
+        return false;
+        }
             //Get the id of the selected item in dropdown
          $('#DL').attr('href', function () {
 
-        return "@Url.Action("DownloadFile")"+ "/?textval="  +$("#hiddenDL").val();
+        return "@Url.Action("DownloadFile")"+ "/?textval="  +'@System.Configuration.ConfigurationManager.AppSettings["FileUploadPath"]'+'@System.Configuration.ConfigurationManager.AppSettings["DL"]'+'\\'+$("#hiddenDL").val();
 
     });
 });
 
         $("#PC").click(function() {
+        if($("#hiddenPC").val() == null || $("#hiddenPC").val() == "")
+        {
+             $.confirm({
+                title:'',
+                content: 'There is no file to download. Please upload the PC.',
+                boxWidth: '370px',
+                useBootstrap: false,
+                buttons: {
+                    OK: function () {
+
+                    }
+                }
+                    });
+        return false;
+        }
             //Get the id of the selected item in dropdown
          $('#PC').attr('href', function () {
 
-        return "@Url.Action("DownloadFile")"+ "/?textval="  +$("#hiddenPC").val();
+        return "@Url.Action("DownloadFile")"+ "/?textval="  +'@System.Configuration.ConfigurationManager.AppSettings["FileUploadPath"]'+'@System.Configuration.ConfigurationManager.AppSettings["PC"]'+'\\'+$("#hiddenPC").val();
 
     });
 });
 
         $("#visa").click(function() {
-            //Get the id of the selected item in dropdown
-         $('#resume').attr('href', function () {
+            if($("#hiddenVisa").val() == null || $("#hiddenVisa").val() == "")
+        {
+             $.confirm({
+                title:'',
+                content: 'There is no file to download. Please upload the Visa.',
+                boxWidth: '370px',
+                useBootstrap: false,
+                buttons: {
+                    OK: function () {
 
-        return "@Url.Action("DownloadFile")"+ "/?textval="  +$("#hiddenVisa").val();
+                    }
+                }
+                    });
+        return false;
+        }
+         $('#visa').attr('href', function () {
+
+        return "@Url.Action("DownloadFile")"+ "/?textval="  +'@System.Configuration.ConfigurationManager.AppSettings["FileUploadPath"]'+'@System.Configuration.ConfigurationManager.AppSettings["Visa"]'+'\\'+$("#hiddenVisa").val();
 
     });
 });
 
         $("#super").click(function() {
-            //Get the id of the selected item in dropdown
+      if($("#hiddenSuper").val() == null || $("#hiddenSuper").val() == "")
+        {
+             $.confirm({
+                title:'',
+                content: 'There is no file to download. Please upload the Super form.',
+                boxWidth: '370px',
+                useBootstrap: false,
+                buttons: {
+                    OK: function () {
+
+                    }
+                }
+                    });
+        return false;
+        }
          $('#super').attr('href', function () {
 
-        return "@Url.Action("DownloadFile")"+ "/?textval="  +$("#hiddenSuper").val();
+        return "@Url.Action("DownloadFile")"+ "/?textval="  +'@System.Configuration.ConfigurationManager.AppSettings["FileUploadPath"]'+'@System.Configuration.ConfigurationManager.AppSettings["Super"]'+'\\'+$("#hiddenSuper").val();
 
     });
 });
 
         $("#bank").click(function() {
-            //Get the id of the selected item in dropdown
+      if($("#hiddenBank").val() == null || $("#hiddenBank").val() == "")
+        {
+             $.confirm({
+                title:'',
+                content: 'There is no file to download. Please upload the Bank Details.',
+                boxWidth: '370px',
+                useBootstrap: false,
+                buttons: {
+                    OK: function () {
+
+                    }
+                }
+                    });
+        return false;
+        }
          $('#bank').attr('href', function () {
 
-        return "@Url.Action("DownloadFile")"+ "/?textval="  +$("#hiddenBank").val();
+        return "@Url.Action("DownloadFile")"+ "/?textval="  +'@System.Configuration.ConfigurationManager.AppSettings["FileUploadPath"]'+'@System.Configuration.ConfigurationManager.AppSettings["Bank"]'+'\\'+$("#hiddenBank").val();
 
     });
 });
        $("#tnf").click(function() {
-            //Get the id of the selected item in dropdown
+     if($("#hiddenTNF").val() == null || $("#hiddenTNF").val() == "")
+        {
+             $.confirm({
+                title:'',
+                content: 'There is no file to download. Please upload the TNF Details.',
+                boxWidth: '370px',
+                useBootstrap: false,
+                buttons: {
+                    OK: function () {
+
+                    }
+                }
+                    });
+        return false;
+        }
          $('#tnf').attr('href', function () {
 
-        return "@Url.Action("DownloadFile")"+ "/?textval="  +$("#hiddenTNF").val();
+        return "@Url.Action("DownloadFile")"+ "/?textval="  +'@System.Configuration.ConfigurationManager.AppSettings["FileUploadPath"]'+'@System.Configuration.ConfigurationManager.AppSettings["TNF"]'+'\\'+$("#hiddenTNF").val();
 
     });
   });
         $("#code").click(function() {
-            //Get the id of the selected item in dropdown
+        if($("#hiddenCode").val() == null || $("#hiddenCode").val() == "")
+        {
+             $.confirm({
+                title:'',
+                content: 'There is no file to download. Please upload the Code Of Conduct Details.',
+                boxWidth: '370px',
+                useBootstrap: false,
+                buttons: {
+                    OK: function () {
+
+                    }
+                }
+                    });
+        return false;
+        }
          $('#code').attr('href', function () {
 
-        return "@Url.Action("DownloadFile")"+ "/?textval="  +$("#hiddenCode").val();
+        return "@Url.Action("DownloadFile")"+ "/?textval="  +'@System.Configuration.ConfigurationManager.AppSettings["FileUploadPath"]'+'@System.Configuration.ConfigurationManager.AppSettings["Code"]'+'\\'+$("#hiddenCode").val();
 
     });
 });
 
         $("#whs").click(function() {
-            //Get the id of the selected item in dropdown
-         $('#whs').attr('href', function () {
+        if($("#hiddenWhs").val() == null || $("#hiddenWhs").val() == "")
+        {
+             $.confirm({
+                title:'',
+                content: 'There is no file to download. Please upload the WHS Details.',
+                boxWidth: '370px',
+                useBootstrap: false,
+                buttons: {
+                    OK: function () {
 
-        return "@Url.Action("DownloadFile")"+ "/?textval="  +$("#hiddenWhs").val();
+                    }
+                }
+                    });
+        return false;
+        }
+         $('#whs').attr('href', function (data) {
+
+        return "@Url.Action("DownloadFile")"+ "/?textval="  +'@System.Configuration.ConfigurationManager.AppSettings["FileUploadPath"]'+'@System.Configuration.ConfigurationManager.AppSettings["WHS"]'+'\\'+$("#hiddenWhs").val();
 
     });
 
@@ -715,7 +877,7 @@
             xhr.onreadystatechange = function () {
                 if (xhr.readyState == 4 && xhr.status == 200) {
                      $.confirm({
-               
+
                 content: 'The file has been uploaded successfully.',
                 boxWidth: '370px',
                 useBootstrap: false,
@@ -745,7 +907,7 @@
             xhr.onreadystatechange = function () {
                 if (xhr.readyState == 4 && xhr.status == 200) {
                      $.confirm({
-               
+
                 content: 'The file has been uploaded successfully.',
                 boxWidth: '370px',
                 useBootstrap: false,
@@ -775,7 +937,7 @@
             xhr.onreadystatechange = function () {
                 if (xhr.readyState == 4 && xhr.status == 200) {
                     $.confirm({
-               
+
                 content: 'The file has been uploaded successfully.',
                 boxWidth: '370px',
                 useBootstrap: false,
@@ -805,7 +967,7 @@
             xhr.onreadystatechange = function () {
                 if (xhr.readyState == 4 && xhr.status == 200) {
                     $.confirm({
-               
+
                 content: 'The file has been uploaded successfully.',
                 boxWidth: '370px',
                 useBootstrap: false,
@@ -835,7 +997,7 @@
             xhr.onreadystatechange = function () {
                 if (xhr.readyState == 4 && xhr.status == 200) {
                     $.confirm({
-               
+
                 content: 'The file has been uploaded successfully.',
                 boxWidth: '370px',
                 useBootstrap: false,
@@ -865,7 +1027,7 @@
             xhr.onreadystatechange = function () {
                 if (xhr.readyState == 4 && xhr.status == 200) {
                      $.confirm({
-               
+
                 content: 'The file has been uploaded successfully.',
                 boxWidth: '370px',
                 useBootstrap: false,
@@ -895,7 +1057,7 @@
             xhr.onreadystatechange = function () {
                 if (xhr.readyState == 4 && xhr.status == 200) {
                     $.confirm({
-               
+
                 content: 'The file has been uploaded successfully.',
                 boxWidth: '370px',
                 useBootstrap: false,
@@ -925,7 +1087,7 @@
             xhr.onreadystatechange = function () {
                 if (xhr.readyState == 4 && xhr.status == 200) {
                     $.confirm({
-               
+
                 content: 'The file has been uploaded successfully.',
                 boxWidth: '370px',
                 useBootstrap: false,
@@ -955,7 +1117,7 @@
             xhr.onreadystatechange = function () {
                 if (xhr.readyState == 4 && xhr.status == 200) {
                     $.confirm({
-               
+
                 content: 'The file has been uploaded successfully.',
                 boxWidth: '370px',
                 useBootstrap: false,
@@ -968,9 +1130,9 @@
                 }
             }
         });
-        $('#WHS').on('change', function (event) {
+        $('#Whsimgupload').on('change', function (event) {
             var formdata = new FormData(); //FormData object
-            var fileInput = document.getElementById('WHS');
+            var fileInput = document.getElementById('Whsimgupload');
             //Iterating through each files selected in fileInput
             for (i = 0; i < fileInput.files.length; i++) {
                 //Appending each file to FormData object
@@ -985,7 +1147,7 @@
             xhr.onreadystatechange = function () {
                 if (xhr.readyState == 4 && xhr.status == 200) {
                     $.confirm({
-               
+
                 content: 'The file has been uploaded successfully.',
                 boxWidth: '370px',
                 useBootstrap: false,
@@ -998,7 +1160,7 @@
                 }
             }
         });
-        function LoadEmployment(PayFrequency, ADP_EmployeeID, AssignResource, Annualsalary, HourlyRate, DailyRate, WorkRights,
+        function LoadEmployment(id,PayFrequency, ADP_EmployeeID, AssignResource, Annualsalary, HourlyRate, DailyRate, WorkRights,
             EmployeeStatus, EmployementType, NoticePeriod) {
             $("#txtPayFrequency").val(PayFrequency);
             $("#txtADPEmployeeId").val(ADP_EmployeeID);
@@ -1010,6 +1172,7 @@
             $("#txtEmploymentStatus").val(EmployeeStatus);
             $("#txtEmploymentType").val(EmployementType);
             $("#txtNoticePeriod").val(NoticePeriod);
+            $("#hiddenModelId").val(id);
         }
         $("#updateEmploymentDetailsBtn").click(function () {
             var CandidateEdit = {};
@@ -1043,7 +1206,7 @@
             CandidateEdit.TechnicianLevel = $("#TechnicianLevel").val();
             CandidateEdit.RateOfSkillExperties = $("#skillrate").val();
 
-         
+
             var updateCandidateData = '@Url.Action("UpdateCandidate", "Candidates")';
             $.ajax({
                 type: "POST",
@@ -1078,7 +1241,7 @@
             var age = Math.floor(diff / 31557600000);
             $("#txtAge").val(age);
         }
-    </script>
+</script>
 }
 <style>
 
@@ -1387,7 +1550,6 @@
         border: 1px solid #cccccc;
         border-radius: 4px;
     }
-
     .input-group-btn-override {
         height: 45px;
         padding: 15px 18px;
