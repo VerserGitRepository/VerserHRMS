@@ -1170,15 +1170,16 @@
         });
         function LoadEmployment(id,PayFrequency, ADP_EmployeeID, AssignResource, Annualsalary, HourlyRate, DailyRate, WorkRights,
             EmployeeStatus, EmployementType, NoticePeriod) {
-            $("#txtPayFrequency").val(PayFrequency);
+            $("#ddlPayFrequencyId option:contains(" + PayFrequency + ")").attr('selected', 'selected');
+           // $("#ddlPayFrequencyId").val(PayFrequency);
             $("#txtADPEmployeeId").val(ADP_EmployeeID);
-            $("#txtResourceAssigned").val(AssignResource);
+            $("#ddlResourceAssigned option:contains(" + AssignResource + ")").attr('selected', 'selected');
             $("#txtAnnualSalary").val(Annualsalary);
             $("#txtHourlyRate").val(HourlyRate);
             $("#txtDailyRate").val(DailyRate);
-            $("#txtWorkRights").val(WorkRights);
-            $("#txtEmploymentStatus").val(EmployeeStatus);
-            $("#txtEmploymentType").val(EmployementType);
+            $("#ddlWorkRights option:contains(" + WorkRights + ")").attr('selected', 'selected');
+            $("#ddlEmployeeStatusId option:contains(" + EmployeeStatus + ")").attr('selected', 'selected');
+            $("#ddlEmploymentType option:contains(" + EmployementType + ")").attr('selected', 'selected');
             $("#txtNoticePeriod").val(NoticePeriod);
             $("#hiddenModelId").val(id);
         }
