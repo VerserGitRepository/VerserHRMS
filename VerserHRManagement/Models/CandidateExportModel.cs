@@ -29,22 +29,14 @@ namespace VerserHRManagement.Models
         public string HourlyRate { get; set; }
         public string DailyRate { get; set; } 
         public string state { get; set; }
-        public Nullable<System.DateTime> DateCreated { get; set; }
+       
         public string RateOfSkillExperties { get; set; }
         public string PayFrequency { get; set; }             
         public string AssignResource { get; set; }  
         public int ADP_EmployeeID { get; set; }  
         public string WarehouseName { get; set; }  
         public bool isactive { get; set; }
-        public string certificate1 { get; set; }
-        public string DriverLicense { get; set; }
-        public string PoliceCheckReport { get; set; }
-        public string Visa { get; set; }
-        public string SuperChoice { get; set; }
-        public string TFNDeclaration { get; set; }
-        public string BankDetails { get; set; }
-        public string CodeOFConduct { get; set; }
-        public string WHS { get; set; }
+       
         public string Gender { get; set; }
         public string MaritalStatus { get; set; }
         public int? Age { get; set; }

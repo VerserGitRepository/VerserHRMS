@@ -57,6 +57,14 @@
                                         @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
+                                <div class="form-group required">
+                                    @Html.Label("Warehouse", htmlAttributes: new { @class = "control-label col-md-4" })
+                                    <div class="col-md-6">
+                                        @Html.DropDownListFor(model => model.WarehouseID, Model.WarehouseNameList, "WAREHOUSE", new { @class = "form-control", id = "ddlWarehouseId" })
+
+
+                                    </div>
+                                </div>
                             </div>
                             <div class="col-md-6" style="border-color:gray">
                                 <div class="form-group">
@@ -71,10 +79,10 @@
                                 <div class="form-group required">
                                     @Html.Label("State", htmlAttributes: new { @class = "control-label col-md-4" })
                                     <div class="col-md-6">
-                                        @Html.DropDownListFor(model => model.WarehouseID, Model.WarehouseNameList, "WAREHOUSE", new { @class = "form-control", id = "ddlWarehouseId" })
-    
-                                       
-                                    </div>
+                                        @Html.EditorFor(model => model.state, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.state, "", new { @class = "text-danger" })
+
+                                                                            </div>
                                 </div>
                                 <div class="form-group required">
                                     @Html.Label("Postcode", htmlAttributes: new { @class = "control-label col-md-4" })
