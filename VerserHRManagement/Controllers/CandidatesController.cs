@@ -40,7 +40,7 @@ namespace VerserHRManagement
         }
         public ActionResult CreateNewProfile()
         {
-            Candidate model = new Candidate();
+            var model = new Candidate();
             model.EmploymentList = new SelectList(ListItemService.EmploymentTypeList().Result, "ID", "Value");
             model.WarehouseNameList = new SelectList(ListItemService.Warehouses().Result, "ID", "Value");
             model.PayFrequencyList = new SelectList(ListItemService.PayFrequency().Result, "ID", "Value");
@@ -48,6 +48,8 @@ namespace VerserHRManagement
             model.AssignResourceList = new SelectList(ListItemService.AssignResources().Result, "ID", "Value");
             model.EmployeeStatusList = new SelectList(ListItemService.EmployeeStatusSet().Result, "ID", "Value");
             model.WorkRightsList = new SelectList(ListItemService.WorkRights().Result, "ID", "Value");
+            model.ResourceCategoriesList = new SelectList(ListItemService.ResourceCategories().Result, "ID", "Value");
+            model.DrivingLicensesList = new SelectList(ListItemService.DrivingLicenses().Result, "ID", "Value");
             return View("Create",model);
         }
         [HttpPost]
@@ -73,8 +75,7 @@ namespace VerserHRManagement
                 candidate.DateCreated = DateTime.Now;
                 candidate.isactive = true;
                 CandidateService.Create(candidate);
-                return View(candidate);
-               
+                return View(candidate);               
             }
             return RedirectToAction("Index");
         }
@@ -165,7 +166,6 @@ namespace VerserHRManagement
                 return RedirectToAction("Index", "Candidates");
             }
         }
-
         [HttpPost]
         public ActionResult ExportTimesSheetToExcel()
         {
@@ -197,7 +197,6 @@ namespace VerserHRManagement
             }
             return RedirectToAction("Index", "Candidates");
         }
-
         public ActionResult SMSBroadcast()
         {
             if (string.IsNullOrEmpty(Session["FullUserName"].ToString()))
@@ -206,7 +205,6 @@ namespace VerserHRManagement
             }
             return View(CandidateService.CandidateList().Result);
         }
-
 
         [HttpPost]
         public ActionResult UploadDocument(FileModel model)

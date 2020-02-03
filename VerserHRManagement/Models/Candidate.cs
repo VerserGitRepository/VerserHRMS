@@ -15,7 +15,7 @@ namespace VerserHRManagement.Models
         [Required]
         public string CandidateName { get; set; }
         [Required]
-    [DataType(DataType.MultilineText)]
+        [DataType(DataType.MultilineText)]
         public string CandidateSkills { get; set; }
         [Required]
         [EmailAddress]
@@ -89,5 +89,8 @@ namespace VerserHRManagement.Models
         public string MaritalStatus { get; set; }
         public int? Age { get; set; }
         public DateTime? DOB { get; set; }
+
+        public SelectList ResourceCategoriesList { get; set; }
+        public SelectList DrivingLicensesList { get; set; }
     }
 }
