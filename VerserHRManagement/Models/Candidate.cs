@@ -92,5 +92,7 @@ namespace VerserHRManagement.Models
 
         public SelectList ResourceCategoriesList { get; set; }
         public SelectList DrivingLicensesList { get; set; }
+
+        public List<Candidate> CandidateList { get; set; }
     }
 }
