@@ -209,7 +209,7 @@ namespace VerserHRManagement
 
 
         [HttpPost]
-        public ActionResult UploadDocument()
+        public ActionResult UploadDocument(FileModel model)
         {
             var data = Request.Form["CandidateId"];
             var FolderPath = System.Configuration.ConfigurationManager.AppSettings["FileUploadPath"];
@@ -365,14 +365,56 @@ namespace VerserHRManagement
         {
             try
             {
-               
+                var FolderPath = System.Configuration.ConfigurationManager.AppSettings["FileUploadPath"];
+                string path = "";
+                if (textval.Split(':')[0] == "certificate")
+                {
+                     path = FolderPath + "\\" + System.Configuration.ConfigurationManager.AppSettings["Certificates"];
+                }
+                else if (textval.Split(':')[0] == "resume")
+                {
+                    path = FolderPath + "\\" + System.Configuration.ConfigurationManager.AppSettings["Resume"];
+                }
+                else if (textval.Split(':')[0] == "dl")
+                {
+                    path = FolderPath + "\\" + System.Configuration.ConfigurationManager.AppSettings["DL"];
+                }
+                else if (textval.Split(':')[0] == "pc")
+                {
+                    path = FolderPath + "\\" + System.Configuration.ConfigurationManager.AppSettings["PC"];
+                }
+                else if (textval.Split(':')[0] == "visa")
+                {
+                    path = FolderPath + "\\" + System.Configuration.ConfigurationManager.AppSettings["Visa"];
+                }
+                else if (textval.Split(':')[0] == "super")
+                {
+                    path = FolderPath + "\\" + System.Configuration.ConfigurationManager.AppSettings["Super"];
+                }
+                else if (textval.Split(':')[0] == "bank")
+                {
+                    path = FolderPath + "\\" + System.Configuration.ConfigurationManager.AppSettings["Bank"];
+                }
+                else if (textval.Split(':')[0] == "tnf")
+                {
+                    path = FolderPath + "\\" + System.Configuration.ConfigurationManager.AppSettings["TNF"];
+                }
+                else if (textval.Split(':')[0] == "code")
+                {
+                    path = FolderPath + "\\" + System.Configuration.ConfigurationManager.AppSettings["Code"];
+                }
+                else if (textval.Split(':')[0] == "whs")
+                {
+                    path = FolderPath + "\\" + System.Configuration.ConfigurationManager.AppSettings["WHS"];
+                }
+
                 if (textval == null || textval == "")
                 {
                     return new JsonResult { Data = "There is no file present.", JsonRequestBehavior = JsonRequestBehavior.AllowGet };
                 }
                 var data = Request.Form["Resume"];
-                string path = Path.Combine(Server.MapPath("~/UploadedFiles"), textval);
-                byte[] fileBytes = System.IO.File.ReadAllBytes(textval);
+                //string path = Path.Combine(Server.MapPath("~/UploadedFiles"), textval);
+                byte[] fileBytes = System.IO.File.ReadAllBytes(path+"\\"+textval.Split(':')[1]);
                 string fileName = textval;
                 return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, fileName);
             }

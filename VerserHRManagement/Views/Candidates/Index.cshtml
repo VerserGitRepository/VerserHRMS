@@ -579,7 +579,7 @@
             //Get the id of the selected item in dropdown
          $('#resume').attr('href', function () {
 
-        return "@Url.Action("DownloadFile")"+ "/?textval="  +'@System.Configuration.ConfigurationManager.AppSettings["FileUploadPath"]'+'@System.Configuration.ConfigurationManager.AppSettings["Resume"]'+'\\'+$("#hiddenResume").val();
+        return "@Url.Action("DownloadFile")"+ "/?textval="  +'resume:'+$("#hiddenResume").val();
 
         });
         });
@@ -604,7 +604,7 @@
             //Get the id of the selected item in dropdown
          $('#certificate').attr('href', function () {
 
-        return "@Url.Action("DownloadFile")"+ "/?textval="  +'@System.Configuration.ConfigurationManager.AppSettings["FileUploadPath"]'+'@System.Configuration.ConfigurationManager.AppSettings["Certificates"]'+'\\'+$("#hiddenCertificate").val();
+        return "@Url.Action("DownloadFile")"+ "/?textval="  +'certificate:'+$("#hiddenCertificate").val();
 
     });
         });
@@ -629,7 +629,7 @@
             //Get the id of the selected item in dropdown
          $('#DL').attr('href', function () {
 
-        return "@Url.Action("DownloadFile")"+ "/?textval="  +'@System.Configuration.ConfigurationManager.AppSettings["FileUploadPath"]'+'@System.Configuration.ConfigurationManager.AppSettings["DL"]'+'\\'+$("#hiddenDL").val();
+        return "@Url.Action("DownloadFile")"+ "/?textval="  +'dl:'+$("#hiddenDL").val();
 
     });
 });
@@ -653,7 +653,7 @@
             //Get the id of the selected item in dropdown
          $('#PC').attr('href', function () {
 
-        return "@Url.Action("DownloadFile")"+ "/?textval="  +'@System.Configuration.ConfigurationManager.AppSettings["FileUploadPath"]'+'@System.Configuration.ConfigurationManager.AppSettings["PC"]'+'\\'+$("#hiddenPC").val();
+        return "@Url.Action("DownloadFile")"+ "/?textval="  +'pc:'+$("#hiddenPC").val();
 
     });
 });
@@ -676,7 +676,7 @@
         }
          $('#visa').attr('href', function () {
 
-        return "@Url.Action("DownloadFile")"+ "/?textval="  +'@System.Configuration.ConfigurationManager.AppSettings["FileUploadPath"]'+'@System.Configuration.ConfigurationManager.AppSettings["Visa"]'+'\\'+$("#hiddenVisa").val();
+        return "@Url.Action("DownloadFile")"+ "/?textval="  +'visa:'+$("#hiddenVisa").val();
 
     });
 });
@@ -699,7 +699,7 @@
         }
          $('#super').attr('href', function () {
 
-        return "@Url.Action("DownloadFile")"+ "/?textval="  +'@System.Configuration.ConfigurationManager.AppSettings["FileUploadPath"]'+'@System.Configuration.ConfigurationManager.AppSettings["Super"]'+'\\'+$("#hiddenSuper").val();
+        return "@Url.Action("DownloadFile")"+ "/?textval="  +'super:'+$("#hiddenSuper").val();
 
     });
 });
@@ -722,7 +722,7 @@
         }
          $('#bank').attr('href', function () {
 
-        return "@Url.Action("DownloadFile")"+ "/?textval="  +'@System.Configuration.ConfigurationManager.AppSettings["FileUploadPath"]'+'@System.Configuration.ConfigurationManager.AppSettings["Bank"]'+'\\'+$("#hiddenBank").val();
+        return "@Url.Action("DownloadFile")"+ "/?textval="  +'bank:'+$("#hiddenBank").val();
 
     });
 });
@@ -744,7 +744,7 @@
         }
          $('#tnf').attr('href', function () {
 
-        return "@Url.Action("DownloadFile")"+ "/?textval="  +'@System.Configuration.ConfigurationManager.AppSettings["FileUploadPath"]'+'@System.Configuration.ConfigurationManager.AppSettings["TNF"]'+'\\'+$("#hiddenTNF").val();
+        return "@Url.Action("DownloadFile")"+ "/?textval="  +'tnf:'+$("#hiddenTNF").val();
 
     });
   });
@@ -766,7 +766,7 @@
         }
          $('#code').attr('href', function () {
 
-        return "@Url.Action("DownloadFile")"+ "/?textval="  +'@System.Configuration.ConfigurationManager.AppSettings["FileUploadPath"]'+'@System.Configuration.ConfigurationManager.AppSettings["Code"]'+'\\'+$("#hiddenCode").val();
+        return "@Url.Action("DownloadFile")"+ "/?textval="  +'code:'+$("#hiddenCode").val();
 
     });
 });
@@ -789,7 +789,7 @@
         }
          $('#whs').attr('href', function (data) {
 
-        return "@Url.Action("DownloadFile")"+ "/?textval="  +'@System.Configuration.ConfigurationManager.AppSettings["FileUploadPath"]'+'@System.Configuration.ConfigurationManager.AppSettings["WHS"]'+'\\'+$("#hiddenWhs").val();
+        return "@Url.Action("DownloadFile")"+ "/?textval="  +'whs:'+$("#hiddenWhs").val();
 
     });
 
@@ -992,7 +992,7 @@
             formdata.append("FileUpload", "Visa");
             //Creating an XMLHttpRequest and sending
             var xhr = new XMLHttpRequest();
-            xhr.open('POST', '/Candidates/UploadDocument');
+            xhr.open('POST', '/HRMS/Candidates/UploadDocument');
             xhr.send(formdata);
             xhr.onreadystatechange = function () {
                 if (xhr.readyState == 4 && xhr.status == 200) {

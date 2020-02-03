@@ -177,6 +177,7 @@
     <Compile Include="HelperServices\SMSHelperService.cs" />
     <Compile Include="HelperServices\UserRoles.cs" />
     <Compile Include="Models\AssignResourceViewModel.cs" />
+    <Compile Include="Models\FileModel.cs" />
     <Compile Include="Models\CandidateEdit.cs" />
     <Compile Include="Models\Candidate.cs" />
     <Compile Include="Models\CandidateExportModel.cs" />
