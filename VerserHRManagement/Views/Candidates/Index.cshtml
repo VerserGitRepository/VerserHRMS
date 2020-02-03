@@ -1170,19 +1170,20 @@
         });
         function LoadEmployment(id,PayFrequency, ADP_EmployeeID, AssignResource, Annualsalary, HourlyRate, DailyRate, WorkRights,
             EmployeeStatus, EmployementType, NoticePeriod) {
-            $("#ddlPayFrequencyId option:contains(" + PayFrequency + ")").attr('selected', 'selected');
-           // $("#ddlPayFrequencyId").val(PayFrequency);
-            $("#txtADPEmployeeId").val(ADP_EmployeeID);
-            $("#ddlResourceAssigned option:contains(" + AssignResource + ")").attr('selected', 'selected');
-            $("#txtAnnualSalary").val(Annualsalary);
-            $("#txtHourlyRate").val(HourlyRate);
-            $("#txtDailyRate").val(DailyRate);
-            $("#ddlWorkRights option:contains(" + WorkRights + ")").attr('selected', 'selected');
-            $("#ddlEmployeeStatusId option:contains(" + EmployeeStatus + ")").attr('selected', 'selected');
-            $("#ddlEmploymentType option:contains(" + EmployementType + ")").attr('selected', 'selected');
-            $("#txtNoticePeriod").val(NoticePeriod);
-            $("#hiddenModelId").val(id);
-        }
+            PayFrequency == "Weekly" ? $("#ddlPayFrequencyId").val(2) : PayFrequency == "Monthly" ? $("#ddlPayFrequencyId").val(1) : $("#ddlPayFrequencyId").val(0);
+            //$("#ddlPayFrequencyId").find('option[value='+PayFrequency+']').attr('selected','selected')
+            // $("#ddlPayFrequencyId").val(PayFrequency);
+             $("#txtADPEmployeeId").val(ADP_EmployeeID);
+            $("#ddlResourceAssigned").text(AssignResource);// option:contains(" + AssignResource + ")").attr('selected', 'selected');
+             $("#txtAnnualSalary").val(Annualsalary);
+             $("#txtHourlyRate").val(HourlyRate);
+             $("#txtDailyRate").val(DailyRate);
+             $("#ddlWorkRights option:contains("+WorkRights+")").attr('selected', 'selected');
+             $("#ddlEmployeeStatusId option:contains("+EmployeeStatus+")").attr('selected', 'selected');
+             $("#ddlEmploymentType option:contains("+EmployementType+")").attr('selected', 'selected');
+             $("#txtNoticePeriod").val(NoticePeriod);
+             $("#hiddenModelId").val(id);
+         }
         $("#updateEmploymentDetailsBtn").click(function () {
             var CandidateEdit = {};
             CandidateEdit.ID = $("#hiddenModelId").val();
