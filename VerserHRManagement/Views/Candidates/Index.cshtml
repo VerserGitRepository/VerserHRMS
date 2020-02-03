@@ -26,6 +26,9 @@
                         <th>
                             @Html.DisplayName("CANDIDATES")
                         </th>
+                        <th>
+                            @Html.DisplayName("Skills")
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -45,13 +48,13 @@
                                     <input type="hidden" value='@Server.MapPath("~/UploadedFiles")' id="hiddenPath" />
                                 </font> <font style="font-size:xx-small">@item.City @item.state </font> <br />
                             </td>
+                            <td>  @item.CandidateSkills</td>
                         </tr>
                     }
                 </tbody>
             </table>
         </div>
-
-        <div class="col-md-6">
+                <div class="col-md-6">
             <div class="panel with-nav-tabs panel-default" style="width:200%">
                 <div class="panel-heading">
                     <ul class="nav nav-tabs">
@@ -77,7 +80,7 @@
                 <div class="panel-body">
                     <div class="tab-content">
                         <div class="tab-pane fade in active" id="tab1default">
-                            <div class="col-md-6" style="padding-left:0px">
+                            <div class="col-md-6"  style="padding-left:0px">
                                 <div class="row">
                                     <form>
                                         <div class="container table-bordered" style="margin:20px; width:1000px;padding-top:0px;padding-bottom:0px;margin-top:2px">
@@ -136,7 +139,7 @@
                                     <div class="row" style="margin-left:20px;">
                                         <fieldset>
                                             <div class="form-group row">
-                                                <div class="container table-bordered" style="margin:20px; width:1000px;padding-top:5px;padding-bottom:5px">
+                                                <div class="container table-bordered" style="margin:20px; margin-top:0px;width:1000px;padding-top:5px;padding-bottom:5px">
                                                     <div class="col-md-8" style="margin-left:10px;">
                                                         <label>Address:</label>
                                                         <div class="input-group">
@@ -196,7 +199,7 @@
                                                         </div>
 
                                                     </div>
-
+                                              
                                                 </div>
                                             </div>
                                         </fieldset>
@@ -336,8 +339,7 @@
                                             </span>
                                         </div>
                                     </div>
-
-                                    <div class="panel-heading"><strong>LEGAL</strong> <small> </small></div>
+                                                       <div class="panel-heading"><strong>LEGAL</strong> <small> </small></div>
                                     <div class="panel-body">
                                         <div class="input-group image-preview">
                                             @Html.Hidden("Resume", null, new { @id = "hiddenDL" })
@@ -476,7 +478,11 @@
         $(document).ready(function () {
             $('#mainTable').DataTable({
                 "pageLength": 20,
-                "lengthMenu": [10, 15, 20, 25, 50]
+                "lengthMenu": [10, 15, 20, 25, 50],
+                "aoColumnDefs": [
+                    { "bSearchable": true, "bVisible": false, "aTargets": [1] }
+                    
+                ] 
             });
             $('#mainTable1').DataTable();
             $('#mainTable2').DataTable();
@@ -534,8 +540,6 @@
         function LoadDocuments(id,FilePath, certificate1, DriverLicense, PoliceCheckReport, Visa, SuperChoice, TFNDeclaration, BankDetails, CodeOFConduct, WHS) {
         //alert(FilePath);
 
-
-
         $("#hiddenResume").val(FilePath);
         $("#hiddenCertificate").val(certificate1);
         $("#hiddenDL").val(DriverLicense);
@@ -547,7 +551,6 @@
         $("#hiddenCode").val(CodeOFConduct);
         $("#hiddenWhs").val(WHS);
         $("#hiddenModelId").val(id);
-
 
         }
         function LoadSkills(id,CandidateSkills,Experience,JobTitle,TechnicianLevel,RateOfSkillExperties) {
