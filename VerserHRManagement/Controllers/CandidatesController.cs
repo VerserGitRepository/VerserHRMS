@@ -23,19 +23,16 @@ namespace VerserHRManagement
             {
                 return RedirectToAction("Login", "Login");
             }
-
             Candidate model = new Candidate();
             model.CandidateList = CandidateService.CandidateList().Result;
-
             model.EmploymentList = new SelectList(ListItemService.EmploymentTypeList().Result, "ID", "Value");
             model.WarehouseNameList = new SelectList(ListItemService.Warehouses().Result, "ID", "Value");
-            model.PayFrequencyList = new SelectList(ListItemService.PayFrequency().Result, "ID", "Value");
-            
-           
+            model.PayFrequencyList = new SelectList(ListItemService.PayFrequency().Result, "ID", "Value");            
             model.AssignResourceList = new SelectList(ListItemService.AssignResources().Result, "ID", "Value");
             model.EmployeeStatusList = new SelectList(ListItemService.EmployeeStatusSet().Result, "ID", "Value");
             model.WorkRightsList = new SelectList(ListItemService.WorkRights().Result, "ID", "Value");
-          
+            model.ResourceCategoriesList = new SelectList(ListItemService.ResourceCategories().Result, "ID", "Value");
+            model.DrivingLicensesList = new SelectList(ListItemService.DrivingLicenses().Result, "ID", "Value");
             return View(model);
         }
         public ActionResult Details(int id)
@@ -114,7 +111,6 @@ namespace VerserHRManagement
 
         }
         [HttpPost]
-
         public ActionResult Edit(Candidate candidate)
         {
             if (UserRoles.UserCanEdit() == true)
