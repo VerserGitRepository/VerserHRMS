@@ -414,7 +414,7 @@ namespace VerserHRManagement
                 }
                 var data = Request.Form["Resume"];
                 //string path = Path.Combine(Server.MapPath("~/UploadedFiles"), textval);
-                byte[] fileBytes = System.IO.File.ReadAllBytes(path+"\\"+textval);
+                byte[] fileBytes = System.IO.File.ReadAllBytes(path+"\\"+textval.Split(':')[1]);
                 string fileName = textval;
                 return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, fileName);
             }
