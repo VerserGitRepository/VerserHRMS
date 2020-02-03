@@ -209,7 +209,7 @@ namespace VerserHRManagement
 
 
         [HttpPost]
-        public ActionResult UploadDocument(FileModel model)
+        public ActionResult UploadDocument()
         {
             var data = Request.Form["CandidateId"];
             var FolderPath = System.Configuration.ConfigurationManager.AppSettings["FileUploadPath"];
