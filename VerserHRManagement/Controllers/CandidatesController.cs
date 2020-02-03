@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
@@ -432,6 +433,23 @@ namespace VerserHRManagement
             catch (Exception ex)
             {
                 return RedirectToAction("Index");
+            }
+        }
+
+        [HttpPost]
+        public static void BulkMailEmail(List<CandidateListItems> ids,string subject,string body)
+        {
+            var mailmodel = new BulkMailModel();
+            mailmodel.Subject = subject;
+            mailmodel.Body = body;
+            foreach (var c in ids)
+            {
+                var _candidate = CandidateService.CandidateList().Result.OrderBy(x => x.ID).ToList();             
+             if (_candidate != null && _candidate.FirstOrDefault().Email != null)
+                {
+                    mailmodel.To = _candidate.FirstOrDefault().Email;
+                  var _flagsign=  BulkEmailService.BulkMails(mailmodel).Result;
+                }
             }
         }
     }

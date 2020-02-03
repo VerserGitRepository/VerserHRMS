@@ -52,8 +52,7 @@ namespace VerserHRManagement.HelperServices
                 }
             }
             return CandidateNoList;
-        }
-
+        }       
     }
 }
 

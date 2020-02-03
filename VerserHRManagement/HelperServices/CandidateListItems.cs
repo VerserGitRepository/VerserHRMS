@@ -12,5 +12,6 @@ namespace VerserHRManagement.HelperServices
         public string CandidateName { get; set; }
         public string CandidateSkills { get; set; }
         public Nullable<int> Phone { get; set; }
+        public string Email { get; set; }
     }
 }

@@ -171,12 +171,14 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="HelperServices\BulkEmailService.cs" />
     <Compile Include="HelperServices\CandidateListItems.cs" />
     <Compile Include="HelperServices\CandidatesListExport.cs" />
     <Compile Include="HelperServices\LoginService.cs" />
     <Compile Include="HelperServices\SMSHelperService.cs" />
     <Compile Include="HelperServices\UserRoles.cs" />
     <Compile Include="Models\AssignResourceViewModel.cs" />
+    <Compile Include="Models\BulkMailModel.cs" />
     <Compile Include="Models\FileModel.cs" />
     <Compile Include="Models\CandidateEdit.cs" />
     <Compile Include="Models\Candidate.cs" />
