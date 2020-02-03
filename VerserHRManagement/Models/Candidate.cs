@@ -89,7 +89,8 @@ namespace VerserHRManagement.Models
         public string MaritalStatus { get; set; }
         public int? Age { get; set; }
         public DateTime? DOB { get; set; }
-
+        public int? ResourceCategoriesID { get; set; }
+        public int? DrivingLicenseID { get; set; }
         public SelectList ResourceCategoriesList { get; set; }
         public SelectList DrivingLicensesList { get; set; }
 
