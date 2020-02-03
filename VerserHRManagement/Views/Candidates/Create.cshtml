@@ -106,7 +106,7 @@
                         <div class=" row col-md-4 well" style="width:350px;height:270px">
 
 
-                    
+
                             <div class="form-group">
                                 @Html.Label("Experience", htmlAttributes: new { @class = "control-label col-md-4" })
                                 <div class="col-md-6">
@@ -128,7 +128,12 @@
                                     @Html.DropDownListFor(model => model.TechnicianLevelID, Model.TechnicianLevelList, "Technician Level", new { @class = "form-control" })
                                 </div>
                             </div>
-
+                            <div class="form-group required">
+                                @Html.Label("Resource Categories", htmlAttributes: new { @class = "control-label col-md-4" })
+                                <div class="col-md-6">
+                                    @Html.DropDownListFor(model => model.ResourceCategoriesID, Model.ResourceCategoriesList, "Resource Categories", new { @class = "form-control" })
+                                </div>
+                            </div>
 
                             <div class="form-group">
                                 @Html.Label("Upload Resume", htmlAttributes: new { @class = "control-label col-md-4" })
@@ -176,9 +181,10 @@
                                 @Html.Label("Pay Frequency", htmlAttributes: new { @class = "control-label col-md-4" })
                                 <div class="col-md-6">
                                     @Html.DropDownListFor(model => model.PayFrequencyID, Model.PayFrequencyList, "Pay Frequency", new { @class = "form-control", id = "ddlEmploymentId" })
-         
+
                                 </div>
                             </div>
+                      
                         </div>
                         <div class="col-md-4">
 
@@ -234,7 +240,13 @@
                                     @Html.ValidationMessageFor(model => model.HourlyRate, "", new { @class = "text-danger" })
                                 </div>
                             </div>
-
+                            <div class="form-group required">
+                                @Html.Label("Driver License", htmlAttributes: new { @class = "control-label col-md-4" })
+                                <div class="col-md-6">
+                                    @Html.DropDownListFor(model => model.DrivingLicenseID, Model.DrivingLicensesList, "Driver License", new { @class = "form-control" })
+                                </div>
+                            </div>
+                       
                         </div>
                     </div>
                 </div>
