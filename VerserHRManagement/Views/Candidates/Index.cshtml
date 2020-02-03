@@ -16,11 +16,11 @@
 <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
-
+<script src='https://kit.fontawesome.com/a076d05399.js'></script>
 <div class="container-fluid" style="margin-left:0px;padding-top:0px">
     <div class="container" style="width:170%; padding-top:15px; margin-left:0px; border-color:lightgray;padding-left:0px">
         <div class="col-md-4">
-            <table class="table table-bordered  table-responsive table-hover table-dark" id="mainTable" style="margin-bottom:2Px" >
+            <table class="table table-bordered  table-responsive table-hover table-dark" id="mainTable" style="margin-bottom:2Px">
                 <thead style="background-color: #428bca; color:white">
                     <tr>
                         <th>
@@ -54,7 +54,7 @@
                 </tbody>
             </table>
         </div>
-              <div class="col-md-6">
+        <div class="col-md-6">
             <div class="panel with-nav-tabs panel-default" style="width:200%;margin-bottom:0px">
                 <div class="panel-heading">
                     <ul class="nav nav-tabs">
@@ -75,12 +75,13 @@
                                     <input type="image" src="~/Images/excel.png" alt="Submit" width="20" height="20">
                                 }
                             }
-                        </li></ul>    
+                        </li>
+                    </ul>
                 </div>
                 <div class="panel-body" style="margin-bottom:0px">
                     <div class="tab-content" style="padding-bottom:0px">
                         <div class="tab-pane fade in active" id="tab1default">
-                            <div class="col-md-6"  style="padding-left:0px">
+                            <div class="col-md-6" style="padding-left:0px">
                                 <div class="row">
                                     <form>
                                         <div class="container table-bordered" style="margin:20px; width:1000px;padding-top:0px;padding-bottom:0px;margin-top:2px">
@@ -102,7 +103,7 @@
                                                                 <i class="glyphicon glyphicon-user"></i>
                                                             </span>  <input type="text" id="txtfName" class="form-control" placeholder="First Name">
                                                         </div>
-                                                       
+
                                                     </div>
                                                     <div class="col-md-3">
                                                         <label>Last Name</label>
@@ -111,8 +112,8 @@
                                                                 <i class="glyphicon glyphicon-user"></i>
                                                             </span> <input type="text" id="txtlName" class="form-control" placeholder="Last Name">
                                                         </div>
-                                                        
-                                                   
+
+
                                                     </div>
                                                     <div class="col-md-3">
                                                         <label>DOB</label>
@@ -121,7 +122,7 @@
                                                                 <i class="glyphicon glyphicon-calendar"></i>
                                                             </span> <input type="date" class="form-control" id="txtDOB" placeholder="DOB" onchange="calculateAge(this);">
                                                         </div>
-                                                        
+
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
@@ -132,7 +133,7 @@
                                                                 <i class="glyphicon glyphicon-calendar"></i>
                                                             </span> <input type="text" class="form-control" id="txtAge" placeholder="Age">
                                                         </div>
-                                                     
+
 
                                                     </div>
                                                     <div class="col-md-3">
@@ -156,7 +157,7 @@
                                                         <label>Warehouse:</label>
                                                         <div class="input-group">
                                                             <span class="input-group-addon">
-                                                                <i class="glyphicon glyphicon-home"></i>
+                                                                <i class="fas fa-warehouse"></i>
                                                             </span> @Html.DropDownListFor(model => model.WarehouseID, Model.WarehouseNameList, "WAREHOUSE", new { @class = "form-control", id = "ddlWarehouseId" })
                                                         </div>
 
@@ -185,9 +186,9 @@
                                                     <input type="checkbox" checked data-toggle="toggle" data-onstyle="info" id="chkIsActive">
                                                 </div>
                                             </div>
-                                                <div style="font-size:smaller;color:deepskyblue">
-                                                </div>
+                                            <div style="font-size:smaller;color:deepskyblue">
                                             </div>
+                                        </div>
                                     </form>
                                 </div>
                                 <div class="row grid-divider">
@@ -256,13 +257,13 @@
                                                         </div>
 
                                                     </div>  <br /><br /><br />
-                                                  
+
 
                                                 </div>
                                             </div>
                                         </fieldset>
                                     </div>
-                                </div>                           
+                                </div>
                             </div>
                         </div>
                         <div class="tab-pane fade" id="tab2default">
@@ -313,7 +314,7 @@
                                             <input type="text" class="form-control form-control-sm" id="txtNoticePeriod" placeholder="Notice Period">
                                         </div>
                                     </div>
-                                </div>                              
+                                </div>
                             </div>
                         </div>
                         <div class="tab-pane fade" id="tab3default">
@@ -393,11 +394,11 @@
                                                 <input id="Certificateimgupload" type="file" style="display:none;">
                                                 <button type="button" id="btnCertificates" class="btn btn-sm btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray">
                                                     <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Certificate
-                                               </button>
+                                                </button>
                                             </span>
                                         </div>
                                     </div>
-                                                       <div class="panel-heading"><strong>LEGAL</strong> <small> </small></div>
+                                    <div class="panel-heading"><strong>LEGAL</strong> <small> </small></div>
                                     <div class="panel-body">
                                         <div class="input-group image-preview">
                                             @Html.Hidden("Resume", null, new { @id = "hiddenDL" })
@@ -511,12 +512,12 @@
                         </div>
                     </div>
                 </div>
-                     <div class="panel-footer primary" align="left" style="height:40px;vertical-align:top;background-color:lightgrey;margin-bottom:0px">
+                <div class="panel-footer primary" align="left" style="height:40px;vertical-align:top;background-color:lightgrey;margin-bottom:0px">
                     @if (UserRoles.UserCanEdit() == true)
                     {
-                    <input type="submit" value="SAVE CHANGES" class="btn btn-primary"
-                           style="background-color:#428bca;border-color:#428bca"
-                           id="updateEmploymentDetailsBtn" />
+                        <input type="submit" value="SAVE CHANGES" class="btn btn-primary"
+                               style="background-color:#428bca;border-color:#428bca"
+                               id="updateEmploymentDetailsBtn" />
                     }
                 </div>
             </div>
@@ -532,15 +533,15 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 
-<script type="text/javascript">
+    <script type="text/javascript">
         $(document).ready(function () {
             $('#mainTable').DataTable({
                 "pageLength": 20,
                 "lengthMenu": [10, 15, 20, 25, 50],
                 "aoColumnDefs": [
                     { "bSearchable": true, "bVisible": false, "aTargets": [1] }
-                    
-                ] 
+
+                ]
             });
             $('#mainTable1').DataTable();
             $('#mainTable2').DataTable();
@@ -1303,7 +1304,7 @@
             var age = Math.floor(diff / 31557600000);
             $("#txtAge").val(age);
         }
-</script>
+    </script>
 }
 <style>
 
@@ -1612,6 +1613,7 @@
         border: 1px solid #cccccc;
         border-radius: 4px;
     }
+
     .input-group-btn-override {
         height: 45px;
         padding: 15px 18px;
