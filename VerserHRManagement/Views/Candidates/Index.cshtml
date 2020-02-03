@@ -20,7 +20,7 @@
 <div class="container-fluid" style="margin-left:0px;padding-top:0px">
     <div class="container" style="width:170%; padding-top:15px; margin-left:0px; border-color:lightgray;padding-left:0px">
         <div class="col-md-4">
-            <table class="table table-bordered  table-responsive table-hover table-dark" id="mainTable" @*style="width:300Px" *@>
+            <table class="table table-bordered  table-responsive table-hover table-dark" id="mainTable" style="margin-bottom:2Px" >
                 <thead style="background-color: #428bca; color:white">
                     <tr>
                         <th>
@@ -54,8 +54,8 @@
                 </tbody>
             </table>
         </div>
-                <div class="col-md-6">
-            <div class="panel with-nav-tabs panel-default" style="width:200%">
+              <div class="col-md-6">
+            <div class="panel with-nav-tabs panel-default" style="width:200%;margin-bottom:0px">
                 <div class="panel-heading">
                     <ul class="nav nav-tabs">
                         <li class="active"><a href="#tab1default" data-toggle="tab">PERSONAL</a></li>
@@ -77,8 +77,8 @@
                             }
                         </li></ul>    
                 </div>
-                <div class="panel-body">
-                    <div class="tab-content">
+                <div class="panel-body" style="margin-bottom:0px">
+                    <div class="tab-content" style="padding-bottom:0px">
                         <div class="tab-pane fade in active" id="tab1default">
                             <div class="col-md-6"  style="padding-left:0px">
                                 <div class="row">
@@ -148,10 +148,7 @@
                                                             </span><input id="txtAddress1" placeholder="Address Line 1" class="form-control" required="true" value="" type="text">
                                                         </div>
 
-                                                        <label>Warehouse:</label>
-                                                        <div class="input-group">
-                                                            @Html.DropDownListFor(model => model.WarehouseID, Model.WarehouseNameList, "WAREHOUSE", new { @class = "form-control", id = "ddlWarehouseId" })
-                                                        </div>
+
                                                     </div>
                                                     <br /><br /><br /><br />
                                                     <div class="col-md-3" style="margin-left:10px;">
@@ -203,8 +200,36 @@
                                                             </span><input id="txtPhoneNumber" placeholder="Phone Number" class="form-control" required="true" value="" type="text">
                                                         </div>
 
+                                                    </div>  <br /><br /><br />
+                                                    <div class="col-md-3"style="margin-left:10px;">
+                                                        <label>Warehouse:</label>
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon">
+                                                                <i class="glyphicon glyphicon-home"></i>
+                                                            </span> @Html.DropDownListFor(model => model.WarehouseID, Model.WarehouseNameList, "WAREHOUSE", new { @class = "form-control", id = "ddlWarehouseId" })
+                                                        </div>
+
                                                     </div>
-                                              
+                                                    @*<div class="col-md-3">
+            <label>Resource Categories:</label>
+            <div class="input-group">
+                <span class="input-group-addon">
+                    <i class="glyphicon glyphicon-home"></i>
+                </span> @Html.DropDownListFor(model => model.ResourceCategoriesID, Model.ResourceCategoriesList, "Resource Categories", new { @class = "form-control" })
+            </div>
+
+        </div>
+        <div class="col-md-3">
+            <label>Driving License:</label>
+            <div class="input-group">
+                <span class="input-group-addon">
+                    <i class="glyphicon glyphicon-home"></i>
+                </span>  @Html.DropDownListFor(model => model.DrivingLicenseID, Model.DrivingLicensesList, "Driver License", new { @class = "form-control" })
+            </div>
+
+        </div>*@
+
+
                                                 </div>
                                             </div>
                                         </fieldset>
@@ -458,7 +483,7 @@
                         </div>
                     </div>
                 </div>
-                     <div class="panel-footer primary" align="left" style="height:40px;vertical-align:top;background-color:lightgrey">
+                     <div class="panel-footer primary" align="left" style="height:40px;vertical-align:top;background-color:lightgrey;margin-bottom:0px">
                     @if (UserRoles.UserCanEdit() == true)
                     {
                     <input type="submit" value="SAVE CHANGES" class="btn btn-primary"
