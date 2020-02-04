@@ -41,7 +41,7 @@
                                 '@if(item.profilePicture != null) { @Convert.ToBase64String(@item.profilePicture)}','@if (item.DOB.HasValue) {@item.DOB.Value.ToString("yyyy-MM-dd")}','@item.Age','@item.Gender','@item.MaritalStatus',@Json.Encode(item.isactive),
                                 '@item.WarehouseID','@item.ResourceCategoriesID','@item.DrivingLicenseID');
                                 LoadEmployment(@item.ID,'@item.PayFrequenciesID','@item.ADP_EmployeeID','@item.AssignResourcesID','@item.Annualsalary','@item.HourlyRate','@item.DailyRate','@item.WorkRightID',
-                                '@item.EmployeeStatusSetID','@item.EmployementTypeId','@item.NoticePeriod');
+                                '@item.EmployeeStatusSetID','@item.EmploymentTypesID','@item.NoticePeriod');
                                 LoadDocuments(@item.ID,'@item.FilePath','@item.certificate1','@item.DriverLicense','@item.PoliceCheckReport','@item.Visa','@item.SuperChoice','@item.TFNDeclaration',
                                 '@item.BankDetails','@item.CodeOFConduct','@item.WHS');
                                 LoadSkills(@item.ID,'@item.CandidateSkills','@item.Experience','@item.JobTitle','@item.technicalLevelsID','@item.RateOfSkillExperties');">
