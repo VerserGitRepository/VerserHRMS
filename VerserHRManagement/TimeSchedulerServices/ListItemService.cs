@@ -136,7 +136,7 @@ namespace VerserHRManagement.TimeSchedulerServices
             using (HttpClient client = new HttpClient())
             {
                 client.BaseAddress = new Uri(TimeSheetAPIURl);
-                HttpResponseMessage response = client.GetAsync(string.Format("")).Result;
+                HttpResponseMessage response = client.GetAsync(string.Format("ListItems/WorkRights")).Result;
                 if (response.IsSuccessStatusCode)
                 {
                     var Warehouses = await response.Content.ReadAsAsync<List<WorkRightsViewModel>>();
