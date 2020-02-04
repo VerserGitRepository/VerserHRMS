@@ -358,8 +358,13 @@ namespace VerserHRManagement
                 {
 
                     bool isupdated = CandidateService.EditCandidate(candidate);
-                    if(isupdated)
-                        return new JsonResult { Data = "The update has been successful.", JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+                    if (isupdated)
+
+                    {
+                        //return new JsonResult { Data = "The update has been successful.", JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+                        var redirectUrl = new UrlHelper(Request.RequestContext).Action("Index", "Candidates");
+                        return Json(new { Url = redirectUrl });
+                    }
                     else
                         return new JsonResult { Data = "The update is not successful.", JsonRequestBehavior = JsonRequestBehavior.AllowGet };
                 }

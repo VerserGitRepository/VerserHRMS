@@ -31,6 +31,9 @@
                         <th>
                             @Html.DisplayName("Skills")
                         </th>
+                        <th>
+                            @Html.DisplayName("Phone")
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -545,6 +548,7 @@
     <script type="text/javascript">
         $(document).ready(function () {
             $('#mainTable').DataTable({
+                stateSave: true,
                 "pageLength": 20,
                 "lengthMenu": [10, 15, 20, 25, 50],
                 "aoColumnDefs": [
@@ -1260,7 +1264,7 @@
 
                 $.confirm({
                 title:'',
-                content: result,
+                content: 'Update is successful.',
                 boxWidth: '370px',
                 useBootstrap: false,
                 buttons: {
@@ -1269,11 +1273,14 @@
                     }
                 }
                     });
+                    window.location.href = result.Url;
                 },
                 error: function () {
                     alert("Dynamic content load failed.");
-                }
+                },
+                 
             });
+           
         });
         function calculateAge(dateString) {
             var val = $("#txtDOB").val();
