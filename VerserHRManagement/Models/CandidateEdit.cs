@@ -30,7 +30,7 @@ namespace VerserHRManagement.Models
 
         public string WorkRights { get; set; }
         public string RecruiterComments { get; set; }
-        public int WorkRightsID { get; set; }
+        public int WorkRightID { get; set; }
         public string postcode { get; set; }
         public string EmployeeStatus { get; set; }
 

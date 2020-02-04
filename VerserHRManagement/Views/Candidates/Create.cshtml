@@ -145,13 +145,10 @@
                             <div class="form-group required">
                                 @Html.Label("Assigned Type", htmlAttributes: new { @class = "control-label col-md-4" })
                                 <div class="col-md-6">
-                                    @Html.DropDownListFor(model => model.AssignResourceID, Model.AssignResourceList, "AssignResource", new { @class = "form-control", id = "ddlWarehouseId" })
+                                    @Html.DropDownListFor(model => model.AssignResourcesID, Model.AssignResourceList, "AssignResource", new { @class = "form-control", id = "ddlWarehouseId" })
 
                                 </div>
                             </div>
-
-
-
                             <div class="form-group required">
                                 @Html.Label("Work Rights", htmlAttributes: new { @class = "control-label col-md-4" })
                                 <div class="col-md-6">
@@ -161,7 +158,7 @@
                             <div class="form-group required">
                                 @Html.Label("Pay Frequency", htmlAttributes: new { @class = "control-label col-md-4" })
                                 <div class="col-md-6">
-                                    @Html.DropDownListFor(model => model.PayFrequencyID, Model.PayFrequencyList, "Pay Frequency", new { @class = "form-control", id = "ddlEmploymentId" })
+                                    @Html.DropDownListFor(model => model.PayFrequenciesID, Model.PayFrequencyList, "Pay Frequency", new { @class = "form-control", id = "ddlEmploymentId" })
 
                                 </div>
                             </div>
@@ -172,13 +169,13 @@
                             <div class="form-group">
                                 @Html.Label("Employee Status", htmlAttributes: new { @class = "control-label col-md-4" })
                                 <div class="col-md-6">
-                                    @Html.DropDownListFor(model => model.EmployeeStatusID, Model.EmployeeStatusList, "Pay Frequency", new { @class = "form-control", id = "ddlEmploymentId" })
+                                    @Html.DropDownListFor(model => model.EmployeeStatusSetID, Model.EmployeeStatusList, "Pay Frequency", new { @class = "form-control", id = "ddlEmploymentId" })
                                 </div>
                             </div>
                             <div class="form-group required">
                                 @Html.Label("Employment Type", htmlAttributes: new { @class = "control-label col-md-4" })
                                 <div class="col-md-6">
-                                    @Html.DropDownListFor(model => model.EmploymentTypeID, Model.EmploymentList, "Employment Type", new { @class = "form-control", id = "ddlEmploymentId" })
+                                    @Html.DropDownListFor(model => model.EmployementTypeId, Model.EmploymentList, "Employment Type", new { @class = "form-control", id = "ddlEmploymentId" })
                                 </div>
                             </div>
                             <div class="form-group">
