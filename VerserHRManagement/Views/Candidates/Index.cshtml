@@ -38,12 +38,13 @@
                     {
                         <tr>
                             <td onclick="LoadAddressData(@item.ID,'@item.CandidateName','@item.DateCreated','@item.Address','@item.City','@item.state','@item.postcode','@item.Email','@item.Phone',
-                                '@if(item.profilePicture != null) { @Convert.ToBase64String(@item.profilePicture)}','@if (item.DOB.HasValue) {@item.DOB.Value.ToString("yyyy-MM-dd")}','@item.Age','@item.Gender','@item.MaritalStatus',@Json.Encode(item.isactive));
-                                LoadEmployment(@item.ID,'@item.PayFrequency','@item.ADP_EmployeeID','@item.AssignResource','@item.Annualsalary','@item.HourlyRate','@item.DailyRate','@item.WorkRights',
-                                '@item.EmployeeStatus','@item.EmployementType','@item.NoticePeriod');
+                                '@if(item.profilePicture != null) { @Convert.ToBase64String(@item.profilePicture)}','@if (item.DOB.HasValue) {@item.DOB.Value.ToString("yyyy-MM-dd")}','@item.Age','@item.Gender','@item.MaritalStatus',@Json.Encode(item.isactive),
+                                '@item.WarehouseID','@item.ResourceCategoriesID','@item.DrivingLicenseID');
+                                LoadEmployment(@item.ID,'@item.PayFrequenciesID','@item.ADP_EmployeeID','@item.AssignResourcesID','@item.Annualsalary','@item.HourlyRate','@item.DailyRate','@item.WorkRightsID',
+                                '@item.EmployeeStatusSetID','@item.EmployementTypeId','@item.NoticePeriod');
                                 LoadDocuments(@item.ID,'@item.FilePath','@item.certificate1','@item.DriverLicense','@item.PoliceCheckReport','@item.Visa','@item.SuperChoice','@item.TFNDeclaration',
                                 '@item.BankDetails','@item.CodeOFConduct','@item.WHS');
-                                LoadSkills(@item.ID,'@item.CandidateSkills','@item.Experience','@item.JobTitle','@item.TechnicianLevel','@item.RateOfSkillExperties');">
+                                LoadSkills(@item.ID,'@item.CandidateSkills','@item.Experience','@item.JobTitle','@item.TechnicianLevelID','@item.RateOfSkillExperties');">
                                 <font style="font-weight:800;color:#515151">
                                     @Html.DisplayFor(modelItem => item.CandidateName)
                                     <input type="hidden" value="@item.ID" id="hiddenModelId" />
@@ -277,7 +278,7 @@
                                     <div class=" row col-md-6 well" style="width:370px;height:390px">
                                         <div class="col-md-12" style="margin-top:15px;">
                                             <label class="col-sm-9 col-form-label col-form-label-sm">Pay Frequency</label>
-                                            @Html.DropDownListFor(model => model.PayFrequencyID, Model.PayFrequencyList, "Pay Frequency", new { @class = "form-control", id = "ddlPayFrequencyId" })
+                                            @Html.DropDownListFor(model => model.PayFrequenciesID, Model.PayFrequencyList, "Pay Frequency", new { @class = "form-control", id = "ddlPayFrequencyId" })
                                         </div>
                                         <div class="col-md-12" style="margin-top:15px;">
                                             <label class="col-sm-9 col-form-label col-form-label-sm">ADP Employee Id</label>
@@ -285,7 +286,7 @@
                                         </div>
                                         <div class="col-md-12" style="margin-top:15px;">
                                             <label class="col-sm-9 col-form-label col-form-label-sm">Resource Assigned</label>
-                                            @Html.DropDownListFor(model => model.AssignResourceID, Model.AssignResourceList, "AssignResource", new { @class = "form-control", id = "ddlResourceAssigned" })
+                                            @Html.DropDownListFor(model => model.AssignResourcesID, Model.AssignResourceList, "AssignResource", new { @class = "form-control", id = "ddlResourceAssigned" })
                                         </div>
 
                                         <div class="col-md-12" style="margin-top:15px;">
@@ -308,11 +309,11 @@
                                         </div>
                                         <div class="col-md-12" style="margin-top:15px;">
                                             <label class="col-sm-9 col-form-label col-form-label-sm">Employment Status</label>
-                                            @Html.DropDownListFor(model => model.EmployeeStatusID, Model.EmployeeStatusList, "Employment Status", new { @class = "form-control", id = "ddlEmployeeStatusId" })
+                                            @Html.DropDownListFor(model => model.EmployeeStatusSetID, Model.EmployeeStatusList, "Employment Status", new { @class = "form-control", id = "ddlEmployeeStatusId" })
                                         </div>
                                         <div class="col-md-12" style="margin-top:15px;">
                                             <label class="col-sm-9 col-form-label col-form-label-sm">Employment Type</label>
-                                            @Html.DropDownListFor(model => model.EmploymentTypeID, Model.EmploymentList, "Employment Type", new { @class = "form-control", id = "ddlEmploymentType" })
+                                            @Html.DropDownListFor(model => model.EmploymentTypesID, Model.EmploymentList, "Employment Type", new { @class = "form-control", id = "ddlEmploymentType" })
                                         </div>
                                         <div class="col-md-12" style="margin-top:15px;">
                                             <label class="col-sm-9 col-form-label col-form-label-sm">Notice Period</label>
@@ -346,7 +347,7 @@
                                         </div>
                                         <div class="col-md-5">
                                             <label class="col-sm-9 col-form-label col-form-label-sm">Technician Level</label>
-                                            <input type="text" class="form-control form-control-sm" id="TechnicianLevel" placeholder="TechnicianLevel">
+                                            @Html.DropDownListFor(model => model.TechnicianLevelID, Model.TechnicianLevelList, "Technician Level", new { @class = "form-control",@id="ddlTechnicialLevel" })
                                         </div><br /><br /><br /><br />
                                         <div class="col-md-5" style="margin-left:10px;">
                                             <label class="col-sm-9 col-form-label col-form-label-sm">Skill Rate</label>
@@ -573,7 +574,7 @@
 
             });
         }
-        function LoadAddressData(ID, CandidateName, DateCreated, Address, City, state, postcode, Email, Phone, logo, dob, age, gender, maritalstatus, isactive) {
+        function LoadAddressData(ID, CandidateName, DateCreated, Address, City, state, postcode, Email, Phone, logo, dob, age, gender, maritalstatus, isactive, warehouseId, resourceCategoriesId, drivingLicenseId) {
             $("#txtfName").val(CandidateName.split(' ')[0]);
             $("#txtlName").val(CandidateName.split(' ')[1]);
             $("#txtAddress1").val(Address);
@@ -597,6 +598,9 @@
                 $("#previewImage").show();
                 $("#image").hide();
             }
+            $("#ddlWarehouseId").val(warehouseId);
+            $("#ddlResourcesCatId").val(resourceCategoriesId);
+            $("#ddlDrivingLicenseID").val(drivingLicenseId);
         }
         function LoadDocuments(id,FilePath, certificate1, DriverLicense, PoliceCheckReport, Visa, SuperChoice, TFNDeclaration, BankDetails, CodeOFConduct, WHS) {
         //alert(FilePath);
@@ -619,7 +623,7 @@
         $("#candidateskills").val(CandidateSkills);
         $("#experience").val(Experience);
         $("#JobTitle").val(JobTitle);
-        $("#TechnicianLevel").val(TechnicianLevel);
+            $("#ddlTechnicialLevel").val(TechnicianLevel);
         $("#skillrate").val(RateOfSkillExperties);
         $("#hiddenModelId").val(id);
 }
@@ -1192,16 +1196,16 @@
 
         function LoadEmployment(id, PayFrequency, ADP_EmployeeID, AssignResource, Annualsalary, HourlyRate, DailyRate, WorkRights,
             EmployeeStatus, EmployementType, NoticePeriod) {
-            $("#ddlPayFrequencyId option:contains(" + PayFrequency + ")").attr('selected', 'selected');
+            $("#ddlPayFrequencyId").val(PayFrequency);
            // $("#ddlPayFrequencyId").val(PayFrequency);
             $("#txtADPEmployeeId").val(ADP_EmployeeID);
-            $("#ddlResourceAssigned option:contains(" + AssignResource + ")").attr('selected', 'selected');
+            $("#ddlResourceAssigned").val(AssignResource);
             $("#txtAnnualSalary").val(Annualsalary);
             $("#txtHourlyRate").val(HourlyRate);
             $("#txtDailyRate").val(DailyRate);
-            $("#ddlWorkRights option:contains(" + WorkRights + ")").attr('selected', 'selected');
-            $("#ddlEmployeeStatusId option:contains(" + EmployeeStatus + ")").attr('selected', 'selected');
-            $("#ddlEmploymentType option:contains(" + EmployementType + ")").attr('selected', 'selected');
+            $("#ddlWorkRights").val(WorkRights);
+            $("#ddlEmployeeStatusId").val(EmployeeStatus);
+            $("#ddlEmploymentType").val(EmployementType);
             $("#txtNoticePeriod").val(NoticePeriod);
             $("#hiddenModelId").val(id);
         }
@@ -1209,15 +1213,15 @@
         $("#updateEmploymentDetailsBtn").click(function () {
             var CandidateEdit = {};
             CandidateEdit.ID = $("#hiddenModelId").val();
-            CandidateEdit.PayFrequency = $("#txtPayFrequency").val();
+            CandidateEdit.PayFrequenciesID = $("#ddlPayFrequencyId").val();
             CandidateEdit.ADP_EmployeeID = $("#txtADPEmployeeId").val();
-            CandidateEdit.AssignResource = $("#txtResourceAssigned").val();
+            CandidateEdit.AssignResourcesID = $("#ddlResourceAssigned").val();
             CandidateEdit.Annualsalary = $("#txtAnnualSalary").val();
             CandidateEdit.HourlyRate = $("#txtHourlyRate").val();
             CandidateEdit.DailyRate = $("#txtDailyRate").val();
-            CandidateEdit.WorkRights = $("#txtWorkRights").val();
-            CandidateEdit.EmployeeStatus = $("#txtEmploymentStatus").val();
-            CandidateEdit.EmployementType = $("#txtEmploymentType").val();
+            CandidateEdit.WorkRights = $("#ddlWorkRights").val();
+            CandidateEdit.EmployeeStatusSetID = $("#ddlEmployeeStatusId").val();
+            CandidateEdit.EmploymentTypesID = $("#ddlEmploymentType").val();
             CandidateEdit.NoticePeriod = $("#txtNoticePeriod").val();
             CandidateEdit.CandidateName = $("#txtfName").val() + ' ' + $("#txtlName").val();
             CandidateEdit.Address = $("#txtAddress1").val();
@@ -1235,7 +1239,7 @@
             CandidateEdit.CandidateSkills =$("#candidateskills").val();
             CandidateEdit.Experience = $("#experience").val();
             CandidateEdit.JobTitle = $("#JobTitle").val();
-            CandidateEdit.TechnicianLevel = $("#TechnicianLevel").val();
+            CandidateEdit.TechnicianLevel = $("#ddlTechnicialLevel").val();
             CandidateEdit.RateOfSkillExperties = $("#skillrate").val();
             //Basan Changes to edit Data
             CandidateEdit.WarehouseID = $("#ddlWarehouseId").val();

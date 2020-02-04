@@ -40,7 +40,7 @@ namespace VerserHRManagement.Models
         //[MaxLength(4)]
         //[MinLength(3)]
         public string postcode { get; set; }
-        public int? EmployeeStatusID { get; set; }
+        public int? EmployeeStatusSetID { get; set; }
         public SelectList EmployeeStatusList { get; set; }
         public string EmployeeStatus { get; set; }
         [Required]
@@ -50,7 +50,7 @@ namespace VerserHRManagement.Models
         public string Availability { get; set; }
         [Required]
         public string EmployementType { get; set; }
-        public int? EmploymentTypeID { get; set; }
+        public int? EmploymentTypesID { get; set; }
         public SelectList EmploymentList { get; set; }
         [Required]
         public string HourlyRate { get; set; }
@@ -62,9 +62,9 @@ namespace VerserHRManagement.Models
         [Required]
         public string PayFrequency { get; set; }
         public SelectList PayFrequencyList { get; set; }
-        public int? PayFrequencyID { get; set; }
+        public int? PayFrequenciesID { get; set; }
         public SelectList AssignResourceList { get; set; }
-        public int? AssignResourceID { get; set; }
+        public int? AssignResourcesID { get; set; }
         public string AssignResource { get; set; }
         [Required]
         public int ADP_EmployeeID { get; set; }

@@ -30,7 +30,7 @@ namespace VerserHRManagement.Models
 
         public string WorkRights { get; set; }
         public string RecruiterComments { get; set; }
-
+        public int WorkRightsID { get; set; }
         public string postcode { get; set; }
         public string EmployeeStatus { get; set; }
 
@@ -51,7 +51,7 @@ namespace VerserHRManagement.Models
 
         public int ADP_EmployeeID { get; set; }
         public int WarehouseID { get; set; }
-        public int EmployementTypeId { get; set; }
+        public int EmploymentTypesID { get; set; }
         public bool isactive { get; set; }
 
         public Byte[] profilePicture { get; set; } = new Byte[0];
@@ -74,5 +74,7 @@ namespace VerserHRManagement.Models
         public DateTime? DOB { get; set; }
         public int? ResourceCategoriesID { get; set; }
         public int? DrivingLicenseID { get; set; }
+        public int AssignResourcesID { get; set; }
+
     }
 }

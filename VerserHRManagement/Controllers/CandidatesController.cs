@@ -27,6 +27,7 @@ namespace VerserHRManagement
             model.CandidateList = CandidateService.CandidateList().Result;
             model.EmploymentList = new SelectList(ListItemService.EmploymentTypeList().Result, "ID", "Value");
             model.WarehouseNameList = new SelectList(ListItemService.Warehouses().Result, "ID", "Value");
+            model.TechnicianLevelList = new SelectList(ListItemService.TechnicianLevel().Result, "ID", "Value");
             model.PayFrequencyList = new SelectList(ListItemService.PayFrequency().Result, "ID", "Value");            
             model.AssignResourceList = new SelectList(ListItemService.AssignResources().Result, "ID", "Value");
             model.EmployeeStatusList = new SelectList(ListItemService.EmployeeStatusSet().Result, "ID", "Value");
