@@ -8,21 +8,18 @@ using System.Web.Mvc;
 
 namespace VerserHRManagement.Models
 {
-
     public class Candidate
     {
         public int ID { get; set; }
-        [Required]
+        [Required(ErrorMessage = "CandidateName Field is Mandatory")]
         public string CandidateName { get; set; }
-        [Required]
+        [Required (ErrorMessage = "Skills Field is Mandatory")]
         [DataType(DataType.MultilineText)]
         public string CandidateSkills { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Email Field is Mandatory")]
         [EmailAddress]
         public string Email { get; set; }
-        [Required]
-        //[MaxLength(10)]
-        //[MinLength(6)]
+        [Required(ErrorMessage = "Phone Field is Mandatory")]
         public Nullable<int> Phone { get; set; }
         public string Address { get; set; }
         public string Experience { get; set; }
@@ -31,42 +28,40 @@ namespace VerserHRManagement.Models
         public string FilePath { get; set; }
         public string Annualsalary { get; set; }
         public string NoticePeriod { get; set; }
-        [Required]
+        [Required(ErrorMessage = "WorkRights Field is Mandatory")]
         public string WorkRights { get; set; }
-        public int? WorkRightsID { get; set; }
+        public int? WorkRightID { get; set; }
         public SelectList WorkRightsList { get; set; }
         public string RecruiterComments { get; set; }
-        [Required]
-        //[MaxLength(4)]
-        //[MinLength(3)]
+        [Required(ErrorMessage = "Postcode Field is Mandatory")]
         public string postcode { get; set; }
         public int? EmployeeStatusSetID { get; set; }
         public SelectList EmployeeStatusList { get; set; }
         public string EmployeeStatus { get; set; }
-        [Required]
+        [Required(ErrorMessage = "TechnicianLevel Field is Mandatory")]
         public string TechnicianLevel { get; set; }
         public int? TechnicianLevelID { get; set; }
         public SelectList TechnicianLevelList { get; set; }
         public string Availability { get; set; }
-        [Required]
+        [Required(ErrorMessage = "EmployementType Field is Mandatory")]
         public string EmployementType { get; set; }
         public int? EmploymentTypesID { get; set; }
         public SelectList EmploymentList { get; set; }
-        [Required]
+        [Required(ErrorMessage = "HourlyRate Field is Mandatory")]
         public string HourlyRate { get; set; }
         public string DailyRate { get; set; }
-        [Required]
+        [Required(ErrorMessage = "State Field Is Mandatory")]
         public string state { get; set; }
         public Nullable<System.DateTime> DateCreated { get; set; }
         public string RateOfSkillExperties { get; set; }
-        [Required]
+        [Required(ErrorMessage = "PayFrequency Field is Mandatory")]
         public string PayFrequency { get; set; }
         public SelectList PayFrequencyList { get; set; }
         public int? PayFrequenciesID { get; set; }
         public SelectList AssignResourceList { get; set; }
         public int? AssignResourcesID { get; set; }
         public string AssignResource { get; set; }
-        [Required]
+        [Required(ErrorMessage = "ADP_EmployeeID Field is Mandatory")]
         public int ADP_EmployeeID { get; set; }
         public int? WarehouseID { get; set; }
         public string WarehouseName { get; set; }
@@ -93,7 +88,6 @@ namespace VerserHRManagement.Models
         public int? DrivingLicenseID { get; set; }
         public SelectList ResourceCategoriesList { get; set; }
         public SelectList DrivingLicensesList { get; set; }
-        public List<Candidate> CandidateList { get; set; }
-        public int? WorkRightID { get; set; }
+        public List<Candidate> CandidateList { get; set; }        
     }
 }
