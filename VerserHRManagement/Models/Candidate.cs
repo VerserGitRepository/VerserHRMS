@@ -40,7 +40,7 @@ namespace VerserHRManagement.Models
         public string EmployeeStatus { get; set; }
         [Required(ErrorMessage = "TechnicianLevel Field is Mandatory")]
         public string TechnicianLevel { get; set; }
-        public int? TechnicianLevelID { get; set; }
+        public int? technicalLevelsID { get; set; }
         public SelectList TechnicianLevelList { get; set; }
         public string Availability { get; set; }
         [Required(ErrorMessage = "EmployementType Field is Mandatory")]

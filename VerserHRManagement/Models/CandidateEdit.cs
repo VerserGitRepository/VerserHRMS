@@ -75,6 +75,7 @@ namespace VerserHRManagement.Models
         public int? ResourceCategoriesID { get; set; }
         public int? DrivingLicenseID { get; set; }
         public int AssignResourcesID { get; set; }
+        public int technicalLevelsID { get; set; }
 
     }
 }
