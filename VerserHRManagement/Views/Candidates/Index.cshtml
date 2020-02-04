@@ -16,11 +16,13 @@
 <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
+<script src='https://kit.fontawesome.com/a076d05399.js'></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <div class="container-fluid" style="margin-left:0px;padding-top:0px">
     <div class="container" style="width:170%; padding-top:15px; margin-left:0px; border-color:lightgray;padding-left:0px">
         <div class="col-md-4">
-            <table class="table table-bordered  table-responsive table-hover table-dark" id="mainTable" @*style="width:300Px" *@>
+            <table class="table table-bordered  table-responsive table-hover table-dark" id="mainTable" style="margin-bottom:2Px">
                 <thead style="background-color: #428bca; color:white">
                     <tr>
                         <th>
@@ -54,8 +56,8 @@
                 </tbody>
             </table>
         </div>
-                <div class="col-md-6">
-            <div class="panel with-nav-tabs panel-default" style="width:200%">
+        <div class="col-md-6">
+            <div class="panel with-nav-tabs panel-default" style="width:200%;margin-bottom:0px">
                 <div class="panel-heading">
                     <ul class="nav nav-tabs">
                         <li class="active"><a href="#tab1default" data-toggle="tab">PERSONAL</a></li>
@@ -75,63 +77,125 @@
                                     <input type="image" src="~/Images/excel.png" alt="Submit" width="20" height="20">
                                 }
                             }
-                        </li></ul>    
+                        </li>
+                    </ul>
                 </div>
-                <div class="panel-body">
-                    <div class="tab-content">
+                <div class="panel-body" style="margin-bottom:0px">
+                    <div class="tab-content" style="padding-bottom:0px">
                         <div class="tab-pane fade in active" id="tab1default">
-                            <div class="col-md-6"  style="padding-left:0px">
+                            <div class="col-md-6" style="padding-left:0px">
                                 <div class="row">
                                     <form>
                                         <div class="container table-bordered" style="margin:20px; width:1000px;padding-top:0px;padding-bottom:0px;margin-top:2px">
                                             <div class="form-group row">
                                                 <div class="col-sm-6">
-                                                    <div class="col-sm-10">
+                                                    <div class="col-sm-12">
                                                         <img class="preview-img" src="http://simpleicon.com/wp-content/uploads/account.png" alt="Preview Image" width="120" height="120" id="previewImage" onchange="readURL(this);" />
                                                         <img id="image" class="image-border form-control form-control-sm" width="120" height="120">
                                                         <input type="file" id="imgupload" style="display:none" onchange="readURL(this);" />
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="form-group row">
-                                                <div class="col-md-5" style="margin-left:10px;">
-                                                    <label>First Name</label>
-                                                    <input type="text" id="txtfName" class="form-control-override" placeholder="First Name">
+                                            <div class="row" style="margin-left:20px;">
+                                                <div class="form-group row">
+                                                    <div class="col-md-3" style="margin-right:10px">
+                                                        <label>First Name</label>
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon">
+                                                                <i class="glyphicon glyphicon-user"></i>
+                                                            </span>  <input type="text" id="txtfName" class="form-control" placeholder="First Name">
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <label>Last Name</label>
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon">
+                                                                <i class="glyphicon glyphicon-user"></i>
+                                                            </span> <input type="text" id="txtlName" class="form-control" placeholder="Last Name">
+                                                        </div>
+
+
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <label>DOB</label>
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon">
+                                                                <i class="glyphicon glyphicon-calendar"></i>
+                                                            </span> <input type="date" class="form-control" id="txtDOB" placeholder="DOB" onchange="calculateAge(this);">
+                                                        </div>
+
+                                                    </div>
                                                 </div>
-                                                <div class="col-md-5">
-                                                    <label>Last Name</label>
-                                                    <input type="text" id="txtlName" class="form-control-override" placeholder="Last Name">
-                                                </div><br /><br /><br /><br />
-                                                <div class="col-md-5" style="margin-left:10px;">
-                                                    <label>DOB</label>
-                                                    <input type="date" class="form-control-override" id="txtDOB" placeholder="DOB" onchange="calculateAge(this);">
+                                                <div class="form-group row">
+                                                    <div class="col-md-3">
+                                                        <label>Age</label>
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon">
+                                                                <i class="glyphicon glyphicon-calendar"></i>
+                                                            </span> <input type="text" class="form-control" id="txtAge" placeholder="Age">
+                                                        </div>
+
+
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <label>Gender</label>
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon">
+                                                                <i class="fas fa-user-friends"></i>
+                                                            </span>
+                                                            <select class="form-control" id="txtGender">
+                                                                <option>Select</option>
+                                                                <option>Male</option>
+                                                                <option>Female</option>
+                                                            </select>
+                                                        </div>
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <label>Marital Status</label>
+                                                            <select class="form-control" id="txtStatus">
+                                                                <option>Married</option>
+                                                                <option>Single</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                <div class="form-group row">
+                                                    <div class="col-md-3">
+                                                        <label>Warehouse:</label>
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon">
+                                                                <i class="fas fa-warehouse"></i>
+                                                            </span> @Html.DropDownListFor(model => model.WarehouseID, Model.WarehouseNameList, "WAREHOUSE", new { @class = "form-control", id = "ddlWarehouseId" })
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <label>Resource Categories:</label>
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon">
+                                                                <i class="fas fa-user-tie"></i>
+                                                            </span> @Html.DropDownListFor(model => model.ResourceCategoriesID, Model.ResourceCategoriesList, "Resource Categories", new { @class = "form-control", id = "ddlResourcesCatId" })
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <label>Driving License:</label>
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon">
+                                                                <i class="fas fa-truck"></i>
+                                                            </span>  @Html.DropDownListFor(model => model.DrivingLicenseID, Model.DrivingLicensesList, "Driver License", new { @class = "form-control", id = "ddlDrivingLicenseID" })
+                                                        </div>
+
+                                                    </div>
                                                 </div>
-                                                <div class="col-md-5">
-                                                    <label>Age</label>
-                                                    <input type="text" class="form-control-override" id="txtAge" placeholder="Age">
-                                                </div><br />
-                                                <div class="col-md-5" style="margin-left:10px;">
-                                                    <label>Gender</label>
-                                                    <select class="form-control-override" id="txtGender">
-                                                        <option>Select</option>
-                                                        <option>Male</option>
-                                                        <option>Female</option>
-                                                    </select>
-                                                </div>
-                                                <div class="col-md-5">
-                                                    <label>Marital Status</label>
-                                                    <select class="form-control-override" id="txtStatus">
-                                                        <option>Married</option>
-                                                        <option>Single</option>
-                                                    </select>
-                                                </div><br /><br /><br /><br /><br /><br />
-                                                <div class="col-md-5" style="margin-left:10px;">
+                                                <div class="col-md-2">
                                                     <label>Active</label>
                                                     <input type="checkbox" checked data-toggle="toggle" data-onstyle="info" id="chkIsActive">
                                                 </div>
                                             </div>
-                                            <div style="font-size:smaller;color:deepskyblue">
+                                            <div style="font-size:x-small;color:deepskyblue">
                                             </div>
+                                            <br />
                                         </div>
                                     </form>
                                 </div>
@@ -148,17 +212,14 @@
                                                             </span><input id="txtAddress1" placeholder="Address Line 1" class="form-control" required="true" value="" type="text">
                                                         </div>
 
-                                                        <label>Warehouse:</label>
-                                                        <div class="input-group">
-                                                            @Html.DropDownListFor(model => model.WarehouseID, Model.WarehouseNameList, "WAREHOUSE", new { @class = "form-control", id = "ddlWarehouseId" })
-                                                        </div>
+
                                                     </div>
                                                     <br /><br /><br /><br />
                                                     <div class="col-md-3" style="margin-left:10px;">
                                                         <label>City:</label>
                                                         <div class="input-group">
                                                             <span class="input-group-addon">
-                                                                <i class="glyphicon glyphicon-home"></i>
+                                                                <i class="fas fa-map-marker-alt"></i>
                                                             </span><input id="txtCity" placeholder="Suburb" class="form-control" required="true" value="" type="text">
                                                         </div>
                                                     </div>
@@ -189,8 +250,8 @@
                                                     <div class="col-md-3">
                                                         <label>Mobile</label>
                                                         <div class="input-group">
-                                                            <span class="input-group-addon">
-                                                                <i class="glyphicon glyphicon-earphone"></i>
+                                                            <span class="input-group-addon">                                                               
+                                                                <i class="fas fa-mobile-alt" style="font-size:20px"></i>
                                                             </span><input id="txtMobile" placeholder="Phone Number" class="form-control" required="true" value="" type="text">
                                                         </div>
                                                     </div>
@@ -202,14 +263,12 @@
                                                                 <i class="glyphicon glyphicon-earphone"></i>
                                                             </span><input id="txtPhoneNumber" placeholder="Phone Number" class="form-control" required="true" value="" type="text">
                                                         </div>
-
-                                                    </div>
-                                              
+                                                    </div>  <br /><br /><br />
                                                 </div>
                                             </div>
                                         </fieldset>
                                     </div>
-                                </div>                           
+                                </div>
                             </div>
                         </div>
                         <div class="tab-pane fade" id="tab2default">
@@ -249,7 +308,7 @@
                                         </div>
                                         <div class="col-md-12" style="margin-top:15px;">
                                             <label class="col-sm-9 col-form-label col-form-label-sm">Employment Status</label>
-                                            @Html.DropDownListFor(model => model.EmployeeStatusID, Model.EmployeeStatusList, "Pay Frequency", new { @class = "form-control", id = "ddlEmployeeStatusId" })
+                                            @Html.DropDownListFor(model => model.EmployeeStatusID, Model.EmployeeStatusList, "Employment Status", new { @class = "form-control", id = "ddlEmployeeStatusId" })
                                         </div>
                                         <div class="col-md-12" style="margin-top:15px;">
                                             <label class="col-sm-9 col-form-label col-form-label-sm">Employment Type</label>
@@ -260,7 +319,7 @@
                                             <input type="text" class="form-control form-control-sm" id="txtNoticePeriod" placeholder="Notice Period">
                                         </div>
                                     </div>
-                                </div>                              
+                                </div>
                             </div>
                         </div>
                         <div class="tab-pane fade" id="tab3default">
@@ -340,11 +399,11 @@
                                                 <input id="Certificateimgupload" type="file" style="display:none;">
                                                 <button type="button" id="btnCertificates" class="btn btn-sm btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray">
                                                     <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Certificate
-                                               </button>
+                                                </button>
                                             </span>
                                         </div>
                                     </div>
-                                                       <div class="panel-heading"><strong>LEGAL</strong> <small> </small></div>
+                                    <div class="panel-heading"><strong>LEGAL</strong> <small> </small></div>
                                     <div class="panel-body">
                                         <div class="input-group image-preview">
                                             @Html.Hidden("Resume", null, new { @id = "hiddenDL" })
@@ -458,12 +517,12 @@
                         </div>
                     </div>
                 </div>
-                     <div class="panel-footer primary" align="left" style="height:40px;vertical-align:top;background-color:lightgrey">
+                <div class="panel-footer primary" align="left" style="height:40px;vertical-align:top;background-color:lightgrey;margin-bottom:0px">
                     @if (UserRoles.UserCanEdit() == true)
                     {
-                    <input type="submit" value="SAVE CHANGES" class="btn btn-primary"
-                           style="background-color:#428bca;border-color:#428bca"
-                           id="updateEmploymentDetailsBtn" />
+                        <input type="submit" value="SAVE CHANGES" class="btn btn-primary"
+                               style="background-color:#428bca;border-color:#428bca"
+                               id="updateEmploymentDetailsBtn" />
                     }
                 </div>
             </div>
@@ -479,15 +538,15 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 
-<script type="text/javascript">
+    <script type="text/javascript">
         $(document).ready(function () {
             $('#mainTable').DataTable({
                 "pageLength": 20,
                 "lengthMenu": [10, 15, 20, 25, 50],
                 "aoColumnDefs": [
                     { "bSearchable": true, "bVisible": false, "aTargets": [1] }
-                    
-                ] 
+
+                ]
             });
             $('#mainTable1').DataTable();
             $('#mainTable2').DataTable();
@@ -514,7 +573,7 @@
 
             });
         }
-        function LoadAddressData(ID, CandidateName, DateCreated, Address, City, state, postcode, Email, Phone, logo, dob, age, gender, maritalstatus,isactive) {
+        function LoadAddressData(ID, CandidateName, DateCreated, Address, City, state, postcode, Email, Phone, logo, dob, age, gender, maritalstatus, isactive) {
             $("#txtfName").val(CandidateName.split(' ')[0]);
             $("#txtlName").val(CandidateName.split(' ')[1]);
             $("#txtAddress1").val(Address);
@@ -527,8 +586,7 @@
             $("#txtDOB").val(dob);
             $("#txtAge").val(age);
             $("#txtGender").val(gender);
-            $("#chkIsActive").prop('checked', isactive).change();
-           // $('#yourCheckboxId').prop('checked', true);
+            $("#chkIsActive").prop('checked', isactive).change();   
             $("#txtStatus").val(maritalstatus);
             if (logo != "") {
                 $("#previewImage").hide();
@@ -539,8 +597,6 @@
                 $("#previewImage").show();
                 $("#image").hide();
             }
-
-
         }
         function LoadDocuments(id,FilePath, certificate1, DriverLicense, PoliceCheckReport, Visa, SuperChoice, TFNDeclaration, BankDetails, CodeOFConduct, WHS) {
         //alert(FilePath);
@@ -821,41 +877,6 @@
                 reader.readAsDataURL(input.files[0]);
             }
         }
-        @* $("#updateBtn").click(function () {
-            var CandidateEdit = {};
-            CandidateEdit.ID = $("#hiddenModelId").val();
-            CandidateEdit.CandidateName = $("#txtfName").val() + ' ' + $("#txtlName").val();
-            CandidateEdit.Address = $("#txtAddress1").val();
-            CandidateEdit.DOB = $("#txtDOB").val();
-            CandidateEdit.Gender = $("#txtGender").val();
-            CandidateEdit.MaritalStatus = $("#txtStatus").val();
-            CandidateEdit.City = $("#txtCity").val();
-            CandidateEdit.State = $("#txtState").val();
-            CandidateEdit.PostalCode = $("#txtPostalCode").val();
-            CandidateEdit.Email = $("#txtEmail").val();
-            CandidateEdit.Phone = $("#txtMobile").val();
-            CandidateEdit.Age = $("#txtAge").val();
-            CandidateEdit.isactive = $("#isActive").val();
-            CandidateEdit.profilepicture = $("#image")[0].src.split(',')[1];
-
-            var updateCandidateData = '@Url.Action("UpdateCandidate", "Candidates")';
-            $.ajax({
-
-                type: "POST",
-                url: updateCandidateData,
-                contentType: "application/json; charset=utf-8",
-                data: JSON.stringify(CandidateEdit),
-                datatype: "json",
-                success: function (result) {
-
-                    debugger;
-                    $("#txtCompany").text(result);
-                },
-                error: function () {
-                    alert("Dynamic content load failed.");
-                }
-            });
-        });*@
         $('#image,#previewImage').click(function () { $('#imgupload').trigger('click'); });
        $('#btnCV').click(function () { $('#CVimgupload').trigger('click'); });
         $('#btnDL').click(function () { $('#DLimgupload').trigger('click'); });
@@ -1168,22 +1189,23 @@
                 }
             }
         });
-        function LoadEmployment(id,PayFrequency, ADP_EmployeeID, AssignResource, Annualsalary, HourlyRate, DailyRate, WorkRights,
+
+        function LoadEmployment(id, PayFrequency, ADP_EmployeeID, AssignResource, Annualsalary, HourlyRate, DailyRate, WorkRights,
             EmployeeStatus, EmployementType, NoticePeriod) {
-            PayFrequency == "Weekly" ? $("#ddlPayFrequencyId").val(2) : PayFrequency == "Monthly" ? $("#ddlPayFrequencyId").val(1) : $("#ddlPayFrequencyId").val(0);
-            //$("#ddlPayFrequencyId").find('option[value='+PayFrequency+']').attr('selected','selected')
-            // $("#ddlPayFrequencyId").val(PayFrequency);
-             $("#txtADPEmployeeId").val(ADP_EmployeeID);
-            $("#ddlResourceAssigned").text(AssignResource);// option:contains(" + AssignResource + ")").attr('selected', 'selected');
-             $("#txtAnnualSalary").val(Annualsalary);
-             $("#txtHourlyRate").val(HourlyRate);
-             $("#txtDailyRate").val(DailyRate);
-             $("#ddlWorkRights option:contains("+WorkRights+")").attr('selected', 'selected');
-             $("#ddlEmployeeStatusId option:contains("+EmployeeStatus+")").attr('selected', 'selected');
-             $("#ddlEmploymentType option:contains("+EmployementType+")").attr('selected', 'selected');
-             $("#txtNoticePeriod").val(NoticePeriod);
-             $("#hiddenModelId").val(id);
-         }
+            $("#ddlPayFrequencyId option:contains(" + PayFrequency + ")").attr('selected', 'selected');
+           // $("#ddlPayFrequencyId").val(PayFrequency);
+            $("#txtADPEmployeeId").val(ADP_EmployeeID);
+            $("#ddlResourceAssigned option:contains(" + AssignResource + ")").attr('selected', 'selected');
+            $("#txtAnnualSalary").val(Annualsalary);
+            $("#txtHourlyRate").val(HourlyRate);
+            $("#txtDailyRate").val(DailyRate);
+            $("#ddlWorkRights option:contains(" + WorkRights + ")").attr('selected', 'selected');
+            $("#ddlEmployeeStatusId option:contains(" + EmployeeStatus + ")").attr('selected', 'selected');
+            $("#ddlEmploymentType option:contains(" + EmployementType + ")").attr('selected', 'selected');
+            $("#txtNoticePeriod").val(NoticePeriod);
+            $("#hiddenModelId").val(id);
+        }
+
         $("#updateEmploymentDetailsBtn").click(function () {
             var CandidateEdit = {};
             CandidateEdit.ID = $("#hiddenModelId").val();
@@ -1215,7 +1237,10 @@
             CandidateEdit.JobTitle = $("#JobTitle").val();
             CandidateEdit.TechnicianLevel = $("#TechnicianLevel").val();
             CandidateEdit.RateOfSkillExperties = $("#skillrate").val();
-
+            //Basan Changes to edit Data
+            CandidateEdit.WarehouseID = $("#ddlWarehouseId").val();
+            CandidateEdit.ResourceCategoriesID = $("#ddlResourcesCatId").val();
+            CandidateEdit.DrivingLicenseID = $("#ddlDrivingLicenseID").val();
 
             var updateCandidateData = '@Url.Action("UpdateCandidate", "Candidates")';
             $.ajax({
@@ -1251,7 +1276,7 @@
             var age = Math.floor(diff / 31557600000);
             $("#txtAge").val(age);
         }
-</script>
+    </script>
 }
 <style>
 
@@ -1560,6 +1585,7 @@
         border: 1px solid #cccccc;
         border-radius: 4px;
     }
+
     .input-group-btn-override {
         height: 45px;
         padding: 15px 18px;
@@ -1572,4 +1598,8 @@
         font-size: larger;
         color: seagreen;
     }
+    panel-body {
+        padding: 1px;
+    }
+
 </style>

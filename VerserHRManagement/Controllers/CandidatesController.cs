@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
@@ -22,19 +23,16 @@ namespace VerserHRManagement
             {
                 return RedirectToAction("Login", "Login");
             }
-
             Candidate model = new Candidate();
             model.CandidateList = CandidateService.CandidateList().Result;
-
             model.EmploymentList = new SelectList(ListItemService.EmploymentTypeList().Result, "ID", "Value");
             model.WarehouseNameList = new SelectList(ListItemService.Warehouses().Result, "ID", "Value");
-            model.PayFrequencyList = new SelectList(ListItemService.PayFrequency().Result, "ID", "Value");
-            
-           
+            model.PayFrequencyList = new SelectList(ListItemService.PayFrequency().Result, "ID", "Value");            
             model.AssignResourceList = new SelectList(ListItemService.AssignResources().Result, "ID", "Value");
             model.EmployeeStatusList = new SelectList(ListItemService.EmployeeStatusSet().Result, "ID", "Value");
             model.WorkRightsList = new SelectList(ListItemService.WorkRights().Result, "ID", "Value");
-          
+            model.ResourceCategoriesList = new SelectList(ListItemService.ResourceCategories().Result, "ID", "Value");
+            model.DrivingLicensesList = new SelectList(ListItemService.DrivingLicenses().Result, "ID", "Value");
             return View(model);
         }
         public ActionResult Details(int id)
@@ -113,7 +111,6 @@ namespace VerserHRManagement
 
         }
         [HttpPost]
-
         public ActionResult Edit(Candidate candidate)
         {
             if (UserRoles.UserCanEdit() == true)
@@ -432,6 +429,23 @@ namespace VerserHRManagement
             catch (Exception ex)
             {
                 return RedirectToAction("Index");
+            }
+        }
+
+        [HttpPost]
+        public static void BulkMailEmail(List<CandidateListItems> ids,string subject,string body)
+        {
+            var mailmodel = new BulkMailModel();
+            mailmodel.Subject = subject;
+            mailmodel.Body = body;
+            foreach (var c in ids)
+            {
+                var _candidate = CandidateService.CandidateList().Result.OrderBy(x => x.ID).ToList();             
+             if (_candidate != null && _candidate.FirstOrDefault().Email != null)
+                {
+                    mailmodel.To = _candidate.FirstOrDefault().Email;
+                  var _flagsign=  BulkEmailService.BulkMails(mailmodel).Result;
+                }
             }
         }
     }
