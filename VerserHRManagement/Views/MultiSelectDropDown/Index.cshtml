@@ -1,14 +1,10 @@
 ﻿@using VerserHRManagement.Models
 
 @model  VerserHRManagement.Models.MultiSelectDropDownViewModel
-
-
 @{
-    ViewBag.Title = "ASP.NET MVC5: Multi Select Dropdown List";
+    ViewBag.Title = "Bulk EMAIL & SMS";
 }
-
 <link rel="stylesheet" href="bootstrap-select.css">
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.1.1/css/mdb.min.css" rel="stylesheet">
 <link href="@Url.Content("https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css")" rel="stylesheet" type="text/css" />
@@ -16,90 +12,114 @@
 <script src="~/Scripts/bootstrap-multiselect.js"></script>
 <link href="~/Content/bootstrap-multiselect.css" rel="stylesheet" />
 <script src="~/Scripts/popper.js"></script>
-<br />
-<div class="row">
-    <div class="col-md-offset-0 col-md-4 col-md-push-0">
-        <section>
-            @using (Html.BeginForm("Index", "MultiSelectDropDown", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal", role = "form" }))
-            {
-                @Html.AntiForgeryToken()
 
-
-                <div class="well" style="width:170%; height:770px">
-                    <br />
-                    <div class="row">
-                        <div class="col-md-12 col-md-push-0">
-
-                            <div class="form-group" style="height:100%">
-                                <div class="input-group" style="height:500px; width:280px; vertical-align:top">
-                                    <span style="height:450px" class="input-group-addon icon-custom">
-
-                                    </span>
-
-                                    @Html.DropDownListFor(m => m.CandidateId, this.ViewBag.CountryList as SelectList, new { id = "CountryList", @class = "form-control", @multiple = "multiple" })
-
-                                </div>
-                            </div>
-
-
-
-                            <div class="form-group col-md-12" style="width:250%">
-                                <label for="exampleFormControlTextarea2">Message(200 character No Space, Line Break)</label>
-
-                                @Html.EditorFor(m => m.MessageText, new { htmlAttributes = new { @class = "form-control", rows = "3", cols = "12" } })
-
-                            </div>
-
-                            <div class="col-md-2 col-md-push-2" style="padding:20px">
-                                <div class="form-group">
-                                    <input type="submit" class="btn btn-danger" value="Submit" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
-            }
-        </section>
-    </div>   
-</div>
-
-@*<div class="col-md-12 col-md-push-2">
-        <div class="input-group-prepend">
-            <label>Message:</label>
-            <input class="form-control input-lg" id="inputlg" type="text">
+    <div class="panel with-nav-tabs panel-default" style="width:200%;margin-bottom:0px">
+        <div class="panel-heading">
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="#tab1default" data-toggle="tab">SMS</a></li>               
+            </ul>
         </div>
+        <div class="panel-body" style="margin-bottom:0px">
+            <div class="tab-content" style="padding-bottom:0px">
+                <div class="tab-pane fade in active" id="tab1default">
+                    <div class="col-md-12" style="padding-left:0px">
+                        <div class="col-md-offset-0 col-md-4 col-md-push-0">
+                            <section>
+                                @using (Html.BeginForm("Index", "MultiSelectDropDown", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal", role = "form" }))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    <div class="well" style="width:170%; height:770px">
+                                        <br />
+                                        <div class="row">
+                                            <div class="col-md-12 col-md-push-0">
 
-    </div>*@
+                                                <div class="form-group" style="height:100%">
+                                                    <div class="input-group" style="height:500px; width:280px; vertical-align:top">
+                                                        <span style="height:450px" class="input-group-addon icon-custom">
+                                                        </span>
+                                                        @Html.DropDownListFor(m => m.CandidateId, this.ViewBag.CountryList as SelectList, new { id = "CountryList", @class = "form-control", @multiple = "multiple" })
 
+                                                    </div>
+                                                </div>
+                                                <div class="form-group col-md-12" style="width:250%">
+                                                    <label for="exampleFormControlTextarea2">Message(200 character No Space, Line Break)</label>
+
+                                                    @Html.EditorFor(m => m.MessageText, new { htmlAttributes = new { @class = "form-control", rows = "3", cols = "12" } })
+                                                </div>
+                                                <div class="col-md-2 col-md-push-2" style="padding:20px">
+                                                    <div class="form-group">
+                                                        <input type="submit" class="btn btn-danger" value="Submit" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                }
+                            </section>
+                        </div>
+                    </div>                   
+                        <div class="col-md-12" id="idFormContact">
+                            <div class="form-group">
+                                <label>Destination</label>
+                                <input type="email" class="form-control"
+                                       name="to" value="" placeholder="Destination Email">
+                            </div>
+                            <div class="form-group">
+                                <label>Subject</label>
+                                <input type="text" class="form-control"
+                                       value="Test subject"
+                                       name="subject" placeholder="Subject">
+                            </div>
+                            <div class="form-group">
+                                <label>Body</label>
+                                <textarea class="form-control"
+                                          name="message">Test Message</textarea>
+                            </div>
+                            <button type="submit"
+                                    class="btn btn-primary">
+                                Submit
+                            </button>
+                            <br>
+                            <br>
+                            <div id="idNotifError" style="display:none"
+                                 class="alert alert-danger">Fail to send a message</div>
+                            <div id="idNotifSuccess" style="display:none"
+                                 class="alert alert-success">Message is sent</div>
+                        </div>
+                    
+                </div>             
+                 </div>
+                </div>
+            </div>
 <script>
-    $(document).ready(function () {
-        // Enable Live Search.
-        $('#CountryList').multiselect({
-            includeSelectAllOption: true,
-            maxHeight: 250,
-            buttonWidth: '280px',
-            enableFiltering: true,
-            enableCaseInsensitiveFiltering: true
-        });
-    });
+$(document).ready(function () {
+// Enable Live Search.
+$('#CountryList').multiselect({
+includeSelectAllOption: true,
+maxHeight: 250,
+buttonWidth: '280px',
+enableFiltering: true,
+enableCaseInsensitiveFiltering: true
+});
+});
 
 
 
 </script>
 
 <style>
-    .bootstrap-select.btn-group.show-tick .dropdown-menu li.selected a span.check-mark {
-        position: relative;
-        display: inline-block;
-        right: 15px;
-        /*margin-top: 5px;*/
-        left: 2px;
-    }
+.bootstrap-select.btn-group.show-tick .dropdown-menu li.selected a span.check-mark {
+position: relative;
+display: inline-block;
+right: 15px;
+/*margin-top: 5px;*/
+left: 2px;
+}
 
-    .bootstrap-select.btn-group.show-tick .dropdown-menu li a span.text {
-        margin-right: 34px;
-    }
+.bootstrap-select.btn-group.show-tick .dropdown-menu li a span.text {
+margin-right: 34px;
+}
 </style>
 

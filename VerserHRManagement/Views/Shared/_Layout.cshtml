@@ -55,11 +55,8 @@
                     {
                         <li>@Html.ActionLink("PROFILES", "Index", "Candidates")</li>
                         <li>@Html.ActionLink("NEW PROFILE", "Create", "Candidates")</li>
-                        <li>@Html.ActionLink("BULK SMS", "Index", "MultiSelectDropDown")</li>
-                        @*<li>@Html.ActionLink("LIST", "SMSBroadcast", "Candidates")</li>*@
-                        @*<li>@Html.ActionLink("CONTACT", "Contact", "Home")</li>*@
+                        <li>@Html.ActionLink("BULK SMS", "Index", "MultiSelectDropDown")</li>                        
                     }
-
                 </ul>
                 <ul class="nav navbar-nav" style="float:right">
                     @if (Session["FullUserName"] != null)
