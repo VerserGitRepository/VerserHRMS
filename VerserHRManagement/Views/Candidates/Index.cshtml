@@ -36,8 +36,8 @@
                 <tbody>
                     @foreach (var item in Model.CandidateList)
                     {
-                        <tr>
-                            <td onclick="LoadAddressData(@item.ID,'@item.CandidateName','@item.DateCreated','@item.Address','@item.City','@item.state','@item.postcode','@item.Email','@item.Phone',
+                    <tr>
+                        <td onclick="LoadAddressData(@item.ID,'@item.CandidateName','@item.DateCreated','@item.Address','@item.City','@item.state','@item.postcode','@item.Email','@item.Phone',
                                 '@if(item.profilePicture != null) { @Convert.ToBase64String(@item.profilePicture)}','@if (item.DOB.HasValue) {@item.DOB.Value.ToString("yyyy-MM-dd")}','@item.Age','@item.Gender','@item.MaritalStatus',@Json.Encode(item.isactive),
                                 '@item.WarehouseID','@item.ResourceCategoriesID','@item.DrivingLicenseID');
                                 LoadEmployment(@item.ID,'@item.PayFrequenciesID','@item.ADP_EmployeeID','@item.AssignResourcesID','@item.Annualsalary','@item.HourlyRate','@item.DailyRate','@item.WorkRightsID',
@@ -45,14 +45,15 @@
                                 LoadDocuments(@item.ID,'@item.FilePath','@item.certificate1','@item.DriverLicense','@item.PoliceCheckReport','@item.Visa','@item.SuperChoice','@item.TFNDeclaration',
                                 '@item.BankDetails','@item.CodeOFConduct','@item.WHS');
                                 LoadSkills(@item.ID,'@item.CandidateSkills','@item.Experience','@item.JobTitle','@item.TechnicianLevelID','@item.RateOfSkillExperties');">
-                                <font style="font-weight:800;color:#515151">
-                                    @Html.DisplayFor(modelItem => item.CandidateName)
-                                    <input type="hidden" value="@item.ID" id="hiddenModelId" />
-                                    <input type="hidden" value='@Server.MapPath("~/UploadedFiles")' id="hiddenPath" />
-                                </font> <font style="font-size:xx-small">@item.City @item.state </font> <br />
-                            </td>
-                            <td>  @item.CandidateSkills</td>
-                        </tr>
+                            <font style="font-weight:800;color:#515151">
+                                @Html.DisplayFor(modelItem => item.CandidateName)
+                                <input type="hidden" value="@item.ID" id="hiddenModelId" />
+                                <input type="hidden" value='@Server.MapPath("~/UploadedFiles")' id="hiddenPath" />
+                            </font> <font style="font-size:xx-small"> @item.Address @item.City @item.state @item.postcode </font> <br />
+                        </td>
+                        <td>@item.CandidateSkills</td>
+                        <td>@item.Phone</td>
+                    </tr>
                     }
                 </tbody>
             </table>
@@ -497,20 +498,22 @@
                                                 <button type="button" id="btnCode" class="btn btn-labeled btn-sm btn-outline-secondary" style="padding-left:20px;border-color:gray">
                                                     <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Code-Of-Conduct
                                                 </button>
-
                                             </span>
                                         </div><br>
-                                        <div class="input-group image-preview">
-                                            @Html.Hidden("Resume", null, new { @id = "hiddenWhs" })
-                                            @Html.ActionLink("WHS", "DownloadFile", "Candidates", new { textval = "" }, new { @id = "whs", @class = "actionlink" })
-                                            <!-- don't give a name === doesn't send on POST/GET -->
-                                            <span class="input-group-btn-override">
-                                                <input type="file" id="Whsimgupload" style="display:none" onchange="ReadFileName(this,'Whsimgupload');" />
-                                                <button type="button" id="btnWhs" class="btn btn-sm btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray">
-                                                    <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>WHS
-                                                </button>
-                                            </span>
-                                        </div>
+                                              <div class="input-group image-preview">
+                                                  @Html.Hidden("Resume", null, new { @id = "hiddenWhs" })
+                                                  <span class="input-group-btn-override">
+                                                      <i class="fas fa-file-download"></i>
+                                                      @Html.ActionLink("WHS", "DownloadFile", "Candidates", new { textval = "" }, new { @id = "whs", @class = "actionlink" })
+                                                      </span>
+                                                      <!-- don't give a name === doesn't send on POST/GET -->
+                                                      <span class="input-group-btn-override">
+                                                          <input type="file" id="Whsimgupload" style="display:none" onchange="ReadFileName(this,'Whsimgupload');" />
+                                                          <button type="button" id="btnWhs" class="btn btn-sm btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray">
+                                                              <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>WHS
+                                                          </button>
+                                                      </span>
+                                              </div>
                                         <br>
                                     </div>
                                 </div>
