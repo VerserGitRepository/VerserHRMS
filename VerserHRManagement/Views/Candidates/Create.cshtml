@@ -24,7 +24,7 @@
                         <div class="col-md-6">
                             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                             <div class="form-group required">
-                                @Html.Label("Candidate Name", htmlAttributes: new { @class = "control-label col-md-4" })
+                                @Html.Label("Candidate", htmlAttributes: new { @class = "control-label col-md-4" })
                                 <div class="col-md-6">
                                     @Html.EditorFor(model => model.CandidateName, new { htmlAttributes = new { @class = "form-control" } })
                                     @Html.ValidationMessageFor(model => model.CandidateName, "", new { @class = "text-danger" })
@@ -102,7 +102,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            @Html.Label("Job Title", htmlAttributes: new { @class = "control-label col-md-4" })
+                            @Html.Label("JobTitle", htmlAttributes: new { @class = "control-label col-md-4" })
                             <div class="col-md-6">
                                 @Html.EditorFor(model => model.JobTitle, new { htmlAttributes = new { @class = "form-control" } })
                                 @Html.ValidationMessageFor(model => model.JobTitle, "", new { @class = "text-danger" })
@@ -110,19 +110,19 @@
                         </div>
 
                         <div class="form-group required">
-                            @Html.Label("Technician Level", htmlAttributes: new { @class = "control-label col-md-4" })
+                            @Html.Label("Tech-Level", htmlAttributes: new { @class = "control-label col-md-4" })
                             <div class="col-md-6">
                                 @Html.DropDownListFor(model => model.TechnicianLevelID, Model.TechnicianLevelList, "Technician Level", new { @class = "form-control" })
                             </div>
                         </div>
                         <div class="form-group required">
-                            @Html.Label("Resource Categories", htmlAttributes: new { @class = "control-label col-md-4" })
+                            @Html.Label("Categories", htmlAttributes: new { @class = "control-label col-md-4" })
                             <div class="col-md-6">
                                 @Html.DropDownListFor(model => model.ResourceCategoriesID, Model.ResourceCategoriesList, "Resource Categories", new { @class = "form-control" })
                             </div>
                         </div>
                         <div class="form-group">
-                            @Html.Label("Upload Resume", htmlAttributes: new { @class = "control-label col-md-4" })
+                            @Html.Label("Resume", htmlAttributes: new { @class = "control-label col-md-4" })
                             <div class="col-md-6">
                                 <input type="file" name="UploadResumeFile" id="ResumeFile" />
                                 @Html.HiddenFor(model => model.FilePath)
@@ -136,27 +136,27 @@
                         <div class="col-md-4">
 
                             <div class="form-group required">
-                                @Html.Label("Employee ID", htmlAttributes: new { @class = "control-label col-md-4" })
+                                @Html.Label("EmployeeID", htmlAttributes: new { @class = "control-label col-md-4" })
                                 <div class="col-md-6">
                                     @Html.EditorFor(model => model.ADP_EmployeeID, new { htmlAttributes = new { @class = "form-control" } })
                                     @Html.ValidationMessageFor(model => model.ADP_EmployeeID, "", new { @class = "text-danger" })
                                 </div>
                             </div>
                             <div class="form-group required">
-                                @Html.Label("Assigned Type", htmlAttributes: new { @class = "control-label col-md-4" })
+                                @Html.Label("AssignedType", htmlAttributes: new { @class = "control-label col-md-4" })
                                 <div class="col-md-6">
                                     @Html.DropDownListFor(model => model.AssignResourcesID, Model.AssignResourceList, "AssignResource", new { @class = "form-control", id = "ddlWarehouseId" })
 
                                 </div>
                             </div>
                             <div class="form-group required">
-                                @Html.Label("Work Rights", htmlAttributes: new { @class = "control-label col-md-4" })
+                                @Html.Label("WorkRights", htmlAttributes: new { @class = "control-label col-md-4" })
                                 <div class="col-md-6">
                                     @Html.DropDownListFor(model => model.WorkRights, Model.WorkRightsList, "Works Rights", new { @class = "form-control", id = "ddlEmploymentId" })
                                 </div>
                             </div>
                             <div class="form-group required">
-                                @Html.Label("Pay Frequency", htmlAttributes: new { @class = "control-label col-md-4" })
+                                @Html.Label("PayFrequency", htmlAttributes: new { @class = "control-label col-md-4" })
                                 <div class="col-md-6">
                                     @Html.DropDownListFor(model => model.PayFrequenciesID, Model.PayFrequencyList, "Pay Frequency", new { @class = "form-control", id = "ddlEmploymentId" })
 
@@ -167,26 +167,26 @@
                         <div class="col-md-4">
 
                             <div class="form-group">
-                                @Html.Label("Employee Status", htmlAttributes: new { @class = "control-label col-md-4" })
+                                @Html.Label("EmployeeStatus", htmlAttributes: new { @class = "control-label col-md-4" })
                                 <div class="col-md-6">
                                     @Html.DropDownListFor(model => model.EmployeeStatusSetID, Model.EmployeeStatusList, "Pay Frequency", new { @class = "form-control", id = "ddlEmploymentId" })
                                 </div>
                             </div>
                             <div class="form-group required">
-                                @Html.Label("Employment Type", htmlAttributes: new { @class = "control-label col-md-4" })
+                                @Html.Label("EmploymentType", htmlAttributes: new { @class = "control-label col-md-4" })
                                 <div class="col-md-6">
                                     @Html.DropDownListFor(model => model.EmployementTypeId, Model.EmploymentList, "Employment Type", new { @class = "form-control", id = "ddlEmploymentId" })
                                 </div>
                             </div>
                             <div class="form-group">
-                                @Html.Label("Notice Period", htmlAttributes: new { @class = "control-label col-md-4" })
+                                @Html.Label("NoticePeriod", htmlAttributes: new { @class = "control-label col-md-4" })
                                 <div class="col-md-6">
                                     @Html.EditorFor(model => model.NoticePeriod, new { htmlAttributes = new { @class = "form-control" } })
                                     @Html.ValidationMessageFor(model => model.NoticePeriod, "", new { @class = "text-danger" })
                                 </div>
                             </div>
                             <div class="form-group">
-                                @Html.Label("Daily Rate", htmlAttributes: new { @class = "control-label col-md-4" })
+                                @Html.Label("Daily-Rate", htmlAttributes: new { @class = "control-label col-md-4" })
                                 <div class="col-md-6">
                                     @Html.EditorFor(model => model.DailyRate, new { htmlAttributes = new { @class = "form-control" } })
                                     @Html.ValidationMessageFor(model => model.DailyRate, "", new { @class = "text-danger" })
@@ -195,7 +195,7 @@
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                @Html.Label("Annual Salary", htmlAttributes: new { @class = "control-label col-md-4" })
+                                @Html.Label("Annual-Salary", htmlAttributes: new { @class = "control-label col-md-4" })
                                 <div class="col-md-6">
                                     @Html.EditorFor(model => model.Annualsalary, new { htmlAttributes = new { @class = "form-control" } })
                                     @Html.ValidationMessageFor(model => model.Annualsalary, "", new { @class = "text-danger" })
@@ -212,14 +212,14 @@
                         </div>
                         <div class="col-md-4">
                             <div class="form-group required">
-                                @Html.Label("Hourly Rate", htmlAttributes: new { @class = "control-label col-md-4" })
+                                @Html.Label("Hourly-Rate", htmlAttributes: new { @class = "control-label col-md-4" })
                                 <div class="col-md-6">
                                     @Html.EditorFor(model => model.HourlyRate, new { htmlAttributes = new { @class = "form-control" } })
                                     @Html.ValidationMessageFor(model => model.HourlyRate, "", new { @class = "text-danger" })
                                 </div>
                             </div>
                             <div class="form-group required">
-                                @Html.Label("Driver License", htmlAttributes: new { @class = "control-label col-md-4" })
+                                @Html.Label("DriverLicense", htmlAttributes: new { @class = "control-label col-md-4" })
                                 <div class="col-md-6">
                                     @Html.DropDownListFor(model => model.DrivingLicenseID, Model.DrivingLicensesList, "Driver License", new { @class = "form-control" })
                                 </div>
