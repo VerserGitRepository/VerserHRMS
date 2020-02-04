@@ -44,7 +44,7 @@
                                 '@item.EmployeeStatusSetID','@item.EmployementTypeId','@item.NoticePeriod');
                                 LoadDocuments(@item.ID,'@item.FilePath','@item.certificate1','@item.DriverLicense','@item.PoliceCheckReport','@item.Visa','@item.SuperChoice','@item.TFNDeclaration',
                                 '@item.BankDetails','@item.CodeOFConduct','@item.WHS');
-                                LoadSkills(@item.ID,'@item.CandidateSkills','@item.Experience','@item.JobTitle','@item.TechnicianLevel','@item.RateOfSkillExperties');">
+                                LoadSkills(@item.ID,'@item.CandidateSkills','@item.Experience','@item.JobTitle','@item.TechnicianLevelID','@item.RateOfSkillExperties');">
                                 <font style="font-weight:800;color:#515151">
                                     @Html.DisplayFor(modelItem => item.CandidateName)
                                     <input type="hidden" value="@item.ID" id="hiddenModelId" />
@@ -347,7 +347,7 @@
                                         </div>
                                         <div class="col-md-5">
                                             <label class="col-sm-9 col-form-label col-form-label-sm">Technician Level</label>
-                                            <input type="text" class="form-control form-control-sm" id="TechnicianLevel" placeholder="TechnicianLevel">
+                                            @Html.DropDownListFor(model => model.TechnicianLevelID, Model.TechnicianLevelList, "Technician Level", new { @class = "form-control",@id="ddlTechnicialLevel" })
                                         </div><br /><br /><br /><br />
                                         <div class="col-md-5" style="margin-left:10px;">
                                             <label class="col-sm-9 col-form-label col-form-label-sm">Skill Rate</label>
@@ -623,7 +623,7 @@
         $("#candidateskills").val(CandidateSkills);
         $("#experience").val(Experience);
         $("#JobTitle").val(JobTitle);
-        $("#TechnicianLevel").val(TechnicianLevel);
+            $("#ddlTechnicialLevel").val(TechnicianLevel);
         $("#skillrate").val(RateOfSkillExperties);
         $("#hiddenModelId").val(id);
 }
@@ -1239,7 +1239,7 @@
             CandidateEdit.CandidateSkills =$("#candidateskills").val();
             CandidateEdit.Experience = $("#experience").val();
             CandidateEdit.JobTitle = $("#JobTitle").val();
-            CandidateEdit.TechnicianLevel = $("#TechnicianLevel").val();
+            CandidateEdit.TechnicianLevel = $("#ddlTechnicialLevel").val();
             CandidateEdit.RateOfSkillExperties = $("#skillrate").val();
             //Basan Changes to edit Data
             CandidateEdit.WarehouseID = $("#ddlWarehouseId").val();
