@@ -29,8 +29,8 @@ namespace VerserHRManagement.Models
         public string Annualsalary { get; set; }
         public string NoticePeriod { get; set; }
         [Required(ErrorMessage = "WorkRights Field is Mandatory")]
-        public string WorkRights { get; set; }
         public int? WorkRightID { get; set; }
+        public string WorkRights { get; set; }       
         public SelectList WorkRightsList { get; set; }
         public string RecruiterComments { get; set; }
         [Required(ErrorMessage = "Postcode Field is Mandatory")]
@@ -39,13 +39,13 @@ namespace VerserHRManagement.Models
         public SelectList EmployeeStatusList { get; set; }
         public string EmployeeStatus { get; set; }
         [Required(ErrorMessage = "TechnicianLevel Field is Mandatory")]
-        public string TechnicianLevel { get; set; }
         public int? technicalLevelsID { get; set; }
+        public string TechnicianLevel { get; set; }       
         public SelectList TechnicianLevelList { get; set; }
         public string Availability { get; set; }
         [Required(ErrorMessage = "EmployementType Field is Mandatory")]
-        public string EmployementType { get; set; }
         public int? EmploymentTypesID { get; set; }
+        public string EmployementType { get; set; }       
         public SelectList EmploymentList { get; set; }
         [Required(ErrorMessage = "HourlyRate Field is Mandatory")]
         public string HourlyRate { get; set; }
@@ -55,14 +55,15 @@ namespace VerserHRManagement.Models
         public Nullable<System.DateTime> DateCreated { get; set; }
         public string RateOfSkillExperties { get; set; }
         [Required(ErrorMessage = "PayFrequency Field is Mandatory")]
-        public string PayFrequency { get; set; }
-        public SelectList PayFrequencyList { get; set; }
         public int? PayFrequenciesID { get; set; }
+        public string PayFrequency { get; set; }
+        public SelectList PayFrequencyList { get; set; }        
         public SelectList AssignResourceList { get; set; }
         public int? AssignResourcesID { get; set; }
         public string AssignResource { get; set; }
         [Required(ErrorMessage = "ADP_EmployeeID Field is Mandatory")]
         public int ADP_EmployeeID { get; set; }
+        [Required(ErrorMessage = "WarehouseID Field is Mandatory")]
         public int? WarehouseID { get; set; }
         public string WarehouseName { get; set; }
         public SelectList WarehouseNameList { get; set; }

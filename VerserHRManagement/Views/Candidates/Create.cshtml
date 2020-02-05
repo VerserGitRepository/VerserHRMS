@@ -11,10 +11,10 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 @using (Html.BeginForm("Create", "Candidates", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
+<div style="padding-top:15px;">
     @Html.AntiForgeryToken()
-    <br>
-    <div class="table-bordered" style="width:1220px">
-        <div class="panel-heading" align="center" style="height:25PX;background-color: #428bca;color:white; vertical-align:top;padding-top:2px">REGISTER NEW RESOURCE</div>
+    <div class="table-bordered" style="width:1220px;">
+        <div class="panel-heading" align="center" style="height:px;background-color: #428bca;color:white; vertical-align:top;padding-top:2px">REGISTER NEW RESOURCE</div>
         <div class="panel-body" style="font-size:x-small;color:grey;border-color:gray">
 
             <div class="form-horizontal">
@@ -112,7 +112,7 @@
                         <div class="form-group required">
                             @Html.Label("Tech-Level", htmlAttributes: new { @class = "control-label col-md-4" })
                             <div class="col-md-6">
-                                @Html.DropDownListFor(model => model.TechnicianLevelID, Model.TechnicianLevelList, "Technician Level", new { @class = "form-control" })
+                                @Html.DropDownListFor(model => model.technicalLevelsID, Model.TechnicianLevelList, "Technician Level", new { @class = "form-control" })
                             </div>
                         </div>
                         <div class="form-group required">
@@ -152,7 +152,7 @@
                             <div class="form-group required">
                                 @Html.Label("WorkRights", htmlAttributes: new { @class = "control-label col-md-4" })
                                 <div class="col-md-6">
-                                    @Html.DropDownListFor(model => model.WorkRights, Model.WorkRightsList, "Works Rights", new { @class = "form-control", id = "ddlEmploymentId" })
+                                    @Html.DropDownListFor(model => model.WorkRightID, Model.WorkRightsList, "Works Rights", new { @class = "form-control", id = "ddlEmploymentId" })
                                 </div>
                             </div>
                             <div class="form-group required">
@@ -232,87 +232,88 @@
         </div>
     </div>
     <div class="panel-footer primary" align="left" style="height:30px;vertical-align:top;width:1220px;background-color:lightgrey">
-
         @if (UserRoles.UserCanEdit() == true)
         {
             <input type="submit" value="SAVE CHANGES" class="btn btn-sm btn-primary" style="background-color:#428bca;border-color:#428bca;vertical-align:top;height:25px;width:150px;" id="updateEmploymentDetailsBtn" />
         }
     </div>
+</div>
 }
-
 @section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
+@Scripts.Render("~/bundles/jqueryval")
 }
-<style>
-    .btn {
-        display: block;
-        width: 900px;
-        border: none;
-        height: 33px;
-        background-color: #428bca;
-        color: white;
-        padding: 1px 28px;
-        font-display: block;
-        font-size: 14px;
-        cursor: pointer;
-        text-align: center;
-    }
+ <style>
+            .btn {
+                display: block;
+                width: 900px;
+                border: none;
+                height: 33px;
+                background-color: #428bca;
+                color: white;
+                padding: 1px 28px;
+                font-display: block;
+                font-size: 14px;
+                cursor: pointer;
+                text-align: center;
+            }
 
-    .well {
-        width: 1200px;
-        margin-left: 10px;
-        margin-right: 10px
-    }
+            .well {
+                width: 1200px;
+                margin-left: 10px;
+                margin-right: 10px
+            }
 
-    .form-group {
-        margin-bottom: 2px;
-        padding-right: 0;
-        padding-left: 0;
-        margin: 0px;
-        font-size: 12px;
-        border-radius: 9px;
-        padding-bottom: 5px;
-        margin-top: 2px;
-    }
+            .form-group {
+                margin-bottom: 2px;
+                padding-right: 0;
+                padding-left: 0;
+                margin: 0px;
+                font-size: 12px;
+                border-radius: 9px;
+                padding-bottom: 5px;
+                margin-top: 2px;
+            }
 
-    .col-md-6 {
-        position: relative;
-        min-height: 1px;
-        padding-right: 0px;
-        padding-left: 0px;
-    }
+            .col-md-6 {
+                position: relative;
+                min-height: 1px;
+                padding-right: 0px;
+                padding-left: 0px;
+            }
 
-    .row.no-pad > [class*='col-'] {
-        padding-right: 0;
-        padding-left: 0;
-    }
+            .row.no-pad > [class*='col-'] {
+                padding-right: 0;
+                padding-left: 0;
+            }
 
-    .btn-warning {
-        background-color: darkgrey;
-        border-color: lightgray;
-        font-size: 14px;
-    }
+            .btn-warning {
+                background-color: darkgrey;
+                border-color: lightgray;
+                font-size: 14px;
+            }
 
-    .form-control {
-        margin-bottom: 2px;
-        padding-right: 0;
-        padding-left: 0;
-        font-size: 12px;
-        border-radius: 9px;
-        padding-bottom: 5px;
-        margin-top: 2px;
-    }
+            .form-control {
+                margin-bottom: 2px;
+                padding-right: 0;
+                padding-left: 0;
+                font-size: 12px;
+                border-radius: 9px;
+                padding-bottom: 5px;
+                margin-top: 2px;
+            }
 
-    .panel-footer {
-        padding: 3px 30px;
-        background-color: #f5f5f5;
-        border-top: 1px solid #dddddd;
-        border-bottom-right-radius: 3px;
-        border-bottom-left-radius: 3px;
-    }
+            .panel-footer {
+                padding: 3px 30px;
+                background-color: #f5f5f5;
+                border-top: 1px solid #dddddd;
+                border-bottom-right-radius: 3px;
+                border-bottom-left-radius: 3px;
+            }
 
-    .form-group.required .control-label:after {
-        content: "*";
-        color: red;
-        padding-bottom: 15px;
-</style>
+            .form-group.required .control-label:after {
+                content: "*";
+                color: red;
+                padding-bottom: 15px;
+            }
+            
+        </style>
