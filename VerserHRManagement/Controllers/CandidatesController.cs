@@ -33,7 +33,7 @@ namespace VerserHRManagement
             model.EmployeeStatusList = new SelectList(ListItemService.EmployeeStatusSet().Result, "ID", "Value");
             model.WorkRightsList = new SelectList(ListItemService.WorkRights().Result, "ID", "Value");
             model.ResourceCategoriesList = new SelectList(ListItemService.ResourceCategories().Result, "ID", "Value");
-            model.DrivingLicensesList = new SelectList(ListItemService.DrivingLicenses().Result, "ID", "Value");
+            model.DrivingLicensesList = new SelectList(ListItemService.DrivingLicenses().Result, "ID", "Value");         
             return View(model);
         }
         public ActionResult Details(int id)

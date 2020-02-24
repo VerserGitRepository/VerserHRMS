@@ -174,6 +174,21 @@ namespace VerserHRManagement.TimeSchedulerServices
             }
             return WarehousesList;
         }
+
+        public static async Task<ResourceRatingModel> ResourceRatingService(int candidateid)
+        {
+            var ResourceRate = new ResourceRatingModel();
+            using (HttpClient client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(TimeSheetAPIURl);
+                HttpResponseMessage response = client.GetAsync(string.Format($"Resource/ResourceRating/{candidateid}")).Result;
+                if (response.IsSuccessStatusCode)
+                {
+                    ResourceRate = await response.Content.ReadAsAsync<ResourceRatingModel>();                   
+                }
+            }
+            return ResourceRate;
+        }
         public static async Task<List<ListItemViewModel>> EmploymentType()
         {
             List<ListItemViewModel> EmploymentList = new List<ListItemViewModel>();
