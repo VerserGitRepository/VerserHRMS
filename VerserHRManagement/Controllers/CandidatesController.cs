@@ -468,5 +468,23 @@ namespace VerserHRManagement
                 }
             }
         }
+        [HttpGet]
+        public ActionResult GetResourceRating(int candidateId)
+        {
+            if (UserRoles.UserCanEdit() == true)
+            {
+                if (ModelState.IsValid)
+                {
+                    ResourceRatingModel model = new ResourceRatingModel();
+                    model = CandidateService.ResourceRatingService(candidateId).Result;
+                    return new JsonResult { Data = model, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+                }
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Candidates");
+            }
+        }
     }
 }
