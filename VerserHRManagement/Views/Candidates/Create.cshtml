@@ -26,10 +26,10 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <div class="container-fluid" style="margin-left:5px;padding-top:0px">
-    <div class="container" style="width:150%; padding-top:15px; margin-left:0px; border-color:lightgray;padding-left:0px">
+    <div class="container" style="width:130%; padding-top:15px; margin-left:0px; border-color:lightgray;padding-left:0px">
        
        
-            <div class="panel with-nav-tabs panel-default" style="width:150%;margin-bottom:0px">
+            <div class="panel with-nav-tabs panel-default" style="width:110%;margin-bottom:0px">
                 <div class="panel-heading">
                     <ul class="nav nav-tabs">
                         <li class="active"><a href="#tab1default" data-toggle="tab">Register</a></li>
@@ -55,7 +55,7 @@
                                         <div class="form-horizontal">
                                             <div class="form-group">
 
-                                                <div class="row col-md-10 well" style="width:800px;margin-left:5px;height:370px">
+                                                <div class="row col-md-10 well" style="width:800px;margin-left:5px;height:300px">
                                                     <div class="col-md-6">
                                                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                                                         <div class="form-group required">
@@ -128,7 +128,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class=" row col-md-4 well" style="width:350px;height:370px;">
+                                                <div class=" row col-md-4 well" style="width:350px;height:300px;">
                                                     <div class="form-group">
                                                         @Html.Label("Experience", htmlAttributes: new { @class = "control-label col-md-4" })
                                                         <div class="col-md-6">
@@ -276,11 +276,11 @@
                                     <div class=" row col-md-6 well" style="width:370px;height:390px">
                                         <div class="col-md-12" style="margin-top:15px;">
                                             <label class="col-sm-9 col-form-label col-form-label-sm">Position</label>
-                                            <input type="text" id="txtADPEmployeeId" class="form-control form-control-sm" placeholder="ADP Employee Id">
+                                            <input type="text" id="txtADPEmployeeId" class="form-control form-control-sm" placeholder="">
                                         </div>
                                         <div class="col-md-12" style="margin-top:15px;">
-                                            <label class="col-sm-9 col-form-label col-form-label-sm">ADP Employee Id</label>
-                                            <input type="text" id="txtADPEmployeeId" class="form-control form-control-sm" placeholder="ADP Employee Id">
+                                            <label class="col-sm-9 col-form-label col-form-label-sm">Facility</label>
+                                            <input type="text" id="txtADPEmployeeId" class="form-control form-control-sm" placeholder="">
                                         </div>
                                         <div class="col-md-12" style="margin-top:15px;">
                                             <label class="col-sm-9 col-form-label col-form-label-sm">StartDate</label>    
@@ -302,30 +302,43 @@
                             <br>
                             <div class="container" style="margin-left:5px">
                                 <div class="row">
-                                    <div class="new">
-                                        <form>
-                                            <div class="form-group">
-                                                <input type="checkbox" id="html">
-                                                <label for="html">Laptop</label>
-                                            </div>
-                                            <div class="form-group">
-                                                <input type="checkbox" id="css">
-                                                <label for="css">Monitor</label>
-                                            </div>
-                                            <div class="form-group">
-                                                <input type="checkbox" id="javascript">
-                                                <label for="javascript">Mobile</label>
-                                            </div>
-                                            <div class="form-group">
-                                                <input type="checkbox" id="javascript">
-                                                <label for="javascript">JMS</label>
-                                            </div>
-                                            <div class="form-group">
-                                                <input type="checkbox" id="javascript">
-                                                <label for="javascript">Inventory Control </label>
-                                            </div>
-                                        </form>
+                                    <div class="form-group row">
+                                        <div class=" row col-md-6 well" style="width:370px;height:200px">
+                                            <form>
+                                                <div class="form-group">
+                                                    <input type="checkbox" id="html">
+                                                    <label for="html">Laptop</label>
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="checkbox" id="css">
+                                                    <label for="css">Monitor</label>
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="checkbox" id="javascript">
+                                                    <label for="javascript">Mobile</label>
+                                                </div>
+                                               
+                                            </form>
+
+                                        </div>
+
+                                        <div class=" row col-md-6 well" style="width:370px;height:200px">
+                                            <form>
+                                          
+                                                <div class="form-group">
+                                                    <input type="checkbox" id="javascript">
+                                                    <label for="javascript">JMS</label>
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="checkbox" id="javascript">
+                                                    <label for="javascript">Inventory Control </label>
+                                                </div>
+                                            </form>
+
+                                        </div>
+
                                     </div>
+                                  
                                 </div>
                             </div>
            
