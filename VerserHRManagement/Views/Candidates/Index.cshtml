@@ -203,7 +203,7 @@
                      { new SelectListItem {Text="Resigned",Value="Resigned" },
                      new SelectListItem {Text="Not Suitable",Value="Not Suitable" },
                      new SelectListItem {Text="Not Utilized",Value="Not Utilized" },
-                     }, "Select Inactivity Reason", new { @class = "form-control" })
+                     }, "In-Active Reason", new { @class = "form-control" })
                                                     @Html.ValidationMessageFor(model => model.InactiveReason, "", new { @class = "text-danger" })
                                                 </div>
                                                 <div class="col-xs-12 col-md-6">
@@ -674,9 +674,7 @@
                 "pageLength": 20,
                 "lengthMenu": [10, 15, 20, 25, 50],
                 "aoColumnDefs": [
-                    { "bSearchable": true, "bVisible": false, "aTargets": [1] }
-
-                ]
+                    { "bSearchable": true, "bVisible": false, "aTargets": [1] }]
             });
             $("#divspan5").prop('width', '100%');
             $('#mainTable1').DataTable();
