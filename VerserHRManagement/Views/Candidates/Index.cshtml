@@ -201,8 +201,8 @@
                                                     @Html.DropDownListFor(Model => Model.InactiveReason, new List<SelectListItem>
 
                      { new SelectListItem {Text="Resigned",Value="Resigned" },
-                     new SelectListItem {Text="Not Suitable",Value="Not Suitable" },
-                     new SelectListItem {Text="Not Utilized",Value="Not Utilized" },
+                     new SelectListItem {Text="Unsuitable",Value="Unsuitable" },
+                     new SelectListItem {Text="Lapsed",Value="Lapsed" },
                      }, "Select Inactivity Reason", new { @class = "form-control" })
                                                     @Html.ValidationMessageFor(model => model.InactiveReason, "", new { @class = "text-danger" })
                                                 </div>
