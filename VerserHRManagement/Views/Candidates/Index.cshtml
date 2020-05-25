@@ -80,6 +80,13 @@
                                 }
                             }
                         </li>
+                        <li><a href="#tab6default" data-toggle="tab">OFFER</a></li>
+                        @*<li><a href="#tab7default" data-toggle="tab">Policies</a></li>*@
+                        @if (UserRoles.UserCanEdit() == true)
+                        {
+                            <li><a href="#tab8default" data-toggle="tab">ACCESS & DEVICES</a></li>
+                        }
+                        <li><a href="#tab9default" data-toggle="tab">OFF-BOARD</a></li>
                     </ul>
                 </div>
                 <div class="panel-body" style="margin-bottom:0px">
@@ -638,6 +645,82 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div class="tab-pane fade" id="tab6default">
+                            <div class="row" style="margin-left:10px">
+                                <div class="form-group row">
+                                    <div class=" row col-md-6 well" style="width:370px;height:390px">
+                                        <div class="col-md-12" style="margin-top:15px;">
+                                            <label class="col-sm-9 col-form-label col-form-label-sm">Position</label>
+                                            <input type="text" id="txtADPEmployeeId" class="form-control form-control-sm" placeholder="">
+                                        </div>
+                                        <div class="col-md-12" style="margin-top:15px;">
+                                            <label class="col-sm-9 col-form-label col-form-label-sm">Facility</label>
+                                            <input type="text" id="txtADPEmployeeId" class="form-control form-control-sm" placeholder="">
+                                        </div>
+                                        <div class="col-md-12" style="margin-top:15px;">
+                                            <label class="col-sm-9 col-form-label col-form-label-sm">StartDate</label>
+                                            <input type="text" id="txtADPEmployeeId" class="form-control form-control-sm" placeholder="ADP Employee Id">
+
+                                        </div>
+
+                                        <div class="col-md-12" style="margin-top:15px;">
+                                            <label class="col-sm-9 col-form-label col-form-label-sm">Annual Salary</label>
+                                            <input type="text" class="form-control form-control-sm" id="txtAnnualSalary" placeholder="Annual Salary">
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="tab8default">
+                            <br>
+                            <div class="container" style="margin-left:5px">
+                                <div class="row">
+                                    <div class="form-group row">
+                                        <div class=" row col-md-6 well" style="width:370px;height:200px">
+                                            <form>
+                                                <div class="form-group">
+                                                    <input type="checkbox" id="html">
+                                                    <label for="html">Laptop</label>
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="checkbox" id="css">
+                                                    <label for="css">Monitor</label>
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="checkbox" id="javascript">
+                                                    <label for="javascript">Mobile</label>
+                                                </div>
+
+                                            </form>
+
+                                        </div>
+
+                                        <div class=" row col-md-6 well" style="width:370px;height:200px">
+                                            <form>
+
+                                                <div class="form-group">
+                                                    <input type="checkbox" id="javascript">
+                                                    <label for="javascript">JMS</label>
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="checkbox" id="javascript">
+                                                    <label for="javascript">Inventory Control </label>
+                                                </div>
+                                            </form>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+              
+                        
                     </div>
                 </div>
                 <div class="panel-footer primary" align="left" style="height:40px;vertical-align:top;background-color:lightgrey;margin-bottom:0px">
