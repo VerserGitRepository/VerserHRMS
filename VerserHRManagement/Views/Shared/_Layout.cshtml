@@ -47,14 +47,13 @@
                 <div id="LogoImage" style="text-align:left; padding-right:20px">
                     <img src="~/Images/CompanyLogo.jpg"  style="height:40px; width:150px ;vertical-align:bottom" />
                 </div>
-
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     @if (Session["FullUserName"] != null)
                     {
                         <li>@Html.ActionLink("PROFILES", "Index", "Candidates")</li>
-                        <li>@Html.ActionLink("ON BOARD", "Create", "Candidates")</li>
+                        <li>@Html.ActionLink("PROFILE REGISTER", "Create", "Candidates")</li>
                         <li>@Html.ActionLink("BULK SMS", "Index", "MultiSelectDropDown")</li>                        
                     }
                 </ul>

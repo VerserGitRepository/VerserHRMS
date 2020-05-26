@@ -64,12 +64,13 @@
                     <ul class="nav nav-tabs">
                         <li class="active"><a href="#tab1default" data-toggle="tab">PERSONAL</a></li>
                         <li><a href="#tab2default" data-toggle="tab">EMPLOYMENT</a></li>
-                        <li><a href="#tab3default" data-toggle="tab">SKILLS</a></li>
+                        <li><a href="#tab6default" data-toggle="tab">OFFER</a></li>
+
                         @if (UserRoles.UserCanEdit() == true)
                         {
                             <li><a href="#tab4default" data-toggle="tab">DOCUMENTS</a></li>
                         }
-                        <li><a href="#tab5default" data-toggle="tab">PERFORMANCE</a></li>
+
                         <li class="pull-right" style="margin-right:100px">
 
                             @if (UserRoles.UserCanEdit() == true)
@@ -80,12 +81,14 @@
                                 }
                             }
                         </li>
-                        <li><a href="#tab6default" data-toggle="tab">OFFER</a></li>
+
                         @*<li><a href="#tab7default" data-toggle="tab">Policies</a></li>*@
                         @if (UserRoles.UserCanEdit() == true)
                         {
                             <li><a href="#tab8default" data-toggle="tab">ACCESS & DEVICES</a></li>
                         }
+                        <li><a href="#tab3default" data-toggle="tab">SKILLS</a></li>
+                        <li><a href="#tab5default" data-toggle="tab">PERFORMANCE</a></li>
                         <li><a href="#tab9default" data-toggle="tab">OFF-BOARD</a></li>
                     </ul>
                 </div>
@@ -294,8 +297,6 @@
                                                         </div>
                                                     </div>
                                                 </div>
-
-
                                                 <br />
                                             </div>
                                         </div>
@@ -676,43 +677,86 @@
                         </div>
                         <div class="tab-pane fade" id="tab8default">
                             <br>
-                            <div class="container" style="margin-left:5px">
+                            <div class="container" style="margin-left:15px">
                                 <div class="row">
                                     <div class="form-group row">
-                                        <div class=" row col-md-6 well" style="width:370px;height:200px">
+                                        <div class=" row col-md-6 well" style="width:320px;height:250px">
                                             <form>
                                                 <div class="form-group">
                                                     <input type="checkbox" id="html">
-                                                    <label for="html">Laptop</label>
+                                                    <label for="html">LAPTOP SETUP</label>
                                                 </div>
                                                 <div class="form-group">
                                                     <input type="checkbox" id="css">
-                                                    <label for="css">Monitor</label>
+                                                    <label for="css">DESK SETUP</label>
                                                 </div>
                                                 <div class="form-group">
                                                     <input type="checkbox" id="javascript">
-                                                    <label for="javascript">Mobile</label>
+                                                    <label for="javascript">OFFICE MOBILE</label>
                                                 </div>
-
+                                                <div class="form-group">
+                                                    <input type="checkbox" id="javascript">
+                                                    <label for="javascript">OFFICE IPAD</label>
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="checkbox" id="javascript">
+                                                    <label for="javascript">ADDITIONAL MONITORS</label>
+                                                </div>
                                             </form>
 
                                         </div>
 
-                                        <div class=" row col-md-6 well" style="width:370px;height:200px">
+                                        <div class=" row col-md-6 well" style="width:320px;height:250px">
                                             <form>
 
                                                 <div class="form-group">
                                                     <input type="checkbox" id="javascript">
-                                                    <label for="javascript">JMS</label>
+                                                    <label for="javascript">NEW JMS USER ACCOUNT</label>
                                                 </div>
                                                 <div class="form-group">
                                                     <input type="checkbox" id="javascript">
-                                                    <label for="javascript">Inventory Control </label>
+                                                    <label for="javascript">O365 ACCOUNT</label>
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="checkbox" id="javascript">
+                                                    <label for="javascript">WHS ACCOUNT</label>
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="checkbox" id="javascript">
+                                                    <label for="javascript">USER DOMAIN/AD ACCOUNT</label>
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="checkbox" id="javascript">
+                                                    <label for="javascript">SHAREPOINT FOLDER ACCESS</label>
                                                 </div>
                                             </form>
 
                                         </div>
+                                        <div class=" row col-md-6 well" style="width:320px;height:250px">
+                                            <form>
+                                                <div class="form-group">
+                                                    <input type="checkbox" id="html">
+                                                    <label for="html">ADP REGISTER</label>
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="checkbox" id="css">
+                                                    <label for="css">SALARY ACCOUNT ADDITION</label>
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="checkbox" id="javascript">
+                                                    <label for="javascript">TFS ACCOUNT UPDATE</label>
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="checkbox" id="javascript">
+                                                    <label for="javascript">SUPER ACCOUNT ADD</label>
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="checkbox" id="javascript">
+                                                    <label for="javascript">ADP USER ACCOUNT SETUP</label>
+                                                </div>
+                                            </form>
 
+                                        </div>
                                     </div>
 
                                 </div>
