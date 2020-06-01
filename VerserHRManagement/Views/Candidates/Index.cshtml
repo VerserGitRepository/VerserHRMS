@@ -59,37 +59,23 @@
             </table>
         </div>
         <div class="col-md-6">
-            <div class="panel with-nav-tabs panel-default" style="width:200%;margin-bottom:0px">
+            <div class="panel with-nav-tabs panel-default" style="width:190%;margin-bottom:0px">
                 <div class="panel-heading">
                     <ul class="nav nav-tabs">
                         <li class="active"><a href="#tab1default" data-toggle="tab">PERSONAL</a></li>
                         <li><a href="#tab2default" data-toggle="tab">EMPLOYMENT</a></li>
-                        <li><a href="#tab6default" data-toggle="tab">OFFER</a></li>
+
+                        <li><a href="#tab3default" data-toggle="tab">SKILLS</a></li>
+                        <li><a href="#tab5default" data-toggle="tab">PERFORMANCE</a></li>
 
                         @if (UserRoles.UserCanEdit() == true)
                         {
                             <li><a href="#tab4default" data-toggle="tab">DOCUMENTS</a></li>
-                        }
-
-                        <li class="pull-right" style="margin-right:100px">
-
-                            @if (UserRoles.UserCanEdit() == true)
-                            {
-                                using (Html.BeginForm("ExportTimesSheetToExcel", "Candidates", FormMethod.Post))
-                                {
-                                    <input type="image" src="~/Images/excel.png" alt="Submit" width="20" height="20">
-                                }
-                            }
-                        </li>
-
-                        @*<li><a href="#tab7default" data-toggle="tab">Policies</a></li>*@
-                        @if (UserRoles.UserCanEdit() == true)
-                        {
+                            <li><a href="#tab6default" data-toggle="tab">OFFER</a></li>                        
+                            <li><a href="#tab7default" data-toggle="tab">POLICIES</a></li>
                             <li><a href="#tab8default" data-toggle="tab">ACCESS & DEVICES</a></li>
+                            <li><a href="#tab9default" data-toggle="tab">OFF-BOARD</a></li>
                         }
-                        <li><a href="#tab3default" data-toggle="tab">SKILLS</a></li>
-                        <li><a href="#tab5default" data-toggle="tab">PERFORMANCE</a></li>
-                        <li><a href="#tab9default" data-toggle="tab">OFF-BOARD</a></li>
                     </ul>
                 </div>
                 <div class="panel-body" style="margin-bottom:0px">
@@ -206,14 +192,14 @@
                                                         <input type="checkbox" checked data-toggle="toggle" data-onstyle="info" id="chkIsActive">
                                                     </div>
                                                 </div>
-                                                <div class="col-md-3">
-                                                    <label>Inactive Reason</label>
+                                                <div class="col-md-2">
+                                                    <label>InActive Reason</label>
                                                     @Html.DropDownListFor(Model => Model.InactiveReason, new List<SelectListItem>
 
                      { new SelectListItem {Text="Resigned",Value="Resigned" },
-                     new SelectListItem {Text="Not Suitable",Value="Not Suitable" },
-                     new SelectListItem {Text="Not Utilized",Value="Not Utilized" },
-                     }, "In-Active Reason", new { @class = "form-control" })
+                     new SelectListItem {Text="Unsuitable",Value="Unsuitable" },
+                     new SelectListItem {Text="Lapsed",Value="Lapsed" },
+                     }, new { @class = "form-control" })
                                                     @Html.ValidationMessageFor(model => model.InactiveReason, "", new { @class = "text-danger" })
                                                 </div>
                                                 <div class="col-xs-12 col-md-6">
@@ -459,24 +445,6 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="tab-pane fade" id="tab5default">
-                            <div class="row pull-right">
-                                <div class="row pull-right">
-                                    <div class="col-md-1">
-                                        @using (Html.BeginForm("ExportTimesSheetToExcel", "Assets", FormMethod.Post))
-                                        {
-                                            <input type="image" src="~/Images/excel.png" alt="Submit" width="20" height="20">
-                                        }
-                                    </div>
-                                    <div class="col-md-1">
-                                        <input type="image" src="~/Images/plus.png" alt="Submit" width="20" height="20" id="addEndUser">
-                                    </div>
-                                    <div class="col-md-1">
-                                        <input type="image" src="~/Images/pencil.png" alt="Submit" width="20" height="20" id="editEnduser">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                         <div class="tab-pane fade" id="tab4default" style="font:x-small">
                             <div class="col-md-12">
                                 <div class="panel panel-default">
@@ -646,7 +614,11 @@
                                 </div>
                             </div>
                         </div>
-
+                        <div class="tab-pane fade" id="tab5default">
+                            <div class="row">
+                                COMING SOON
+                            </div>
+                        </div>
                         <div class="tab-pane fade" id="tab6default">
                             <div class="row" style="margin-left:10px">
                                 <div class="form-group row">
@@ -675,12 +647,17 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="tab-pane fade" id="tab7default">
+                            <div class="row">
+                                COMING SOON
+                            </div>
+                        </div>                        
                         <div class="tab-pane fade" id="tab8default">
                             <br>
                             <div class="container" style="margin-left:15px">
                                 <div class="row">
                                     <div class="form-group row">
-                                        <div class=" row col-md-6 well" style="width:320px;height:250px">
+                                        <div class=" row col-md-6 well" style="width:250px;height:250px">
                                             <form>
                                                 <div class="form-group">
                                                     <input type="checkbox" id="html">
@@ -706,7 +683,7 @@
 
                                         </div>
 
-                                        <div class=" row col-md-6 well" style="width:320px;height:250px">
+                                        <div class=" row col-md-6 well" style="width:250px;height:250px">
                                             <form>
 
                                                 <div class="form-group">
@@ -732,7 +709,7 @@
                                             </form>
 
                                         </div>
-                                        <div class=" row col-md-6 well" style="width:320px;height:250px">
+                                        <div class=" row col-md-6 well" style="width:250px;height:250px">
                                             <form>
                                                 <div class="form-group">
                                                     <input type="checkbox" id="html">
@@ -763,8 +740,11 @@
                             </div>
 
                         </div>
-              
-                        
+                        <div class="tab-pane fade" id="tab9default">
+                            <div class="row">
+                                COMING SOON
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="panel-footer primary" align="left" style="height:40px;vertical-align:top;background-color:lightgrey;margin-bottom:0px">
@@ -1593,9 +1573,9 @@
 <style>
 
     .glyphicon {
-    font-size: 6px;
-    color: black;
-}
+        font-size: 6px;
+        color: black;
+    }
 
     .well-sm {
         margin-bottom: 0px;
@@ -1638,12 +1618,12 @@
         font-size: 32px;
     }
 
-    .progress {height:6px;
-      /*margin-bottom: 5px;*/
+    .progress {
+        height: 6px;
+        /*margin-bottom: 5px;*/
     }
 
     .progress-bar {
-       
         height: 8px
     }
 

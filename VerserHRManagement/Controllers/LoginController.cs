@@ -36,6 +36,7 @@ namespace VerserHRManagement.Controllers
             if (userReturn.Result.IsLoggedIn == true)
             {
                 Session["FullUserName"] = UserName;
+                Session["FullName"] = userReturn.Result.FullName;
                 Session["ErrorMessage"] = null;
                 Session["Accounts"] = null;
                 Session["Administrator"] = null;

@@ -1,6 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
+    @using VerserHRManagement.HelperServices
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title Verser HRMS</title>
@@ -53,8 +54,13 @@
                     @if (Session["FullUserName"] != null)
                     {
                         <li>@Html.ActionLink("PROFILES", "Index", "Candidates")</li>
-                        <li>@Html.ActionLink("PROFILE REGISTER", "Create", "Candidates")</li>
-                        <li>@Html.ActionLink("BULK SMS", "Index", "MultiSelectDropDown")</li>                        
+                        if (UserRoles.UserCanEdit())
+                        {
+                            <li>@Html.ActionLink("PROFILE REGISTER", "Create", "Candidates")</li>
+                            <li>@Html.ActionLink("BULK SMS", "Index", "MultiSelectDropDown")</li>
+                            <li>@Html.ActionLink("EXPORT RESOURCE LIST", "Candidates", "ExportTimesSheetToExcel",FormMethod.Post)</li>                              
+
+                        }
                     }
                 </ul>
                 <ul class="nav navbar-nav" style="float:right">
@@ -72,23 +78,6 @@
     </div>
     <div class="container body-content">
 
-@*@if (@HttpContext.Current.Session["SuccessMessage"] != null)
-{
-<div class="alert alert-info text-center  alert-dismissible" role="alert">
-<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-@HttpContext.Current.Session["SuccessMessage"]
-</div>
-@@HttpContext.Current.Session["SuccessMessage"] = null;
-}
-
-@if (@HttpContext.Current.Session["ErrorMessage"] != null)
-{
-<div class="alert alert-danger text-center  alert-dismissible" role="alert">
-<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-@HttpContext.Current.Session["ErrorMessage"]
-</div>
-@@HttpContext.Current.Session["ErrorMessage"] = null;
-}*@
 
         @RenderBody()
         <hr />

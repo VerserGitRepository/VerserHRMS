@@ -24,7 +24,13 @@ namespace VerserHRManagement
                 return RedirectToAction("Login", "Login");
             }
             Candidate model = new Candidate();
+
             model.CandidateList = CandidateService.CandidateList().Result;
+            if (!UserRoles.UserCanViewAllUsers())
+            {
+                string UserName = Session["FullName"].ToString();
+                model.CandidateList = model.CandidateList.Where(c => c.CandidateName.ToLower().Contains(UserName.ToLower())).ToList();
+            }
             model.EmploymentList = new SelectList(ListItemService.EmploymentTypeList().Result, "ID", "Value");
             model.WarehouseNameList = new SelectList(ListItemService.Warehouses().Result, "ID", "Value");
             model.TechnicianLevelList = new SelectList(ListItemService.TechnicianLevel().Result, "ID", "Value");

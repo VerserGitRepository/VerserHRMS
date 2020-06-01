@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
-using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
-using System.Web;
 using VerserHRManagement.Models;
 
 namespace VerserHRManagement.TimeSchedulerServices
@@ -109,7 +107,6 @@ namespace VerserHRManagement.TimeSchedulerServices
             }
             return EmployeeStatusSetList;
         }
-
         public static async Task<List<ListItemViewModel>> AssignResources()
         {
             List<ListItemViewModel> AssignResourcesList = new List<ListItemViewModel>();
