@@ -71,10 +71,17 @@
                         @if (UserRoles.UserCanEdit() == true)
                         {
                             <li><a href="#tab4default" data-toggle="tab">DOCUMENTS</a></li>
-                            <li><a href="#tab6default" data-toggle="tab">OFFER</a></li>                        
+                            <li><a href="#tab6default" data-toggle="tab">OFFER</a></li>
+
                             <li><a href="#tab7default" data-toggle="tab">POLICIES</a></li>
                             <li><a href="#tab8default" data-toggle="tab">ACCESS & DEVICES</a></li>
                             <li><a href="#tab9default" data-toggle="tab">OFF-BOARD</a></li>
+                            <li class="pull-right" style="margin-right:20px;vertical-align:bottom">
+                                @using (Html.BeginForm("ExportTimesSheetToExcel", "Candidates", FormMethod.Post))
+                                {
+                                    <input type="image" src="~/Images/excel.png" alt="Submit" width="20" height="20">
+                                }
+                            </li>
                         }
                     </ul>
                 </div>
@@ -447,6 +454,7 @@
                         </div>
                         <div class="tab-pane fade" id="tab4default" style="font:x-small">
                             <div class="col-md-12">
+                                
                                 <div class="panel panel-default">
                                     <div class="panel-heading"><strong>RESUME</strong> <small> </small></div>
                                     <div class="panel-body">
@@ -456,30 +464,76 @@
                                                 <i class="fas fa-file-download"></i>
                                                 @Html.ActionLink("Resume", "DownloadFile", "Candidates", new { textval = "" }, new { @id = "resume", @class = "actionlink" })
                                             </span>
-                                            <!-- don't give a name === doesn't send on POST/GET -->
-                                            <span class="input-group-btn-override" style="padding-left:150px">
-                                                <input id="CVimgupload" type="file" style="display:none;">
-                                                <button id="btnCV" type="button" class="btn btn-sm btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray">
-                                                    <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Resume
-                                                </button>
-                                            </span>
-                                        </div>
-                                        <br>
-                                        <div class="input-group image-preview">
+
                                             @Html.Hidden("Resume", null, new { @id = "hiddenCertificate" })
                                             <span class="input-group-btn-override">
                                                 <i class="fas fa-file-download"></i>
                                                 @Html.ActionLink("Certificates", "DownloadFile", "Candidates", new { textval = "" }, new { @id = "certificate", @class = "actionlink" })
                                             </span>
-                                            <!-- don't give a name === doesn't send on POST/GET -->
-                                            <span class="input-group-btn-override" style="padding-left:125px">
-                                                <input id="Certificateimgupload" type="file" style="display:none;">
-                                                <button type="button" id="btnCertificates" class="btn btn-sm btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray">
-                                                    <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Certificate
-                                                </button>
+                                            @Html.Hidden("DL", null, new { @id = "hiddenResume" })
+                                            <span class="input-group-btn-override">
+                                                <i class="fas fa-file-download"></i>
+                                                @Html.ActionLink("DL", "DownloadFile", "Candidates", new { textval = "" }, new { @id = "resume", @class = "actionlink" })
+                                            </span>
+
+                                            @Html.Hidden("POLICE CHECK", null, new { @id = "hiddenCertificate" })
+                                            <span class="input-group-btn-override">
+                                                <i class="fas fa-file-download"></i>
+                                                @Html.ActionLink("POLICE CHECK", "DownloadFile", "Candidates", new { textval = "" }, new { @id = "certificate", @class = "actionlink" })
                                             </span>
                                         </div>
+                                        <div class="col-md-3">
+                                            @Html.DropDownListFor(Model => Model.InactiveReason, new List<SelectListItem>
+                                            { new SelectListItem {Text="RESUME",Value="RESUME" },
+                                            new SelectListItem {Text="DRIVING LICENSE",Value="DL" },
+                                            new SelectListItem {Text="VISA",Value="VISA" },
+                                             new SelectListItem {Text="SUPER FORM",Value="SUPERFORM" },
+                                              new SelectListItem {Text="TNF",Value="TNF" },
+                                               new SelectListItem {Text="BANK DETAILS",Value="BANKDETAILS" },
+                                               new SelectListItem {Text="CODE OF CONDUCT",Value="CODEOFCONDUCT" },
+                                               new SelectListItem {Text="WHS",Value="WHS" },
+                                            }, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => model.InactiveReason, "", new { @class = "text-danger" })
+                                            <input id="Certificateimgupload" type="file" style="display:none;">
+                                            <button type="button" id="btnCertificates" class="btn btn-sm btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray">
+                                                <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Certificate
+                                            </button>
+                                        </div>
                                     </div>
+                                  
+
+                                    @*<div class="panel-body">
+            <div class="input-group image-preview">
+                @Html.Hidden("Resume", null, new { @id = "hiddenResume" })
+                <span class="input-group-btn-override">
+                    <i class="fas fa-file-download"></i>
+                    @Html.ActionLink("Resume", "DownloadFile", "Candidates", new { textval = "" }, new { @id = "resume", @class = "actionlink" })
+                </span>
+                 don't give a name === doesn't send on POST/GET
+                <span class="input-group-btn-override" style="padding-left:150px">
+                    <input id="CVimgupload" type="file" style="display:none;">
+                    <button id="btnCV" type="button" class="btn btn-sm btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray">
+                        <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Resume
+                    </button>
+                </span>
+            </div>
+            <br>
+            <div class="input-group image-preview">
+                @Html.Hidden("Resume", null, new { @id = "hiddenCertificate" })
+                <span class="input-group-btn-override">
+                    <i class="fas fa-file-download"></i>
+                    @Html.ActionLink("Certificates", "DownloadFile", "Candidates", new { textval = "" }, new { @id = "certificate", @class = "actionlink" })
+                </span>
+                 don't give a name === doesn't send on POST/GET
+                <span class="input-group-btn-override" style="padding-left:125px">
+                    <input id="Certificateimgupload" type="file" style="display:none;">
+                    <button type="button" id="btnCertificates" class="btn btn-sm btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray">
+                        <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Certificate
+                    </button>
+                </span>
+            </div>
+        </div>*@
+
                                     <div class="panel-heading"><strong>LEGAL</strong> <small> </small></div>
                                     <div class="panel-body">
                                         <div class="input-group image-preview">
@@ -634,9 +688,7 @@
                                         <div class="col-md-12" style="margin-top:15px;">
                                             <label class="col-sm-9 col-form-label col-form-label-sm">StartDate</label>
                                             <input type="text" id="txtADPEmployeeId" class="form-control form-control-sm" placeholder="ADP Employee Id">
-
                                         </div>
-
                                         <div class="col-md-12" style="margin-top:15px;">
                                             <label class="col-sm-9 col-form-label col-form-label-sm">Annual Salary</label>
                                             <input type="text" class="form-control form-control-sm" id="txtAnnualSalary" placeholder="Annual Salary">
