@@ -185,6 +185,7 @@
     <Compile Include="Models\CandidateExportModel.cs" />
     <Compile Include="Models\EmployeeStatusSetViewModel.cs" />
     <Compile Include="Models\EmploymentTypeViewModel.cs" />
+    <Compile Include="Models\SelectListItems.cs" />
     <Compile Include="Models\ListItems.cs" />
     <Compile Include="Models\ListItemViewModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
@@ -412,6 +413,8 @@
     <Content Include="Images\pencil.png" />
     <Content Include="Images\plus.png" />
     <Content Include="Images\Verser.PNG" />
+    <Content Include="Scripts\bootstrap-multiselect.css" />
+    <Content Include="Scripts\bootstrap-multiselect.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">

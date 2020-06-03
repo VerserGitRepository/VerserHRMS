@@ -18,7 +18,9 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
 <script src='https://kit.fontawesome.com/a076d05399.js'></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
+<script src="~/Scripts/bootstrap-multiselect.js"></script>
+<link href="~/Scripts/bootstrap-multiselect.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.0.4/popper.js"></script>
 <div class="container-fluid" style="margin-left:0px;padding-top:0px">
     <div class="container" style="width:170%; padding-top:15px; margin-left:0px; border-color:lightgray;padding-left:0px">
         <div class="col-md-4">
@@ -196,7 +198,7 @@
                                                 <div class="col-md-1">
                                                     <label>Active</label>
                                                     <div class="input-group">
-                                                        <input type="checkbox" checked data-toggle="toggle" data-onstyle="info" id="chkIsActive" onchange="ResourceChange(this)";>
+                                                        <input type="checkbox" checked data-toggle="toggle" data-onstyle="info" id="chkIsActive" onchange="ResourceChange(this)" ;>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-2">
@@ -213,8 +215,7 @@
                                                     <div class="table table-bordered" style="margin-bottom:0px">
                                                         <div class="row" style="height:30%">
                                                             <div class="col-xs-12 col-md-6 text-center">
-                                                                <h1 class="rating-num" id="ratingheader">
-                                                                </h1>
+                                                                <h1 class="rating-num" id="ratingheader"></h1>
                                                                 <div class="rating" id="ratingdiv">
 
                                                                 </div>
@@ -419,12 +420,11 @@
                                         <div class="col-md-12" style="margin-top:15px;">
                                             <label>People Manager</label>
                                             <div class="input-group">
-                                                <input type="checkbox" checked data-toggle="toggle" data-onstyle="info" id="chkIsPeopleManager" onchange="PeopleManagerCBChange(this)" ;>
+                                                <input type="checkbox" checked data-toggle="toggle" data-onstyle="info" id="chkIsPeopleManager" data-on="Yes" data-off="No" onchange="PeopleManagerCBChange(this)" ;>
                                             </div>
                                         </div>
                                         <div class="col-md-12" style="margin-top:15px;">
-                                            <label class="col-sm-9 col-form-label col-form-label-sm">Work Rights</label>
-                                            @Html.DropDownListFor(model => model.WorkRights, Model.WorkRightsList, "Works Rights", new { @class = "form-control", id = "ddlWorkRights" })
+                                            @Html.DropDownListFor(model => Model.ResourceIDs, Model.CandidateNameList, new { @id = "CandidateNameId", @style = "height:10px; width:10px;", @multiple = "multiple" })
                                         </div>
                                     </div>
                                 </div>
@@ -466,7 +466,7 @@
                         </div>
                         <div class="tab-pane fade" id="tab4default" style="font:x-small">
                             <div class="col-md-12">
-                                
+
                                 <div class="panel panel-default">
                                     <div class="panel-heading"><strong>RESUME</strong> <small> </small></div>
                                     <div class="panel-body">
@@ -512,39 +512,39 @@
                                             </button>
                                         </div>
                                     </div>
-                                  
+
 
                                     @*<div class="panel-body">
-            <div class="input-group image-preview">
-                @Html.Hidden("Resume", null, new { @id = "hiddenResume" })
-                <span class="input-group-btn-override">
-                    <i class="fas fa-file-download"></i>
-                    @Html.ActionLink("Resume", "DownloadFile", "Candidates", new { textval = "" }, new { @id = "resume", @class = "actionlink" })
-                </span>
-                 don't give a name === doesn't send on POST/GET
-                <span class="input-group-btn-override" style="padding-left:150px">
-                    <input id="CVimgupload" type="file" style="display:none;">
-                    <button id="btnCV" type="button" class="btn btn-sm btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray">
-                        <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Resume
-                    </button>
-                </span>
-            </div>
-            <br>
-            <div class="input-group image-preview">
-                @Html.Hidden("Resume", null, new { @id = "hiddenCertificate" })
-                <span class="input-group-btn-override">
-                    <i class="fas fa-file-download"></i>
-                    @Html.ActionLink("Certificates", "DownloadFile", "Candidates", new { textval = "" }, new { @id = "certificate", @class = "actionlink" })
-                </span>
-                 don't give a name === doesn't send on POST/GET
-                <span class="input-group-btn-override" style="padding-left:125px">
-                    <input id="Certificateimgupload" type="file" style="display:none;">
-                    <button type="button" id="btnCertificates" class="btn btn-sm btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray">
-                        <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Certificate
-                    </button>
-                </span>
-            </div>
-        </div>*@
+                                            <div class="input-group image-preview">
+                                                @Html.Hidden("Resume", null, new { @id = "hiddenResume" })
+                                                <span class="input-group-btn-override">
+                                                    <i class="fas fa-file-download"></i>
+                                                    @Html.ActionLink("Resume", "DownloadFile", "Candidates", new { textval = "" }, new { @id = "resume", @class = "actionlink" })
+                                                </span>
+                                                 don't give a name === doesn't send on POST/GET
+                                                <span class="input-group-btn-override" style="padding-left:150px">
+                                                    <input id="CVimgupload" type="file" style="display:none;">
+                                                    <button id="btnCV" type="button" class="btn btn-sm btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray">
+                                                        <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Resume
+                                                    </button>
+                                                </span>
+                                            </div>
+                                            <br>
+                                            <div class="input-group image-preview">
+                                                @Html.Hidden("Resume", null, new { @id = "hiddenCertificate" })
+                                                <span class="input-group-btn-override">
+                                                    <i class="fas fa-file-download"></i>
+                                                    @Html.ActionLink("Certificates", "DownloadFile", "Candidates", new { textval = "" }, new { @id = "certificate", @class = "actionlink" })
+                                                </span>
+                                                 don't give a name === doesn't send on POST/GET
+                                                <span class="input-group-btn-override" style="padding-left:125px">
+                                                    <input id="Certificateimgupload" type="file" style="display:none;">
+                                                    <button type="button" id="btnCertificates" class="btn btn-sm btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray">
+                                                        <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Certificate
+                                                    </button>
+                                                </span>
+                                            </div>
+                                        </div>*@
 
                                     <div class="panel-heading"><strong>LEGAL</strong> <small> </small></div>
                                     <div class="panel-body">
@@ -715,7 +715,7 @@
                             <div class="row">
                                 COMING SOON
                             </div>
-                        </div>                        
+                        </div>
                         <div class="tab-pane fade" id="tab8default">
                             <br>
                             <div class="container" style="margin-left:15px">
@@ -835,11 +835,10 @@
     <script src="https://cdn.datatables.net/plug-ins/1.10.15/api/row().show().js"></script>
 </body>
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
 
     <script type="text/javascript">
         $(document).ready(function () {
+
             $('#mainTable').DataTable({
                 stateSave: true,
                 "pageLength": 20,
@@ -873,7 +872,7 @@
             });
         });
         //  ExportTimesSheetToExcel", "Candidates"
-
+       
         function ResourceChange (val) {
            // alert('text');
             if ($(val).is(':checked')) {
@@ -882,7 +881,15 @@
                 $('#ddlInactiveReason').prop("disabled", false);
             }
         }
-        
+        function PeopleManagerCBChange(val) {
+            // alert('text');
+            if ($(val).is(':checked')) {
+                $('#CandidateNameId').next().show();
+            } else {
+                $('#CandidateNameId').next().hide();
+            }
+        }
+
         function ExportData() {
             var data = {};
             $.ajax({
@@ -1571,6 +1578,7 @@
 
         $("#updateEmploymentDetailsBtn").click(function () {
             var CandidateEdit = {};
+            CandidateEdit.ResourceIds = $('#CandidateNameId').val();
             CandidateEdit.ID = $("#hiddenModelId").val();
             CandidateEdit.PayFrequenciesID = $("#ddlPayFrequencyId").val();
             CandidateEdit.ADP_EmployeeID = $("#txtADPEmployeeId").val();
@@ -1642,15 +1650,29 @@
             var age = Math.floor(diff / 31557600000);
             $("#txtAge").val(age);
         }
+        $('#CandidateNameId').multiselect({
+            includeSelectAllOption: true,
+            maxHeight: 250,
+            buttonWidth: '220px',
+            width:'120px',
+            enableFiltering: true,
+            enableCaseInsensitiveFiltering: true
+        });
     </script>
-}
+
 <style>
 
     .glyphicon {
         font-size: 6px;
         color: black;
     }
+    .multiselect-container > li > a > label.checkbox {
+        width: 220px;
+    }
 
+    .btn-group > .btn:first-child {
+        width: 220px;
+    }
     .well-sm {
         margin-bottom: 0px;
         margin-top: 0px;
