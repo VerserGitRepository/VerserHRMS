@@ -60,7 +60,7 @@
                 </tbody>
             </table>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-7">
             <div class="panel with-nav-tabs panel-default" style="width:190%;margin-bottom:0px">
                 <div class="panel-heading">
                     <ul class="nav nav-tabs">
@@ -74,8 +74,7 @@
                         {
                             <li><a href="#tab4default" data-toggle="tab">DOCUMENTS</a></li>
                             <li><a href="#tab6default" data-toggle="tab">OFFER</a></li>
-
-                            <li><a href="#tab7default" data-toggle="tab">POLICIES</a></li>
+                             <li><a href="#tab7default" data-toggle="tab">POLICIES</a></li>
                             <li><a href="#tab8default" data-toggle="tab">ACCESS & DEVICES</a></li>
                             <li><a href="#tab9default" data-toggle="tab">OFF-BOARD</a></li>
                             <li class="pull-right" style="margin-right:20px;vertical-align:bottom">
@@ -93,124 +92,139 @@
                             <div class="col-md-6" style="padding-left:0px;padding-bottom:10px">
                                 <div class="row">
                                     <form>
-                                        <div class="container table-bordered" style="margin:20px; width:1000px;padding-top:0px;padding-bottom:0px;margin-top:2px">
-                                            <div class="form-group row">
-                                                <div class="col-sm-6">
-                                                    <div class="col-sm-12">
-                                                        <img class="preview-img" src="http://simpleicon.com/wp-content/uploads/account.png" alt="Preview Image" width="120" height="120" id="previewImage" onchange="readURL(this);" />
-                                                        <img id="image" class="image-border form-control form-control-sm" width="120" height="120">
-                                                        <input type="file" id="imgupload" style="display:none" onchange="readURL(this);" />
+                                        <div class="container table-bordered" style="margin:20px; width:1300px;padding-top:0px;padding-bottom:0px;margin-top:2px">
+                                            <div class="col-md-9">
+                                                <div class="form-group row">
+                                                    <div class="col-sm-6">
+                                                        <div class="col-sm-12">
+                                                            <img class="preview-img" src="http://simpleicon.com/wp-content/uploads/account.png" alt="Preview Image" width="120" height="120" id="previewImage" onchange="readURL(this);" />
+                                                            <img id="image" class="image-border form-control form-control-sm" width="120" height="120">
+                                                            <input type="file" id="imgupload" style="display:none" onchange="readURL(this);" />
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="row" style="margin-left:20px;">
-                                                <div class="form-group row">
-                                                    <div class="col-md-3" style="margin-right:10px">
-                                                        <label>First Name</label>
-                                                        <div class="input-group">
-                                                            <span class="input-group-addon">
-                                                                <i class="glyphicon glyphicon-user"></i>
-                                                            </span>  <input type="text" id="txtfName" class="form-control" placeholder="First Name">
+                                                <div class="row" style="margin-left:20px;">
+                                                    <div class="form-group row">
+                                                        <div class="col-md-2" style="margin-right:10px">
+                                                            <label>First Name</label>
+                                                            <div class="input-group">
+                                                                <span class="input-group-addon">
+                                                                    <i class="glyphicon glyphicon-user"></i>
+                                                                </span>  <input type="text" id="txtfName" class="form-control" placeholder="">
+                                                            </div>
+
                                                         </div>
+                                                        <div class="col-md-2">
+                                                            <label>Last Name</label>
+                                                            <div class="input-group">
+                                                                <span class="input-group-addon">
+                                                                    <i class="glyphicon glyphicon-user"></i>
+                                                                </span> <input type="text" id="txtlName" class="form-control" placeholder="">
+                                                            </div>
 
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        <label>Last Name</label>
-                                                        <div class="input-group">
-                                                            <span class="input-group-addon">
-                                                                <i class="glyphicon glyphicon-user"></i>
-                                                            </span> <input type="text" id="txtlName" class="form-control" placeholder="Last Name">
+
                                                         </div>
+                                                        <div class="col-md-2">
+                                                            <label>DOB</label>
+                                                            <div class="input-group">
+                                                                <span class="input-group-addon">
+                                                                    <i class="glyphicon glyphicon-calendar"></i>
+                                                                </span> <input type="date" class="form-control" id="txtDOB" placeholder="DOB" onchange="calculateAge(this);">
+                                                            </div>
 
-
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        <label>DOB</label>
-                                                        <div class="input-group">
-                                                            <span class="input-group-addon">
-                                                                <i class="glyphicon glyphicon-calendar"></i>
-                                                            </span> <input type="date" class="form-control" id="txtDOB" placeholder="DOB" onchange="calculateAge(this);">
                                                         </div>
-
                                                     </div>
-                                                </div>
-                                                <div class="form-group row">
-                                                    <div class="col-md-3">
-                                                        <label>Age</label>
-                                                        <div class="input-group">
-                                                            <span class="input-group-addon">
-                                                                <i class="glyphicon glyphicon-calendar"></i>
-                                                            </span> <input type="text" class="form-control" id="txtAge" placeholder="Age">
+                                                    <div class="form-group row">
+                                                        <div class="col-md-2">
+                                                            <label>Age</label>
+                                                            <div class="input-group">
+                                                                <span class="input-group-addon">
+                                                                    <i class="glyphicon glyphicon-calendar"></i>
+                                                                </span> <input type="text" class="form-control" id="txtAge" placeholder="Age">
+                                                            </div>
+
                                                         </div>
-
-
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        <label>Gender</label>
-                                                        <div class="input-group">
-                                                            <span class="input-group-addon">
-                                                                <i class="fas fa-user-friends"></i>
-                                                            </span>
-                                                            <select class="form-control" id="txtGender">
-                                                                <option>Select</option>
-                                                                <option>Male</option>
-                                                                <option>Female</option>
+                                                        <div class="col-md-2">
+                                                            <label>Gender</label>
+                                                            <div class="input-group">
+                                                                <span class="input-group-addon">
+                                                                    <i class="fas fa-user-friends"></i>
+                                                                </span>
+                                                                <select class="form-control" id="txtGender">
+                                                                    <option>Select</option>
+                                                                    <option>Male</option>
+                                                                    <option>Female</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-2">
+                                                            <label>Marital Status</label>
+                                                            <select class="form-control" id="txtStatus">
+                                                                <option>Married</option>
+                                                                <option>Single</option>
                                                             </select>
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-3">
-                                                        <label>Marital Status</label>
-                                                        <select class="form-control" id="txtStatus">
-                                                            <option>Married</option>
-                                                            <option>Single</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group row">
-                                                    <div class="col-md-3">
-                                                        <label>Warehouse:</label>
-                                                        <div class="input-group">
-                                                            <span class="input-group-addon">
-                                                                <i class="fas fa-warehouse"></i>
-                                                            </span> @Html.DropDownListFor(model => model.WarehouseID, Model.WarehouseNameList, "WAREHOUSE", new { @class = "form-control", id = "ddlWarehouseId" })
-                                                        </div>
+                                                    <div class="form-group row">
+                                                        <div class="col-md-2">
+                                                            <label>Warehouse:</label>
+                                                            <div class="input-group">
+                                                                <span class="input-group-addon">
+                                                                    <i class="fas fa-warehouse"></i>
+                                                                </span> @Html.DropDownListFor(model => model.WarehouseID, Model.WarehouseNameList, "WAREHOUSE", new { @class = "form-control", id = "ddlWarehouseId" })
+                                                            </div>
 
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        <label>Resource Categories:</label>
-                                                        <div class="input-group">
-                                                            <span class="input-group-addon">
-                                                                <i class="fas fa-user-tie"></i>
-                                                            </span> @Html.DropDownListFor(model => model.ResourceCategoriesID, Model.ResourceCategoriesList, "Resource Categories", new { @class = "form-control", id = "ddlResourcesCatId" })
                                                         </div>
+                                                        <div class="col-md-2">
+                                                            <label>Resource Categories:</label>
+                                                            <div class="input-group">
+                                                                <span class="input-group-addon">
+                                                                    <i class="fas fa-user-tie"></i>
+                                                                </span> @Html.DropDownListFor(model => model.ResourceCategoriesID, Model.ResourceCategoriesList, "Resource Categories", new { @class = "form-control", id = "ddlResourcesCatId" })
+                                                            </div>
 
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        <label>Driving License:</label>
-                                                        <div class="input-group">
-                                                            <span class="input-group-addon">
-                                                                <i class="fas fa-truck"></i>
-                                                            </span>  @Html.DropDownListFor(model => model.DrivingLicenseID, Model.DrivingLicensesList, "Driver License", new { @class = "form-control", id = "ddlDrivingLicenseID" })
                                                         </div>
+                                                        <div class="col-md-2">
+                                                            <label>Driving License:</label>
+                                                            <div class="input-group">
+                                                                <span class="input-group-addon">
+                                                                    <i class="fas fa-truck"></i>
+                                                                </span>  @Html.DropDownListFor(model => model.DrivingLicenseID, Model.DrivingLicensesList, "Driver License", new { @class = "form-control", id = "ddlDrivingLicenseID" })
+                                                            </div>
 
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="col-md-1">
-                                                    <label>Active</label>
-                                                    <div class="input-group">
-                                                        <input type="checkbox" checked data-toggle="toggle" data-onstyle="info" id="chkIsActive" onchange="ResourceChange(this)" ;>
-                                                        
+                                                    <div class="col-md-1">
+                                                        <label>Active</label>
+                                                        <div class="input-group">
+                                                            <input type="checkbox" checked data-toggle="toggle" data-onstyle="info" id="chkIsActive">
+                                                        </div>
                                                     </div>
+                                                 
+                                                    @*<div class="col-md-2">
+                    <label>InActive Reason</label>
+                    @Html.DropDownListFor(Model => Model.InactiveReason, new List<SelectListItem>
+
+                        { new SelectListItem {Text="Resigned",Value="Resigned" },
+                        new SelectListItem {Text="Unsuitable",Value="Unsuitable" },
+                        new SelectListItem {Text="Lapsed",Value="Lapsed" },
+                        }, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.InactiveReason, "", new { @class = "text-danger" })
+                </div>*@
+                                                
                                                 </div>
-                                                <div class="col-md-2">
-                                                    <label></label>
+                                              
+                                                @*<div class="col-md-2">
+                                                    <label>InActive Reason</label>
                                                     @Html.DropDownListFor(Model => Model.InactiveReason, new List<SelectListItem>
-                     { new SelectListItem {Text="Resigned",Value="Resigned" },
-                     new SelectListItem {Text="Unsuitable",Value="Unsuitable" },
-                     new SelectListItem {Text="Lapsed",Value="Lapsed" },
-                     }, "In-Active?", new { @class = "form-control",@id="ddlInactiveReason"})
+
+                                                        { new SelectListItem {Text="Resigned",Value="Resigned" },
+                                                        new SelectListItem {Text="Unsuitable",Value="Unsuitable" },
+                                                        new SelectListItem {Text="Lapsed",Value="Lapsed" },
+                                                        }, new { @class = "form-control", @id = "ddlInactiveReason" })
                                                     @Html.ValidationMessageFor(model => model.InactiveReason, "", new { @class = "text-danger" })
-                                                </div>
+                                                   
+                                                </div>*@
                                                 <div class="col-xs-12 col-md-6">
                                                     <div class="table table-bordered" style="margin-bottom:0px">
                                                         <div class="row" style="height:30%">
@@ -292,6 +306,32 @@
                                                     </div>
                                                 </div>
                                                 <br />
+                                            </div>
+                                            <br>
+                                            <div class=" row col-md-2 well" style="width:250px;height:450px">
+
+                                                <div class="form-group">
+
+                                                    <label for="html">Manager</label>
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <label for="css">Candidate 1</label>
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <label for="javascript">Candidate2</label>
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <label for="javascript">Candidate3</label>
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <label for="javascript">Candidate4</label>
+                                                </div>
+
+
                                             </div>
                                         </div>
                                     </form>
