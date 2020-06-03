@@ -39,7 +39,7 @@
                         <tr>
                             <td onclick="LoadAddressData(@item.ID,'@item.CandidateName','@item.DateCreated','@item.Address','@item.City','@item.state','@item.postcode','@item.Email','@item.Phone',
                                 '@if(item.profilePicture != null) { @Convert.ToBase64String(@item.profilePicture)}','@if (item.DOB.HasValue) {@item.DOB.Value.ToString("yyyy-MM-dd")}','@item.Age','@item.Gender','@item.MaritalStatus',@Json.Encode(item.isactive),
-                                '@item.WarehouseID','@item.ResourceCategoriesID','@item.DrivingLicenseID');
+                                '@item.WarehouseID','@item.ResourceCategoriesID','@item.DrivingLicenseID','@item.fK_ResourceInActiveReasonID');
                                 LoadEmployment(@item.ID,'@item.PayFrequenciesID','@item.ADP_EmployeeID','@item.AssignResourcesID','@item.Annualsalary','@item.HourlyRate','@item.DailyRate','@item.WorkRightID',
                                 '@item.EmployeeStatusSetID','@item.EmploymentTypesID','@item.NoticePeriod');
                                 LoadDocuments(@item.ID,'@item.FilePath','@item.certificate1','@item.DriverLicense','@item.PoliceCheckReport','@item.Visa','@item.SuperChoice','@item.TFNDeclaration',
@@ -196,7 +196,7 @@
                                                 <div class="col-md-1">
                                                     <label>Active</label>
                                                     <div class="input-group">
-                                                        <input type="checkbox" checked data-toggle="toggle" data-onstyle="info" id="chkIsActive">
+                                                        <input type="checkbox" checked data-toggle="toggle" data-onstyle="info" id="chkIsActive" onchange="ResourceChange(this)";>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-2">
@@ -206,7 +206,7 @@
                      { new SelectListItem {Text="Resigned",Value="Resigned" },
                      new SelectListItem {Text="Unsuitable",Value="Unsuitable" },
                      new SelectListItem {Text="Lapsed",Value="Lapsed" },
-                     }, new { @class = "form-control" })
+                     }, new { @class = "form-control",@id="ddlInactiveReason" })
                                                     @Html.ValidationMessageFor(model => model.InactiveReason, "", new { @class = "text-danger" })
                                                 </div>
                                                 <div class="col-xs-12 col-md-6">
@@ -413,6 +413,18 @@
                                         <div class="col-md-12" style="margin-top:15px;">
                                             <label class="col-sm-9 col-form-label col-form-label-sm">Notice Period</label>
                                             <input type="text" class="form-control form-control-sm" id="txtNoticePeriod" placeholder="Notice Period">
+                                        </div>
+                                    </div>
+                                    <div class=" row col-md-6 well" style="width:250px;height:390px">
+                                        <div class="col-md-12" style="margin-top:15px;">
+                                            <label>People Manager</label>
+                                            <div class="input-group">
+                                                <input type="checkbox" checked data-toggle="toggle" data-onstyle="info" id="chkIsPeopleManager" onchange="PeopleManagerCBChange(this)" ;>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12" style="margin-top:15px;">
+                                            <label class="col-sm-9 col-form-label col-form-label-sm">Work Rights</label>
+                                            @Html.DropDownListFor(model => model.WorkRights, Model.WorkRightsList, "Works Rights", new { @class = "form-control", id = "ddlWorkRights" })
                                         </div>
                                     </div>
                                 </div>
@@ -862,6 +874,15 @@
         });
         //  ExportTimesSheetToExcel", "Candidates"
 
+        function ResourceChange (val) {
+           // alert('text');
+            if ($(val).is(':checked')) {
+                $('#ddlInactiveReason').prop("disabled", true);
+            } else {
+                $('#ddlInactiveReason').prop("disabled", false);
+            }
+        }
+        
         function ExportData() {
             var data = {};
             $.ajax({
@@ -871,10 +892,11 @@
 
             });
         }
-        function LoadAddressData(ID, CandidateName, DateCreated, Address, City, state, postcode, Email, Phone, logo, dob, age, gender, maritalstatus, isactive, warehouseId, resourceCategoriesId, drivingLicenseId) {
+        function LoadAddressData(ID, CandidateName, DateCreated, Address, City, state, postcode, Email, Phone, logo, dob, age, gender, maritalstatus, isactive, warehouseId, resourceCategoriesId, drivingLicenseId,inactivereason) {
             $("#txtfName").val(CandidateName.split(' ')[0]);
             $("#txtlName").val(CandidateName.split(' ')[1]);
             $("#txtAddress1").val(Address);
+            $("#ddlInactiveReason").val(inactivereason);
             $("#txtAddress2").val(Address);
             $("#txtCity").val(City);
             $("#txtState").val(state);

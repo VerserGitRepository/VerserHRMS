@@ -94,5 +94,6 @@ namespace VerserHRManagement.Models
         public string Manager { get; set; }
         public SelectList DirectReports { get; set; }
         public string InactiveReason { get; set; }
+        public string fK_ResourceInActiveReasonID { get; set; }
     }
 }
