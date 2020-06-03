@@ -196,17 +196,17 @@
                                                 <div class="col-md-1">
                                                     <label>Active</label>
                                                     <div class="input-group">
-                                                        <input type="checkbox" checked data-toggle="toggle" data-onstyle="info" id="chkIsActive" onchange="ResourceChange(this)";>
+                                                        <input type="checkbox" checked data-toggle="toggle" data-onstyle="info" id="chkIsActive" onchange="ResourceChange(this)" ;>
+                                                        
                                                     </div>
                                                 </div>
                                                 <div class="col-md-2">
-                                                    <label>InActive Reason</label>
+                                                    <label></label>
                                                     @Html.DropDownListFor(Model => Model.InactiveReason, new List<SelectListItem>
-
                      { new SelectListItem {Text="Resigned",Value="Resigned" },
                      new SelectListItem {Text="Unsuitable",Value="Unsuitable" },
                      new SelectListItem {Text="Lapsed",Value="Lapsed" },
-                     }, new { @class = "form-control",@id="ddlInactiveReason" })
+                     }, "In-Active?", new { @class = "form-control",@id="ddlInactiveReason"})
                                                     @Html.ValidationMessageFor(model => model.InactiveReason, "", new { @class = "text-danger" })
                                                 </div>
                                                 <div class="col-xs-12 col-md-6">
@@ -862,6 +862,7 @@
                 $("#previewImage").hide();
             }
 
+
             $('#mainTable tbody').on('click', 'tr', function () {
                 if ($(this).hasClass('selected')) {
                     $(this).removeClass('selected');
@@ -871,15 +872,17 @@
                     $(this).addClass('selected');
                 }
             });
+
+            $('#ddlInactiveReason').hide();
         });
         //  ExportTimesSheetToExcel", "Candidates"
 
         function ResourceChange (val) {
            // alert('text');
             if ($(val).is(':checked')) {
-                $('#ddlInactiveReason').prop("disabled", true);
+                $('#ddlInactiveReason').hide(); //.prop("disabled", true);
             } else {
-                $('#ddlInactiveReason').prop("disabled", false);
+                $('#ddlInactiveReason').show(); //.prop("disabled", false);
             }
         }
         
