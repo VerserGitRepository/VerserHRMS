@@ -5,11 +5,16 @@ using System.Web;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Web.Mvc;
+using VerserHRManagement.Models;
 
 namespace VerserHRManagement.Models
 {
     public class Candidate
     {
+        public Candidate()
+        {
+            ResourceReporting = new List<ListItemViewModel>();
+        }
         public int ID { get; set; }
         [Required(ErrorMessage = "CandidateName Field is Mandatory")]
         public string CandidateName { get; set; }
@@ -91,7 +96,12 @@ namespace VerserHRManagement.Models
         public SelectList DrivingLicensesList { get; set; }
         public List<Candidate> CandidateList { get; set; }
         public ResourceRatingModel ResourceRating { get; set; }
-        public string Manager { get; set; }
+        public int? ManagerID { get; set; }
+        public string ReportingManager { get; set; }
+        public bool IsPeopleManager { get; set; }
+        public List<ListItemViewModel> ResourceReporting { get; set; }
+        public int? FK_ResourceInActiveReasonID { get; set; }
+        public AllocatedAccessAndDevicesDto CandidateAllcaotedResouces { get; set; }
         public SelectList DirectReports { get; set; }
         public string InactiveReason { get; set; }
         public string fK_ResourceInActiveReasonID { get; set; }
