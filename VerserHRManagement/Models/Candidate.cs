@@ -98,7 +98,7 @@ namespace VerserHRManagement.Models
         public ResourceRatingModel ResourceRating { get; set; }
         public int? ManagerID { get; set; }
         public string ReportingManager { get; set; }
-        public bool IsPeopleManager { get; set; }
+        public bool isPeopleManager { get; set; }
         public List<ListItemViewModel> ResourceReporting { get; set; }
         public int? FK_ResourceInActiveReasonID { get; set; }
         public AllocatedAccessAndDevicesDto CandidateAllcaotedResouces { get; set; }
@@ -107,6 +107,7 @@ namespace VerserHRManagement.Models
         public string fK_ResourceInActiveReasonID { get; set; }
         public SelectList CandidateNameList { get; set; }
         public List<int?> ResourceIDs { get; set; }
+        public string Manager { get; set; }
     }
 
 }

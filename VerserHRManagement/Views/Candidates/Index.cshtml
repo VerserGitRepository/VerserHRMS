@@ -43,7 +43,7 @@
                                 '@if(item.profilePicture != null) { @Convert.ToBase64String(@item.profilePicture)}','@if (item.DOB.HasValue) {@item.DOB.Value.ToString("yyyy-MM-dd")}','@item.Age','@item.Gender','@item.MaritalStatus',@Json.Encode(item.isactive),
                                 '@item.WarehouseID','@item.ResourceCategoriesID','@item.DrivingLicenseID','@item.fK_ResourceInActiveReasonID');
                                 LoadEmployment(@item.ID,'@item.PayFrequenciesID','@item.ADP_EmployeeID','@item.AssignResourcesID','@item.Annualsalary','@item.HourlyRate','@item.DailyRate','@item.WorkRightID',
-                                '@item.EmployeeStatusSetID','@item.EmploymentTypesID','@item.NoticePeriod');
+                                '@item.EmployeeStatusSetID','@item.EmploymentTypesID','@item.NoticePeriod','@Json.Encode(item.isPeopleManager)');
                                 LoadDocuments(@item.ID,'@item.FilePath','@item.certificate1','@item.DriverLicense','@item.PoliceCheckReport','@item.Visa','@item.SuperChoice','@item.TFNDeclaration',
                                 '@item.BankDetails','@item.CodeOFConduct','@item.WHS');
                                 LoadSkills(@item.ID,'@item.CandidateSkills','@item.Experience','@item.JobTitle','@item.technicalLevelsID','@item.RateOfSkillExperties');
@@ -437,7 +437,7 @@
                                         <div class="col-md-12" style="margin-top:15px;">
                                             <label>People Manager</label>
                                             <div class="input-group">
-                                                <input type="checkbox" checked data-toggle="toggle" data-onstyle="info" id="chkIsPeopleManager" data-on="Yes" data-off="No" onchange="PeopleManagerCBChange(this)" ;>
+                                                <input type="checkbox" checked data-toggle="toggle" data-onstyle="info" id="chkIsPeopleManager" data-on="Yes" data-off="No" onchange="PeopleManagerCBChange(this);">
                                             </div>
                                         </div>
                                         <div class="col-md-12" style="margin-top:15px;">
@@ -1548,10 +1548,12 @@
         });
 
         function LoadEmployment(id, PayFrequency, ADP_EmployeeID, AssignResource, Annualsalary, HourlyRate, DailyRate, WorkRights,
-            EmployeeStatus, EmployementType, NoticePeriod) {
+            EmployeeStatus, EmployementType, NoticePeriod, isPeopleManager) {
+           // boolean ispeoplemgr = isPeopleManager;
             $("#ddlPayFrequencyId").val(PayFrequency);
            // $("#ddlPayFrequencyId").val(PayFrequency);
             $("#txtADPEmployeeId").val(ADP_EmployeeID);
+            $("#chkIsPeopleManager").prop('checked', isPeopleManager == 'true'?true:false).change();
             $("#ddlResourceAssigned").val(AssignResource);
             $("#txtAnnualSalary").val(Annualsalary);
             $("#txtHourlyRate").val(HourlyRate);
