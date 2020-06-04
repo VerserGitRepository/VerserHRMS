@@ -61,7 +61,7 @@
             </table>
         </div>
         <div class="col-md-7">
-            <div class="panel with-nav-tabs panel-default" style="width:185%;margin-bottom:0px">
+            <div class="panel with-nav-tabs panel-default" style="width:190%;margin-bottom:0px">
                 <div class="panel-heading">
                     <ul class="nav nav-tabs">
                         <li class="active"><a href="#tab1default" data-toggle="tab">PERSONAL</a></li>
@@ -87,25 +87,24 @@
                 </div>
                 <div class="panel-body" style="margin-bottom:0px">
                     <div class="tab-content" style="margin-bottom:0px">
-                        <div class="tab-pane fade in active" id="tab1default" style="margin-bottom:0px;margin-top:0px">
-                            <div class="col-md-6" style="padding-left:0px;padding-bottom:10px;margin-right:10px">
+                        <div class="tab-pane fade in active" id="tab1default" style="margin-bottom:0px">
+                            <div class="col-md-6" style="padding-left:0px;padding-bottom:10px">
                                 <div class="row">
                                     <form>
-                                        <div class="container table-bordered" style="margin:20px; width:1150px;padding-top:0px;padding-bottom:-20px;margin-top:0px">
-                                            <div class="col-md-8" style="margin-right:2px">
+                                        <div class="container table-bordered" style="margin:20px; width:1300px;padding-top:0px;padding-bottom:0px;margin-top:2px">
+                                            <div class="col-md-9">
                                                 <div class="form-group row">
-                                                    <div class="col-sm-3">
+                                                    <div class="col-sm-6">
                                                         <div class="col-sm-12">
                                                             <img class="preview-img" src="http://simpleicon.com/wp-content/uploads/account.png" alt="Preview Image" width="120" height="120" id="previewImage" onchange="readURL(this);" />
                                                             <img id="image" class="image-border form-control form-control-sm" width="120" height="120">
                                                             <input type="file" id="imgupload" style="display:none" onchange="readURL(this);" />
                                                         </div>
                                                     </div>
-                                           
                                                 </div>
                                                 <div class="row" style="margin-left:20px;">
                                                     <div class="form-group row">
-                                                        <div class="col-md-3" style="margin-right:10px">
+                                                        <div class="col-md-2" style="margin-right:10px">
                                                             <label>First Name</label>
                                                             <div class="input-group">
                                                                 <span class="input-group-addon">
@@ -114,7 +113,7 @@
                                                             </div>
 
                                                         </div>
-                                                        <div class="col-md-3">
+                                                        <div class="col-md-2">
                                                             <label>Last Name</label>
                                                             <div class="input-group">
                                                                 <span class="input-group-addon">
@@ -124,18 +123,18 @@
 
 
                                                         </div>
-                                                        <div class="col-md-2" style="width:10%">
+                                                        <div class="col-md-2">
                                                             <label>DOB</label>
-                                                            <div class="input-group" >
+                                                            <div class="input-group">
                                                                 <span class="input-group-addon">
                                                                     <i class="glyphicon glyphicon-calendar"></i>
-                                                                </span> <input type="date"  class="col-xs-2 form-control" id="txtDOB" placeholder="DOB" onchange="calculateAge(this);">
+                                                                </span> <input type="date" class="form-control" id="txtDOB" placeholder="DOB" onchange="calculateAge(this);">
                                                             </div>
 
                                                         </div>
                                                     </div>
                                                     <div class="form-group row">
-                                                        <div class="col-md-3">
+                                                        <div class="col-md-2">
                                                             <label>Age</label>
                                                             <div class="input-group">
                                                                 <span class="input-group-addon">
@@ -144,7 +143,7 @@
                                                             </div>
 
                                                         </div>
-                                                        <div class="col-md-3">
+                                                        <div class="col-md-2">
                                                             <label>Gender</label>
                                                             <div class="input-group">
                                                                 <span class="input-group-addon">
@@ -157,7 +156,7 @@
                                                                 </select>
                                                             </div>
                                                         </div>
-                                                        <div class="col-md-3">
+                                                        <div class="col-md-2">
                                                             <label>Marital Status</label>
                                                             <select class="form-control" id="txtStatus">
                                                                 <option>Married</option>
@@ -166,7 +165,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="form-group row">
-                                                        <div class="col-md-3">
+                                                        <div class="col-md-2">
                                                             <label>Warehouse:</label>
                                                             <div class="input-group">
                                                                 <span class="input-group-addon">
@@ -175,7 +174,7 @@
                                                             </div>
 
                                                         </div>
-                                                        <div class="col-md-3">
+                                                        <div class="col-md-2">
                                                             <label>Resource Categories:</label>
                                                             <div class="input-group">
                                                                 <span class="input-group-addon">
@@ -184,7 +183,7 @@
                                                             </div>
 
                                                         </div>
-                                                        <div class="col-md-3">
+                                                        <div class="col-md-2">
                                                             <label>Driving License:</label>
                                                             <div class="input-group">
                                                                 <span class="input-group-addon">
@@ -200,115 +199,141 @@
                                                             <input type="checkbox" checked data-toggle="toggle" data-onstyle="info" id="chkIsActive" onchange="ResourceChange(this);">
                                                         </div>
                                                     </div>
+                                                 
+                                                    @*<div class="col-md-2">
+                    <label>InActive Reason</label>
+                    @Html.DropDownListFor(Model => Model.InactiveReason, new List<SelectListItem>
 
-                                                    <div class="col-md-3">
-                                                        <label>InActive Reason</label>
-                                                        @Html.DropDownListFor(Model => Model.InactiveReason, new List<SelectListItem>
-                                                   { new SelectListItem {Text="Resigned",Value="Resigned" },
-                                                            new SelectListItem {Text="Unsuitable",Value="Unsuitable" },
-                                                            new SelectListItem {Text="Lapsed",Value="Lapsed" },
-                                                            }, new { @class = "form-control", @id = "ddlInactiveReason" })
-                                                        @Html.ValidationMessageFor(model => model.InactiveReason, "", new { @class = "text-danger" })
+                        { new SelectListItem {Text="Resigned",Value="Resigned" },
+                        new SelectListItem {Text="Unsuitable",Value="Unsuitable" },
+                        new SelectListItem {Text="Lapsed",Value="Lapsed" },
+                        }, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.InactiveReason, "", new { @class = "text-danger" })
+                </div>*@
+                                                
+                                                </div>
+                                              
+                                                <div class="col-md-2">
+                                                    <label>InActive Reason</label>
+                                                    @Html.DropDownListFor(Model => Model.InactiveReason, new List<SelectListItem>
 
-                                                    </div>
-                                                    <div class="col-xs-12 col-md-6">
-                                                        <div class="table table-bordered" style="margin-bottom:0px">
-                                                            <div class="row" style="height:30%">
-                                                                <div class="col-xs-12 col-md-6 text-center">
-                                                                    <h1 class="rating-num" id="ratingheader"></h1>
-                                                                    <div class="rating" id="ratingdiv">
+                                                        { new SelectListItem {Text="Resigned",Value="Resigned" },
+                                                        new SelectListItem {Text="Unsuitable",Value="Unsuitable" },
+                                                        new SelectListItem {Text="Lapsed",Value="Lapsed" },
+                                                        }, new { @class = "form-control", @id = "ddlInactiveReason" })
+                                                    @Html.ValidationMessageFor(model => model.InactiveReason, "", new { @class = "text-danger" })
+                                                   
+                                                </div>
+                                                <div class="col-xs-12 col-md-6">
+                                                    <div class="table table-bordered" style="margin-bottom:0px">
+                                                        <div class="row" style="height:30%">
+                                                            <div class="col-xs-12 col-md-6 text-center">
+                                                                <h1 class="rating-num" id="ratingheader"></h1>
+                                                                <div class="rating" id="ratingdiv">
 
-                                                                    </div>
-                                                                    <div>
-                                                                        <span id="ratingtotal" class="glyphicon glyphicon-user"></span>
-                                                                    </div>
                                                                 </div>
+                                                                <div>
+                                                                    <span id="ratingtotal" class="glyphicon glyphicon-user"></span>
+                                                                </div>
+                                                            </div>
 
-                                                                <div class="col-xs-12 col-md-6">
-                                                                    <div class="row rating-desc">
-                                                                        <div style="margin-bottom:2px">
-                                                                            <div class="col-xs-4 col-md-3 text-right" style="font-size:8px">
-                                                                                <span class="glyphicon glyphicon-star" style="font-size:6px"></span>5
-                                                                            </div>
-                                                                            <div class="col-xs-8 col-md-9">
-                                                                                <div class="progress progress-striped">
-                                                                                    <div id="divspan5" class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="20"
-                                                                                         aria-valuemin="0" aria-valuemax="100">
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <!-- end 5 -->
-                                                                        <div style="margin-bottom:2px">
-                                                                            <div class="col-xs-4 col-md-3 text-right" style="font-size:8px">
-                                                                                <span class="glyphicon glyphicon-star" style="font-size:6px"></span>4
-                                                                            </div>
-                                                                            <div class="col-xs-8 col-md-9">
-                                                                                <div class="progress">
-                                                                                    <div id="divspan4" class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="20"
-                                                                                         aria-valuemin="0" aria-valuemax="100">
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <!-- end 4 -->
+                                                            <div class="col-xs-12 col-md-6">
+                                                                <div class="row rating-desc">
+                                                                    <div style="margin-bottom:2px">
                                                                         <div class="col-xs-4 col-md-3 text-right" style="font-size:8px">
-                                                                            <span class="glyphicon glyphicon-star" style="font-size:6px"></span>3
+                                                                            <span class="glyphicon glyphicon-star" style="font-size:6px"></span>5
                                                                         </div>
                                                                         <div class="col-xs-8 col-md-9">
-                                                                            <div class="progress">
-                                                                                <div id="divspan3" class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20"
+                                                                            <div class="progress progress-striped">
+                                                                                <div id="divspan5" class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="20"
                                                                                      aria-valuemin="0" aria-valuemax="100">
                                                                                 </div>
                                                                             </div>
                                                                         </div>
-                                                                        <!-- end 3 -->
-                                                                        <div class="col-xs-3 col-md-3 text-right" style="font-size:8px">
-                                                                            <span class="glyphicon glyphicon-star" style="font-size:6px"></span>2
-                                                                        </div>
-                                                                        <div class="col-xs-8 col-md-9">
-                                                                            <div class="progress">
-                                                                                <div id="divspan2" class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="20"
-                                                                                     aria-valuemin="0" aria-valuemax="100">
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <!-- end 2 -->
-                                                                        <div class="col-xs-3 col-md-3 text-right" style="font-size:8px">
-                                                                            <span class="glyphicon glyphicon-star" style="font-size:6px"></span>1
-                                                                        </div>
-                                                                        <div class="col-xs-8 col-md-9">
-                                                                            <div class="progress">
-                                                                                <div id="divspan1" class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="80"
-                                                                                     aria-valuemin="0" aria-valuemax="100">
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <!-- end 1 -->
                                                                     </div>
-                                                                    <!-- end row -->
+                                                                    <!-- end 5 -->
+                                                                    <div style="margin-bottom:2px">
+                                                                        <div class="col-xs-4 col-md-3 text-right" style="font-size:8px">
+                                                                            <span class="glyphicon glyphicon-star" style="font-size:6px"></span>4
+                                                                        </div>
+                                                                        <div class="col-xs-8 col-md-9">
+                                                                            <div class="progress">
+                                                                                <div id="divspan4" class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="20"
+                                                                                     aria-valuemin="0" aria-valuemax="100">
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <!-- end 4 -->
+                                                                    <div class="col-xs-4 col-md-3 text-right" style="font-size:8px">
+                                                                        <span class="glyphicon glyphicon-star" style="font-size:6px"></span>3
+                                                                    </div>
+                                                                    <div class="col-xs-8 col-md-9">
+                                                                        <div class="progress">
+                                                                            <div id="divspan3" class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20"
+                                                                                 aria-valuemin="0" aria-valuemax="100">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <!-- end 3 -->
+                                                                    <div class="col-xs-3 col-md-3 text-right" style="font-size:8px">
+                                                                        <span class="glyphicon glyphicon-star" style="font-size:6px"></span>2
+                                                                    </div>
+                                                                    <div class="col-xs-8 col-md-9">
+                                                                        <div class="progress">
+                                                                            <div id="divspan2" class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="20"
+                                                                                 aria-valuemin="0" aria-valuemax="100">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <!-- end 2 -->
+                                                                    <div class="col-xs-3 col-md-3 text-right" style="font-size:8px">
+                                                                        <span class="glyphicon glyphicon-star" style="font-size:6px"></span>1
+                                                                    </div>
+                                                                    <div class="col-xs-8 col-md-9">
+                                                                        <div class="progress">
+                                                                            <div id="divspan1" class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="80"
+                                                                                 aria-valuemin="0" aria-valuemax="100">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <!-- end 1 -->
                                                                 </div>
+                                                                <!-- end row -->
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                              
-                                              
                                                 <br />
                                             </div>
                                             <br>
-                                            <div class="col-md-2 well" style="width:250px;height:450px">
+                                            <div class=" row col-md-2 well" style="width:250px;height:450px">
 
                                                 <div class="form-group">
-                                                    <label for="html">@Model.Manager</label>
+                                                    <label for="html">@Model.ReportingManager</label>
                                                 </div>
-                                                @foreach (var Resourcereportings in Model.DirectReports)
-                                                {
-                                                    <div class="form-group">
-                                                        <label for="javascript">@Resourcereportings</label>
-                                                    </div>
+                                                @if (Model.ResourceReporting.Count >0)
+                                                    { 
+                                                    foreach (var Resourcereportings in Model.ResourceReporting)
+                                                    {
+                                                        <div class="form-group">
+                                                            <label for="javascript">@Resourcereportings</label>
+                                                        </div>
+                                                        }
                                                 }
 
+                                                @*<div class="form-group">
+            <label for="css">Candidate 1</label>
+        </div>
+        <div class="form-group">
+            <label for="javascript">Candidate2</label>
+        </div>
+        <div class="form-group">
+            <label for="javascript">Candidate3</label>
+        </div>
+        <div class="form-group">
+            <label for="javascript">Candidate4</label>
+        </div>*@
                                             </div>
                                         </div>
                                     </form>
@@ -316,7 +341,7 @@
                                 <div class="row grid-divider">
                                     <div class="row" style="margin-left:20px;margin-bottom:0px">
                                         <fieldset style="margin-bottom:0px">
-                                            <div class="form-group row" style="margin-bottom:-40px">
+                                            <div class="form-group row" style="margin-bottom:2px">
                                                 <div class="container table-bordered" style="margin:20px; margin-top:0px;width:1000px;padding-top:5px;padding-bottom:5px">
                                                     <div class="col-md-8" style="margin-left:10px;">
                                                         <label>Address:</label>
@@ -529,6 +554,39 @@
                                             </button>
                                         </div>
                                     </div>
+
+
+                                    @*<div class="panel-body">
+                                            <div class="input-group image-preview">
+                                                @Html.Hidden("Resume", null, new { @id = "hiddenResume" })
+                                                <span class="input-group-btn-override">
+                                                    <i class="fas fa-file-download"></i>
+                                                    @Html.ActionLink("Resume", "DownloadFile", "Candidates", new { textval = "" }, new { @id = "resume", @class = "actionlink" })
+                                                </span>
+                                                 don't give a name === doesn't send on POST/GET
+                                                <span class="input-group-btn-override" style="padding-left:150px">
+                                                    <input id="CVimgupload" type="file" style="display:none;">
+                                                    <button id="btnCV" type="button" class="btn btn-sm btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray">
+                                                        <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Resume
+                                                    </button>
+                                                </span>
+                                            </div>
+                                            <br>
+                                            <div class="input-group image-preview">
+                                                @Html.Hidden("Resume", null, new { @id = "hiddenCertificate" })
+                                                <span class="input-group-btn-override">
+                                                    <i class="fas fa-file-download"></i>
+                                                    @Html.ActionLink("Certificates", "DownloadFile", "Candidates", new { textval = "" }, new { @id = "certificate", @class = "actionlink" })
+                                                </span>
+                                                 don't give a name === doesn't send on POST/GET
+                                                <span class="input-group-btn-override" style="padding-left:125px">
+                                                    <input id="Certificateimgupload" type="file" style="display:none;">
+                                                    <button type="button" id="btnCertificates" class="btn btn-sm btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray">
+                                                        <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Certificate
+                                                    </button>
+                                                </span>
+                                            </div>
+                                        </div>*@
 
                                     <div class="panel-heading"><strong>LEGAL</strong> <small> </small></div>
                                     <div class="panel-body">
