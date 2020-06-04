@@ -177,6 +177,7 @@
     <Compile Include="HelperServices\LoginService.cs" />
     <Compile Include="HelperServices\SMSHelperService.cs" />
     <Compile Include="HelperServices\UserRoles.cs" />
+    <Compile Include="Models\AllocatedAccessAndDevicesDto.cs" />
     <Compile Include="Models\AssignResourceViewModel.cs" />
     <Compile Include="Models\BulkMailModel.cs" />
     <Compile Include="Models\FileModel.cs" />
