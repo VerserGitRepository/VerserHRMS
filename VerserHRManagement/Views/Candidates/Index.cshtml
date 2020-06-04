@@ -310,13 +310,16 @@
                                             <div class=" row col-md-2 well" style="width:250px;height:450px">
 
                                                 <div class="form-group">
-                                                    <label for="html">@Model.Manager</label>
+                                                    <label for="html">@Model.ReportingManager</label>
                                                 </div>
-                                                @foreach (var Resourcereportings in Model.DirectReports)
-                                                {
-                                                    <div class="form-group">
-                                                        <label for="javascript">@Resourcereportings</label>
-                                                    </div>
+                                                @if (Model.ResourceReporting.Count >0)
+                                                    { 
+                                                    foreach (var Resourcereportings in Model.ResourceReporting)
+                                                    {
+                                                        <div class="form-group">
+                                                            <label for="javascript">@Resourcereportings</label>
+                                                        </div>
+                                                        }
                                                 }
 
                                                 @*<div class="form-group">
