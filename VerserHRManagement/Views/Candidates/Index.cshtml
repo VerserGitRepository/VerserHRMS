@@ -196,7 +196,7 @@
                                                     <div class="col-md-1">
                                                         <label>Active</label>
                                                         <div class="input-group">
-                                                            <input type="checkbox" checked data-toggle="toggle" data-onstyle="info" id="chkIsActive">
+                                                            <input type="checkbox" checked data-toggle="toggle" data-onstyle="info" id="chkIsActive" onchange="ResourceChange(this);">
                                                         </div>
                                                     </div>
                                                  
@@ -213,7 +213,7 @@
                                                 
                                                 </div>
                                               
-                                                @*<div class="col-md-2">
+                                                <div class="col-md-2">
                                                     <label>InActive Reason</label>
                                                     @Html.DropDownListFor(Model => Model.InactiveReason, new List<SelectListItem>
 
@@ -223,7 +223,7 @@
                                                         }, new { @class = "form-control", @id = "ddlInactiveReason" })
                                                     @Html.ValidationMessageFor(model => model.InactiveReason, "", new { @class = "text-danger" })
                                                    
-                                                </div>*@
+                                                </div>
                                                 <div class="col-xs-12 col-md-6">
                                                     <div class="table table-bordered" style="margin-bottom:0px">
                                                         <div class="row" style="height:30%">
