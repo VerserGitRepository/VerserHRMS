@@ -95,5 +95,8 @@ namespace VerserHRManagement.Models
         public SelectList DirectReports { get; set; }
         public string InactiveReason { get; set; }
         public string fK_ResourceInActiveReasonID { get; set; }
+        public SelectList CandidateNameList { get; set; }
+        public List<int?> ResourceIDs { get; set; }
     }
+
 }

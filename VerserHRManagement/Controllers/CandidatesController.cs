@@ -39,7 +39,15 @@ namespace VerserHRManagement
             model.EmployeeStatusList = new SelectList(ListItemService.EmployeeStatusSet().Result, "ID", "Value");
             model.WorkRightsList = new SelectList(ListItemService.WorkRights().Result, "ID", "Value");
             model.ResourceCategoriesList = new SelectList(ListItemService.ResourceCategories().Result, "ID", "Value");
-            model.DrivingLicensesList = new SelectList(ListItemService.DrivingLicenses().Result, "ID", "Value");         
+            model.DrivingLicensesList = new SelectList(ListItemService.DrivingLicenses().Result, "ID", "Value");
+            //model.CandidateNameList = new List<ListItemViewModel>();
+            model.DirectReports = new SelectList("", "ID", "Value");
+            List<SelectListItems> model1 = new List<SelectListItems>();
+            foreach (var candidate in model.CandidateList)
+            {
+                model1.Add(new SelectListItems { ID = candidate.ID, Name = candidate.CandidateName });// = new SelectList(model.CandidateList.Select(c => c.CandidateName), model.CandidateList.Select(c => c.ID), model.CandidateList.Select(c => c.ID));
+            }
+            model.CandidateNameList = new SelectList(model1, "ID", "Name");
             return View(model);
         }
         public ActionResult Details(int id)
@@ -54,6 +62,7 @@ namespace VerserHRManagement
             }
             var _candidate = CandidateService.FindCandidate(id).Result;
             _candidate.ID = id;
+
             return View(_candidate);
         }
         //public ActionResult CreateNewProfile()
@@ -81,7 +90,7 @@ namespace VerserHRManagement
             model.EmployeeStatusList = new SelectList(ListItemService.EmployeeStatusSet().Result, "ID", "Value");
             model.WorkRightsList = new SelectList(ListItemService.WorkRights().Result, "ID", "Value");
             model.ResourceCategoriesList = new SelectList(ListItemService.ResourceCategories().Result, "ID", "Value");
-            model.DrivingLicensesList = new SelectList(ListItemService.DrivingLicenses().Result, "ID", "Value");
+            model.DrivingLicensesList = new SelectList(ListItemService.DrivingLicenses().Result, "ID", "Value");       
             return View("Create", model);
         }
         [HttpPost]
@@ -111,7 +120,6 @@ namespace VerserHRManagement
             // }
             return RedirectToAction("Index");
         }
-
         public ActionResult Edit(int id)
         {
             if (UserRoles.UserCanEdit() == true)
@@ -236,7 +244,6 @@ namespace VerserHRManagement
             }
             return View(CandidateService.CandidateList().Result);
         }
-
         [HttpPost]
         public ActionResult UploadDocument()
         {
