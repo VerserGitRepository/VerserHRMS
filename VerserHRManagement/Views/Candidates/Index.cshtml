@@ -101,7 +101,7 @@
                                                             <input type="file" id="imgupload" style="display:none" onchange="readURL(this);" />
                                                         </div>
                                                     </div>
-                                           
+
                                                 </div>
                                                 <div class="row" style="margin-left:20px;">
                                                     <div class="form-group row">
@@ -126,10 +126,10 @@
                                                         </div>
                                                         <div class="col-md-2" style="width:10%">
                                                             <label>DOB</label>
-                                                            <div class="input-group" >
+                                                            <div class="input-group">
                                                                 <span class="input-group-addon">
                                                                     <i class="glyphicon glyphicon-calendar"></i>
-                                                                </span> <input type="date"  class="col-xs-2 form-control" id="txtDOB" placeholder="DOB" onchange="calculateAge(this);">
+                                                                </span> <input type="date" class="col-xs-2 form-control" id="txtDOB" placeholder="DOB" onchange="calculateAge(this);">
                                                             </div>
 
                                                         </div>
@@ -292,15 +292,28 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                              
-                                              
+
+
                                                 <br />
                                             </div>
                                             <br>
-                                            <div class="col-md-2 well" style="width:250px;height:450px">
+                                            <div class="col-md-2 well" style="width:250px;height:250px">
 
                                                 <div class="form-group">
-                                                    <label for="html">@Model.Manager</label>
+                                                    @*<label for="html">@Model.Manager</label>*@
+                                                </div>
+                                                @foreach (var Resourcereportings in Model.DirectReports)
+                                                {
+                                                    <div class="form-group">
+                                                        <label for="javascript">@Resourcereportings</label>
+                                                    </div>
+                                                }
+
+                                            </div>
+                                            <div class="col-md-2 well" style="width:250px;height:250px">
+
+                                                <div class="form-group">
+                                                    @*<label for="html">@Model.Manager</label>*@
                                                 </div>
                                                 @foreach (var Resourcereportings in Model.DirectReports)
                                                 {
