@@ -41,7 +41,7 @@
                         <tr>
                             <td onclick="LoadAddressData(@item.ID,'@item.CandidateName','@item.DateCreated','@item.Address','@item.City','@item.state','@item.postcode','@item.Email','@item.Phone',
                                 '@if(item.profilePicture != null) { @Convert.ToBase64String(@item.profilePicture)}','@if (item.DOB.HasValue) {@item.DOB.Value.ToString("yyyy-MM-dd")}','@item.Age','@item.Gender','@item.MaritalStatus',@Json.Encode(item.isactive),
-                                '@item.WarehouseID','@item.ResourceCategoriesID','@item.DrivingLicenseID','@item.fK_ResourceInActiveReasonID');
+                                '@item.WarehouseID','@item.ResourceCategoriesID','@item.DrivingLicenseID','@item.fK_ResourceInActiveReasonID',@Json.Encode(@item.ResourceReporting.Select(c=> c.Value).ToArray()));
                                 LoadEmployment(@item.ID,'@item.PayFrequenciesID','@item.ADP_EmployeeID','@item.AssignResourcesID','@item.Annualsalary','@item.HourlyRate','@item.DailyRate','@item.WorkRightID',
                                 '@item.EmployeeStatusSetID','@item.EmploymentTypesID','@item.NoticePeriod','@Json.Encode(item.isPeopleManager)');
                                 LoadDocuments(@item.ID,'@item.FilePath','@item.certificate1','@item.DriverLicense','@item.PoliceCheckReport','@item.Visa','@item.SuperChoice','@item.TFNDeclaration',
@@ -307,21 +307,12 @@
                                                 <br />
                                             </div>
                                             <br>
-                                            <div class=" row col-md-2 well" style="width:250px;height:450px">
+                                            <div id="reportingDiv" class=" row col-md-2 well" style="width:250px;display:none;">
 
-                                                <div class="form-group">
-                                                    <label for="html">@Model.ReportingManager</label>
+                                                <div class="form-group" >
+                                                    <span>Reporting</span>
                                                 </div>
-                                                @if (Model.ResourceReporting.Count >0)
-                                                    { 
-                                                    foreach (var Resourcereportings in Model.ResourceReporting)
-                                                    {
-                                                        <div class="form-group">
-                                                            <label for="javascript">@Resourcereportings</label>
-                                                        </div>
-                                                        }
-                                                }
-
+                                             
                                                 @*<div class="form-group">
             <label for="css">Candidate 1</label>
         </div>
@@ -458,7 +449,7 @@
                                             <input type="text" class="form-control form-control-sm" id="txtNoticePeriod" placeholder="Notice Period">
                                         </div>
                                     </div>
-                                    <div class=" row col-md-6 well" style="width:250px;height:390px">
+                                    <div class=" row col-md-6 well" style="width:250px;height:390px">fpeoplemana
                                         <div class="col-md-12" style="margin-top:15px;">
                                             <label>People Manager</label>
                                             <div class="input-group">
@@ -468,8 +459,12 @@
                                         <div class="col-md-12" style="margin-top:15px;">
                                             @Html.DropDownListFor(model => Model.ResourceIDs, Model.CandidateNameList, new { @id = "CandidateNameId", @style = "height:10px; width:10px;", @multiple = "multiple" })
                                         </div>
+                                        <div class="col-md-12" style="margin-top:15px;">
+                                           <input type="button" value="ASSIGN" onclick="UpdatePeopleManager();" />
+                                        </div>
+
                                     </div>
-                                </div>
+                                    </div>
                             </div>
                         </div>
                         <div class="tab-pane fade" id="tab3default">
@@ -944,7 +939,19 @@
 
             });
         }
-        function LoadAddressData(ID, CandidateName, DateCreated, Address, City, state, postcode, Email, Phone, logo, dob, age, gender, maritalstatus, isactive, warehouseId, resourceCategoriesId, drivingLicenseId,inactivereason) {
+        function LoadAddressData(ID, CandidateName, DateCreated, Address, City, state, postcode, Email, Phone, logo, dob, age, gender, maritalstatus, isactive, warehouseId, resourceCategoriesId, drivingLicenseId, inactivereason, resourceReporting) {
+            $("#reportingDiv").empty();
+            for (var i = 0; i < resourceReporting.length; i++) {
+                $("#reportingDiv").append('<li>'+resourceReporting[i]+'</li>')
+                    .css("background", "lightgrey");
+            }
+            if (resourceReporting.length > 0) {
+                $("#reportingDiv").show();
+            }
+            else {
+                $("#reportingDiv").hide();
+            }
+           // alert(resourceReporting);
             $("#txtfName").val(CandidateName.split(' ')[0]);
             $("#txtlName").val(CandidateName.split(' ')[1]);
             $("#txtAddress1").val(Address);
@@ -1607,6 +1614,8 @@
 
         function LoadEmployment(id, PayFrequency, ADP_EmployeeID, AssignResource, Annualsalary, HourlyRate, DailyRate, WorkRights,
             EmployeeStatus, EmployementType, NoticePeriod, isPeopleManager) {
+
+           
            // boolean ispeoplemgr = isPeopleManager;
             $("#ddlPayFrequencyId").val(PayFrequency);
            // $("#ddlPayFrequencyId").val(PayFrequency);
@@ -1705,6 +1714,41 @@
             enableFiltering: true,
             enableCaseInsensitiveFiltering: true
         });
+        function UpdatePeopleManager() {
+            var ResourceReportingAddDto = {};
+            ResourceReportingAddDto.ResourceReportings_ResourceIds = $('#CandidateNameId').val();
+            ResourceReportingAddDto.ResourceReporting_ManagerId = $("#hiddenModelId").val();
+
+            var updateCandidateData = '@Url.Action("AddReportingResources", "Candidates")';
+            $.ajax({
+                type: "POST",
+                url: updateCandidateData,
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify(ResourceReportingAddDto),
+                datatype: "json",
+                success: function (result) {
+
+                $.confirm({
+                title:'',
+                content: 'Update is successful.',
+                boxWidth: '370px',
+                useBootstrap: false,
+                buttons: {
+                    OK: function () {
+
+                    }
+                }
+                    });
+                    window.location.href = result.Url;
+                },
+                error: function () {
+                    alert("Dynamic content load failed.");
+                },
+
+            });
+
+       
+        }
     </script>
 
 <style>

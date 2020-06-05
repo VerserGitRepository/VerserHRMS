@@ -191,6 +191,7 @@
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\MultiSelectDropDownViewModel.cs" />
     <Compile Include="Models\PayFrequencyViewModel.cs" />
+    <Compile Include="Models\ResourceReportingAddDto.cs" />
     <Compile Include="Models\ResourceRatingModel.cs" />
     <Compile Include="Models\SelectListItems.cs" />
     <Compile Include="Models\TechnicalLevels.cs" />

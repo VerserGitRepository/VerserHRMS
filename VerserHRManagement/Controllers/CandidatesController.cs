@@ -402,6 +402,32 @@ namespace VerserHRManagement
                 return RedirectToAction("Index", "Candidates");
             }
         }
+        [HttpPost]
+        public ActionResult AddReportingResources(ResourceReportingAddDto model)
+        {
+            if (UserRoles.UserCanEdit() == true)
+            {
+                if (ModelState.IsValid)
+                {
+
+                    bool isupdated = CandidateService.AddReportingResources(model);
+                    if (isupdated)
+
+                    {
+                        //return new JsonResult { Data = "The update has been successful.", JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+                        var redirectUrl = new UrlHelper(Request.RequestContext).Action("Index", "Candidates");
+                        return Json(new { Url = redirectUrl });
+                    }
+                    else
+                        return new JsonResult { Data = "The update is not successful.", JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+                }
+                return View(model);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Candidates");
+            }
+        }
         public ActionResult DownloadFile(string textval)
         {
             try

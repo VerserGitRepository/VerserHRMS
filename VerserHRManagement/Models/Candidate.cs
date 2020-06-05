@@ -107,6 +107,7 @@ namespace VerserHRManagement.Models
         public string fK_ResourceInActiveReasonID { get; set; }
         public SelectList CandidateNameList { get; set; }
         public List<int?> ResourceIDs { get; set; }
+        public string[] ResourceReportees { get; set; }
         public string Manager { get; set; }
     }
 

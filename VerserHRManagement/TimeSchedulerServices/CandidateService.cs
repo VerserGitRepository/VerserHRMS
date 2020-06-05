@@ -155,6 +155,25 @@ namespace VerserHRManagement.TimeSchedulerServices
             }
             return false;
         }
+        public static bool AddReportingResources(ResourceReportingAddDto model)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(TimeSheetAPIURl);
+                HttpResponseMessage response = client.PostAsJsonAsync(string.Format("Resource/AddReportingResources"), model).Result;
+                if (response.IsSuccessStatusCode)
+                {
+
+                    HttpContext.Current.Session["SuccessMessage"] = "Changes Updated Successfully !";
+                    return true;
+                }
+                else
+                {
+                    HttpContext.Current.Session["ErrorMessage"] = "Unable To Update The Changes Please validate !";
+                }
+            }
+            return false;
+        }
         public static async Task<List<ListItemViewModel>> Warehouses()
         {
             List<ListItemViewModel> WarehousesList = new List<ListItemViewModel>();
