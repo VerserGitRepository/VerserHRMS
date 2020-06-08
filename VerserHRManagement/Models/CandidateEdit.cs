@@ -79,7 +79,7 @@ namespace VerserHRManagement.Models
         public int EmployeeStatusSetID { get; set; }
         public int PayFrequenciesID { get; set; }
         public string InactiveReason { get; set; }
-        //public int WorkRightID { get; set; }
+        public AllocatedAccessAndDevicesDto CandidateAllcaotedResouces { get; set; }
 
     }
 }
