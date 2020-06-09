@@ -208,6 +208,20 @@ namespace VerserHRManagement.TimeSchedulerServices
             }
             return ResourceRate;
         }
+        public static async Task<ResourceRatingModel> InActivateResource(int candidateid, int reasonId)
+        {
+            var ResourceRate = new ResourceRatingModel();
+            using (HttpClient client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(TimeSheetAPIURl);
+                HttpResponseMessage response = client.GetAsync(string.Format($"InActivateResource/{candidateid}/{reasonId}")).Result;
+                if (response.IsSuccessStatusCode)
+                {
+                    ResourceRate = await response.Content.ReadAsAsync<ResourceRatingModel>();
+                }
+            }
+            return ResourceRate;
+        }
         public static async Task<List<ListItemViewModel>> EmploymentType()
         {
             List<ListItemViewModel> EmploymentList = new List<ListItemViewModel>();

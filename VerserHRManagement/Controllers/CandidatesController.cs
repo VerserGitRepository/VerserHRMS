@@ -48,6 +48,8 @@ namespace VerserHRManagement
                 model1.Add(new SelectListItems { ID = candidate.ID, Name = candidate.CandidateName });// = new SelectList(model.CandidateList.Select(c => c.CandidateName), model.CandidateList.Select(c => c.ID), model.CandidateList.Select(c => c.ID));
             }
             model.CandidateNameList = new SelectList(model1, "ID", "Name");
+            var CurrentBirthdays = from c in model.CandidateList where c.DOB.HasValue select c;
+            model.CurrentBirthdays = (from d in CurrentBirthdays where d.DOB.Value.Month == DateTime.Now.Month select d.CandidateName).ToArray();
             return View(model);
         }
         public ActionResult Details(int id)
@@ -516,6 +518,24 @@ namespace VerserHRManagement
                 {
                     ResourceRatingModel model = new ResourceRatingModel();
                     model = CandidateService.ResourceRatingService(candidateId).Result;
+                    return new JsonResult { Data = model, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+                }
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Candidates");
+            }
+        }
+        [HttpGet]
+        public ActionResult InActivateResource(int candidateId,int reasonId)
+        {
+            if (UserRoles.UserCanEdit() == true)
+            {
+                if (ModelState.IsValid)
+                {
+                    ResourceRatingModel model = new ResourceRatingModel();
+                    model = CandidateService.InActivateResource(candidateId,reasonId).Result;
                     return new JsonResult { Data = model, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
                 }
                 return View();

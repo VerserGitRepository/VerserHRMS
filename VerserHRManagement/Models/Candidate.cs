@@ -108,6 +108,7 @@ namespace VerserHRManagement.Models
         public SelectList CandidateNameList { get; set; }
         public List<int?> ResourceIDs { get; set; }
         public string[] ResourceReportees { get; set; }
+        public string[] CurrentBirthdays { get; set; }
         public string Manager { get; set; }
     }
 

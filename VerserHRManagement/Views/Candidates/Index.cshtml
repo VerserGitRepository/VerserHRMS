@@ -19,7 +19,9 @@
 <script src='https://kit.fontawesome.com/a076d05399.js'></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="~/Scripts/bootstrap-multiselect.js"></script>
+<script src="~/Scripts/scrollForever.js"></script>
 <link href="~/Content/bootstrap-multiselect.css" rel="stylesheet" />
+<link href="~/Content/scroll.css" rel="stylesheet" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.0.4/popper.js"></script>
 <div class="container-fluid" style="margin-left:0px;padding-top:0px">
     <div class="container" style="width:170%; padding-top:15px; margin-left:0px; border-color:lightgray;padding-left:0px">
@@ -297,17 +299,17 @@
                                                 <br />
                                             </div>
                                             <br>
-                                            <div class="col-md-2 well" style="width:250px;height:250px">
+                                            <label class="serif">Current Birthdays</label>
+                                            <div class="feature" id="feature" style="width:250px;height:250px">
 
-                                                <div class="form-group">
-                                                    @*<label for="html">@Model.Manager</label>*@
-                                                </div>
-                                                @foreach (var Resourcereportings in Model.DirectReports)
-                                                {
-                                                    <div class="form-group">
-                                                        <label for="javascript">@Resourcereportings</label>
-                                                    </div>
-                                                }
+                                                <ul class="feature-list">
+                                                    @foreach (var Resourcereportings in Model.CurrentBirthdays)
+                                                    {
+
+                                                        <li><p>@Resourcereportings</p></li>
+
+                                                    }
+                                                </ul>
 
                                             </div>
                                             <div class="col-md-2 well" style="width:250px;display:none;" id="reportingDiv">
@@ -910,7 +912,12 @@
             });
 
             $('#ddlInactiveReason').hide();
+
+           
         });
+        $(function () {
+            $('#feature').scrollForever({ delayTime: 30,dir:"top" });
+        })
         //  ExportTimesSheetToExcel", "Candidates"
        
         function ResourceChange (val) {
@@ -2144,5 +2151,14 @@
 
     panel-body {
         padding: 5px;
+    }
+    .feature-list {
+        font-weight: bold;
+    }
+    .serif {
+        font-family: serif;
+        font-size: 20px;
+        color: white;
+        background-color: #428BCA;
     }
 </style>
