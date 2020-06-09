@@ -534,9 +534,12 @@ namespace VerserHRManagement
             {
                 if (ModelState.IsValid)
                 {
-                    ResourceRatingModel model = new ResourceRatingModel();
+                    bool model = false;
                     model = CandidateService.InActivateResource(candidateId,reasonId).Result;
-                    return new JsonResult { Data = model, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+                    if(model)
+                    return new JsonResult { Data = "The update is successful.", JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+                    else
+                        return new JsonResult { Data = "Error has occurred. Contact site support.", JsonRequestBehavior = JsonRequestBehavior.AllowGet };
                 }
                 return View();
             }

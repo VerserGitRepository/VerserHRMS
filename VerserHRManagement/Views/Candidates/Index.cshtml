@@ -206,10 +206,10 @@
                                                     <div class="col-md-3">
                                                         <label></label>
                                                         @Html.DropDownListFor(Model => Model.InactiveReason, new List<SelectListItem>
-                                                            { new SelectListItem {Text="Resigned",Value="Resigned" },
-                                                            new SelectListItem {Text="Unsuitable",Value="Unsuitable" },
-                                                            new SelectListItem {Text="Lapsed",Value="Lapsed" },
-                                                            }, "InActive Reason", new { @class = "form-control", @id = "ddlInactiveReason" })
+                                                            { new SelectListItem {Text="Resigned",Value="1" },
+                                                            new SelectListItem {Text="Unsuitable",Value="2" },
+                                                            new SelectListItem {Text="Lapsed",Value="3" },
+                                                            }, "InActive Reason", new { @class = "form-control", @id = "ddlInactiveReason",@onchange= "UpdateInactiveReason();" })
                                                         @Html.ValidationMessageFor(model => model.InactiveReason, "", new { @class = "text-danger" })
 
                                                     </div>
@@ -1772,6 +1772,36 @@
             });
 
        
+        }
+        var updateInactiveReason = '@Url.Action("InActivateResource", "Candidates")';
+        function UpdateInactiveReason() {
+           
+            $.ajax({
+                type: "GET",
+                url: updateInactiveReason,
+                contentType: "application/json; charset=utf-8",
+                data: { 'candidateId': $("#hiddenModelId").val(), 'reasonId': $("#ddlInactiveReason").val()},
+                datatype: "json",
+                success: function (result) {
+
+                    $.confirm({
+                        title: '',
+                        content: result,
+                        boxWidth: '370px',
+                        useBootstrap: false,
+                        buttons: {
+                            OK: function () {
+
+                            }
+                        }
+                    });
+                    
+                },
+                error: function () {
+                    alert("Dynamic content load failed.");
+                },
+
+            });
         }
     </script>
 

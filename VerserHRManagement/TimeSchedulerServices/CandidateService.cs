@@ -208,16 +208,17 @@ namespace VerserHRManagement.TimeSchedulerServices
             }
             return ResourceRate;
         }
-        public static async Task<ResourceRatingModel> InActivateResource(int candidateid, int reasonId)
+        public static async Task<bool> InActivateResource(int candidateid, int reasonId)
         {
-            var ResourceRate = new ResourceRatingModel();
+            bool ResourceRate = false;
             using (HttpClient client = new HttpClient())
             {
                 client.BaseAddress = new Uri(TimeSheetAPIURl);
-                HttpResponseMessage response = client.GetAsync(string.Format($"InActivateResource/{candidateid}/{reasonId}")).Result;
+                HttpResponseMessage response = client.GetAsync(string.Format($"Resource/InActivateResource/{candidateid}/{reasonId}")).Result;
                 if (response.IsSuccessStatusCode)
                 {
-                    ResourceRate = await response.Content.ReadAsAsync<ResourceRatingModel>();
+                    var str  = await response.Content.ReadAsStringAsync();
+                    ResourceRate = true;
                 }
             }
             return ResourceRate;
