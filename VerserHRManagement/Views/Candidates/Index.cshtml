@@ -63,7 +63,7 @@
             </table>
         </div>
         <div class="col-md-7">
-            <div class="panel with-nav-tabs panel-default" style="width:190%;margin-bottom:0px">
+            <div class="panel with-nav-tabs panel-default" style="width:170%;margin-bottom:0px">
                 <div class="panel-heading">
                     <ul class="nav nav-tabs">
                         <li class="active"><a href="#tab1default" data-toggle="tab">PERSONAL</a></li>
@@ -93,21 +93,21 @@
                             <div class="col-md-6" style="padding-left:0px;padding-bottom:10px;margin-right:10px">
                                 <div class="row">
                                     <form>
-                                        <div class="container table-bordered" style="margin:20px; width:1100px;padding-top:0px;padding-bottom:-20px;margin-top:0px">
+                                        <div class="container table-bordered" style="margin:20px; width:900px;padding-top:0px;padding-bottom:-20px;margin-top:0px">
                                             <div class="col-md-8" style="margin-right:2px">
                                                 <div class="form-group row">
-                                                    <div class="col-sm-3">
+                                                    <div class="col-md-4">
                                                         <div class="col-sm-12">
-                                                            <img class="preview-img" src="http://simpleicon.com/wp-content/uploads/account.png" alt="Preview Image" width="120" height="120" id="previewImage" onchange="readURL(this);" />
-                                                            <img id="image" class="image-border form-control form-control-sm" width="120" height="120">
+                                                            <img class="preview-img" src="http://simpleicon.com/wp-content/uploads/account.png" alt="Preview Image" width="250" height="150" id="previewImage" onchange="readURL(this);" />
+                                                            <img id="image" class="image-border form-control form-control-sm" width="250" height="150">
                                                             <input type="file" id="imgupload" style="display:none" onchange="readURL(this);" />
                                                         </div>
                                                     </div>
 
                                                 </div>
-                                                <div class="row" style="margin-left:20px;">
+                                                <div class="row" style="margin-left:5px;">
                                                     <div class="form-group row">
-                                                        <div class="col-md-3" style="margin-right:10px">
+                                                        <div class="col-md-5" style="margin-right:0px">
                                                             <label>First Name</label>
                                                             <div class="input-group">
                                                                 <span class="input-group-addon">
@@ -116,7 +116,7 @@
                                                             </div>
 
                                                         </div>
-                                                        <div class="col-md-3">
+                                                        <div class="col-md-4">
                                                             <label>Last Name</label>
                                                             <div class="input-group">
                                                                 <span class="input-group-addon">
@@ -126,12 +126,12 @@
 
 
                                                         </div>
-                                                        <div class="col-md-2" style="width:10%">
+                                                        <div class="col-sm-1">
                                                             <label>DOB</label>
                                                             <div class="input-group">
                                                                 <span class="input-group-addon">
                                                                     <i class="glyphicon glyphicon-calendar"></i>
-                                                                </span> <input type="date" class="col-xs-2 form-control" id="txtDOB" placeholder="DOB" onchange="calculateAge(this);">
+                                                                </span> <input type="date" class="col-xs-1 form-control" id="txtDOB" placeholder="DOB" onchange="calculateAge(this);">
                                                             </div>
 
                                                         </div>
@@ -146,7 +146,7 @@
                                                             </div>
 
                                                         </div>
-                                                        <div class="col-md-3">
+                                                        <div class="col-md-4">
                                                             <label>Gender</label>
                                                             <div class="input-group">
                                                                 <span class="input-group-addon">
@@ -168,7 +168,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="form-group row">
-                                                        <div class="col-md-3">
+                                                        <div class="col-md-4">
                                                             <label>Warehouse:</label>
                                                             <div class="input-group">
                                                                 <span class="input-group-addon">
@@ -177,8 +177,8 @@
                                                             </div>
 
                                                         </div>
-                                                        <div class="col-md-3">
-                                                            <label>Resource Categories:</label>
+                                                        <div class="col-md-4">
+                                                            <label>Categories:</label>
                                                             <div class="input-group">
                                                                 <span class="input-group-addon">
                                                                     <i class="fas fa-user-tie"></i>
@@ -186,7 +186,7 @@
                                                             </div>
 
                                                         </div>
-                                                        <div class="col-md-3">
+                                                        <div class="col-md-4">
                                                             <label>Driving License:</label>
                                                             <div class="input-group">
                                                                 <span class="input-group-addon">
@@ -196,26 +196,25 @@
 
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-1">
+                                                    <div class="col-md-4">
                                                         <label>Active</label>
                                                         <div class="input-group">
                                                             <input type="checkbox" checked data-toggle="toggle" data-onstyle="info" id="chkIsActive" onchange="ResourceChange(this);">
                                                         </div>
+                                                        @*</div>*@
+                                                        @*<div class="col-md-3">*@
+                                                            <label></label>
+                                                            @Html.DropDownListFor(Model => Model.InactiveReason, new List<SelectListItem>
+                                                                { new SelectListItem {Text="Resigned",Value="1" },
+                                                                new SelectListItem {Text="Unsuitable",Value="2" },
+                                                                new SelectListItem {Text="Lapsed",Value="3" },
+                                                                }, "InActive Reason", new { @class = "form-control", @id = "ddlInactiveReason", @onchange = "UpdateInactiveReason();" })
+                                                            @Html.ValidationMessageFor(model => model.InactiveReason, "", new { @class = "text-danger" })
+                                                        @*</div>*@
                                                     </div>
-
-                                                    <div class="col-md-3">
-                                                        <label></label>
-                                                        @Html.DropDownListFor(Model => Model.InactiveReason, new List<SelectListItem>
-                                                            { new SelectListItem {Text="Resigned",Value="1" },
-                                                            new SelectListItem {Text="Unsuitable",Value="2" },
-                                                            new SelectListItem {Text="Lapsed",Value="3" },
-                                                            }, "InActive Reason", new { @class = "form-control", @id = "ddlInactiveReason",@onchange= "UpdateInactiveReason();" })
-                                                        @Html.ValidationMessageFor(model => model.InactiveReason, "", new { @class = "text-danger" })
-
-                                                    </div>
-                                                    <div class="col-xs-12 col-md-6">
-                                                        <div class="table table-bordered" style="margin-bottom:0px">
-                                                            <div class="row" style="height:30%">
+                                                    <div class="col-sm-12 col-md-8 pull-right">
+                                                        <div class="table table-bordered pull-right" style="margin-bottom:0px">
+                                                            <div class="row" style="height:0%">
                                                                 <div class="col-xs-12 col-md-6 text-center">
                                                                     <h1 class="rating-num" id="ratingheader"></h1>
                                                                     <div class="rating" id="ratingdiv">
@@ -294,36 +293,32 @@
                                                         </div>
                                                     </div>
                                                 </div>
-
-
-                                                <br />
+                                               
                                             </div>
-                                            <br>
-                                            <label class="serif">Current Birthdays</label>
-                                            <div class="feature" id="feature" style="width:150px;height:250px;background-color:lightgray">
 
+                                           
+                                            <div class="feature pull-right" id="feature" style="width:150px;height:250px; border-color:lightgray;border-width:1px;border-style:solid">
+
+                                                <label class="serif center" style="border-bottom:solid;border-width:thin;border-color:gray">Birthdays</label><br />
                                                 <ul class="feature-list">
                                                     @foreach (var Resourcereportings in Model.CurrentBirthdays)
                                                     {
 
-                                                        <li><p>@Resourcereportings</p></li>
+                                                        <li style="border-bottom:solid;border-width:thin;border-color:gray;scrollbar-arrow-color:black;"><p>@Resourcereportings</p></li>
 
                                                     }
                                                 </ul>
 
-                                            </div> <br>
-                                            <div class="col-md-2 well" style="width:150px;display:none;" id="reportingDiv">
+                                            </div> 
+                                            <div class="col-md-2 well pull-right" style="width:150px;display:none;margin-top:10px;" id="reportingDiv">
+                                                
 
-                                                <div class="form-group">
-                                                    @*<label for="html">@Model.Manager</label>*@
-                                                </div>
                                                 @foreach (var Resourcereportings in Model.DirectReports)
                                                 {
                                                     <div class="form-group">
                                                         <label for="javascript">@Resourcereportings</label>
                                                     </div>
                                                 }
-
                                             </div>
                                         </div>
                                     </form>
@@ -332,7 +327,7 @@
                                     <div class="row" style="margin-left:20px;margin-bottom:0px">
                                         <fieldset style="margin-bottom:0px">
                                             <div class="form-group row" style="margin-bottom:-70px">
-                                                <div class="container table-bordered" style="margin:20px; margin-top:0px;width:1000px;padding-top:5px;padding-bottom:5px">
+                                                <div class="container table-bordered" style="margin:20px; margin-top:0px;width:900px;padding-top:5px;padding-bottom:5px">
                                                     <div class="col-md-8" style="margin-left:10px;">
                                                         <label>Address:</label>
                                                         <div class="input-group">
@@ -340,10 +335,7 @@
                                                                 <i class="glyphicon glyphicon-home"></i>
                                                             </span><input id="txtAddress1" placeholder="Address Line 1" class="form-control" required="true" value="" type="text">
                                                         </div>
-
-
-                                                    </div>
-                                                    <br /><br /><br /><br />
+                                                    </div>                                                    
                                                     <div class="col-md-3" style="margin-left:10px;">
                                                         <label>City:</label>
                                                         <div class="input-group">
@@ -367,7 +359,7 @@
                                                                 <i class="glyphicon glyphicon-home"></i>
                                                             </span><input id="txtPostalCode" placeholder="Postal Code" class="form-control" required="true" value="" type="text">
                                                         </div>
-                                                    </div><br /><br /><br />
+                                                    </div>
                                                     <div class="col-md-3" style="margin-left:10px;">
                                                         <label>Email:</label>
                                                         <div class="input-group">
@@ -850,6 +842,8 @@
                         </div>
                     </div>
                 </div>
+                
+    @*Footer Code Here *@
                 <div class="panel-footer primary" align="left" style="height:40px;vertical-align:top;background-color:lightgrey;margin-bottom:0px">
                     @if (UserRoles.UserCanEdit() == true)
                     {
@@ -916,7 +910,7 @@
            
         });
         $(function () {
-            $('#feature').scrollForever({ delayTime: 30,dir:"top" });
+          //  $('#feature').scrollForever({ delayTime: 30,dir:"top" });
         })
         //  ExportTimesSheetToExcel", "Candidates"
        
@@ -1935,7 +1929,7 @@
     .grid-divider {
         position: relative;
         padding: 0;
-        width: 1000px;
+        width: 900px;
     }
 
     image-border {
@@ -2167,7 +2161,7 @@
     }
 
     .input-group-btn-override {
-        height: 45px;
+        height: 25px;
         padding: 15px 18px;
         font-size: 15px;
         line-height: 1.33;
@@ -2187,8 +2181,8 @@
     }
     .serif {
         font-family: serif;
-        font-size: 20px;
-        color: white;
-        background-color: #428BCA;
+        font-size: 10px;
+        color: darkgray;
+        /*background-color: #428BCA;*/
     }
 </style>
