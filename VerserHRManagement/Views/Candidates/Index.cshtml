@@ -63,7 +63,7 @@
                 </tbody>
             </table>
         </div>
-        <div class="col-md-7" style="margin-left:30px">
+        <div class="col-md-7" style="margin-left:31px">
             <div class="panel with-nav-tabs panel-default" style="width:170%;margin-bottom:0px">
                 <div class="panel-heading">
                     <ul class="nav nav-tabs">
@@ -302,7 +302,13 @@
 
                                                     @foreach (var Resourcereportings in Model.CurrentBirthdays)
                                                     {
-                                                         <a href="#" class="list-group-item list-group-item-action">@Resourcereportings</a>   
+                                            <a href="#" class="list-group-item list-group-item-action">
+                                               
+                                                <div class="d-flex w-100 justify-content-between">
+                                                    <h5 class="mb-1"> @Resourcereportings</h5>
+                                                    <small class="text-muted"> Happy Birthday!</small>
+                                                </div>
+                                            </a>   
                                                     }     
                                             </div> 
                                             <div class="list-group pull-right" style="padding-top:10PX;padding-right:5px; width:190px;height:250px;overflow-y:scroll;" id="reportingDiv">                                                                                              
@@ -937,7 +943,7 @@
            
             $("#reportingDiv").empty();
    
-            $("#reportingDiv").append('<a href="#" class="list-group-item list-group-item-action active">DIRECT REPORTIES</a>');
+            $("#reportingDiv").append('<a href="#" class="list-group-item list-group-item-action active">DIRECT REPORTEES</a>');
             for (var i = 0; i < resourceReporting.length; i++) {
                 $("#reportingDiv").append('<a href="#" class="list-group-item list-group-item-action">'+resourceReporting[i]+'</a>');
             }
