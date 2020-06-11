@@ -45,7 +45,7 @@
                                 '@if(item.profilePicture != null) { @Convert.ToBase64String(@item.profilePicture)}','@if (item.DOB.HasValue) {@item.DOB.Value.ToString("yyyy-MM-dd")}','@item.Age','@item.Gender','@item.MaritalStatus',@Json.Encode(item.isactive),
                                 '@item.WarehouseID','@item.ResourceCategoriesID','@item.DrivingLicenseID','@item.fK_ResourceInActiveReasonID',@Json.Encode(@item.ResourceReporting.Select(c=> c.Value).ToArray()));
                                 LoadEmployment(@item.ID,'@item.PayFrequenciesID','@item.ADP_EmployeeID','@item.AssignResourcesID','@item.Annualsalary','@item.HourlyRate','@item.DailyRate','@item.WorkRightID',
-                                '@item.EmployeeStatusSetID','@item.EmploymentTypesID','@item.NoticePeriod','@Json.Encode(item.isPeopleManager)');
+                                '@item.EmployeeStatusSetID','@item.EmploymentTypesID','@item.NoticePeriod','@Json.Encode(item.isPeopleManager)',@Json.Encode(@item.ResourceReporting.Select(c=> c.Id).ToArray()));
                                 LoadDocuments(@item.ID,'@item.FilePath','@item.certificate1','@item.DriverLicense','@item.PoliceCheckReport','@item.Visa','@item.SuperChoice','@item.TFNDeclaration',
                                 '@item.BankDetails','@item.CodeOFConduct','@item.WHS');
                                 LoadSkills(@item.ID,'@item.CandidateSkills','@item.Experience','@item.JobTitle','@item.technicalLevelsID','@item.RateOfSkillExperties');
@@ -933,6 +933,8 @@
             });
         }
         function LoadAddressData(ID, CandidateName, DateCreated, Address, City, state, postcode, Email, Phone, logo, dob, age, gender, maritalstatus, isactive, warehouseId, resourceCategoriesId, drivingLicenseId, inactivereason, resourceReporting) {
+
+           
             $("#reportingDiv").empty();
    
             $("#reportingDiv").append('<a href="#" class="list-group-item list-group-item-action active">DIRECT REPORTIES</a>');
@@ -1607,9 +1609,15 @@
         });
 
         function LoadEmployment(id, PayFrequency, ADP_EmployeeID, AssignResource, Annualsalary, HourlyRate, DailyRate, WorkRights,
-            EmployeeStatus, EmployementType, NoticePeriod, isPeopleManager) {
+            EmployeeStatus, EmployementType, NoticePeriod, isPeopleManager,resources) {
+
+            for (i = 0; i < resources.length; i++) {
+                $("#CandidateNameId option[value='" + resources[i] + "']").attr("selected", 1);
+            }
 
            
+
+            $("#CandidateNameId").multiselect("refresh");           
            // boolean ispeoplemgr = isPeopleManager;
             $("#ddlPayFrequencyId").val(PayFrequency);
            // $("#ddlPayFrequencyId").val(PayFrequency);
