@@ -327,67 +327,71 @@
                                     <div class="row" style="margin-left:20px;margin-bottom:0px">
                                         <fieldset style="margin-bottom:0px">
                                             <div class="form-group row" style="margin-bottom:-30px">
-                                                <div class="container table-bordered pull-left" style="margin:20px; margin-top:0px;width:900px;padding-top:5px;padding-bottom:5px">
+                                                <div class="container table-bordered pull-left" @*style="margin:20px; margin-top:0px;width:800px;padding-top:5px;padding-bottom:5px"*@>
                                                     @*<div class="row">*@
-                                                    <div class="col-md-6" >
-                                                        <label>Address:</label>
-                                                        <div class="input-group">
-                                                            <span class="input-group-addon">
-                                                                <i class="glyphicon glyphicon-home"></i>
-                                                            </span><input id="txtAddress1" placeholder="Address Line 1" class="form-control" required="true" value="" type="text">
+                                                    <div class="form-group row">
+                                                        <div class="col-md-4"style="margin-left:5px">
+                                                            <label>Address:</label>
+                                                            <div class="input-group">
+                                                                <span class="input-group-addon">
+                                                                    <i class="glyphicon glyphicon-home"></i>
+                                                                </span><input id="txtAddress1" placeholder="Address Line 1" class="form-control" required="true" value="" type="text">
+                                                            </div>
                                                         </div>
-                                                    </div>                                                    
-                                                    <div class="col-md-2" @*style="margin-left:10px;"*@>
-                                                        <label>City:</label>
-                                                        <div class="input-group">
-                                                            <span class="input-group-addon">
-                                                                <i class="fas fa-map-marker-alt"></i>
-                                                            </span><input id="txtCity" placeholder="Suburb" class="form-control" required="true" value="" type="text">
+                                                        <div class="col-md-2">
+                                                            <label>City:</label>
+                                                            <div class="input-group">
+                                                                <span class="input-group-addon">
+                                                                    <i class="fas fa-map-marker-alt"></i>
+                                                                </span><input id="txtCity" placeholder="Suburb" class="form-control" required="true" value="" type="text">
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="col-md-2">
-                                                        <label>State:</label>
-                                                        <div class="input-group">
-                                                            <span class="input-group-addon">
-                                                                <i class="glyphicon glyphicon-home"></i>
-                                                            </span><input id="txtState" placeholder="State" class="form-control" required="true" value="" type="text">
+                                                        <div class="col-md-2">
+                                                            <label>State:</label>
+                                                            <div class="input-group">
+                                                                <span class="input-group-addon">
+                                                                    <i class="glyphicon glyphicon-home"></i>
+                                                                </span><input id="txtState" placeholder="State" class="form-control" required="true" value="" type="text">
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="col-md-2">
-                                                        <label>Postal Code:</label>
-                                                        <div class="input-group">
-                                                            <span class="input-group-addon">
-                                                                <i class="glyphicon glyphicon-home"></i>
-                                                            </span><input id="txtPostalCode" placeholder="PostCode" class="form-control" required="true" value="" type="text">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-4 pull-left">
-                                                        <label>Email:</label>
-                                                        <div class="input-group">
-                                                            <span class="input-group-addon">
-                                                                <i class="glyphicon glyphicon-envelope"></i>
-                                                            </span><input id="txtEmail" placeholder="Email" class="form-control" required="true" value="" type="text">
+                                                        <div class="col-md-2">
+                                                            <label>Postal Code:</label>
+                                                            <div class="input-group">
+                                                                <span class="input-group-addon">
+                                                                    <i class="glyphicon glyphicon-home"></i>
+                                                                </span><input id="txtPostalCode" placeholder="PostCode" class="form-control" required="true" value="" type="text">
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-3">
-                                                        <label>Mobile</label>
-                                                        <div class="input-group">
-                                                            <span class="input-group-addon">
-                                                                <i class="fas fa-mobile-alt" style="font-size:20px"></i>
-                                                            </span><input id="txtMobile" placeholder="Phone Number" class="form-control" required="true" value="" type="text">
+                                                    <div class="form-group row">
+                                                        <div class="col-md-3">
+                                                            <label>Email:</label>
+                                                            <div class="input-group">
+                                                                <span class="input-group-addon">
+                                                                    <i class="glyphicon glyphicon-envelope"></i>
+                                                                </span><input id="txtEmail" placeholder="Email" class="form-control" required="true" value="" type="text">
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        <label>Phone</label>
+                                                        <div class="col-md-3">
+                                                            <label>Mobile</label>
+                                                            <div class="input-group">
+                                                                <span class="input-group-addon">
+                                                                    <i class="fas fa-mobile-alt" style="font-size:20px"></i>
+                                                                </span><input id="txtMobile" placeholder="Phone Number" class="form-control" required="true" value="" type="text">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <label>Phone</label>
 
-                                                        <div class="input-group">
-                                                            <span class="input-group-addon">
-                                                                <i class="glyphicon glyphicon-earphone"></i>
-                                                            </span><input id="txtPhoneNumber" placeholder="Phone Number" class="form-control" required="true" value="" type="text">
+                                                            <div class="input-group">
+                                                                <span class="input-group-addon">
+                                                                    <i class="glyphicon glyphicon-earphone"></i>
+                                                                </span><input id="txtPhoneNumber" placeholder="Phone Number" class="form-control" required="true" value="" type="text">
+                                                            </div>
                                                         </div>
-                                                    </div> 
+                                                    </div>
                                                 </div>
-                                            </div>
+                                                </div>
                                         </fieldset>
                                     </div>
                                 </div>
