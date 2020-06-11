@@ -1664,19 +1664,19 @@
 
             //Assets
             CandidateEdit.CandidateAllcaotedResouces = {};
-            CandidateEdit.CandidateAllcaotedResouces.DESKSETUP = $("#deskCheck").val()== 'on';
-            CandidateEdit.CandidateAllcaotedResouces.LAPTOPSETUP = $("#laptopCheck").val() == 'on';
-            CandidateEdit.CandidateAllcaotedResouces.OFFICEMOBILE = $("#mobileCheck").val()== 'on';
-            CandidateEdit.CandidateAllcaotedResouces.OFFICEIPAD = $("#ipadCheck").val()== 'on';
-            CandidateEdit.CandidateAllcaotedResouces.MONITORS = $("#monitorsCheck").val()== 'on';
-            CandidateEdit.CandidateAllcaotedResouces.O365ACCOUNT = $("#o365Check").val()== 'on';
-            CandidateEdit.CandidateAllcaotedResouces.WHSACCOUNT = $("#whsCheck").val()== 'on';
-            CandidateEdit.CandidateAllcaotedResouces.DOMAINACCOUNT = $("#userDomainCheck").val()== 'on';
-            CandidateEdit.CandidateAllcaotedResouces.SHAREPOINTACCESS = $("#sharepointCheck").val()== 'on';
-            CandidateEdit.CandidateAllcaotedResouces.ADPREGISTER = $("#adpCheck").val()== 'on';
-            CandidateEdit.CandidateAllcaotedResouces.SALARYACCOUNT = $("#salaryCheck").val()== 'on';
-            CandidateEdit.CandidateAllcaotedResouces.TFSACCOUNT = $("#tfsCheck").val()== 'on';
-            CandidateEdit.CandidateAllcaotedResouces.SUPERACCOUNT = $("#superCheck").val()== 'on';
+            CandidateEdit.CandidateAllcaotedResouces.DESKSETUP = $("#deskCheck").prop('checked');
+            CandidateEdit.CandidateAllcaotedResouces.LAPTOPSETUP = $("#laptopCheck").prop('checked');
+            CandidateEdit.CandidateAllcaotedResouces.OFFICEMOBILE = $("#mobileCheck").prop('checked');
+            CandidateEdit.CandidateAllcaotedResouces.OFFICEIPAD = $("#ipadCheck").prop('checked');
+            CandidateEdit.CandidateAllcaotedResouces.MONITORS = $("#monitorsCheck").prop('checked');
+            CandidateEdit.CandidateAllcaotedResouces.O365ACCOUNT = $("#o365Check").prop('checked');
+            CandidateEdit.CandidateAllcaotedResouces.WHSACCOUNT = $("#whsCheck").prop('checked');
+            CandidateEdit.CandidateAllcaotedResouces.DOMAINACCOUNT = $("#userDomainCheck").prop('checked');
+            CandidateEdit.CandidateAllcaotedResouces.SHAREPOINTACCESS = $("#sharepointCheck").prop('checked');
+            CandidateEdit.CandidateAllcaotedResouces.ADPREGISTER = $("#adpCheck").prop('checked');
+            CandidateEdit.CandidateAllcaotedResouces.SALARYACCOUNT = $("#salaryCheck").prop('checked');
+            CandidateEdit.CandidateAllcaotedResouces.TFSACCOUNT = $("#tfsCheck").prop('checked');
+            CandidateEdit.CandidateAllcaotedResouces.SUPERACCOUNT = $("#superCheck").prop('checked');
                 
 
             var updateCandidateData = '@Url.Action("UpdateCandidate", "Candidates")';
