@@ -301,12 +301,18 @@
 
                                                     @foreach (var Resourcereportings in Model.CurrentBirthdays)
                                                     {
-                                                         <a href="#" class="list-group-item list-group-item-action">@Resourcereportings</a>   
+                                            <a href="#" class="list-group-item list-group-item-action">
+                                               
+                                                <div class="d-flex w-100 justify-content-between">
+                                                    <h5 class="mb-1"> @Resourcereportings</h5>
+                                                    <small class="text-muted"> Happy Birthday!</small>
+                                                </div>
+                                            </a>   
                                                     }     
                                             </div> 
                                             <div class="list-group pull-right" style="width:200px;display:none;margin-top:10px;" id="reportingDiv">
                                                 <a href="#" class="list-group-item list-group-item-action active">
-                                                    DIRECT REPORTIES
+                                                   @Model.CandidateName - DIRECT REPORTIES
                                                 </a>
                                                 @foreach (var Resourcereportings in Model.DirectReports)
                                                 {
@@ -1682,7 +1688,7 @@
             CandidateEdit.CandidateAllcaotedResouces.SALARYACCOUNT = $("#salaryCheck").val()== 'on';
             CandidateEdit.CandidateAllcaotedResouces.TFSACCOUNT = $("#tfsCheck").val()== 'on';
             CandidateEdit.CandidateAllcaotedResouces.SUPERACCOUNT = $("#superCheck").val()== 'on';
-                
+            CandidateEdit.CandidateAllcaotedResouces.FK_CandidateId = $("#hiddenModelId").val();
 
             var updateCandidateData = '@Url.Action("UpdateCandidate", "Candidates")';
             $.ajax({

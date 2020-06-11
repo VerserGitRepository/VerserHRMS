@@ -45,7 +45,8 @@ namespace VerserHRManagement
             List<SelectListItems> model1 = new List<SelectListItems>();
             foreach (var candidate in model.CandidateList)
             {
-                model1.Add(new SelectListItems { ID = candidate.ID, Name = candidate.CandidateName });// = new SelectList(model.CandidateList.Select(c => c.CandidateName), model.CandidateList.Select(c => c.ID), model.CandidateList.Select(c => c.ID));
+                model1.Add(new SelectListItems { ID = candidate.ID, Name = candidate.CandidateName });
+                // = new SelectList(model.CandidateList.Select(c => c.CandidateName), model.CandidateList.Select(c => c.ID), model.CandidateList.Select(c => c.ID));
             }
             model.CandidateNameList = new SelectList(model1, "ID", "Name");
             var CurrentBirthdays = from c in model.CandidateList where c.DOB.HasValue select c;
@@ -386,9 +387,9 @@ namespace VerserHRManagement
                 if (ModelState.IsValid)
                 {
 
+                    candidate.CandidateAllcaotedResouces.FK_CandidateId = candidate.ID;
                     bool isupdated = CandidateService.EditCandidate(candidate);
                     if (isupdated)
-
                     {
                         //return new JsonResult { Data = "The update has been successful.", JsonRequestBehavior = JsonRequestBehavior.AllowGet };
                         var redirectUrl = new UrlHelper(Request.RequestContext).Action("Index", "Candidates");
