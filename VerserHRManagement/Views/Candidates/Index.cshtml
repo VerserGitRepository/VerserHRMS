@@ -294,39 +294,32 @@
                                                     </div>
                                                 </div>
                                                
-                                            </div>
+                                            </div>                                           
+                                            <div class="list-group pull-right" id="feature" style="padding-top:10PX;padding-right:5px; width:190px;height:250px;overflow-y:scroll;overflow-wrap">
 
-                                           
-                                            <div class="feature pull-right" id="feature" style="width:200px;height:250px; border-color:lightgray;border-width:1px;border-style:solid;overflow-y: scroll;">
+                                            <a href="#" class="list-group-item list-group-item-action active">MONTHLY BIRTHDAY'S</a>
 
-                                                <label class="serif center" style="border-bottom:solid;border-width:thin;border-color:gray">Birthdays</label><br />
-                                                <ul class="feature-list">
                                                     @foreach (var Resourcereportings in Model.CurrentBirthdays)
                                                     {
-
-                                                        <li style="border-bottom:solid;border-width:thin;border-color:gray;scrollbar-arrow-color:black;"><p>@Resourcereportings</p></li>
-
-                                                    }
-                                                </ul>
-
+                                                         <a href="#" class="list-group-item list-group-item-action">@Resourcereportings</a>   
+                                                    }     
                                             </div> 
-                                            <div class="col-md-2 well pull-right" style="width:200px;display:none;margin-top:10px;" id="reportingDiv">
-                                                
-
+                                            <div class="list-group pull-right" style="width:200px;display:none;margin-top:10px;" id="reportingDiv">
+                                                <a href="#" class="list-group-item list-group-item-action active">
+                                                    DIRECT REPORTIES
+                                                </a>
                                                 @foreach (var Resourcereportings in Model.DirectReports)
                                                 {
-                                                    <div class="form-group">
-                                                        <label for="javascript">@Resourcereportings</label>
-                                                    </div>
+                                                      <a href="#" class="list-group-item list-group-item-action">@Resourcereportings</a>     
                                                 }
                                             </div>
                                         </div>
                                     </form>
                                 </div>
                                 <div class="row grid-divider">
-                                    <div class="row" style="margin-left:20px;margin-bottom:0px">
+                                    <div class="row" style="margin-left:40px;margin-bottom:0px">
                                         <fieldset style="margin-bottom:0px">
-                                            <div class="form-group row" style="margin-bottom:-30px">
+                                            <div class="form-group row" style="margin-bottom:-20px">
                                                 <div class="container table-bordered pull-left" @*style="margin:20px; margin-top:0px;width:800px;padding-top:5px;padding-bottom:5px"*@>
                                                     @*<div class="row">*@
                                                     <div class="form-group row">
@@ -948,8 +941,7 @@
         function LoadAddressData(ID, CandidateName, DateCreated, Address, City, state, postcode, Email, Phone, logo, dob, age, gender, maritalstatus, isactive, warehouseId, resourceCategoriesId, drivingLicenseId, inactivereason, resourceReporting) {
             $("#reportingDiv").empty();
             for (var i = 0; i < resourceReporting.length; i++) {
-                $("#reportingDiv").append('<li>'+resourceReporting[i]+'</li>')
-                    .css("background", "lightgrey");
+                $("#reportingDiv").append(resourceReporting[i]);                    
             }
             if (resourceReporting.length > 0) {
                 $("#reportingDiv").show();
