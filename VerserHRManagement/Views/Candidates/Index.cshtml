@@ -45,7 +45,7 @@
                                 '@if(item.profilePicture != null) { @Convert.ToBase64String(@item.profilePicture)}','@if (item.DOB.HasValue) {@item.DOB.Value.ToString("yyyy-MM-dd")}','@item.Age','@item.Gender','@item.MaritalStatus',@Json.Encode(item.isactive),
                                 '@item.WarehouseID','@item.ResourceCategoriesID','@item.DrivingLicenseID','@item.fK_ResourceInActiveReasonID',@Json.Encode(@item.ResourceReporting.Select(c=> c.Value).ToArray()));
                                 LoadEmployment(@item.ID,'@item.PayFrequenciesID','@item.ADP_EmployeeID','@item.AssignResourcesID','@item.Annualsalary','@item.HourlyRate','@item.DailyRate','@item.WorkRightID',
-                                '@item.EmployeeStatusSetID','@item.EmploymentTypesID','@item.NoticePeriod','@Json.Encode(item.isPeopleManager)');
+                                '@item.EmployeeStatusSetID','@item.EmploymentTypesID','@item.NoticePeriod','@Json.Encode(item.isPeopleManager)',@Json.Encode(@item.ResourceReporting.Select(c=> c.Id).ToArray()));
                                 LoadDocuments(@item.ID,'@item.FilePath','@item.certificate1','@item.DriverLicense','@item.PoliceCheckReport','@item.Visa','@item.SuperChoice','@item.TFNDeclaration',
                                 '@item.BankDetails','@item.CodeOFConduct','@item.WHS');
                                 LoadSkills(@item.ID,'@item.CandidateSkills','@item.Experience','@item.JobTitle','@item.technicalLevelsID','@item.RateOfSkillExperties');
@@ -63,7 +63,7 @@
                 </tbody>
             </table>
         </div>
-        <div class="col-md-7" style="margin-left:31px">
+        <div class="col-md-7" style="margin-left:30px">
             <div class="panel with-nav-tabs panel-default" style="width:170%;margin-bottom:0px">
                 <div class="panel-heading">
                     <ul class="nav nav-tabs">
@@ -294,24 +294,18 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                               
-                                            </div>                                           
+
+                                            </div>
                                             <div class="list-group pull-right" id="feature" style="padding-top:10PX;padding-right:5px; width:190px;height:250px;overflow-y:scroll;">
 
-                                            <a href="#" class="list-group-item list-group-item-action active">MONTHLY BIRTHDAY'S</a>
+                                                <a href="#" class="list-group-item list-group-item-action active">MONTHLY BIRTHDAY'S</a>
 
-                                                    @foreach (var Resourcereportings in Model.CurrentBirthdays)
-                                                    {
-                                            <a href="#" class="list-group-item list-group-item-action">
-                                               
-                                                <div class="d-flex w-100 justify-content-between">
-                                                    <h5 class="mb-1"> @Resourcereportings</h5>
-                                                    <small class="text-muted"> Happy Birthday!</small>
-                                                </div>
-                                            </a>   
-                                                    }     
-                                            </div> 
-                                            <div class="list-group pull-right" style="padding-top:10PX;padding-right:5px; width:190px;height:250px;overflow-y:scroll;" id="reportingDiv">                                                                                              
+                                                @foreach (var Resourcereportings in Model.CurrentBirthdays)
+                                                {
+                                                    <a href="#" class="list-group-item list-group-item-action">@Resourcereportings</a>
+                                                }
+                                            </div>
+                                            <div class="list-group pull-right" style="padding-top:10PX;padding-right:5px; width:190px;height:250px;overflow-y:scroll;" id="reportingDiv">
                                             </div>
                                         </div>
                                     </form>
@@ -544,36 +538,36 @@
 
 
                                     @*<div class="panel-body">
-                                        <div class="input-group image-preview">
-                                            @Html.Hidden("Resume", null, new { @id = "hiddenResume" })
-                                            <span class="input-group-btn-override">
-                                                <i class="fas fa-file-download"></i>
-                                                @Html.ActionLink("Resume", "DownloadFile", "Candidates", new { textval = "" }, new { @id = "resume", @class = "actionlink" })
-                                            </span>
-                                             don't give a name === doesn't send on POST/GET
-                                            <span class="input-group-btn-override" style="padding-left:150px">
-                                                <input id="CVimgupload" type="file" style="display:none;">
-                                                <button id="btnCV" type="button" class="btn btn-sm btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray">
-                                                    <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Resume
-                                                </button>
-                                            </span>
-                                        </div>
-                                        <br>
-                                        <div class="input-group image-preview">
-                                            @Html.Hidden("Resume", null, new { @id = "hiddenCertificate" })
-                                            <span class="input-group-btn-override">
-                                                <i class="fas fa-file-download"></i>
-                                                @Html.ActionLink("Certificates", "DownloadFile", "Candidates", new { textval = "" }, new { @id = "certificate", @class = "actionlink" })
-                                            </span>
-                                             don't give a name === doesn't send on POST/GET
-                                            <span class="input-group-btn-override" style="padding-left:125px">
-                                                <input id="Certificateimgupload" type="file" style="display:none;">
-                                                <button type="button" id="btnCertificates" class="btn btn-sm btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray">
-                                                    <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Certificate
-                                                </button>
-                                            </span>
-                                        </div>
-                                    </div>*@
+                                            <div class="input-group image-preview">
+                                                @Html.Hidden("Resume", null, new { @id = "hiddenResume" })
+                                                <span class="input-group-btn-override">
+                                                    <i class="fas fa-file-download"></i>
+                                                    @Html.ActionLink("Resume", "DownloadFile", "Candidates", new { textval = "" }, new { @id = "resume", @class = "actionlink" })
+                                                </span>
+                                                 don't give a name === doesn't send on POST/GET
+                                                <span class="input-group-btn-override" style="padding-left:150px">
+                                                    <input id="CVimgupload" type="file" style="display:none;">
+                                                    <button id="btnCV" type="button" class="btn btn-sm btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray">
+                                                        <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Resume
+                                                    </button>
+                                                </span>
+                                            </div>
+                                            <br>
+                                            <div class="input-group image-preview">
+                                                @Html.Hidden("Resume", null, new { @id = "hiddenCertificate" })
+                                                <span class="input-group-btn-override">
+                                                    <i class="fas fa-file-download"></i>
+                                                    @Html.ActionLink("Certificates", "DownloadFile", "Candidates", new { textval = "" }, new { @id = "certificate", @class = "actionlink" })
+                                                </span>
+                                                 don't give a name === doesn't send on POST/GET
+                                                <span class="input-group-btn-override" style="padding-left:125px">
+                                                    <input id="Certificateimgupload" type="file" style="display:none;">
+                                                    <button type="button" id="btnCertificates" class="btn btn-sm btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray">
+                                                        <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Certificate
+                                                    </button>
+                                                </span>
+                                            </div>
+                                        </div>*@
 
                                     <div class="panel-heading"><strong>LEGAL</strong> <small> </small></div>
                                     <div class="panel-body">
@@ -867,7 +861,7 @@
 </body>
 
 
-    <script type="text/javascript">
+<script type="text/javascript">
         $(document).ready(function () {
 
             $('#mainTable').DataTable({
@@ -905,13 +899,13 @@
 
             $('#ddlInactiveReason').hide();
 
-           
+
         });
         $(function () {
           //  $('#feature').scrollForever({ delayTime: 30,dir:"top" });
         })
         //  ExportTimesSheetToExcel", "Candidates"
-       
+
         function ResourceChange (val) {
            // alert('text');
             if ($(val).is(':checked')) {
@@ -939,9 +933,11 @@
             });
         }
         function LoadAddressData(ID, CandidateName, DateCreated, Address, City, state, postcode, Email, Phone, logo, dob, age, gender, maritalstatus, isactive, warehouseId, resourceCategoriesId, drivingLicenseId, inactivereason, resourceReporting) {
+
+
             $("#reportingDiv").empty();
-   
-            $("#reportingDiv").append('<a href="#" class="list-group-item list-group-item-action active">DIRECT REPORTEES</a>');
+
+            $("#reportingDiv").append('<a href="#" class="list-group-item list-group-item-action active">DIRECT REPORTIES</a>');
             for (var i = 0; i < resourceReporting.length; i++) {
                 $("#reportingDiv").append('<a href="#" class="list-group-item list-group-item-action">'+resourceReporting[i]+'</a>');
             }
@@ -1613,9 +1609,15 @@
         });
 
         function LoadEmployment(id, PayFrequency, ADP_EmployeeID, AssignResource, Annualsalary, HourlyRate, DailyRate, WorkRights,
-            EmployeeStatus, EmployementType, NoticePeriod, isPeopleManager) {
+            EmployeeStatus, EmployementType, NoticePeriod, isPeopleManager,resources) {
 
-           
+            for (i = 0; i < resources.length; i++) {
+                $("#CandidateNameId option[value='" + resources[i] + "']").attr("selected", 1);
+            }
+
+
+
+            $("#CandidateNameId").multiselect("refresh");
            // boolean ispeoplemgr = isPeopleManager;
             $("#ddlPayFrequencyId").val(PayFrequency);
            // $("#ddlPayFrequencyId").val(PayFrequency);
@@ -1632,7 +1634,7 @@
             $("#hiddenModelId").val(id);
         }
         function LoadAccessAndDevices(CandidateAllcaotedResouces) {
-          
+
             $("#deskCheck").prop('checked', CandidateAllcaotedResouces == null?false:CandidateAllcaotedResouces.DESKSETUP);
             $("#laptopCheck").prop('checked', CandidateAllcaotedResouces == null ? false :CandidateAllcaotedResouces.LAPTOPSETUP);
             $("#mobileCheck").prop('checked', CandidateAllcaotedResouces == null ? false :CandidateAllcaotedResouces.OFFICEMOBILE);
@@ -1646,7 +1648,7 @@
             $("#salaryCheck").prop('checked', CandidateAllcaotedResouces == null ? false :CandidateAllcaotedResouces.SALARYACCOUNT);
             $("#tfsCheck").prop('checked', CandidateAllcaotedResouces == null ? false :CandidateAllcaotedResouces.TFSACCOUNT);
             $("#superCheck").prop('checked', CandidateAllcaotedResouces == null ? false :CandidateAllcaotedResouces.SUPERACCOUNT);
-            
+
         }
         $("#updateEmploymentDetailsBtn").click(function () {
             var CandidateEdit = {};
@@ -1700,7 +1702,7 @@
             CandidateEdit.CandidateAllcaotedResouces.SALARYACCOUNT = $("#salaryCheck").prop('checked');
             CandidateEdit.CandidateAllcaotedResouces.TFSACCOUNT = $("#tfsCheck").prop('checked');
             CandidateEdit.CandidateAllcaotedResouces.SUPERACCOUNT = $("#superCheck").prop('checked');
-                
+
 
             var updateCandidateData = '@Url.Action("UpdateCandidate", "Candidates")';
             $.ajax({
@@ -1780,11 +1782,11 @@
 
             });
 
-       
+
         }
         var updateInactiveReason = '@Url.Action("InActivateResource", "Candidates")';
         function UpdateInactiveReason() {
-           
+
             $.ajax({
                 type: "GET",
                 url: updateInactiveReason,
@@ -1804,7 +1806,7 @@
                             }
                         }
                     });
-                    
+
                 },
                 error: function () {
                     alert("Dynamic content load failed.");
@@ -1812,7 +1814,7 @@
 
             });
         }
-    </script>
+</script>
 
 <style>
 
@@ -1820,6 +1822,7 @@
         font-size: 6px;
         color: black;
     }
+
     .multiselect-container > li > a > label.checkbox {
         width: 220px;
     }
@@ -1827,6 +1830,7 @@
     .btn-group > .btn:first-child {
         width: 220px;
     }
+
     .well-sm {
         margin-bottom: 0px;
         margin-top: 0px;
@@ -2191,9 +2195,11 @@
     panel-body {
         padding: 5px;
     }
+
     .feature-list {
         font-weight: bold;
     }
+
     .serif {
         font-family: serif;
         font-size: 10px;
