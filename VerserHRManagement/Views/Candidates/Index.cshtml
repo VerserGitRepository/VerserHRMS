@@ -49,7 +49,8 @@
                                 LoadDocuments(@item.ID,'@item.FilePath','@item.certificate1','@item.DriverLicense','@item.PoliceCheckReport','@item.Visa','@item.SuperChoice','@item.TFNDeclaration',
                                 '@item.BankDetails','@item.CodeOFConduct','@item.WHS');
                                 LoadSkills(@item.ID,'@item.CandidateSkills','@item.Experience','@item.JobTitle','@item.technicalLevelsID','@item.RateOfSkillExperties');
-                                LoadRating(@item.ID);">
+                                LoadRating(@item.ID);
+                                LoadAccessAndDevices(@Json.Encode(@item.CandidateAllcaotedResouces));">
                                 <font style="font-weight:800;color:#515151">
                                     @Html.DisplayFor(modelItem => item.CandidateName)
                                     <input type="hidden" value="@item.ID" id="hiddenModelId" />
@@ -1624,7 +1625,23 @@
             $("#txtNoticePeriod").val(NoticePeriod);
             $("#hiddenModelId").val(id);
         }
-
+        function LoadAccessAndDevices(CandidateAllcaotedResouces) {
+          
+            $("#deskCheck").prop('checked', CandidateAllcaotedResouces == null?false:CandidateAllcaotedResouces.DESKSETUP);
+            $("#laptopCheck").prop('checked', CandidateAllcaotedResouces == null ? false :CandidateAllcaotedResouces.LAPTOPSETUP);
+            $("#mobileCheck").prop('checked', CandidateAllcaotedResouces == null ? false :CandidateAllcaotedResouces.OFFICEMOBILE);
+            $("#ipadCheck").prop('checked', CandidateAllcaotedResouces == null ? false :CandidateAllcaotedResouces.OFFICEIPAD);
+            $("#monitorsCheck").prop('checked', CandidateAllcaotedResouces == null ? false :CandidateAllcaotedResouces.MONITORS);
+            $("#o365Check").prop('checked', CandidateAllcaotedResouces == null ? false : CandidateAllcaotedResouces.O365ACCOUNT);
+            $("#whsCheck").prop('checked', CandidateAllcaotedResouces == null ? false : CandidateAllcaotedResouces.WHSACCOUNT);
+            $("#userDomainCheck").prop('checked', CandidateAllcaotedResouces == null ? false : CandidateAllcaotedResouces.DOMAINACCOUNT);
+            $("#sharepointCheck").prop('checked', CandidateAllcaotedResouces == null ? false :CandidateAllcaotedResouces.SHAREPOINTACCESS);
+            $("#adpCheck").prop('checked', CandidateAllcaotedResouces == null ? false :CandidateAllcaotedResouces.ADPREGISTER);
+            $("#salaryCheck").prop('checked', CandidateAllcaotedResouces == null ? false :CandidateAllcaotedResouces.SALARYACCOUNT);
+            $("#tfsCheck").prop('checked', CandidateAllcaotedResouces == null ? false :CandidateAllcaotedResouces.TFSACCOUNT);
+            $("#superCheck").prop('checked', CandidateAllcaotedResouces == null ? false :CandidateAllcaotedResouces.SUPERACCOUNT);
+            
+        }
         $("#updateEmploymentDetailsBtn").click(function () {
             var CandidateEdit = {};
             CandidateEdit.ResourceIds = $('#CandidateNameId').val();
