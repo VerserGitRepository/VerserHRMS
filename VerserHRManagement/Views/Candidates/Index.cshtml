@@ -62,7 +62,7 @@
                 </tbody>
             </table>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-7" style="margin-left:30px">
             <div class="panel with-nav-tabs panel-default" style="width:170%;margin-bottom:0px">
                 <div class="panel-heading">
                     <ul class="nav nav-tabs">
@@ -75,7 +75,7 @@
                         {
                             <li><a href="#tab4default" data-toggle="tab">DOCUMENTS</a></li>
                             <li><a href="#tab6default" data-toggle="tab">OFFER</a></li>
-                             <li><a href="#tab7default" data-toggle="tab">POLICIES</a></li>
+                            <li><a href="#tab7default" data-toggle="tab">POLICIES</a></li>
                             <li><a href="#tab8default" data-toggle="tab">ACCESS & DEVICES</a></li>
                             <li><a href="#tab9default" data-toggle="tab">OFF-BOARD</a></li>
                             <li class="pull-right" style="margin-right:20px;vertical-align:bottom">
@@ -203,13 +203,13 @@
                                                         </div>
                                                         @*</div>*@
                                                         @*<div class="col-md-3">*@
-                                                            <label></label>
-                                                            @Html.DropDownListFor(Model => Model.InactiveReason, new List<SelectListItem>
-                                                                { new SelectListItem {Text="Resigned",Value="1" },
-                                                                new SelectListItem {Text="Unsuitable",Value="2" },
-                                                                new SelectListItem {Text="Lapsed",Value="3" },
-                                                                }, "InActive Reason", new { @class = "form-control", @id = "ddlInactiveReason", @onchange = "UpdateInactiveReason();" })
-                                                            @Html.ValidationMessageFor(model => model.InactiveReason, "", new { @class = "text-danger" })
+                                                        <label></label>
+                                                        @Html.DropDownListFor(Model => Model.InactiveReason, new List<SelectListItem>
+                                                            { new SelectListItem {Text="Resigned",Value="1" },
+                                                            new SelectListItem {Text="Unsuitable",Value="2" },
+                                                            new SelectListItem {Text="Lapsed",Value="3" },
+                                                            }, "InActive Reason", new { @class = "form-control", @id = "ddlInactiveReason", @onchange = "UpdateInactiveReason();" })
+                                                        @Html.ValidationMessageFor(model => model.InactiveReason, "", new { @class = "text-danger" })
                                                         @*</div>*@
                                                     </div>
                                                     <div class="col-sm-12 col-md-8 pull-right">
@@ -323,7 +323,7 @@
                                                 <div class="container table-bordered pull-left" @*style="margin:20px; margin-top:0px;width:800px;padding-top:5px;padding-bottom:5px"*@>
                                                     @*<div class="row">*@
                                                     <div class="form-group row">
-                                                        <div class="col-md-4"style="margin-left:5px">
+                                                        <div class="col-md-4" style="margin-left:5px">
                                                             <label>Address:</label>
                                                             <div class="input-group">
                                                                 <span class="input-group-addon">
@@ -384,7 +384,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                </div>
+                                            </div>
                                         </fieldset>
                                     </div>
                                 </div>
@@ -439,7 +439,7 @@
                                         </div>
                                     </div>
                                     <div class=" row col-md-6 well" style="width:250px;height:390px">
-                                      
+
                                         <div class="col-md-12" style="margin-top:15px;">
                                             <label>People Manager</label>
                                             <div class="input-group">
@@ -452,7 +452,7 @@
                                         <div class="col-md-12" style="margin-top:15px;">
                                             <input type="submit" value="ASSIGN" class="btn btn-primary"
                                                    style="background-color:#428bca;border-color:#428bca"
-                                                   id="updatePeopleManager" onclick="UpdatePeopleManager();"/>
+                                                   id="updatePeopleManager" onclick="UpdatePeopleManager();" />
                                         </div>
 
                                     </div>
@@ -544,36 +544,36 @@
 
 
                                     @*<div class="panel-body">
-                        <div class="input-group image-preview">
-                            @Html.Hidden("Resume", null, new { @id = "hiddenResume" })
-                            <span class="input-group-btn-override">
-                                <i class="fas fa-file-download"></i>
-                                @Html.ActionLink("Resume", "DownloadFile", "Candidates", new { textval = "" }, new { @id = "resume", @class = "actionlink" })
-                            </span>
-                             don't give a name === doesn't send on POST/GET
-                            <span class="input-group-btn-override" style="padding-left:150px">
-                                <input id="CVimgupload" type="file" style="display:none;">
-                                <button id="btnCV" type="button" class="btn btn-sm btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray">
-                                    <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Resume
-                                </button>
-                            </span>
-                        </div>
-                        <br>
-                        <div class="input-group image-preview">
-                            @Html.Hidden("Resume", null, new { @id = "hiddenCertificate" })
-                            <span class="input-group-btn-override">
-                                <i class="fas fa-file-download"></i>
-                                @Html.ActionLink("Certificates", "DownloadFile", "Candidates", new { textval = "" }, new { @id = "certificate", @class = "actionlink" })
-                            </span>
-                             don't give a name === doesn't send on POST/GET
-                            <span class="input-group-btn-override" style="padding-left:125px">
-                                <input id="Certificateimgupload" type="file" style="display:none;">
-                                <button type="button" id="btnCertificates" class="btn btn-sm btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray">
-                                    <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Certificate
-                                </button>
-                            </span>
-                        </div>
-                    </div>*@
+                                        <div class="input-group image-preview">
+                                            @Html.Hidden("Resume", null, new { @id = "hiddenResume" })
+                                            <span class="input-group-btn-override">
+                                                <i class="fas fa-file-download"></i>
+                                                @Html.ActionLink("Resume", "DownloadFile", "Candidates", new { textval = "" }, new { @id = "resume", @class = "actionlink" })
+                                            </span>
+                                             don't give a name === doesn't send on POST/GET
+                                            <span class="input-group-btn-override" style="padding-left:150px">
+                                                <input id="CVimgupload" type="file" style="display:none;">
+                                                <button id="btnCV" type="button" class="btn btn-sm btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray">
+                                                    <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Resume
+                                                </button>
+                                            </span>
+                                        </div>
+                                        <br>
+                                        <div class="input-group image-preview">
+                                            @Html.Hidden("Resume", null, new { @id = "hiddenCertificate" })
+                                            <span class="input-group-btn-override">
+                                                <i class="fas fa-file-download"></i>
+                                                @Html.ActionLink("Certificates", "DownloadFile", "Candidates", new { textval = "" }, new { @id = "certificate", @class = "actionlink" })
+                                            </span>
+                                             don't give a name === doesn't send on POST/GET
+                                            <span class="input-group-btn-override" style="padding-left:125px">
+                                                <input id="Certificateimgupload" type="file" style="display:none;">
+                                                <button type="button" id="btnCertificates" class="btn btn-sm btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray">
+                                                    <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Certificate
+                                                </button>
+                                            </span>
+                                        </div>
+                                    </div>*@
 
                                     <div class="panel-heading"><strong>LEGAL</strong> <small> </small></div>
                                     <div class="panel-body">
@@ -840,8 +840,8 @@
                         </div>
                     </div>
                 </div>
-                
-    @*Footer Code Here *@
+
+                @*Footer Code Here *@
                 <div class="panel-footer primary" align="left" style="height:40px;vertical-align:top;background-color:lightgrey;margin-bottom:0px">
                     @if (UserRoles.UserCanEdit() == true)
                     {
