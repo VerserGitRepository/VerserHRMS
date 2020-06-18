@@ -478,6 +478,7 @@
     <Content Include="Views\Candidates\SMSBroadcast.cshtml" />
     <Content Include="Views\MultiSelectDropDown\Index.cshtml" />
     <Content Include="Views\Candidates\GridViewPartial.cshtml" />
+    <Content Include="Views\Candidates\Performance.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

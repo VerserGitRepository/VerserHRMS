@@ -711,7 +711,7 @@
                         </div>
                         <div class="tab-pane fade" id="tab5default">
                             <div class="row">
-                                COMING SOON
+                                @Html.Partial("Performance")
                             </div>
                         </div>
                         <div class="tab-pane fade" id="tab6default">
@@ -869,6 +869,21 @@
 
 <script type="text/javascript">
         $(document).ready(function () {
+    
+      var i=1;
+     $("#add_row").click(function(){
+      $('#addr'+i).html("<td><input name='name"+i+"' type='text' placeholder='New Goal' class='form-control input-md'  /> </td><td><input  name='mail"+i+"' type='Date' placeholder='Date'  class='form-control input-md'></td><td><input  name='mobile"+i+"' type='text' placeholder='Description'  class='form-control input-md'></td>");
+
+      $('#tab_logic').append('<tr id="addr'+(i+1)+'"></tr>');
+      i++; 
+  });
+     $("#delete_row").click(function(){
+    	 if(i>1){
+		 $("#addr"+(i-1)).html('');
+		 i--;
+		 }
+	 });
+
 
             $('#mainTable').DataTable({
                 stateSave: true,
@@ -2183,6 +2198,7 @@
         border: 1px solid #cccccc;
         border-radius: 4px;
     }
+ 
 
     .input-group-btn-override {
         height: 25px;
