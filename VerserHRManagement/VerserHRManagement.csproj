@@ -479,6 +479,7 @@
     <Content Include="Views\MultiSelectDropDown\Index.cshtml" />
     <Content Include="Views\Candidates\GridViewPartial.cshtml" />
     <Content Include="Views\Candidates\Performance.cshtml" />
+    <Content Include="Views\Candidates\Documents.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

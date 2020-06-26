@@ -1,0 +1,216 @@
+﻿@model VerserHRManagement.Models.Candidate
+    
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel-group" id="accordion">
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
+                                <span class="glyphicon glyphicon-file">
+                                </span>RESUME
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseFour" class="panel-collapse collapse in">
+                        <div class="panel-body">
+                            <div class="input-group image-preview">
+                                @Html.Hidden("Resume", null, new { @id = "hiddenResume" })
+                                <span class="input-group-btn-override">
+                                    <i class="fas fa-file-download"></i>
+                                    @Html.ActionLink("Resume", "DownloadFile", "Candidates", new { textval = "" }, new { @id = "resume", @class = "actionlink" })
+                                </span>
+
+                                @Html.Hidden("Resume", null, new { @id = "hiddenCertificate" })
+                                <span class="input-group-btn-override">
+                                    <i class="fas fa-file-download"></i>
+                                    @Html.ActionLink("Certificates", "DownloadFile", "Candidates", new { textval = "" }, new { @id = "certificate", @class = "actionlink" })
+                                </span>
+                               
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DropDownListFor(Model => Model.InactiveReason, new List<SelectListItem>
+                                { new SelectListItem {Text="RESUME",Value="RESUME" },
+                                new SelectListItem {Text="DRIVING LICENSE",Value="DL" },
+                                new SelectListItem {Text="VISA",Value="VISA" },
+                                 new SelectListItem {Text="SUPER FORM",Value="SUPERFORM" },
+                                  new SelectListItem {Text="TNF",Value="TNF" },
+                                   new SelectListItem {Text="BANK DETAILS",Value="BANKDETAILS" },
+                                   new SelectListItem {Text="CODE OF CONDUCT",Value="CODEOFCONDUCT" },
+                                   new SelectListItem {Text="WHS",Value="WHS" },
+                                }, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.InactiveReason, "", new { @class = "text-danger" })
+
+                                <input id="Certificateimgupload" type="file" style="display:none;"><br>
+                                <button type="button" id="btnCertificates" class="btn btn-sm btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray">
+                                    <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Upload
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                                <span class="glyphicon glyphicon-file">
+                                </span>LEGAL
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseOne" class="panel-collapse collapse in">
+                        <div class="panel-body">
+                            <div class="input-group image-preview">
+                                @Html.Hidden("Resume", null, new { @id = "hiddenDL" })
+                                <span class="input-group-btn-override">
+                                    <i class="fas fa-file-download"></i>
+                                    @Html.ActionLink("Driving License", "DownloadFile", "Candidates", new { textval = "" }, new { @id = "DL", @class = "actionlink" })
+                                </span>
+                                <!-- don't give a name === doesn't send on POST/GET -->
+
+
+                                @Html.Hidden("Resume", null, new { @id = "hiddenPC" })
+                                <span class="input-group-btn-override">
+                                    <i class="fas fa-file-download"></i>
+                                    @Html.ActionLink("Police Check", "DownloadFile", "Candidates", new { textval = "" }, new { @id = "PC", @class = "actionlink" })
+                                </span>
+                                <!-- don't give a name === doesn't send on POST/GET -->
+
+
+
+                                @Html.Hidden("Resume", null, new { @id = "hiddenVisa" })
+                                <span class="input-group-btn-override">
+                                    <i class="fas fa-file-download"></i>
+                                    @Html.ActionLink("Visa", "DownloadFile", "Candidates", new { textval = "" }, new { @id = "visa", @class = "actionlink" })
+                                </span>
+                                <!-- don't give a name === doesn't send on POST/GET -->
+
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DropDownListFor(Model => Model.InactiveReason, new List<SelectListItem>
+                                {
+                                new SelectListItem {Text="DRIVING LICENSE",Value="DL" },
+                                new SelectListItem {Text="VISA",Value="VISA" },
+
+                                   new SelectListItem {Text="Police Check",Value="PC" },
+                                }, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.InactiveReason, "", new { @class = "text-danger" })
+
+                                <input id="Certificateimgupload" type="file" style="display:none;"><br>
+                                <button type="button" id="btnCertificates" class="btn btn-sm btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray">
+                                    <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Upload
+                                </button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                                <span class="glyphicon glyphicon-th-list">
+                                </span>PERSONAL DETAILS
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseTwo" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <div class="input-group image-preview">
+                                @Html.Hidden("Resume", null, new { @id = "hiddenSuper" })
+                                <span class="input-group-btn-override">
+                                    <i class="fas fa-file-download"></i>
+                                    @Html.ActionLink("Super Form", "DownloadFile", "Candidates", new { textval = "" }, new { @id = "super", @class = "actionlink" })
+                                </span>
+                                <!-- don't give a name === doesn't send on POST/GET -->
+
+                                @Html.Hidden("Resume", null, new { @id = "hiddenTNF" })
+                                <span class="input-group-btn-override">
+                                    <i class="fas fa-file-download"></i>
+                                    @Html.ActionLink("TNF", "DownloadFile", "Candidates", new { textval = "" }, new { @id = "tnf", @class = "actionlink" })
+                                </span>
+                                <!-- don't give a name === doesn't send on POST/GET -->
+
+                               
+                                    @Html.Hidden("Resume", null, new { @id = "hiddenBank" })
+                                    <span class="input-group-btn-override">
+                                        <i class="fas fa-file-download"></i>
+                                        @Html.ActionLink("Bank Details", "DownloadFile", "Candidates", new { textval = "" }, new { @id = "bank", @class = "actionlink" })
+                                    </span>
+                                    <!-- don't give a name === doesn't send on POST/GET -->
+
+                                
+                            </div><br>
+                                  <div class="col-md-3">
+                                      @Html.DropDownListFor(Model => Model.InactiveReason, new List<SelectListItem>
+                                       { 
+                                        new SelectListItem {Text="SUPER FORM",Value="SUPERFORM" },
+                                         new SelectListItem {Text="TNF",Value="TNF" },
+                                          new SelectListItem {Text="BANK DETAILS",Value="BANKDETAILS" },
+                                          
+                                       }, new { @class = "form-control" })
+                                      @Html.ValidationMessageFor(model => model.InactiveReason, "", new { @class = "text-danger" })
+
+
+                                      <input id="Certificateimgupload" type="file" style="display:none;"><br>
+                                      <button type="button" id="btnCertificates" class="btn btn-sm btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray">
+                                          <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Upload
+                                      </button>
+                                  </div>
+                        </div>
+                </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                                <span class="glyphicon glyphicon-file">
+                                </span>POLICIES
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseThree" class="panel-collapse collapse in">
+                        <div class="panel-body">
+                            <div class="input-group image-preview">
+                                @Html.Hidden("Resume", null, new { @id = "hiddenCode" })
+                                <span class="input-group-btn-override">
+                                    <i class="fas fa-file-download"></i>
+                                    @Html.ActionLink("Code Of Conduct", "DownloadFile", "Candidates", new { textval = "" }, new { @id = "code", @class = "actionlink" })
+                                </span>
+                                <!-- don't give a name === doesn't send on POST/GET -->
+
+                                @Html.Hidden("Resume", null, new { @id = "hiddenWhs" })
+                                <span class="input-group-btn-override">
+                                    <i class="fas fa-file-download"></i>
+                                    @Html.ActionLink("WHS", "DownloadFile", "Candidates", new { textval = "" }, new { @id = "whs", @class = "actionlink" })
+                                </span>
+                                <!-- don't give a name === doesn't send on POST/GET -->
+
+                            </div>
+                            <br>
+                            <div class="col-md-3">
+                            @Html.DropDownListFor(Model => Model.InactiveReason, new List<SelectListItem>
+                                {
+                                   new SelectListItem {Text="CODE OF CONDUCT",Value="CODEOFCONDUCT" },
+                                   new SelectListItem {Text="WHS",Value="WHS" },
+                                }, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.InactiveReason, "", new { @class = "text-danger" })
+                            <input id="Certificateimgupload" type="file" style="display:none;"><br>
+                            <button type="button" id="btnCertificates" class="btn btn-sm btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray">
+                                <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Upload
+                            </button></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
