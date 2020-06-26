@@ -100,7 +100,7 @@ namespace VerserHRManagement.Models
         public string ReportingManager { get; set; }
         public bool isPeopleManager { get; set; }
         public List<ListItemViewModel> ResourceReporting { get; set; }
-        public int? FK_ResourceInActiveReasonID { get; set; }
+       // public int? FK_ResourceInActiveReasonID { get; set; }
         public AllocatedAccessAndDevicesDto CandidateAllcaotedResouces { get; set; }
         public SelectList DirectReports { get; set; }
         public string InactiveReason { get; set; }
