@@ -67,8 +67,8 @@
             <div class="panel with-nav-tabs panel-default" style="width:170%;margin-bottom:0px">
                 <div class="panel-heading">
                     <ul class="nav nav-tabs">
-                        <li class="active"><a href="#tab1default" data-toggle="tab">PERSONAL</a></li>
-                        <li><a href="#tab2default" data-toggle="tab">EMPLOYMENT</a></li>
+                        <li class="active"><a href="#tab1default" data-toggle="tab">EMPLOYMENT</a></li>
+                        <li><a href="#tab2default" data-toggle="tab">PERSONAL</a></li>
                         <li><a href="#tab3default" data-toggle="tab">SKILLS</a></li>
                         <li><a href="#tab5default" data-toggle="tab">PERFORMANCE</a></li>
 
@@ -108,7 +108,7 @@
                                                 </div>
                                                 <div class="row" style="margin-left:5px;">
                                                     <div class="form-group row">
-                                                        <div class="col-md-5" style="margin-right:0px">
+                                                        <div class="col-md-4" style="margin-right:0px">
                                                             <label>First Name</label>
                                                             <div class="input-group">
                                                                 <span class="input-group-addon">
@@ -127,46 +127,14 @@
 
 
                                                         </div>
-                                                        <div class="col-sm-1">
-                                                            <label>DOB</label>
-                                                            <div class="input-group">
-                                                                <span class="input-group-addon">
-                                                                    <i class="glyphicon glyphicon-calendar"></i>
-                                                                </span> <input type="date" class="col-xs-1 form-control" id="txtDOB" placeholder="DOB" onchange="calculateAge(this);">
-                                                            </div>
-
+                                                        <div class="col-md-4">
+                                                            <label>Employment Type</label>
+                                                            @Html.DropDownListFor(model => model.EmploymentTypesID, Model.EmploymentList, "Employment Type", new { @class = "form-control", id = "ddlEmploymentType" })
                                                         </div>
+
                                                     </div>
                                                     <div class="form-group row">
-                                                        <div class="col-md-3">
-                                                            <label>Age</label>
-                                                            <div class="input-group">
-                                                                <span class="input-group-addon">
-                                                                    <i class="glyphicon glyphicon-calendar"></i>
-                                                                </span> <input type="text" class="form-control" id="txtAge" placeholder="Age">
-                                                            </div>
 
-                                                        </div>
-                                                        <div class="col-md-4">
-                                                            <label>Gender</label>
-                                                            <div class="input-group">
-                                                                <span class="input-group-addon">
-                                                                    <i class="fas fa-user-friends"></i>
-                                                                </span>
-                                                                <select class="form-control" id="txtGender">
-                                                                    <option>Select</option>
-                                                                    <option>Male</option>
-                                                                    <option>Female</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-3">
-                                                            <label>Marital Status</label>
-                                                            <select class="form-control" id="txtStatus">
-                                                                <option>Married</option>
-                                                                <option>Single</option>
-                                                            </select>
-                                                        </div>
                                                     </div>
                                                     <div class="form-group row">
                                                         <div class="col-md-4">
@@ -195,6 +163,33 @@
                                                                 </span>  @Html.DropDownListFor(model => model.DrivingLicenseID, Model.DrivingLicensesList, "Driver License", new { @class = "form-control", id = "ddlDrivingLicenseID" })
                                                             </div>
 
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <div class="col-md-4">
+                                                            <label>Email:</label>
+                                                            <div class="input-group">
+                                                                <span class="input-group-addon">
+                                                                    <i class="glyphicon glyphicon-envelope"></i>
+                                                                </span><input id="txtEmail" placeholder="Email" class="form-control" required="true" value="" type="text">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <label>Mobile</label>
+                                                            <div class="input-group">
+                                                                <span class="input-group-addon">
+                                                                    <i class="fas fa-mobile-alt" style="font-size:20px"></i>
+                                                                </span><input id="txtMobile" placeholder="Phone Number" class="form-control" required="true" value="" type="text">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <label>Phone</label>
+
+                                                            <div class="input-group">
+                                                                <span class="input-group-addon">
+                                                                    <i class="glyphicon glyphicon-earphone"></i>
+                                                                </span><input id="txtPhoneNumber" placeholder="Phone Number" class="form-control" required="true" value="" type="text">
+                                                            </div>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
@@ -316,78 +311,7 @@
                                         </div>
                                     </form>
                                 </div>
-                                <div class="row grid-divider">
-                                    <div class="row" style="margin-left:40px;margin-bottom:0px">
-                                        <fieldset style="margin-bottom:0px">
-                                            <div class="form-group row" style="margin-bottom:-20px">
-                                                <div class="container table-bordered pull-left" @*style="margin:20px; margin-top:0px;width:800px;padding-top:5px;padding-bottom:5px"*@>
-                                                    @*<div class="row">*@
-                                                    <div class="form-group row">
-                                                        <div class="col-md-4" style="margin-left:5px">
-                                                            <label>Address:</label>
-                                                            <div class="input-group">
-                                                                <span class="input-group-addon">
-                                                                    <i class="glyphicon glyphicon-home"></i>
-                                                                </span><input id="txtAddress1" placeholder="Address Line 1" class="form-control" required="true" value="" type="text">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-2">
-                                                            <label>City:</label>
-                                                            <div class="input-group">
-                                                                <span class="input-group-addon">
-                                                                    <i class="fas fa-map-marker-alt"></i>
-                                                                </span><input id="txtCity" placeholder="Suburb" class="form-control" required="true" value="" type="text">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-2">
-                                                            <label>State:</label>
-                                                            <div class="input-group">
-                                                                <span class="input-group-addon">
-                                                                    <i class="glyphicon glyphicon-home"></i>
-                                                                </span><input id="txtState" placeholder="State" class="form-control" required="true" value="" type="text">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-2">
-                                                            <label>Postal Code:</label>
-                                                            <div class="input-group">
-                                                                <span class="input-group-addon">
-                                                                    <i class="glyphicon glyphicon-home"></i>
-                                                                </span><input id="txtPostalCode" placeholder="PostCode" class="form-control" required="true" value="" type="text">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group row">
-                                                        <div class="col-md-3">
-                                                            <label>Email:</label>
-                                                            <div class="input-group">
-                                                                <span class="input-group-addon">
-                                                                    <i class="glyphicon glyphicon-envelope"></i>
-                                                                </span><input id="txtEmail" placeholder="Email" class="form-control" required="true" value="" type="text">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-3">
-                                                            <label>Mobile</label>
-                                                            <div class="input-group">
-                                                                <span class="input-group-addon">
-                                                                    <i class="fas fa-mobile-alt" style="font-size:20px"></i>
-                                                                </span><input id="txtMobile" placeholder="Phone Number" class="form-control" required="true" value="" type="text">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-3">
-                                                            <label>Phone</label>
-
-                                                            <div class="input-group">
-                                                                <span class="input-group-addon">
-                                                                    <i class="glyphicon glyphicon-earphone"></i>
-                                                                </span><input id="txtPhoneNumber" placeholder="Phone Number" class="form-control" required="true" value="" type="text">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </fieldset>
-                                    </div>
-                                </div>
+                             
                             </div>
                         </div>
                         <div class="tab-pane fade" id="tab2default">
@@ -455,6 +379,95 @@
                                                    id="updatePeopleManager" onclick="UpdatePeopleManager();" />
                                         </div>
 
+                                    </div>
+                                </div>
+
+                                <div class="row grid-divider">
+                                    <div class="row" style="margin-left:20px;margin-bottom:0px">
+                                        <fieldset style="margin-bottom:0px">
+                                            <div class="form-group row" style="margin-bottom:-20px">
+                                                <div class="container table-bordered pull-left" @*style="margin:20px; margin-top:0px;width:800px;padding-top:5px;padding-bottom:5px"*@>
+                                                    @*<div class="row">*@
+                                                    <div class="form-group row">
+                                                        <div class="col-md-4" >
+                                                            <label>Address:</label>
+                                                            <div class="input-group">
+                                                                <span class="input-group-addon">
+                                                                    <i class="glyphicon glyphicon-home"></i>
+                                                                </span><input id="txtAddress1" placeholder="Address Line 1" class="form-control" required="true" value="" type="text">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <label>City:</label>
+                                                            <div class="input-group">
+                                                                <span class="input-group-addon">
+                                                                    <i class="fas fa-map-marker-alt"></i>
+                                                                </span><input id="txtCity" placeholder="Suburb" class="form-control" required="true" value="" type="text">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <label>State:</label>
+                                                            <div class="input-group">
+                                                                <span class="input-group-addon">
+                                                                    <i class="glyphicon glyphicon-home"></i>
+                                                                </span><input id="txtState" placeholder="State" class="form-control" required="true" value="" type="text">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-2">
+                                                            <label>Postal Code:</label>
+                                                            <div class="input-group">
+                                                                <span class="input-group-addon">
+                                                                    <i class="glyphicon glyphicon-home"></i>
+                                                                </span><input id="txtPostalCode" placeholder="PostCode" class="form-control" required="true" value="" type="text">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <div class="col-md-4">
+
+                                                            <label>DOB</label>
+                                                            <div class="input-group">
+                                                                <span class="input-group-addon">
+                                                                    <i class="glyphicon glyphicon-calendar"></i>
+                                                                </span> <input type="date" class="col-xs-1 form-control" id="txtDOB" placeholder="DOB" onchange="calculateAge(this);">
+                                                            </div>
+
+
+                                                        </div>
+                                                        <div class="col-md-2">
+                                                            <label>Age</label>
+                                                            <div class="input-group">
+                                                                <span class="input-group-addon">
+                                                                    <i class="glyphicon glyphicon-calendar"></i>
+                                                                </span> <input type="text" class="form-control" id="txtAge" placeholder="Age">
+                                                            </div>
+
+                                                        </div>
+                                                        <div class="col-md-2">
+                                                            <label>Gender</label>
+                                                            <div class="input-group">
+                                                                <span class="input-group-addon">
+                                                                    <i class="fas fa-user-friends"></i>
+                                                                </span>
+                                                                <select class="form-control" id="txtGender">
+                                                                    <option>Select</option>
+                                                                    <option>Male</option>
+                                                                    <option>Female</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-2">
+                                                            <label>Marital Status</label>
+                                                            <select class="form-control" id="txtStatus">
+                                                                <option>Married</option>
+                                                                <option>Single</option>
+                                                            </select>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </fieldset>
                                     </div>
                                 </div>
                             </div>
