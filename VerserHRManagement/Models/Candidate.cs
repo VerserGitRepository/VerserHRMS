@@ -14,11 +14,13 @@ namespace VerserHRManagement.Models
         public Candidate()
         {
             ResourceReporting = new List<ListItemViewModel>();
+            Goals = new List<ResourcePerformanceGoalsModel>();
         }
+        public List<ResourcePerformanceGoalsModel> Goals { get; set; }
         public int ID { get; set; }
         [Required(ErrorMessage = "CandidateName Field is Mandatory")]
         public string CandidateName { get; set; }
-        [Required (ErrorMessage = "Skills Field is Mandatory")]
+        [Required(ErrorMessage = "Skills Field is Mandatory")]
         [DataType(DataType.MultilineText)]
         public string CandidateSkills { get; set; }
         [Required(ErrorMessage = "Email Field is Mandatory")]
@@ -35,7 +37,7 @@ namespace VerserHRManagement.Models
         public string NoticePeriod { get; set; }
         [Required(ErrorMessage = "WorkRights Field is Mandatory")]
         public int? WorkRightID { get; set; }
-        public string WorkRights { get; set; }       
+        public string WorkRights { get; set; }
         public SelectList WorkRightsList { get; set; }
         public string RecruiterComments { get; set; }
         [Required(ErrorMessage = "Postcode Field is Mandatory")]
@@ -45,12 +47,12 @@ namespace VerserHRManagement.Models
         public string EmployeeStatus { get; set; }
         [Required(ErrorMessage = "TechnicianLevel Field is Mandatory")]
         public int? technicalLevelsID { get; set; }
-        public string TechnicianLevel { get; set; }       
+        public string TechnicianLevel { get; set; }
         public SelectList TechnicianLevelList { get; set; }
         public string Availability { get; set; }
         [Required(ErrorMessage = "EmployementType Field is Mandatory")]
         public int? EmploymentTypesID { get; set; }
-        public string EmployementType { get; set; }       
+        public string EmployementType { get; set; }
         public SelectList EmploymentList { get; set; }
         [Required(ErrorMessage = "HourlyRate Field is Mandatory")]
         public string HourlyRate { get; set; }
@@ -62,7 +64,7 @@ namespace VerserHRManagement.Models
         [Required(ErrorMessage = "PayFrequency Field is Mandatory")]
         public int? PayFrequenciesID { get; set; }
         public string PayFrequency { get; set; }
-        public SelectList PayFrequencyList { get; set; }        
+        public SelectList PayFrequencyList { get; set; }
         public SelectList AssignResourceList { get; set; }
         public int? AssignResourcesID { get; set; }
         public string AssignResource { get; set; }
@@ -73,8 +75,8 @@ namespace VerserHRManagement.Models
         public string WarehouseName { get; set; }
         public SelectList WarehouseNameList { get; set; }
         public int EmployementTypeId { get; set; }
-        public bool isactive { get; set; }     
-        public Byte[] profilePicture { get; set; } =new Byte[0];
+        public bool isactive { get; set; }
+        public Byte[] profilePicture { get; set; } = new Byte[0];
         public string certificate1 { get; set; }
         public string certificate2 { get; set; }
         public string certificate3 { get; set; }
@@ -90,7 +92,7 @@ namespace VerserHRManagement.Models
         public string MaritalStatus { get; set; }
         public int? Age { get; set; }
         public DateTime? DOB { get; set; }
-        public int? ResourceCategoriesID { get; set; }        
+        public int? ResourceCategoriesID { get; set; }
         public int? DrivingLicenseID { get; set; }
         public SelectList ResourceCategoriesList { get; set; }
         public SelectList DrivingLicensesList { get; set; }
@@ -100,7 +102,7 @@ namespace VerserHRManagement.Models
         public string ReportingManager { get; set; }
         public bool isPeopleManager { get; set; }
         public List<ListItemViewModel> ResourceReporting { get; set; }
-       // public int? FK_ResourceInActiveReasonID { get; set; }
+        // public int? FK_ResourceInActiveReasonID { get; set; }
         public AllocatedAccessAndDevicesDto CandidateAllcaotedResouces { get; set; }
         public SelectList DirectReports { get; set; }
         public string InactiveReason { get; set; }
@@ -112,4 +114,14 @@ namespace VerserHRManagement.Models
         public string Manager { get; set; }
     }
 
+    public class ResourcePerformanceGoalsModel
+    {
+        public int Id { get; set; }
+        public int FK_CandidateID { get; set; }
+        public string Goal { get; set; }
+        public string Description { get; set; }
+        public string Status { get; set; }
+        public DateTime GoalStartDate { get; set; }
+        public DateTime GoalEndtDate { get; set; }
+    }
 }

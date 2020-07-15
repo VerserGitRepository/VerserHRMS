@@ -68,20 +68,7 @@ namespace VerserHRManagement
 
             return View(_candidate);
         }
-        //public ActionResult CreateNewProfile()
-        //{
-        //    var model = new Candidate();
-        //    model.EmploymentList = new SelectList(ListItemService.EmploymentTypeList().Result, "ID", "Value");
-        //    model.WarehouseNameList = new SelectList(ListItemService.Warehouses().Result, "ID", "Value");
-        //    model.PayFrequencyList = new SelectList(ListItemService.PayFrequency().Result, "ID", "Value");
-        //    model.TechnicianLevelList = new SelectList(ListItemService.TechnicianLevel().Result, "ID", "Value");
-        //    model.AssignResourceList = new SelectList(ListItemService.AssignResources().Result, "ID", "Value");
-        //    model.EmployeeStatusList = new SelectList(ListItemService.EmployeeStatusSet().Result, "ID", "Value");
-        //    model.WorkRightsList = new SelectList(ListItemService.WorkRights().Result, "ID", "Value");
-        //    model.ResourceCategoriesList = new SelectList(ListItemService.ResourceCategories().Result, "ID", "Value");
-        //    model.DrivingLicensesList = new SelectList(ListItemService.DrivingLicenses().Result, "ID", "Value");
-        //    return View("Create",model);
-        //}
+      
         public ActionResult Create()
         {
             var model = new Candidate();
@@ -548,6 +535,13 @@ namespace VerserHRManagement
             {
                 return RedirectToAction("Index", "Candidates");
             }
+        }
+
+        [HttpPost]
+        public ActionResult CreateResourcePerformanceGoal(ResourcePerformanceGoalsModel ResourceGoalModel)
+        {
+           var RetunedResp =  CandidateGoalServicehelper.AddResourcePerformanceGoals(ResourceGoalModel);
+            return View();
         }
     }
 }

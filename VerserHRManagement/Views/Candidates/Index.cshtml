@@ -63,8 +63,8 @@
                 </tbody>
             </table>
         </div>
-        <div class="col-md-7" style="margin-left:30px">
-            <div class="panel with-nav-tabs panel-default" style="width:170%;margin-bottom:0px">
+        <div class="col-md-7" style="margin-left:90px">
+            <div class="panel with-nav-tabs panel-default" style="width:170%;margin-bottom:0px;margin-left:90px" >
                 <div class="panel-heading">
                     <ul class="nav nav-tabs">
                         <li class="active"><a href="#tab1default" data-toggle="tab">EMPLOYMENT</a></li>
@@ -555,39 +555,6 @@
                                         </div>
                                     </div>
 
-
-                                    @*<div class="panel-body">
-                                            <div class="input-group image-preview">
-                                                @Html.Hidden("Resume", null, new { @id = "hiddenResume" })
-                                                <span class="input-group-btn-override">
-                                                    <i class="fas fa-file-download"></i>
-                                                    @Html.ActionLink("Resume", "DownloadFile", "Candidates", new { textval = "" }, new { @id = "resume", @class = "actionlink" })
-                                                </span>
-                                                 don't give a name === doesn't send on POST/GET
-                                                <span class="input-group-btn-override" style="padding-left:150px">
-                                                    <input id="CVimgupload" type="file" style="display:none;">
-                                                    <button id="btnCV" type="button" class="btn btn-sm btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray">
-                                                        <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Resume
-                                                    </button>
-                                                </span>
-                                            </div>
-                                            <br>
-                                            <div class="input-group image-preview">
-                                                @Html.Hidden("Resume", null, new { @id = "hiddenCertificate" })
-                                                <span class="input-group-btn-override">
-                                                    <i class="fas fa-file-download"></i>
-                                                    @Html.ActionLink("Certificates", "DownloadFile", "Candidates", new { textval = "" }, new { @id = "certificate", @class = "actionlink" })
-                                                </span>
-                                                 don't give a name === doesn't send on POST/GET
-                                                <span class="input-group-btn-override" style="padding-left:125px">
-                                                    <input id="Certificateimgupload" type="file" style="display:none;">
-                                                    <button type="button" id="btnCertificates" class="btn btn-sm btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray">
-                                                        <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Certificate
-                                                    </button>
-                                                </span>
-                                            </div>
-                                        </div>*@
-
                                     <div class="panel-heading"><strong>LEGAL</strong> <small> </small></div>
                                     <div class="panel-body">
                                         <div class="input-group image-preview">
@@ -724,7 +691,7 @@
                         </div>
                         <div class="tab-pane fade" id="tab5default">
                             <div class="row">
-                                @Html.Partial("Performance")
+                                @Html.Partial("Performance", Model )
                             </div>
                         </div>
                         <div class="tab-pane fade" id="tab6default">

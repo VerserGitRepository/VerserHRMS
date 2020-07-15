@@ -198,6 +198,7 @@
     <Compile Include="Models\WarehouseViewModel.cs" />
     <Compile Include="Models\WorkRightsViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TimeSchedulerServices\CandidateGoalServicehelper.cs" />
     <Compile Include="TimeSchedulerServices\CandidateService.cs" />
     <Compile Include="TimeSchedulerServices\ListItemService.cs" />
   </ItemGroup>
