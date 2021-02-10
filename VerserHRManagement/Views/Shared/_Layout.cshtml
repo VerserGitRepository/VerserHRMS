@@ -35,78 +35,75 @@
         appInsights.trackPageView();
     </script>
 </head>
-<body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <div id="LogoImage" style="text-align:left; padding-right:20px">
-                    <img src="~/Images/CompanyLogo.jpg"  style="height:40px; width:150px ;vertical-align:bottom" />
-                </div>
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    @if (Session["FullUserName"] != null)
-                    {
-                        <li>@Html.ActionLink("PROFILES", "Index", "Candidates")</li>
-                        if (UserRoles.UserCanEdit())
-                        {
-                            <li>@Html.ActionLink("PROFILE REGISTER", "Create", "Candidates")</li>
-                            <li>@Html.ActionLink("BULK SMS", "Index", "MultiSelectDropDown")</li>                                                     
 
-                        }
-                    }
-                </ul>
-                <ul class="nav navbar-nav" style="float:right">
-                    @if (Session["FullUserName"] != null)
-                    {
-                        <li style="font-size:small;color:white;font-weight:100;float:right">@Html.ActionLink("Logout", "Login", "Login")</li>
-                    }
-                    else
-                    {
-                        <li style="font-size:small;color:white;font-weight:100;float:right">@Html.ActionLink("Login", "Login", "Login")</li>
-                    }
-                </ul>
+<body>
+    <div class="navbar navbar-fixed-top" style="background-color:black; padding:0 10px;">
+
+        <div class="navbar-header pull-left">
+            <div id="LogoImage" style="float: left; padding-right: 20px">
+                <img src="~/Images/verser.jpg" style="height:48px; width:150px; margin:0 15px;" />
             </div>
         </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                @if (Session["FullUserName"] != null)
+                {
+                    <li>@Html.ActionLink("Profiles", "Index", "Candidates")</li>
+                    if (UserRoles.UserCanEdit())
+                    {
+                        <li>@Html.ActionLink("Profile Register", "Create", "Candidates")</li>
+                        <li>@Html.ActionLink("Bulk SMS", "Index", "MultiSelectDropDown")</li>
+
+
+
+                    }
+                }
+            </ul>
+            <ul class="nav navbar-nav" style="float:right">
+                @if (Session["FullUserName"] != null)
+                {
+                    <li style="font-size:small;color:white;font-weight:100;float:right">@Html.ActionLink("Logout", "Login", "Login")</li>
+                }
+                else
+                {
+                    <li style="font-size:small;color:white;font-weight:100;float:right">@Html.ActionLink("Login", "Login", "Login")</li>
+                }
+            </ul>
+        </div>
+
     </div>
-    <div class="container body-content">
+
+    <div>
 
 
         @RenderBody()
         <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year -Verser Technology Lifecycles</p>
-        </footer>
     </div>
+
+    @*<footer>
+        <p>&copy; @DateTime.Now.Year -Verser Technology Lifecycles</p>
+    </footer>*@
+
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>
 </html>
 <style>
-    .navbar-inverse {
-        background-color: #F5F5F5 !important;
-        border-color: #FFFFFF !important;
-    }
 
-        .navbar-inverse .navbar-nav > li > a {
-            color: #1372AB;
+        .navbar-nav > li > a {
+            color: white;
             font-family: sans-serif;
             font-weight: 600;
         }
 
-            .navbar-inverse .navbar-nav > li > a:hover {
-                background-color: #1372AB !important;
-                color: #FFFFFF;
+            .navbar-nav > li > a:hover {
+                background-color: darkorange !important;
+                color: black;
             }
 
     a {
-        color: #959ca1;
+        color: gray;
     }
 
     .navbar, .navbar div {
