@@ -20,12 +20,14 @@
                             @using (Html.BeginForm("Login", "Login", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
                             {
                                 <div class="col-md-12">
+
                                     <br />
                                     <div class="input-group col-lg-10">
                                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                                         @Html.TextBoxFor(Model => Model.UserName, new { @class = "form-control", placeholder = "Username" })
                                     </div>
                                     <br />
+
                                     <div class="input-group col-lg-10">
                                         <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
                                         @Html.PasswordFor(Model => Model.Password, new { @class = "form-control", placeholder = "Password" })
@@ -93,7 +95,7 @@
         .btn-login:hover,
         .btn-login:focus {
             color: #fff;
-            background-color: #53A3CD;
+            background-color: darkorange;
             border-color: #53A3CD;
         }
 </style>
