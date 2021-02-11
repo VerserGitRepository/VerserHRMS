@@ -143,7 +143,7 @@
                                                 <label>Employment Type</label>
                                                 <div class="input-group">
                                                     <span class="input-group-addon">
-                                                        <i class="fas fa-warehouse"></i>
+                                                        <i class="glyphicon glyphicon-briefcase"></i>
                                                     </span>@Html.DropDownListFor(model => model.EmploymentTypesID, Model.EmploymentList, "Employment Type", new { @class = "form-control", id = "ddlEmploymentType" })
                                                 </div>
                                             </div>
@@ -495,28 +495,28 @@
 
                             <div class="row well" style="margin-left:-1px">
                                 <div class="form-group row">
-                                    <div class="col-md-5" style="margin-left:10px;">
+                                    <div class="col-md-5" style="margin-bottom:10px">
                                         <label class="col-sm-9 col-form-label col-form-label-sm">Candidate Skills</label>
 
                                         <input type="text" id="candidateskills" class="form-control form-control-sm" placeholder="candidateskills">
 
                                     </div>
-                                    <div class="col-md-5">
+                                    <div class="col-md-5" style="margin-bottom:10px">
                                         <label class="col-sm-9 col-form-label col-form-label-sm">Experience</label>
 
                                         <input type="text" id="experience" class="form-control form-control-sm" placeholder="experience">
 
-                                    </div><br /><br /><br /><br />
-                                    <div class="col-md-5" style="margin-left:10px;">
+                                    </div>
+                                    <div class="col-md-5" style="margin-bottom:10px">
                                         <label class="col-sm-9 col-form-label col-form-label-sm">Job Title</label>
 
                                         <input type="text" class="form-control form-control-sm" id="JobTitle" placeholder="JobTitle">
                                     </div>
-                                    <div class="col-md-5">
+                                    <div class="col-md-5" style="margin-bottom:10px">
                                         <label class="col-sm-9 col-form-label col-form-label-sm">Technician Level</label>
                                         @Html.DropDownListFor(model => model.technicalLevelsID, Model.TechnicianLevelList, "Technician Level", new { @class = "form-control", @id = "ddlTechnicialLevel" })
-                                    </div><br /><br /><br /><br />
-                                    <div class="col-md-5" style="margin-left:10px;">
+                                    </div>
+                                    <div class="col-md-5" style="margin-bottom:10px">
                                         <label class="col-sm-9 col-form-label col-form-label-sm">Skill Rate</label>
                                         <input type="text" class="form-control form-control-sm" id="skillrate" placeholder="skillrate">
                                     </div>

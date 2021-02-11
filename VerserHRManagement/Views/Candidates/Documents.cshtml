@@ -113,30 +113,29 @@
                         </div>
                     </div>
                 </div>
-            </div><br><br>
-            <div class="col-md-3">
-                @Html.DropDownListFor(Model => Model.InactiveReason, new List<SelectListItem>
-                 { new SelectListItem {Text="RESUME",Value="RESUME" },
-          new SelectListItem {Text="CERTIFICATES",Value="CERTIFICATE" },
-                  new SelectListItem {Text="SUPER FORM",Value="SUPERFORM" },
-                   new SelectListItem {Text="TNF",Value="TNF" },
-                    new SelectListItem {Text="BANK DETAILS",Value="BANKDETAILS" },
-                     new SelectListItem {Text="DRIVING LICENSE",Value="DL" },
-          new SelectListItem {Text="VISA",Value="VISA" },
+        </div><br><br>
+        <div class="col-md-3">
+            @Html.DropDownListFor(Model => Model.InactiveReason, new List<SelectListItem>
+                { 
+                new SelectListItem {Text="RESUME",Value="RESUME" },
+                new SelectListItem {Text="CERTIFICATES",Value="CERTIFICATE" },
+                new SelectListItem {Text="SUPER FORM",Value="SUPERFORM" },
+                new SelectListItem {Text="TNF",Value="TNF" },
+                new SelectListItem {Text="BANK DETAILS",Value="BANKDETAILS" },
+                new SelectListItem {Text="DRIVING LICENSE",Value="DL" },
+                new SelectListItem {Text="VISA",Value="VISA" },
+                new SelectListItem {Text="Police Check",Value="PC" },
+                new SelectListItem {Text="CODE OF CONDUCT",Value="CODEOFCONDUCT" },
+                new SelectListItem {Text="WHS",Value="WHS" },
+                }, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.InactiveReason, "", new { @class = "text-danger" })
 
-             new SelectListItem {Text="Police Check",Value="PC" },
-              new SelectListItem {Text="CODE OF CONDUCT",Value="CODEOFCONDUCT" },
-             new SelectListItem {Text="WHS",Value="WHS" },
 
-                 }, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.InactiveReason, "", new { @class = "text-danger" })
-
-
-                <input id="Certificateimgupload" type="file" style="display:none;"><br>
-                <button type="button" id="btnCertificates" class="btn btn-sm btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray">
-                    <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Upload
-                </button>
-            </div>
+            <input id="Certificateimgupload" type="file" style="display:none;"><br>
+            <button type="button" id="btnCertificates" class="btn btn-sm btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray">
+                <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Upload
+            </button>
         </div>
+    </div>
 </div>
 
