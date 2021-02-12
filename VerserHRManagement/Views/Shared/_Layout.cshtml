@@ -44,25 +44,31 @@
                 <img src="~/Images/verser.jpg" style="height:48px; width:150px; margin:0 15px;" />
             </div>
         </div>
+
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 @if (Session["FullUserName"] != null)
                 {
-                    <li>@Html.ActionLink("Profiles", "Index", "Candidates")</li>
-                    if (UserRoles.UserCanEdit())
-                    {
-                        <li>@Html.ActionLink("Profile Register", "Create", "Candidates")</li>
-                        <li>@Html.ActionLink("Bulk SMS", "Index", "MultiSelectDropDown")</li>
-
-
-
-                    }
+                    <li>@Html.ActionLink("Verser HRMS", "Index", "Candidates")</li>
                 }
             </ul>
-            <ul class="nav navbar-nav" style="float:right">
+            <ul class="nav navbar-nav" style="float:right; margin-right:60px">
+
                 @if (Session["FullUserName"] != null)
                 {
-                    <li style="font-size:small;color:white;font-weight:100;float:right">@Html.ActionLink("Logout", "Login", "Login")</li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            @Session["FullUserName"].ToString()
+                        </a>
+                        <ul class="dropdown-menu">
+                            @if (UserRoles.UserCanEdit())
+                            {
+                                <li style="margin:5px 0">@Html.ActionLink("Profile Register", "Create", "Candidates")</li>
+                                <li style="margin:5px 0">@Html.ActionLink("Bulk SMS", "Index", "MultiSelectDropDown")</li>
+                            }
+                            <li style="margin:5px 0 0 0">@Html.ActionLink("Logout", "Login", "Login")</li>
+                        </ul>
+                    </li>
                 }
                 else
                 {
@@ -70,7 +76,6 @@
                 }
             </ul>
         </div>
-
     </div>
 
     <div>

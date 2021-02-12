@@ -3,9 +3,88 @@
 
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-<div class="container">
-    <div class="center"><button data-toggle="modal" data-target="#squarespaceModal" class="btn btn-primary center-block">Add Task</button></div>
+
+<div class="row clearfix">
+
+    <div class="col-md-10 column">
+        <table class="table table-bordered table-hover" id="tab_logic">
+            <thead style="background-color:lightgray">
+                <tr>
+
+                    <th class="text-center" style="width:30%">
+                        Skills
+                    <th class="text-center" style="width:20%">
+                        Job Title
+                    </th>
+                    <th class="text-center" style="width:20%">
+                        Experience
+                    </th>
+                    <th class="text-center" style="width:50%">
+                        Technical Level
+                    </th>
+                    <th class="text-center" style="width:50%">
+                        Skill Rate
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr id='addr0'>
+
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                    <td style="width:50%">
+                    </td>
+                </tr>
+                <tr id='addr1'></tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-2 column">
+        <button data-toggle="modal" data-target="#squarespaceModal" class="btn btn-primary center-block">Add Task</button>
+        <button data-toggle="modal" data-target="#squarespaceModal" class="btn btn-primary center-block">Add Skills</button>
+    </div>
 </div>
+
+<div class="col-md-12 column">
+    <table class="table table-bordered table-hover" id="tab_logic">
+        <thead style="background-color:lightgray">
+            <tr>
+
+                <th class="text-center" style="width:30%">
+                    Goal
+                <th class="text-center" style="width:20%">
+                    Start Date
+                </th>
+                <th class="text-center" style="width:20%">
+                    End Date
+                </th>
+                <th class="text-center" style="width:50%">
+                    Description
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr id='addr0'>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td style="width:50%">
+                </td>
+            </tr>
+            <tr id='addr1'></tr>
+        </tbody>
+    </table>
+</div>
+
 <div class="modal fade" id="squarespaceModal" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
     <div class="modal-dialog" style="width:600px">
         <div class="modal-content">
@@ -20,7 +99,7 @@
                         <div class="md-form">
                             <label for="subject" class="">Goal</label>
                             <input type="text" id="Goal" name="subject" class="form-control">
-                             
+
                             @Html.HiddenFor(model => model.ID, new { @id = Model.ID })
                         </div>
                     </div>
@@ -66,58 +145,17 @@
 
                 <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                     <div class="btn-group" role="group">
-                        <input type="submit"  class="btn btn-primary btn-hover-green" value="Add" onclick="CreateResourcePerformanceGoal()" style="border:none" />
+                        <input type="submit" class="btn btn-primary btn-hover-green" value="Add" onclick="CreateResourcePerformanceGoal()" style="border:none" />
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<div class="container">
- 
-    <br> <br>
-    <div class="row clearfix">
-        <div class="col-md-12 column">
-            <table class="table table-bordered table-hover" id="tab_logic">
-                <thead style="background-color:lightgray">
-                    <tr>
-
-                        <th class="text-center" style="width:30%">
-                            Goal
-                        <th class="text-center" style="width:20%">
-                            Start Date
-                        </th>
-                        <th class="text-center" style="width:20%">
-                            End Date
-                        </th>
-                        <th class="text-center" style="width:50%">
-                            Description
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr id='addr0'>
-
-                        <td>
-                        </td>
-                        <td>
-                        </td>
-                        <td>
-                        </td>
-                        <td style="width:50%">
-                        </td>
-                    </tr>
-                    <tr id='addr1'></tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-
-</div>
 
 <script type="text/javascript">
     function CreateResourcePerformanceGoal() {
-       
+
         var ResourceGoalModel = {};
         ResourceGoalModel.FK_CandidateID = $("#id").val();
         ResourceGoalModel.Goal = $("#Goal").val();
@@ -145,7 +183,7 @@
                     }
                 });
                 var str = data;
-                str = str.replace("Goal Added successfully");               
+                str = str.replace("Goal Added successfully");
             },
             error: function () {
                 alert("Dynamic content load failed.");

@@ -75,18 +75,18 @@
         <div class="panel with-nav-tabs panel-default">
             <div class="panel-heading">
                 <ul class="nav nav-tabs">
-                    <li class="active"><a href="#tab1default" data-toggle="tab">EMPLOYMENT</a></li>
-                    <li><a href="#tab2default" data-toggle="tab">PERSONAL</a></li>
-                    <li><a href="#tab3default" data-toggle="tab">SKILLS</a></li>
-                    <li><a href="#tab5default" data-toggle="tab">PERFORMANCE</a></li>
+                    <li class="active"><a href="#tab1default" data-toggle="tab">Employment</a></li>
+                    <li><a href="#tab2default" data-toggle="tab">Personal</a></li>
+                    <li><a href="#tab3default" data-toggle="tab">Skills</a></li>
+                    <li><a href="#tab5default" data-toggle="tab">Performance</a></li>
 
                     @if (UserRoles.UserCanEdit() == true)
                     {
-                        <li><a href="#tab4default" data-toggle="tab">DOCUMENTS</a></li>
-                        <li><a href="#tab6default" data-toggle="tab">OFFER</a></li>
-                        <li><a href="#tab7default" data-toggle="tab">POLICIES</a></li>
-                        <li><a href="#tab8default" data-toggle="tab">ACCESS & DEVICES</a></li>
-                        <li><a href="#tab9default" data-toggle="tab">OFF-BOARD</a></li>
+                        <li><a href="#tab4default" data-toggle="tab">Documents</a></li>
+                        <li><a href="#tab6default" data-toggle="tab">Offer</a></li>
+                        <li><a href="#tab7default" data-toggle="tab">Policies</a></li>
+                        <li><a href="#tab8default" data-toggle="tab">Access & Devices</a></li>
+                        <li><a href="#tab9default" data-toggle="tab">Off-board</a></li>
                         <li class="pull-right" style="margin-right:20px;vertical-align:bottom; padding:10px 15px">
                             @using (Html.BeginForm("ExportTimesSheetToExcel", "Candidates", FormMethod.Post))
                             {
@@ -490,9 +490,9 @@
 
                     </div>
 
-                    <div class="tab-pane fade" id="tab3default">
-                        <br>
+                    <div class="tab-pane fade" id="tab3default">                     
 
+                        <br>
                             <div class="row well" style="margin-left:-1px">
                                 <div class="form-group row">
                                     <div class="col-md-5" style="margin-bottom:10px">
@@ -522,7 +522,6 @@
                                     </div>
                                 </div>
                             </div>
-
                     </div>
 
                     <div class="tab-pane fade" id="tab4default" style="font:x-small">
