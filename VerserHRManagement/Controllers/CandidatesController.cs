@@ -91,9 +91,9 @@ namespace VerserHRManagement
             {
                 RedirectToAction("Login", "Login");
             }
-            //if (ModelState.IsValid)
-            //{
-                
+            if (ModelState.IsValid)
+            {
+
                 string _filename;
                 HttpPostedFileBase file = Request.Files["UploadResumeFile"];
                 if (file.ContentLength > 0)
@@ -106,8 +106,8 @@ namespace VerserHRManagement
                 candidate.DateCreated = DateTime.Now;
                 candidate.isactive = true;
                 CandidateService.Create(candidate);
-             
-            // }
+
+            }
             return RedirectToAction("Index");
         }
         public ActionResult Edit(int id)

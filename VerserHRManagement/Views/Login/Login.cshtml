@@ -12,46 +12,46 @@
 
 <div class="container">
 
-        <div class="col-md-4 col-md-offset-4" style="margin-top:100px">
-                <div class="panel panel-login" style="border:none">
-                    <div class="panel-body">
-                        <div class="row" align="center">
-                           <img  src="~/Images/CompanyLogo.jpg"/>
-                            @using (Html.BeginForm("Login", "Login", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    <div class="col-md-4 col-md-offset-4" style="margin-top:100px">
+        <div class="panel panel-login" style="border:none">
+            <div class="panel-body">
+                <div class="row" align="center">
+                    <img src="~/Images/CompanyLogo.jpg"/>
+                    @using (Html.BeginForm("Login", "Login", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                    {
+                        <div class="col-md-12">
+
+                            <br />
+                            <div class="input-group col-lg-10">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                @Html.TextBoxFor(Model => Model.UserName, new { @class = "form-control", placeholder = "Username" })
+                            </div>
+                            <br />
+
+                            <div class="input-group col-lg-10">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                                @Html.PasswordFor(Model => Model.Password, new { @class = "form-control", placeholder = "Password" })
+                            </div>
+                            <br />
+                            <div class="input-group col-lg-10">
+                                    <input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-login" value="Log In" style="background-color:grey;border-color:gray;">
+                            </div>
+                            <br /><br />
+                        </div>
+                        <div>
+                            @if (TempData["ErrorMessage"] != null)
                             {
-                                <div class="col-md-12">
-
-                                    <br />
-                                    <div class="input-group col-lg-10">
-                                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                                        @Html.TextBoxFor(Model => Model.UserName, new { @class = "form-control", placeholder = "Username" })
-                                    </div>
-                                    <br />
-
-                                    <div class="input-group col-lg-10">
-                                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                                        @Html.PasswordFor(Model => Model.Password, new { @class = "form-control", placeholder = "Password" })
-                                    </div>
-                                    <br />
-                                    <div class="input-group col-lg-10">
-                                            <input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-login" value="Log In" style="background-color:grey;border-color:gray;">
-                                    </div>
-                                    <br /><br />
-                                </div>
-                                <div>
-                                    @if (TempData["ErrorMessage"] != null)
-                                    {
-                                        <p style="color:red;padding-left:60px">@TempData["ErrorMessage"].ToString()</p>
-                                    }
-                                </div>
+                                <p style="color:red;padding-left:60px">@TempData["ErrorMessage"].ToString()</p>
                             }
                         </div>
-                    </div>
-
+                    }
                 </div>
             </div>
 
+        </div>
     </div>
+
+</div>
 
 <style>
     body {
