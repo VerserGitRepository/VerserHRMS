@@ -38,23 +38,23 @@
 </head>
 
 <body>
-    <div class="navbar navbar-fixed-top" style="background-color:black; padding:0 10px;">
+    <div class="navbar navbar-fixed-top" style="background-color:black; padding:0 10px;height:50px; border:none">
 
         <div class="navbar-header pull-left">
-            <div id="LogoImage" style="float: left; padding-right: 20px">
-                <img src="~/Images/verser.jpg" style="height:48px; width:150px; margin:0 15px;" />
-            </div>
+            <a a href="@Url.Action("Index", "Candidates")">
+                <img class="" src="~/Images/Verser.jpg" style="height:50px; width:140px;" />
+            </a>
         </div>
 
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 @if (Session["FullUserName"] != null)
                 {
-                    <li>@Html.ActionLink("Verser HRMS", "Index", "Candidates")</li>
+                    <li style="font-size:16px;">@Html.ActionLink("Verser HRMS", "Index", "Candidates")</li>
                 }
             </ul>
 
-            <ul class="nav navbar-nav" style="float:right; margin-right:40px">
+            <ul class="nav navbar-nav" style="float:right; margin-right:30px">
                 @if (Session["FullUserName"] != null)
                 {
                     <li class="dropdown">
@@ -64,27 +64,27 @@
                                 <path d="M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
                             </svg>
                         </a>
-                        <ul class="dropdown-menu">
+                        <ul class="dropdown-menu" style="right:0">
                             @if (UserRoles.UserCanEdit())
                             {
-                                <li>@Html.ActionLink("Profile Register", "Create", "Candidates", null, new { style = "padding:12px 20px" })</li>
-                                <li>@Html.ActionLink("Bulk SMS", "Index", "MultiSelectDropDown", null, new { style = "padding:12px 20px" })</li>
+                                <li id="navdrop">@Html.ActionLink("Profile Register", "Create", "Candidates", null, new { style = "padding:12px 20px" })</li>
+                                <li id="navdrop">@Html.ActionLink("Bulk SMS", "Index", "MultiSelectDropDown", null, new { style = "padding:12px 20px" })</li>
                             }
-                            <li>@Html.ActionLink("Logout", "Login", "Login", null, new { style = "padding:12px 20px" })</li>
+                            <li id="navdrop">@Html.ActionLink("Logout", "Login", "Login", null, new { style = "padding:12px 20px" })</li>
                         </ul>
                     </li>
                 }
-                else
+                @*else
                 {
                     <li style="font-size:small;color:white;font-weight:100;float:right">@Html.ActionLink("Login", "Login", "Login")</li>
-                }
+                }*@
             </ul>
         </div>
     </div>
 
     <div>
         @RenderBody()
-        <hr />
+        @*<hr />*@
         @*<footer>
                 <p>&copy; @DateTime.Now.Year -Verser Technology Lifecycles</p>
             </footer>*@
@@ -114,6 +114,17 @@
 
         .navbar-nav > li > a:hover {
             background-color: darkorange !important;
+            color: black;
+        }
+
+    #navdrop {
+        color: white;
+        font-family: sans-serif;
+        font-weight: 600;
+    }
+
+        #navdrop :hover {
+            background-color: orange !important;
             color: black;
         }
 

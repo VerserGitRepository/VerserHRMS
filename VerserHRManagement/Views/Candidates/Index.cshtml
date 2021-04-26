@@ -29,7 +29,7 @@
 	<nav class="col-md-3 d-none d-md-block bg-light sidebar" style="padding-right:2px; margin-top:10px;">
 		<div class="sidebar-sticky">
 			<table class="table table-bordered  table-responsive table-hover table-dark display nowrap" id="mainTable" style="width:100%">
-				<thead style="background-color: #428bca; color:white">
+				<thead style="background-color: orange; color:white">
 					<tr>
 						<th style="border:none">
 							@Html.DisplayName("Candidates")
@@ -101,10 +101,8 @@
 				<div class="tab-content">
 
 					<div class="tab-pane fade in active" id="tab1default">
-
 						<div class="row">
 							<form>
-
 								<div class="col-md-9">
 									<div class="form-group row">
 										<div class="col-md-4">
@@ -208,7 +206,7 @@
 										<div class="col-md-4" style="padding:0; margin-bottom:10px">
 											<label>Active</label>
 											<div class="input-group">
-												<input type="checkbox" checked data-toggle="toggle" data-onstyle="info" id="chkIsActive" onchange="ResourceChange(this);">
+												<input type="checkbox" checked data-toggle="toggle" data-onstyle="warning" id="chkIsActive" onchange="ResourceChange(this);">
 											</div>
 											@*</div>*@
 											@*<div class="col-md-3">*@
@@ -308,7 +306,7 @@
 								<div class="col-md-3">
 									<div class="list-group pull-right" id="feature" style="padding-top:10PX;padding-right:5px; width:100%; height:660px;overflow-y:scroll;">
 
-										<a href="#" class="list-group-item list-group-item-action active">MONTHLY BIRTHDAY'S</a>
+										<a href="#" class="list-group-item list-group-item-action active" style="background-color:orange; border:none">MONTHLY BIRTHDAY'S</a>
 
 										@foreach (var Resourcereportings in Model.CurrentBirthdays)
 										{
@@ -383,7 +381,7 @@
 								<div class="col-md-12" style="margin-top:15px;">
 									<label>People Manager</label>
 									<div class="input-group">
-										<input type="checkbox" checked data-toggle="toggle" data-onstyle="info" id="chkIsPeopleManager" data-on="Yes" data-off="No" onchange="PeopleManagerCBChange(this);">
+										<input type="checkbox" checked data-toggle="toggle" data-onstyle="warning" id="chkIsPeopleManager" data-on="Yes" data-off="No" onchange="PeopleManagerCBChange(this);">
 									</div>
 								</div>
 								@*<div class="col-md-12" style="margin-top:15px;">
@@ -391,7 +389,7 @@
 								</div>*@
 								<div class="col-md-12" style="margin-top:15px;">
 									<input type="submit" value="ASSIGN" class="btn btn-primary"
-										   style="background-color:#428bca;border-color:#428bca"
+										   style="background-color:orange;border:none;"
 										   id="updatePeopleManager" onclick="UpdatePeopleManager();" />
 								</div>
 
@@ -541,7 +539,7 @@
 												Skill Rate
 											</th>
 											<th class="text-center" style="width:20%">
-												<button data-toggle="modal" data-target="#SkillsModal" class="btn btn-primary center-block">Add Skills</button>
+												<button data-toggle="modal" data-target="#SkillsModal" class="btn btn-primary center-block" style="border:none">Add Skills</button>
 											</th>
 										</tr>
 									</thead>
@@ -951,7 +949,7 @@
 				@if (UserRoles.UserCanEdit() == true)
 				{
 					<input type="submit" value="SAVE CHANGES" class="btn btn-primary"
-						   style="background-color:#428bca;border-color:#428bca"
+						   style="background-color:orange;border:none;"
 						   id="updateEmploymentDetailsBtn" />
 				}
 			</div>
@@ -993,7 +991,8 @@
 				"scrollX": true,
 				stateSave: true,
 				"pageLength": 20,
-				"lengthMenu": [10, 15, 20, 25, 50],
+				"lengthMenu": [20, 40, 60],
+				pagingType: "simple",
 				"aoColumnDefs": [
 					{ "bSearchable": true, "bVisible": false, "aTargets": [1] }]
 			});
@@ -2101,7 +2100,6 @@
 
 	.btn-warning {
 		background-color: #FFA500;
-		font-size: 11px;
 	}
 
 	.black {
@@ -2123,6 +2121,21 @@
 
 	.dataTables_filter {
 		float: right;
+		margin-top:10px;
+		font-size:smaller;
+	}
+
+	#mainTable_length {
+		margin-top: 10px;
+		font-size: smaller;
+	}
+
+	#mainTable_info {
+		font-size: smaller;
+	}
+
+	#mainTable_paginate {
+		font-size: smaller;
 	}
 
 	.container {
@@ -2215,7 +2228,7 @@
 	.with-nav-tabs.panel-default .nav-tabs > li.active > a:hover,
 	.with-nav-tabs.panel-default .nav-tabs > li.active > a:focus {
 		color: #FFFFFF;
-		background-color: #1372AB;
+		background-color: orange;
 		border-color: #FFFFFF;
 		border-bottom-color: transparent;
 	}
@@ -2262,7 +2275,7 @@
 	.with-nav-tabs.panel-primary .nav-tabs > li.active > a:hover,
 	.with-nav-tabs.panel-primary .nav-tabs > li.active > a:focus {
 		color: #428bca;
-		background-color: #fff;
+		background-color: orange;
 		border-color: #428bca;
 		border-bottom-color: transparent;
 	}
@@ -2278,13 +2291,13 @@
 
 			.with-nav-tabs.panel-primary .nav-tabs > li.dropdown .dropdown-menu > li > a:hover,
 			.with-nav-tabs.panel-primary .nav-tabs > li.dropdown .dropdown-menu > li > a:focus {
-				background-color: #3071a9;
+				background-color: orange;
 			}
 
 		.with-nav-tabs.panel-primary .nav-tabs > li.dropdown .dropdown-menu > .active > a,
 		.with-nav-tabs.panel-primary .nav-tabs > li.dropdown .dropdown-menu > .active > a:hover,
 		.with-nav-tabs.panel-primary .nav-tabs > li.dropdown .dropdown-menu > .active > a:focus {
-			background-color: #4a9fe9;
+			background-color: orange;
 		}
 
 	.form-control-override {
