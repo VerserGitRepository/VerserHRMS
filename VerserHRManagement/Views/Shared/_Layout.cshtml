@@ -54,6 +54,11 @@
                 }
             </ul>
 
+            <form class="form-inline col-sm-4 col-sm-offset-3" style="margin-top:7px; overflow:hidden">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit" style="background-color:darkorange">Search</button>
+            </form>
+
             <ul class="nav navbar-nav" style="float:right; margin-right:30px">
                 @if (Session["FullUserName"] != null)
                 {
@@ -75,9 +80,9 @@
                     </li>
                 }
                 @*else
-                {
-                    <li style="font-size:small;color:white;font-weight:100;float:right">@Html.ActionLink("Login", "Login", "Login")</li>
-                }*@
+            {
+                <li style="font-size:small;color:white;font-weight:100;float:right">@Html.ActionLink("Login", "Login", "Login")</li>
+            }*@
             </ul>
         </div>
     </div>

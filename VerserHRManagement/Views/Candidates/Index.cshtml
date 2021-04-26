@@ -331,54 +331,54 @@
 					<div class="tab-pane fade" id="tab2default">
 
 						<div class="form-group row well">
-							<div class=" row col-md-5 " style="height:390px">
+							<div class=" row col-md-4 " style="height:390px">
 								<div class="col-md-12" style="margin-top:15px;">
-									<label class="col-sm-9 col-form-label col-form-label-sm">Pay Frequency</label>
+									<label class="col-sm-9 col-form-label col-form-label-sm" style="padding-left:0">Pay Frequency</label>
 									@Html.DropDownListFor(model => model.PayFrequenciesID, Model.PayFrequencyList, "Pay Frequency", new { @class = "form-control", id = "ddlPayFrequencyId" })
 								</div>
 								<div class="col-md-12" style="margin-top:15px;">
-									<label class="col-sm-9 col-form-label col-form-label-sm">ADP Employee Id</label>
+									<label class="col-sm-9 col-form-label col-form-label-sm" style="padding-left:0">ADP Employee Id</label>
 									<input type="text" id="txtADPEmployeeId" class="form-control form-control-sm" placeholder="ADP Employee Id">
 								</div>
 								<div class="col-md-12" style="margin-top:15px;">
-									<label class="col-sm-9 col-form-label col-form-label-sm">Resource Assigned</label>
+									<label class="col-sm-9 col-form-label col-form-label-sm" style="padding-left:0">Resource Assigned</label>
 									@Html.DropDownListFor(model => model.AssignResourcesID, Model.AssignResourceList, "AssignResource", new { @class = "form-control", id = "ddlResourceAssigned" })
 								</div>
 
 								<div class="col-md-12" style="margin-top:15px;">
-									<label class="col-sm-9 col-form-label col-form-label-sm">Annual Salary</label>
+									<label class="col-sm-9 col-form-label col-form-label-sm" style="padding-left:0">Annual Salary</label>
 									<input type="text" class="form-control form-control-sm" id="txtAnnualSalary" placeholder="Annual Salary">
 								</div>
 								<div class="col-md-12" style="margin-top:15px;">
-									<label class="col-sm-9 col-form-label col-form-label-sm">Hourly Rate</label>
+									<label class="col-sm-9 col-form-label col-form-label-sm" style="padding-left:0">Hourly Rate</label>
 									<input type="text" class="form-control form-control-sm" id="txtHourlyRate" placeholder="Hourly Rate">
 								</div>
 							</div>
-							<div class=" row col-md-5" style="height:390px">
+							<div class=" row col-md-4" style="height:390px">
 								<div class="col-md-12" style="margin-top:15px;">
-									<label class="col-sm-9 col-form-label col-form-label-sm">Daily Rate</label>
+									<label class="col-sm-9 col-form-label col-form-label-sm" style="padding-left:0">Daily Rate</label>
 									<input type="text" class="form-control form-control-sm" id="txtDailyRate" placeholder="Daily Rate">
 								</div>
 								<div class="col-md-12" style="margin-top:15px;">
-									<label class="col-sm-9 col-form-label col-form-label-sm">Work Rights</label>
+									<label class="col-sm-9 col-form-label col-form-label-sm" style="padding-left:0">Work Rights</label>
 									@Html.DropDownListFor(model => model.WorkRights, Model.WorkRightsList, "Works Rights", new { @class = "form-control", id = "ddlWorkRights" })
 								</div>
 								<div class="col-md-12" style="margin-top:15px;">
-									<label class="col-sm-9 col-form-label col-form-label-sm">Employment Status</label>
+									<label class="col-sm-9 col-form-label col-form-label-sm" style="padding-left:0">Employment Status</label>
 									@Html.DropDownListFor(model => model.EmployeeStatusSetID, Model.EmployeeStatusList, "Employment Status", new { @class = "form-control", id = "ddlEmployeeStatusId" })
 								</div>
 								<div class="col-md-12" style="margin-top:15px;">
-									<label class="col-sm-9 col-form-label col-form-label-sm">Employment Type</label>
+									<label class="col-sm-9 col-form-label col-form-label-sm" style="padding-left:0">Employment Type</label>
 									@Html.DropDownListFor(model => model.EmploymentTypesID, Model.EmploymentList, "Employment Type", new { @class = "form-control", id = "ddlEmploymentType" })
 								</div>
 								<div class="col-md-12" style="margin-top:15px;">
-									<label class="col-sm-9 col-form-label col-form-label-sm">Notice Period</label>
+									<label class="col-sm-9 col-form-label col-form-label-sm" style="padding-left:0">Notice Period</label>
 									<input type="text" class="form-control form-control-sm" id="txtNoticePeriod" placeholder="Notice Period">
 								</div>
 							</div>
-							<div class=" row col-md-2" style="height:390px">
+							<div class=" row col-md-4" style="height:390px">
 
-								<div class="col-md-12" style="margin-top:15px;">
+								<div class="col-md-8" >
 									<label>People Manager</label>
 									<div class="input-group">
 										<input type="checkbox" checked data-toggle="toggle" data-onstyle="warning" id="chkIsPeopleManager" data-on="Yes" data-off="No" onchange="PeopleManagerCBChange(this);">
@@ -387,10 +387,16 @@
 								@*<div class="col-md-12" style="margin-top:15px;">
 									@Html.DropDownListFor(model => Model.ResourceIDs, Model.CandidateNameList, new { @id = "CandidateNameId", @style = "height:10px; width:10px;", @multiple = "multiple" })
 								</div>*@
-								<div class="col-md-12" style="margin-top:15px;">
+								<div class="col-md-4" style="padding-top:27px">
 									<input type="submit" value="ASSIGN" class="btn btn-primary"
 										   style="background-color:orange;border:none;"
 										   id="updatePeopleManager" onclick="UpdatePeopleManager();" />
+								</div>
+
+								<div style="padding-left:15px; padding-right:15px">
+									<label style="margin-top:10px">Direct Reporties</label>
+									<div class="list-group" style="padding-top:5px;padding-right:5px; height:280px;overflow-y:scroll; width:100%" id="reportingDiv">
+									</div>
 								</div>
 
 							</div>
