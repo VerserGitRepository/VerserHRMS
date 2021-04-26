@@ -44,15 +44,15 @@
                     {
                         <tr>
                             <td onclick="LoadAddressData(@item.ID,'@item.CandidateName','@item.DateCreated','@item.Address','@item.City','@item.state','@item.postcode','@item.Email','@item.Phone',
-                                '@if(item.profilePicture != null) { @Convert.ToBase64String(@item.profilePicture)}','@if (item.DOB.HasValue) {@item.DOB.Value.ToString("yyyy-MM-dd")}','@item.Age','@item.Gender','@item.MaritalStatus',@Json.Encode(item.isactive),
-                                '@item.WarehouseID','@item.ResourceCategoriesID','@item.DrivingLicenseID','@item.fK_ResourceInActiveReasonID',@Json.Encode(@item.ResourceReporting.Select(c=> c.Value).ToArray()));
-                                LoadEmployment(@item.ID,'@item.PayFrequenciesID','@item.ADP_EmployeeID','@item.AssignResourcesID','@item.Annualsalary','@item.HourlyRate','@item.DailyRate','@item.WorkRightID',
-                                '@item.EmployeeStatusSetID','@item.EmploymentTypesID','@item.NoticePeriod','@Json.Encode(item.isPeopleManager)',@Json.Encode(@item.ResourceReporting.Select(c=> c.Id).ToArray()));
-                                LoadDocuments(@item.ID,'@item.FilePath','@item.certificate1','@item.DriverLicense','@item.PoliceCheckReport','@item.Visa','@item.SuperChoice','@item.TFNDeclaration',
-                                '@item.BankDetails','@item.CodeOFConduct','@item.WHS');
-                                LoadSkills(@item.ID,'@item.CandidateSkills','@item.Experience','@item.JobTitle','@item.technicalLevelsID','@item.RateOfSkillExperties');
-                                LoadRating(@item.ID);
-                                LoadAccessAndDevices(@Json.Encode(@item.CandidateAllcaotedResouces));">
+                    '@if(item.profilePicture != null) { @Convert.ToBase64String(@item.profilePicture)}','@if (item.DOB.HasValue) {@item.DOB.Value.ToString("yyyy-MM-dd")}','@item.Age','@item.Gender','@item.MaritalStatus',@Json.Encode(item.isactive),
+                    '@item.WarehouseID','@item.ResourceCategoriesID','@item.DrivingLicenseID','@item.fK_ResourceInActiveReasonID',@Json.Encode(@item.ResourceReporting.Select(c=> c.Value).ToArray()));
+                    LoadEmployment(@item.ID,'@item.PayFrequenciesID','@item.ADP_EmployeeID','@item.AssignResourcesID','@item.Annualsalary','@item.HourlyRate','@item.DailyRate','@item.WorkRightID',
+                    '@item.EmployeeStatusSetID','@item.EmploymentTypesID','@item.NoticePeriod','@Json.Encode(item.isPeopleManager)',@Json.Encode(@item.ResourceReporting.Select(c=> c.Id).ToArray()));
+                    LoadDocuments(@item.ID,'@item.FilePath','@item.certificate1','@item.DriverLicense','@item.PoliceCheckReport','@item.Visa','@item.SuperChoice','@item.TFNDeclaration',
+                    '@item.BankDetails','@item.CodeOFConduct','@item.WHS');
+                    LoadSkills(@item.ID,'@item.CandidateSkills','@item.Experience','@item.JobTitle','@item.technicalLevelsID','@item.RateOfSkillExperties');
+                    LoadRating(@item.ID);
+                    LoadAccessAndDevices(@Json.Encode(@item.CandidateAllcaotedResouces));">
                                 <font style="font-weight:800;color:#515151">
                                     @Html.DisplayFor(modelItem => item.CandidateName)
                                     <input type="hidden" value="@item.ID" id="hiddenModelId" />
@@ -60,6 +60,7 @@
                                 </font>
                                 <font style="font-size:xx-small"> @item.Address @item.City @item.state @item.postcode </font> <br />
                             </td>
+
                             <td>@item.CandidateSkills</td>
                         </tr>
                     }
@@ -70,8 +71,6 @@
 
 
     <main role="main" class="col-md-9 pull-right" style="padding-left:0">
-
-
         <div class="panel with-nav-tabs panel-default">
             <div class="panel-heading">
                 <ul class="nav nav-tabs">
@@ -387,8 +386,8 @@
                                     </div>
                                 </div>
                                 @*<div class="col-md-12" style="margin-top:15px;">
-                                    @Html.DropDownListFor(model => Model.ResourceIDs, Model.CandidateNameList, new { @id = "CandidateNameId", @style = "height:10px; width:10px;", @multiple = "multiple" })
-                                </div>*@
+                                        @Html.DropDownListFor(model => Model.ResourceIDs, Model.CandidateNameList, new { @id = "CandidateNameId", @style = "height:10px; width:10px;", @multiple = "multiple" })
+                                    </div>*@
                                 <div class="col-md-12" style="margin-top:15px;">
                                     <input type="submit" value="ASSIGN" class="btn btn-primary"
                                            style="background-color:#428bca;border-color:#428bca"
@@ -1010,7 +1009,7 @@
         $("#candidateskills").val(CandidateSkills);
         $("#experience").val(Experience);
         $("#JobTitle").val(JobTitle);
-            $("#ddlTechnicialLevel").val(TechnicianLevel);
+        $("#ddlTechnicialLevel").val(TechnicianLevel);
         $("#skillrate").val(RateOfSkillExperties);
         $("#hiddenModelId").val(id);
         }
@@ -1729,7 +1728,6 @@
                 useBootstrap: false,
                 buttons: {
                     OK: function () {
-
                     }
                 }
                     });
@@ -1772,7 +1770,6 @@
                 data: JSON.stringify(ResourceReportingAddDto),
                 datatype: "json",
                 success: function (result) {
-
                 $.confirm({
                 title:'',
                 content: 'Update is successful.',
@@ -1780,7 +1777,6 @@
                 useBootstrap: false,
                 buttons: {
                     OK: function () {
-
                     }
                 }
                     });
@@ -1789,10 +1785,7 @@
                 error: function () {
                     alert("Dynamic content load failed.");
                 },
-
             });
-
-
         }
         var updateInactiveReason = '@Url.Action("InActivateResource", "Candidates")';
         function UpdateInactiveReason() {
@@ -1812,16 +1805,13 @@
                         useBootstrap: false,
                         buttons: {
                             OK: function () {
-
                             }
                         }
                     });
-
                 },
                 error: function () {
                     alert("Dynamic content load failed.");
                 },
-
             });
         }
 </script>
