@@ -393,9 +393,8 @@
 										   id="updatePeopleManager" onclick="UpdatePeopleManager();" />
 								</div>
 
-								<div style="padding-left:15px; padding-right:15px">
-									<label style="margin-top:10px">Direct Reporties</label>
-									<div class="list-group" style="padding-top:5px;padding-right:5px; height:280px;overflow-y:scroll; width:100%" id="reportingDiv">
+								<div style="padding-left:15px; padding-right:15px;">									
+									<div class="list-group list-group-warning" style="padding-top:5px;padding-right:5px; height:315px;overflow-y:scroll; width:100%" id="reportingDiv">
 									</div>
 								</div>
 
@@ -1062,9 +1061,9 @@
 
 			$("#reportingDiv").empty();
 
-			$("#reportingDiv").append('<a href="#" class="list-group-item list-group-item-action active">DIRECT REPORTIES</a>');
+			$("#reportingDiv").append('<a href="#" class="list-group-item list-group-item-action list-group-item-warning active">DIRECT REPORTIES</a>');
 			for (var i = 0; i < resourceReporting.length; i++) {
-				$("#reportingDiv").append('<a href="#" class="list-group-item list-group-item-action">'+resourceReporting[i]+'</a>');
+				$("#reportingDiv").append('<a href="#" class="list-group-item list-group-item-action list-group-item-warning">'+resourceReporting[i]+'</a>');
 			}
 			if (resourceReporting.length > 0) {
 				$("#reportingDiv").show();
@@ -1939,6 +1938,10 @@
 </script>
 
 <style>
+	.list-group-item.active {
+		background-color:orange !important;
+		border:none;
+	}
 
 	div.dataTables_wrapper {
 		width: 100%;
