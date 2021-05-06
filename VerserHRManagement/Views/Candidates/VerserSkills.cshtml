@@ -1,10 +1,9 @@
 ﻿@model VerserHRManagement.Models.Candidate
 
 <div class="col-md-12 column" style="padding-left: 0px; padding-right: 0px">
-    <table class="table table-bordered table-hover" id="tab_VerserSkills">
+    <table class="table table-bordered table-hover" id="productTable">
         <thead style="background-color:lightgray">
             <tr>
-
                 <th class="text-center" style="width:20%">
                     Skills
                 <th class="text-center" style="width:20%">
@@ -20,14 +19,12 @@
                     Skill Rate
                 </th>
                 <th class="text-center" style="width:20%">
-                    @*<button data-toggle="modal" data-target="#SkillsModal" class="btn btn-primary center-block" style="border:none">Add Skills</button>*@
-                    <input type="submit" class="btn btn-primary btn-hover-green" value="Add Skills" onclick="addRow()" style="border:none" />
+                    <button data-toggle="modal" data-target="#SkillsModal" class="btn btn-primary center-block" style="border:none">Add Skills</button>
                 </th>
             </tr>
         </thead>
-        <tbody>
-            <tr id='addr0'>
-
+        @*<tbody>
+            <tr>
                 <td>
                     <input id="candidateskills" placeholder="Skills" class="form-control" required="true" value="" type="text">
                 </td>
@@ -40,14 +37,13 @@
                 <td>
                     @Html.DropDownListFor(model => model.technicalLevelsID, Model.TechnicianLevelList, "Technician Level", new { @class = "form-control", @id = "ddlTechnicialLevel" })
                 </td>
-                <td style="width:50%">
+                <td>
                     <input id="skillrate" placeholder="Skill Rate" class="form-control" required="true" value="" type="text">
                 </td>
                 <td>
                 </td>
             </tr>
-            <tr id='addr1'></tr>
-        </tbody>
+        </tbody>*@
     </table>
 </div>
 
@@ -65,7 +61,7 @@
                     <div class="col-md-12" style="margin-bottom:10px">
                         <div class="md-form">
                             <label for="subject" class="">	Skills</label>
-                            <input type="text" id="Goal" name="subject" class="form-control">
+                            <input type="text" id="Skills" name="subject" class="form-control">
 
                             @Html.HiddenFor(model => model.ID, new { @id = Model.ID })
                         </div>
@@ -74,14 +70,14 @@
                     <div class="col-md-12" style="margin-bottom:20px">
                         <div class="md-form">
                             <label for="subject" class="">Job Title</label>
-                            <input type="text" id="Status" name="subject" class="form-control">
+                            <input type="text" id="JobTitle" name="subject" class="form-control">
                         </div>
                     </div>
 
                     <div class="col-md-12" style="margin-bottom:20px">
                         <div class="md-form">
                             <label for="subject" class="">Experience</label>
-                            <input type="text" id="Status" name="subject" class="form-control">
+                            <input type="text" id="Experience" name="subject" class="form-control">
                         </div>
                     </div>
 
@@ -95,7 +91,7 @@
                     <div class="col-md-12" style="margin-bottom:20px">
                         <div class="md-form">
                             <label for="subject" class="">Skill Rate</label>
-                            <input type="text" id="Status" name="subject" class="form-control">
+                            <input type="text" id="SkillRate" name="subject" class="form-control">
                         </div>
                     </div>
 
@@ -105,7 +101,9 @@
 
                 <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                     <div class="btn-group pull-right" role="group">
-                        <input type="submit" class="btn btn-primary btn-hover-green" value="Add" onclick="addRow()" style="border:none" />
+                        @*<input type="submit" class="btn btn-primary btn-hover-green" value="Add" onclick="productsAdd();" style="border:none" />*@
+                        <button type="button" id="updateButton" class="btn btn-primary" onclick="productUpdate();">Add</button>
+
                     </div>
                 </div>
             </div>
@@ -113,89 +111,48 @@
     </div>
 </div>
 
+<script>
+    function productUpdate() {
+        if ($("#Skills").val() != null && $("#Skills").val() != '') {
+            // Add product to Table
+            productAddToTable();
 
+            // Clear form fields
+            //formClear();
 
-<script type="text/javascript">
-
-    var arrHead = new Array();
-    arrHead = ['', '', '', '','','']; // table headers.
-
-    // first create a TABLE structure by adding few headers.
-    function createTable() {
-        var empTable = document.createElement('table');
-        empTable.setAttribute('id', 'tab_VerserSkills');  // table id.
-
-        var tr = empTable.insertRow(-1);
-
-        for (var h = 0; h < arrHead.length; h++) {
-            var th = document.createElement('th'); // the header object.
-            th.innerHTML = arrHead[h];
-            tr.appendChild(th);
-        }
-
-        var div = document.getElementById('cont');
-        div.appendChild(empTable);    // add table to a container.
-    }
-
-    // function to add new row.
-    function addRow() {
-        var empTab = document.getElementById('tab_VerserSkills');
-
-        var rowCnt = empTab.rows.length;    // get the number of rows.
-        var tr = empTab.insertRow(rowCnt); // table row.
-        tr = empTab.insertRow(rowCnt);
-
-        for (var c = 0; c < arrHead.length; c++) {
-            var td = document.createElement('td');          // TABLE DEFINITION.
-            td = tr.insertCell(c);
-
-            if (c == 5) {   // if its the first column of the table.
-                // add a button control.
-                var button = document.createElement('input');
-
-                // set the attributes.
-                button.setAttribute('type', 'button');
-                button.setAttribute('value', 'Remove');
-
-                // add button's "onclick" event.
-                button.setAttribute('onclick', 'removeRow(this)');
-
-                td.appendChild(button);
-            }
-
-
-
-            else {
-                // the 2nd, 3rd and 4th column, will have textbox.
-                var ele = document.createElement('input');
-                ele.setAttribute('class', 'form-control');
-                ele.setAttribute('value', '');
-
-                td.appendChild(ele);
-            }
+            // Focus to product name field
+            //$("#Skills").focus();
         }
     }
+    function productAddToTable() {
+        // First check if a <tbody> tag exists, add one if not
+        if ($("#productTable tbody").length == 0) {
+            $("#productTable").append("<tbody></tbody>");
+        }
 
-    // function to delete a row.
-    function removeRow(oButton) {
-        var empTab = document.getElementById('tab_VerserSkills');
-        empTab.deleteRow(oButton.parentNode.parentNode.rowIndex); // buttton -> td -> tr
+        // Append product to the table
+        $("#productTable tbody").append("<tr>" +
+            "<td>" + $("#Skills").val() + "</td>" +
+            "<td>" + $("#JobTitle").val() + "</td>" +
+            "<td>" + $("#Experience").val() + "</td>" +
+            "<td>" + $("#ddlTechnicialLevel").val() + "</td>" +
+            "<td>" + $("#SkillRate").val() + "</td>" +
+            "<td>" +
+            "<button type='button' onclick='productDelete(this);' class='btn btn-default'>" +
+            "<span class='glyphicon glyphicon-remove' />" +
+            "</button>" +
+            "</td>" +
+            "</tr>");
+    }
+    function formClear() {
+        $("#Skills").val("");
+        $("#JobTitle").val("");
+        $("#Experience").val("");
+        $("#ddlTechnicialLevel").val("");
+        $("#SkillRate").val("");
     }
 
-    // function to extract and submit table data.
-    function submit() {
-        var myTab = document.getElementById('tab_VerserSkills');
-        var arrValues = new Array();
-
-        // loop through each row of the table.
-        for (row = 1; row < myTab.rows.length - 1; row++) {
-            // loop through each cell in a row.
-            for (c = 0; c < myTab.rows[row].cells.length; c++) {
-                var element = myTab.rows.item(row).cells[c];
-                if (element.childNodes[0].getAttribute('type') == 'text') {
-                    arrValues.push("'" + element.childNodes[0].value + "'");
-                }
-            }
-        }
+    function productDelete(ctl) {
+        $(ctl).parents("tr").remove();
     }
 </script>
