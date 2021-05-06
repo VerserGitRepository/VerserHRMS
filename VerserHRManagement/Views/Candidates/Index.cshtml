@@ -473,6 +473,7 @@
                                             </div>
 
                                         </div>
+@*These Two funcs need changes*@
                                         <div class="col-md-3">
                                             <label>Gender</label>
                                             <div class="input-group">
@@ -1023,9 +1024,6 @@
 		 i--;
 		 }
      });
-
-
-
 			$('#mainTable').DataTable({
 				"scrollX": true,
 				stateSave: true,
@@ -1137,9 +1135,13 @@
         $("#txtAnnualSalary").val(Annualsalary);
         $("#candidateskills").val(CandidateSkills);
         $("#experience").val(Experience);
-        $("#JobTitle").val(JobTitle);
+        $("#JobTitle").val(JobTitle);        
         $("#ddlTechnicialLevel").val(technicalLevelsID);
         $("#skillrate").val(RateOfSkillExperties);
+        $("#ddlResourcesCatId").val(resourceCategoriesId);
+        $("#ddlDrivingLicenseID").val(drivingLicenseId);
+        $("#ddlEmploymentTypeId").val(EmployeementTypeId);
+        $("#ddlWarehouseId").val(warehouseId);      
         $("#hiddenModelId").val(id);
        // alert(isactive)
           //  $("#chkIsActive").prop('checked', isactive).change();
@@ -1154,11 +1156,6 @@
 				$("#previewImage").show();
 				$("#image").hide();
 			}
-			$("#ddlWarehouseId").val(warehouseId);
-			$("#ddlResourcesCatId").val(resourceCategoriesId);
-        $("#ddlDrivingLicenseID").val(drivingLicenseId);
-        $("#ddlEmploymentTypeId").val(EmployeementTypeId);
-
     }
 
     function LoadEmployment(id, Annualsalary,  DailyRate,
@@ -1820,8 +1817,6 @@
 			}
 		});
 
-
-
 		function LoadAccessAndDevices(CandidateAllcaotedResouces) {
 
 			$("#deskCheck").prop('checked', CandidateAllcaotedResouces == null?false:CandidateAllcaotedResouces.DESKSETUP);
@@ -1963,7 +1958,7 @@
 
 		}
 
-    var updateInactiveReason = '@Url.Action("InActivateResource", "Candidates")';
+   // var updateInactiveReason = '@Url.Action("InActivateResource", "Candidates")';
 
 
     function UpdateInactiveReason() {
@@ -1977,8 +1972,10 @@
 				contentType: "application/json; charset=utf-8",
                 data: { 'candidateId': candidateId, 'reasonId': inactivereasonId},
 				datatype: "json",
-				success: function (result) {
-                    alert('Resource InActivated');
+                success: function (result) {
+                     var _IndexUrl='@Url.Action("Index", "Candidates")';
+                    window.location.href = _IndexUrl;
+                   // alert('Resource InActivated');
 					//$.confirm({
 					//	title: '',
 					//	content: result,
