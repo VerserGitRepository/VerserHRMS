@@ -1,0 +1,159 @@
+﻿@model VerserHRManagement.Models.Candidate
+
+<div class=" row col-md-4 " style="height:390px">
+	<div class="col-md-12" style="margin-top:15px;">
+		<label class="col-sm-9 col-form-label col-form-label-sm" style="padding-left:0">Pay Frequency</label>
+		@Html.DropDownListFor(model => model.PayFrequenciesID, Model.PayFrequencyList, "Pay Frequency", new { @class = "form-control", id = "ddlPayFrequencyId" })
+	</div>
+	<div class="col-md-12" style="margin-top:15px;">
+		<label class="col-sm-9 col-form-label col-form-label-sm" style="padding-left:0">ADP Employee Id</label>
+		<input type="text" id="txtADPEmployeeId" class="form-control form-control-sm" placeholder="ADP Employee Id">
+	</div>
+	<div class="col-md-12" style="margin-top:15px;">
+		<label class="col-sm-9 col-form-label col-form-label-sm" style="padding-left:0">Resource Assigned</label>
+		@Html.DropDownListFor(model => model.AssignResourcesID, Model.AssignResourceList, "AssignResource", new { @class = "form-control", id = "ddlResourceAssigned" })
+	</div>
+
+	<div class="col-md-12" style="margin-top:15px;">
+		<label class="col-sm-9 col-form-label col-form-label-sm" style="padding-left:0">Annual Salary</label>
+		<input type="text" class="form-control form-control-sm" id="txtAnnualSalary" placeholder="Annual Salary">
+	</div>
+	<div class="col-md-12" style="margin-top:15px;">
+		<label class="col-sm-9 col-form-label col-form-label-sm" style="padding-left:0">Hourly Rate</label>
+		<input type="text" class="form-control form-control-sm" id="txtHourlyRate" placeholder="Hourly Rate">
+	</div>
+</div>
+<div class=" row col-md-4" style="height:390px">
+	<div class="col-md-12" style="margin-top:15px;">
+		<label class="col-sm-9 col-form-label col-form-label-sm" style="padding-left:0">Daily Rate</label>
+		<input type="text" class="form-control form-control-sm" id="txtDailyRate" placeholder="Daily Rate">
+	</div>
+	<div class="col-md-12" style="margin-top:15px;">
+		<label class="col-sm-9 col-form-label col-form-label-sm" style="padding-left:0">Work Rights</label>
+		@Html.DropDownListFor(model => model.WorkRights, Model.WorkRightsList, "Works Rights", new { @class = "form-control", id = "ddlWorkRights" })
+	</div>
+	<div class="col-md-12" style="margin-top:15px;">
+		<label class="col-sm-9 col-form-label col-form-label-sm" style="padding-left:0">Employment Status</label>
+		@Html.DropDownListFor(model => model.EmployeeStatusSetID, Model.EmployeeStatusList, "Employment Status", new { @class = "form-control", id = "ddlEmployeeStatusId" })
+	</div>
+	<div class="col-md-12" style="margin-top:15px;">
+		<label class="col-sm-9 col-form-label col-form-label-sm" style="padding-left:0">Employment Type</label>
+		@Html.DropDownListFor(model => model.EmploymentTypesID, Model.EmploymentList, "Employment Type", new { @class = "form-control", id = "ddlEmploymentType" })
+	</div>
+	<div class="col-md-12" style="margin-top:15px;">
+		<label class="col-sm-9 col-form-label col-form-label-sm" style="padding-left:0">Notice Period</label>
+		<input type="text" class="form-control form-control-sm" id="txtNoticePeriod" placeholder="Notice Period">
+	</div>
+</div>
+<div class=" row col-md-4" style="height:390px">
+
+	<div class="col-md-8">
+		<label>People Manager</label>
+		<div class="input-group">
+			<input type="checkbox" checked data-toggle="toggle" data-onstyle="warning" id="chkIsPeopleManager" data-on="Yes" data-off="No" onchange="PeopleManagerCBChange(this);">
+		</div>
+	</div>
+	@*<div class="col-md-12" style="margin-top:15px;">
+			@Html.DropDownListFor(model => Model.ResourceIDs, Model.CandidateNameList, new { @id = "CandidateNameId", @style = "height:10px; width:10px;", @multiple = "multiple" })
+		</div>*@
+	<div class="col-md-4" style="padding-top:27px">
+		<input type="submit" value="ASSIGN" class="btn btn-primary"
+			   style="background-color:orange;border:none;"
+			   id="updatePeopleManager" onclick="UpdatePeopleManager();" />
+	</div>
+
+	<div style="padding-left:15px; padding-right:15px;">
+		<div class="list-group list-group-warning" style="padding-top:5px;padding-right:5px; height:315px;overflow-y:scroll; width:100%" id="reportingDiv">
+		</div>
+	</div>
+
+</div>
+						</div>
+
+<div class="col-md-12" style="padding:0">
+
+	<fieldset style="margin-bottom:0px">
+		<div class="form-group row well" style="margin-bottom:20px">
+			<div class="form-group row">
+				<div class="col-md-3">
+					<label>Address:</label>
+					<div class="input-group">
+						<span class="input-group-addon">
+							<i class="glyphicon glyphicon-home"></i>
+						</span><input id="txtAddress1" placeholder="Address Line 1" class="form-control" required="true" value="" type="text">
+					</div>
+				</div>
+				<div class="col-md-3">
+					<label>City:</label>
+					<div class="input-group">
+						<span class="input-group-addon">
+							<i class="fas fa-map-marker-alt"></i>
+						</span><input id="txtCity" placeholder="Suburb" class="form-control" required="true" value="" type="text">
+					</div>
+				</div>
+				<div class="col-md-3">
+					<label>State:</label>
+					<div class="input-group">
+						<span class="input-group-addon">
+							<i class="glyphicon glyphicon-home"></i>
+						</span><input id="txtState" placeholder="State" class="form-control" required="true" value="" type="text">
+					</div>
+				</div>
+				<div class="col-md-3">
+					<label>Postal Code:</label>
+					<div class="input-group">
+						<span class="input-group-addon">
+							<i class="glyphicon glyphicon-home"></i>
+						</span><input id="txtPostalCode" placeholder="PostCode" class="form-control" required="true" value="" type="text">
+					</div>
+				</div>
+			</div>
+			<div class="form-group row">
+				<div class="col-md-3">
+
+					<label>DOB</label>
+					<div class="input-group">
+						<span class="input-group-addon">
+							<i class="glyphicon glyphicon-calendar"></i>
+						</span> <input type="date" class="col-xs-1 form-control" id="txtDOB" placeholder="DOB" onchange="calculateAge(this);">
+					</div>
+				</div>
+				<div class="col-md-3">
+					<label>Age</label>
+					<div class="input-group">
+						<span class="input-group-addon">
+							<i class="glyphicon glyphicon-calendar"></i>
+						</span> <input type="text" class="form-control" id="txtAge" placeholder="Age">
+					</div>
+
+				</div>
+				<div class="col-md-3">
+					<label>Gender</label>
+					<div class="input-group">
+						<span class="input-group-addon">
+							<i class="fas fa-user-friends"></i>
+						</span>
+						<select class="form-control" id="txtGender">
+							<option>Select</option>
+							<option>Male</option>
+							<option>Female</option>
+						</select>
+					</div>
+				</div>
+				<div class="col-md-3">
+					<label>Marital Status</label>
+					<div class="input-group">
+						<span class="input-group-addon">
+							<i class="fas fa-user-friends"></i>
+						</span>
+						<select class="form-control" id="txtStatus">
+							<option>Married</option>
+							<option>Single</option>
+						</select>
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+	</fieldset>
