@@ -90,12 +90,30 @@
         </div>
     </div>
 
-    <div>
+    <div class="container-fluid">
+        @if (HttpContext.Current.Session["SuccessMessage"] != null)
+        {
+            <div class="alert alert-success text-center  alert-dismissible" role="alert" style="margin-bottom:5px">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                @HttpContext.Current.Session["SuccessMessage"]
+            </div>
+        @@HttpContext.Current.Session["SuccessMessage"] = null;
+        }
+      
+        @if (HttpContext.Current.Session["ErrorMessage"] != null)
+        {
+            <div class="alert alert-danger text-center  alert-dismissible" role="alert" style="margin-bottom:5px">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                @HttpContext.Current.Session["ErrorMessage"]
+            </div>
+        @@HttpContext.Current.Session["ErrorMessage"] = null;
+        }
         @RenderBody()
+
         @*<hr />*@
         @*<footer>
-                <p>&copy; @DateTime.Now.Year -Verser Technology Lifecycles</p>
-            </footer>*@
+            <p>&copy; @DateTime.Now.Year -Verser Technology Lifecycles</p>
+        </footer>*@
     </div>
 
 
@@ -105,8 +123,6 @@
     @RenderSection("scripts", required: false)
 </body>
 </html>
-
-
 <style>
 
     html,

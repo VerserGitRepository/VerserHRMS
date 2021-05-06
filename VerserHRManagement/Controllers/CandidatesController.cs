@@ -371,21 +371,19 @@ namespace VerserHRManagement
         {
             if (UserRoles.UserCanEdit() == true)
             {
-                if (ModelState.IsValid)
+                candidate.LoginUser = UserRoles.UserId();
+                candidate.CandidateAllcaotedResouces.FK_CandidateId = candidate.ID;
+                bool isupdated = CandidateService.EditCandidate(candidate);
+                if (isupdated)
                 {
-
-                    candidate.CandidateAllcaotedResouces.FK_CandidateId = candidate.ID;
-                    bool isupdated = CandidateService.EditCandidate(candidate);
-                    if (isupdated)
-                    {
-                        //return new JsonResult { Data = "The update has been successful.", JsonRequestBehavior = JsonRequestBehavior.AllowGet };
-                        var redirectUrl = new UrlHelper(Request.RequestContext).Action("Index", "Candidates");
-                        return Json(new { Url = redirectUrl });
-                    }
-                    else
-                        return new JsonResult { Data = "The update is not successful.", JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+                  return new JsonResult { Data = "The update has been successful.", JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+                  //  var redirectUrl = new UrlHelper(Request.RequestContext).Action("Index", "Candidates");
+                  //  return Json(new { Url = redirectUrl });
                 }
-                return View(candidate);
+                else
+                {
+                    return new JsonResult { Data = "The update is not successful.", JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+                }     
             }
             else
             {

@@ -1,300 +1,1016 @@
 ﻿@model VerserHRManagement.Models.Candidate
 @using VerserHRManagement.HelperServices;
-<script src="~/Scripts/jquery-3.4.1.min.js" type="text/javascript"></script>
+
 <link href="~/Content/bootstrap.css" rel="stylesheet" />
-<script src="~/Scripts/jquery-3.4.1.min.js" type="text/javascript"></script>
-<link href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" />
-<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-<script src=" https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
-<script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap4.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
-<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
-<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
-<script src='https://kit.fontawesome.com/a076d05399.js'></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<script src="~/Scripts/bootstrap-multiselect.js"></script>
-<script src="~/Scripts/scrollForever.js"></script>
 <link href="~/Content/bootstrap-multiselect.css" rel="stylesheet" />
 <link href="~/Content/scroll.css" rel="stylesheet" />
+<link href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+<script src=" https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<script src="~/Scripts/bootstrap-multiselect.js"></script>
+<script src="~/Scripts/jquery-3.4.1.min.js" type="text/javascript"></script>
+<script src="~/Scripts/scrollForever.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap4.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.0.4/popper.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<script src='https://kit.fontawesome.com/a076d05399.js'></script>
 
 <div class="container-fluid">
 
-	<nav class="col-md-3 d-none d-md-block bg-light sidebar" style="padding-right:2px; margin-top:10px;">
-		<div class="sidebar-sticky">
-			<table class="table table-bordered  table-responsive table-hover table-dark display nowrap" id="mainTable" style="width:100%">
-				<thead style="background-color: orange; color:white">
-					<tr>
-						<th style="border:none">
-							@Html.DisplayName("Candidates")
-						</th>
-						<th style="border:none">
-							@Html.DisplayName("Skills")
-						</th>
-					</tr>
-				</thead>
-				<tbody>
-					@foreach (var item in Model.CandidateList)
-					{
-						<tr>
-							<td onclick="LoadAddressData(@item.ID,'@item.CandidateName','@item.DateCreated','@item.Address','@item.City','@item.state','@item.postcode','@item.Email','@item.Phone',
-								'@if(item.profilePicture != null) { @Convert.ToBase64String(@item.profilePicture)}','@if (item.DOB.HasValue) {@item.DOB.Value.ToString("yyyy-MM-dd")}','@item.Age','@item.Gender','@item.MaritalStatus',@Json.Encode(item.isactive),
-								'@item.WarehouseID','@item.ResourceCategoriesID','@item.DrivingLicenseID','@item.fK_ResourceInActiveReasonID',@Json.Encode(@item.ResourceReporting.Select(c=> c.Value).ToArray()));
-								LoadEmployment(@item.ID,'@item.PayFrequenciesID','@item.ADP_EmployeeID','@item.AssignResourcesID','@item.Annualsalary','@item.HourlyRate','@item.DailyRate','@item.WorkRightID',
-								'@item.EmployeeStatusSetID','@item.EmploymentTypesID','@item.NoticePeriod','@Json.Encode(item.isPeopleManager)',@Json.Encode(@item.ResourceReporting.Select(c=> c.Id).ToArray()));
-								LoadDocuments(@item.ID,'@item.FilePath','@item.certificate1','@item.DriverLicense','@item.PoliceCheckReport','@item.Visa','@item.SuperChoice','@item.TFNDeclaration',
-								'@item.BankDetails','@item.CodeOFConduct','@item.WHS');
-								LoadSkills(@item.ID,'@item.CandidateSkills','@item.Experience','@item.JobTitle','@item.technicalLevelsID','@item.RateOfSkillExperties');
-								LoadRating(@item.ID);
-								LoadAccessAndDevices(@Json.Encode(@item.CandidateAllcaotedResouces));">
-								<font style="font-weight:800;color:#515151">
-									@Html.DisplayFor(modelItem => item.CandidateName)
-									<input type="hidden" value="@item.ID" id="hiddenModelId" />
-									<input type="hidden" value='@Server.MapPath("~/UploadedFiles")' id="hiddenPath" />
-								</font>
-								<font style="font-size:xx-small"> @item.Address @item.City @item.state @item.postcode </font> <br />
-							</td>
-							<td>@item.CandidateSkills</td>
-						</tr>
-					}
-				</tbody>
-			</table>
-		</div>
-	</nav>
+    <nav class="col-md-3 d-none d-md-block bg-light sidebar" style="padding-right:2px; margin-top:10px;">
+        <div class="sidebar-sticky">
+            <table class="table table-bordered  table-responsive table-hover table-dark display nowrap" id="mainTable" style="width:100%">
+                <thead style="background-color: orange; color:white">
+                    <tr>
+                        <th style="border:none">
+                            @Html.DisplayName("Candidates")
+                        </th>
+                        <th style="border:none">
+                            @Html.DisplayName("Skills")
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.CandidateList)
+                    {
+                        <tr>
+                            <td onclick=" LoadUserActiveStatus('@Json.Encode(@item.isactive)'), LoadAddressData(@item.ID, '@item.CandidateName', '@item.DateCreated', '@item.Address',
+     '@item.City', '@item.state', '@item.postcode', '@item.Email', '@item.Phone', '@if(item.profilePicture != null) { @Convert.ToBase64String(@item.profilePicture)}',
+     '@if (item.DOB.HasValue) {@item.DOB.Value.ToString("yyyy-MM-dd")}', '@item.Age', '@item.Gender', '@item.MaritalStatus', '@Json.Encode(item.isactive)',
+     '@item.WarehouseID', '@item.ResourceCategoriesID', '@item.DrivingLicenseID', '@item.fK_ResourceInActiveReasonID',
+     '@Json.Encode(@item.ResourceReporting.Select(c=> c.Value).ToArray())', '@item.EmployementTypeId', '@item.HourlyRate', '@item.DailyRate', '@item.NoticePeriod',
+     '@item.payFrequenciesID', '@item.ADP_EmployeeID', '@item.WorkRightID', '@item.AssignResourcesID',
+     '@item.EmployeeStatusSetID', '@item.Annualsalary', '@Json.Encode(item.isPeopleManager)', '@Json.Encode(@item.ResourceReporting.Select(c=> c.Id).ToArray())',
+     '@item.CandidateSkills', '@item.Experience', '@item.JobTitle','@item.technicalLevelsID', '@item.RateOfSkillExperties'); ">
+
+                                <font style="font-weight:800;color:#515151">
+                                    @Html.DisplayFor(modelItem => item.CandidateName)
+                                    <input type="hidden" value='@Server.MapPath("~/UploadedFiles")' id="hiddenPath" />
+                                </font>
+                                <font style="font-size:xx-small"> @item.Address @item.City @item.state @item.postcode </font>
+                                <br />
+                            </td>
+                            <td>@item.CandidateSkills</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </nav>
 
 
-	<main role="main" class="col-md-9 pull-right" style="padding-left:0">
+    <main role="main" class="col-md-9 pull-right" style="padding-left:0">
+        <div class="panel with-nav-tabs panel-default">
+            <div class="panel-heading">
+                <ul class="nav nav-tabs">
+                    <li class="active">
+                        <a href="#tab1default" data-toggle="tab">Employment</a>
+                    </li>
+                    <li>
+                        <a href="#tab2default" data-toggle="tab">Personal</a>
+                    </li>
+                    <li>
+                        <a href="#tab3default" data-toggle="tab">Verser Skills</a>
+                    </li>
+                    <li>
+                        <a href="#tab5default" data-toggle="tab">Performance</a>
+                    </li>
+
+                    @if (UserRoles.UserCanEdit() == true)
+                    {
+                        @*<li><a href="#tab4default" data-toggle="tab">Documents</a></li>*@
+                        <li>
+                            <a href="#tab7default" data-toggle="tab">Documents and Policies</a>
+                        </li>
+                        <li>
+                            <a href="#tab6default" data-toggle="tab">Offer</a>
+                        </li>
+
+                        <li>
+                            <a href="#tab8default" data-toggle="tab">Access & Devices</a>
+                        </li>
+                        <li>
+                            <a href="#tab9default" data-toggle="tab">Off-board</a>
+                        </li>
+                        <li class="pull-right" style="margin-right:20px;vertical-align:bottom; padding:10px 15px">
+                            @using (Html.BeginForm("ExportTimesSheetToExcel", "Candidates", FormMethod.Post))
+                            {
+                                <input type="image" src="~/Images/excel.png" alt="Submit" style="width:20px; height:20px">
+                            }
+                        </li>
+                    }
+                </ul>
+            </div>
+
+            <div class="panel-body">
+                <div class="tab-content">
+
+                    <div class="tab-pane fade in active" id="tab1default">
+                        <div class="row">
+                            <form>
+                                <div class="col-md-9">
+                                    <div class="form-group row">
+                                        <div class="col-md-4">
+                                            <div class="col-sm-12">
+
+                                                <img class="preview-img" src="http://simpleicon.com/wp-content/uploads/account.png" alt="Preview Image" width="250" height="150" id="previewImage" onchange="readURL(this);" />
+
+                                                <img id="image" class="image-border form-control form-control-sm" width="250" height="150">
+
+                                                <input type="file" id="imgupload" style="display:none" onchange="readURL(this);" />
+                                                <input type="hidden" id="hiddenModelId" />
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="row well" style="margin-bottom:0 !important">
+                                        <div class="form-group row">
+                                            <div class="col-md-4" style="margin-right:0px">
+                                                <label>First Name</label>
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">
+                                                        <i class="glyphicon glyphicon-user"></i>
+                                                    </span>
+                                                    <input type="text" id="txtfName" class="form-control" placeholder="">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <label>Last Name</label>
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">
+                                                        <i class="glyphicon glyphicon-user"></i>
+                                                    </span>
+                                                    <input type="text" id="txtlName" class="form-control" placeholder="">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <label>Employment Type</label>
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">
+                                                        <i class="glyphicon glyphicon-briefcase"></i>
+                                                    </span>@Html.DropDownListFor(model => model.EmploymentTypesID, Model.EmploymentList, "Employment Type", new { @class = "form-control", id = "ddlEmploymentTypeId" })
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <div class="col-md-4">
+                                                <label>Warehouse</label>
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">
+                                                        <i class="fas fa-warehouse"></i>
+                                                    </span> @Html.DropDownListFor(model => model.WarehouseID, Model.WarehouseNameList, "WAREHOUSE", new { @class = "form-control", id = "ddlWarehouseId" })
+                                                </div>
+
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label>Categories</label>
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">
+                                                        <i class="fas fa-user-tie"></i>
+                                                    </span> @Html.DropDownListFor(model => model.ResourceCategoriesID, Model.ResourceCategoriesList, "Resource Categories", new { @class = "form-control", id = "ddlResourcesCatId" })
+                                                </div>
+
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label>Driving License</label>
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">
+                                                        <i class="fas fa-truck"></i>
+                                                    </span>  @Html.DropDownListFor(model => model.DrivingLicenseID, Model.DrivingLicensesList, "Driver License", new { @class = "form-control", id = "ddlDrivingLicenseID" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-md-4">
+                                                <label>Email:</label>
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">
+                                                        <i class="glyphicon glyphicon-envelope"></i>
+                                                    </span>
+                                                    <input id="txtEmail" placeholder="Email" class="form-control" required="true" value="" type="text">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label>Mobile</label>
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">
+                                                        <i class="fas fa-mobile-alt" style="font-size:20px"></i>
+                                                    </span>
+                                                    <input id="txtMobile" placeholder="Phone Number" class="form-control" required="true" value="" type="text">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <label>Hourly Rate</label>
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">
+                                                        <i class="glyphicon glyphicon-usd"></i>
+                                                    </span>
+                                                    <input type="text" id="txtHourlyRate" class="form-control" placeholder="Hourly Rate">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4" style="padding:0; margin-bottom:10px">
+
+                                            <div class="input-group">
+                                                <input type="checkbox" @*checked*@ data-toggle="toggle" data-onstyle="warning" id="chkIsActive" onchange="ResourceChange(this);">
+                                                &nbsp;
+                                                <label id="lblActiveState" />
+                                            </div>
+                                            <label></label>
+                                            @Html.DropDownListFor(Model => Model.InactiveReason, new List<SelectListItem>
+                                                { new SelectListItem {Text="Resigned",Value="1" },
+                                                new SelectListItem {Text="Unsuitable",Value="2" },
+                                                new SelectListItem {Text="Lapsed",Value="3" },
+                                                }, "InActive Reason", new { @class = "form-control", @id = "ddlInactiveReason", @onchange = "UpdateInactiveReason();" })
+                                            @Html.ValidationMessageFor(model => model.InactiveReason, "", new { @class = "text-danger" })
+
+                                        </div>
+
+                                        <div class="col-sm-12 col-md-8" style="padding:0">
+                                            <div class="table table-bordered pull-right" style="margin-bottom:0px">
+                                                <div class="row">
+                                                    <div class="col-xs-12 col-md-2">
+                                                        <h1 class="rating-num" id="ratingheader"></h1>
+                                                        <div class="rating" id="ratingdiv">
+
+                                                        </div>
+                                                        <div class="col-md-2">
+                                                            <span id="ratingtotal" class="glyphicon glyphicon-user"></span>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-sm-12 col-md-10" style="margin-top:10px">
+
+                                                        <div style="margin-bottom:2px">
+                                                            <div class="col-xs-4 col-md-1 text-right" style="font-size:8px">
+                                                                <span class="glyphicon glyphicon-star" style="font-size:6px"></span>5
+                                                            </div>
+                                                            <div class="col-xs-8 col-md-11">
+                                                                <div class="progress progress-striped">
+                                                                    <div id="divspan5" class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="20"
+                                                                         aria-valuemin="0" aria-valuemax="100">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!-- end 5 -->
+                                                        <div style="margin-bottom:2px">
+                                                            <div class="col-xs-4 col-md-1 text-right" style="font-size:8px">
+                                                                <span class="glyphicon glyphicon-star" style="font-size:6px"></span>4
+                                                            </div>
+                                                            <div class="col-xs-8 col-md-11">
+                                                                <div class="progress">
+                                                                    <div id="divspan4" class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="20"
+                                                                         aria-valuemin="0" aria-valuemax="100">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!-- end 4 -->
+                                                        <div class="col-xs-4 col-md-1 text-right" style="font-size:8px">
+                                                            <span class="glyphicon glyphicon-star" style="font-size:6px"></span>3
+                                                        </div>
+                                                        <div class="col-xs-8 col-md-11">
+                                                            <div class="progress">
+                                                                <div id="divspan3" class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20"
+                                                                     aria-valuemin="0" aria-valuemax="100">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!-- end 3 -->
+                                                        <div class="col-xs-4 col-md-1 text-right" style="font-size:8px">
+                                                            <span class="glyphicon glyphicon-star" style="font-size:6px"></span>2
+                                                        </div>
+                                                        <div class="col-xs-8 col-md-11">
+                                                            <div class="progress">
+                                                                <div id="divspan2" class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="20"
+                                                                     aria-valuemin="0" aria-valuemax="100">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!-- end 2 -->
+                                                        <div class="col-xs-4 col-md-1 text-right" style="font-size:8px">
+                                                            <span class="glyphicon glyphicon-star" style="font-size:6px"></span>1
+                                                        </div>
+                                                        <div class="col-xs-8 col-md-11">
+                                                            <div class="progress">
+                                                                <div id="divspan1" class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="80"
+                                                                     aria-valuemin="0" aria-valuemax="100">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!-- end 1 -->
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="col-md-3">
+                                    <div class="list-group pull-right" id="feature" style="padding-top:10PX;padding-right:5px; width:100%; height:660px;overflow-y:scroll;">
+
+                                        <a href="#" class="list-group-item list-group-item-action active" style="background-color:orange; border:none">MONTHLY BIRTHDAY'S</a>
+
+                                        @foreach (var Resourcereportings in Model.CurrentBirthdays)
+                                        {
+                                            <a href="#" class="list-group-item list-group-item-action">
+
+                                                <div class="d-flex w-100 justify-content-between">
+                                                    <h5 class="mb-1"> @Resourcereportings</h5>
+                                                    <small class="text-muted"> Happy Birthday!</small>
+                                                </div>
+                                            </a>
+                                        }
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+
+                    <div class="tab-pane fade" id="tab2default">
+                        <div class="form-group row well">
+                            <div class=" row col-md-4 " style="height:390px">
+                                <div class="col-md-12" style="margin-top:15px;">
+                                    <label class="col-sm-9 col-form-label col-form-label-sm" style="padding-left:0">Pay Frequency</label>
+                                    @Html.DropDownListFor(model => model.payFrequenciesID, Model.PayFrequencyList, "Pay Frequency", new { @class = "form-control", id = "ddlPayFrequencyId" })
+                                </div>
+                                <div class="col-md-12" style="margin-top:15px;">
+                                    <label class="col-sm-9 col-form-label col-form-label-sm" style="padding-left:0">ADP Employee Id</label>
+                                    <input type="text" id="txtADPEmployeeId" class="form-control form-control-sm" placeholder="ADP Employee Id">
+                                </div>
+                                <div class="col-md-12" style="margin-top:15px;">
+                                    <label class="col-sm-9 col-form-label col-form-label-sm" style="padding-left:0">Resource Assigned</label>
+                                    @Html.DropDownListFor(model => model.AssignResourcesID, Model.AssignResourceList, "AssignResource", new { @class = "form-control", id = "ddlResourceAssigned" })
+                                </div>
+                                <div class="col-md-12" style="margin-top:15px;">
+                                    <label class="col-sm-9 col-form-label col-form-label-sm" style="padding-left:0">Annual Salary</label>
+                                    <input type="text" class="form-control form-control-sm" id="txtAnnualSalary" placeholder="Annual Salary">
+                                </div>
+                            </div>
+                            <div class=" row col-md-4" style="height:390px">
+                                <div class="col-md-12" style="margin-top:15px;">
+                                    <label class="col-sm-9 col-form-label col-form-label-sm" style="padding-left:0">Daily Rate</label>
+                                    <input type="text" class="form-control form-control-sm" id="txtDailyRate" placeholder="Daily Rate">
+                                </div>
+                                <div class="col-md-12" style="margin-top:15px;">
+                                    <label class="col-sm-9 col-form-label col-form-label-sm" style="padding-left:0">Work Rights</label>
+                                    @Html.DropDownListFor(model => model.WorkRights, Model.WorkRightsList, "Works Rights", new { @class = "form-control", id = "ddlWorkRights" })
+                                </div>
+                                <div class="col-md-12" style="margin-top:15px;">
+                                    <label class="col-sm-9 col-form-label col-form-label-sm" style="padding-left:0">Employment Status</label>
+                                    @Html.DropDownListFor(model => model.EmployeeStatusSetID, Model.EmployeeStatusList, "Employment Status", new { @class = "form-control", id = "ddlEmployeeStatusId" })
+                                </div>
+                                <div class="col-md-12" style="margin-top:15px;">
+                                    <label class="col-sm-9 col-form-label col-form-label-sm" style="padding-left:0">Notice Period</label>
+                                    <input type="text" class="form-control form-control-sm" id="txtNoticePeriod" placeholder="Notice Period">
+                                </div>
+                                @*<div class="col-md-12" style="margin-top:15px;">
+                                        <label class="col-sm-9 col-form-label col-form-label-sm" style="padding-left:0">CandidateID</label>
+                                        <input type="text" class="form-control form-control-sm" id="txtCandidateID" placeholder="Notice Period">
+                                    </div>*@
+                            </div>
+                            <div class=" row col-md-4" style="height:390px">
+
+                                <div class="col-md-8">
+                                    <label>People Manager</label>
+                                    <div class="input-group">
+                                        <input type="checkbox" checked data-toggle="toggle" data-onstyle="warning" id="chkIsPeopleManager" data-on="Yes" data-off="No" onchange="PeopleManagerCBChange(this);">
+                                    </div>
+                                </div>
+                                @*<div class="col-md-12" style="margin-top:15px;">
+                                        @Html.DropDownListFor(model => Model.ResourceIDs, Model.CandidateNameList, new { @id = "CandidateNameId", @style = "height:10px; width:10px;", @multiple = "multiple" })
+                                    </div>*@
+                                <div class="col-md-4" style="padding-top:27px">
+                                    <input type="submit" value="ASSIGN" class="btn btn-primary"
+                                           style="background-color:orange;border:none;"
+                                           id="updatePeopleManager" onclick="UpdatePeopleManager();" />
+                                </div>
+
+                                <div style="padding-left:15px; padding-right:15px;">
+                                    <div class="list-group list-group-warning" style="padding-top:5px;padding-right:5px; height:315px;overflow-y:scroll; width:100%" id="reportingDiv">
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="col-md-12" style="padding:0">
+
+                            <fieldset style="margin-bottom:0px">
+                                <div class="form-group row well" style="margin-bottom:20px">
+                                    <div class="form-group row">
+                                        <div class="col-md-3">
+                                            <label>Address:</label>
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    <i class="glyphicon glyphicon-home"></i>
+                                                </span>
+                                                <input id="txtAddress1" placeholder="Address Line 1" class="form-control" required="true" value="" type="text">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label>City:</label>
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    <i class="fas fa-map-marker-alt"></i>
+                                                </span>
+                                                <input id="txtCity" placeholder="Suburb" class="form-control" required="true" value="" type="text">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label>State:</label>
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    <i class="glyphicon glyphicon-home"></i>
+                                                </span>
+                                                <input id="txtState" placeholder="State" class="form-control" required="true" value="" type="text">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label>Postal Code:</label>
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    <i class="glyphicon glyphicon-home"></i>
+                                                </span>
+                                                <input id="txtPostalCode" placeholder="PostCode" class="form-control" required="true" value="" type="text">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-md-3">
+
+                                            <label>DOB</label>
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    <i class="glyphicon glyphicon-calendar"></i>
+                                                </span>
+                                                <input type="date" class="col-xs-1 form-control" id="txtDOB" placeholder="DOB" onchange="calculateAge(this);">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label>Age</label>
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    <i class="glyphicon glyphicon-calendar"></i>
+                                                </span>
+                                                <input type="text" class="form-control" id="txtAge" placeholder="Age">
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label>Gender</label>
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    <i class="fas fa-user-friends"></i>
+                                                </span>
+                                                <select class="form-control" id="txtGender">
+                                                    <option>Select</option>
+                                                    <option>Male</option>
+                                                    <option>Female</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label>Marital Status</label>
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    <i class="fas fa-user-friends"></i>
+                                                </span>
+                                                <select class="form-control" id="txtStatus">
+                                                    <option>Married</option>
+                                                    <option>Single</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </fieldset>
+
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="tab3default">
+                        <div class="row clearfix">
+                            @*<div class="form-group row">
+                                    <div class="col-md-5" style="margin-bottom:10px">
+                                        <label class="col-sm-9 col-form-label col-form-label-sm">Candidate Skills</label>
+
+                                        <input type="text" id="candidateskills" class="form-control form-control-sm" placeholder="candidateskills">
+
+                                    </div>
+                                    <div class="col-md-5" style="margin-bottom:10px">
+                                        <label class="col-sm-9 col-form-label col-form-label-sm">Experience</label>
+
+                                        <input type="text" id="experience" class="form-control form-control-sm" placeholder="experience">
+
+                                    </div>
+                                    <div class="col-md-5" style="margin-bottom:10px">
+                                        <label class="col-sm-9 col-form-label col-form-label-sm">Job Title</label>
+
+                                        <input type="text" class="form-control form-control-sm" id="JobTitle" placeholder="JobTitle">
+                                    </div>
+                                    <div class="col-md-5" style="margin-bottom:10px">
+                                        <label class="col-sm-9 col-form-label col-form-label-sm">Technician Level</label>
+                                        @Html.DropDownListFor(model => model.technicalLevelsID, Model.TechnicianLevelList, "Technician Level", new { @class = "form-control", @id = "ddlTechnicialLevel" })
+                                    </div>
+                                    <div class="col-md-5" style="margin-bottom:10px">
+                                        <label class="col-sm-9 col-form-label col-form-label-sm">Skill Rate</label>
+                                        <input type="text" class="form-control form-control-sm" id="skillrate" placeholder="skillrate">
+                                    </div>
+                                </div>*@
+
+                            <div class="col-md-12 column" style="padding-left: 0px; padding-right: 0px">
+                                <table class="table table-bordered table-hover" id="tab_logic">
+                                    <thead style="background-color:lightgray">
+                                        <tr>
+
+                                            <th class="text-center" style="width:20%">
+                                                Skills
+                                            <th class="text-center" style="width:20%">
+                                                Job Title
+                                            </th>
+                                            <th class="text-center" style="width:20%">
+                                                Experience
+                                            </th>
+                                            <th class="text-center" style="width:20%">
+                                                Technical Level
+                                            </th>
+                                            <th class="text-center" style="width:20%">
+                                                Skill Rate
+                                            </th>
+                                            <th class="text-center" style="width:20%">
+                                                <button data-toggle="modal" data-target="#SkillsModal" class="btn btn-primary center-block" style="border:none">Add Skills</button>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr id='addr0'>
+
+                                            <td>
+                                            </td>
+                                            <td>
+                                            </td>
+                                            <td>
+                                            </td>
+                                            <td>
+                                            </td>
+                                            <td style="width:50%">
+                                            </td>
+                                            <td>
+                                            </td>
+                                        </tr>
+                                        <tr id='addr1'></tr>
+                                    </tbody>
+                                </table>
+                            </div>
 
 
-		<div class="panel with-nav-tabs panel-default">
-			<div class="panel-heading">
-				<ul class="nav nav-tabs">
-					<li class="active"><a href="#tab1default" data-toggle="tab">Employment</a></li>
-					<li><a href="#tab2default" data-toggle="tab">Personal</a></li>
-					<li><a href="#tab3default" data-toggle="tab">Verser Skills</a></li>
-					<li><a href="#tab5default" data-toggle="tab">Performance</a></li>
+                            <div class="modal fade" id="SkillsModal" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+                                <div class="modal-dialog" style="width:600px">
+                                    <div class="modal-content">
+                                        <div class="modal-header" style="background-color:lightgray">
+                                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only"></span></button>
+                                            <h4 class="modal-title" id="lineModalLabel">Skill Details</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form>
 
-					@if (UserRoles.UserCanEdit() == true)
-					{
-						@*<li><a href="#tab4default" data-toggle="tab">Documents</a></li>*@
-						<li><a href="#tab7default" data-toggle="tab">Documents and Policies</a></li>
-						<li><a href="#tab6default" data-toggle="tab">Offer</a></li>						
-						<li><a href="#tab8default" data-toggle="tab">Access & Devices</a></li>
-						<li><a href="#tab9default" data-toggle="tab">Off-board</a></li>
-						<li class="pull-right" style="margin-right:20px;vertical-align:bottom; padding:10px 15px">
-							@using (Html.BeginForm("ExportTimesSheetToExcel", "Candidates", FormMethod.Post))
-							{
-								<input type="image" src="~/Images/excel.png" alt="Submit" style="width:20px; height:20px">
-							}
-						</li>
-					}
-				</ul>
-			</div>
+                                                <div class="col-md-12" style="margin-bottom:10px">
+                                                    <div class="md-form">
+                                                        <label for="subject" class="">	Skills</label>
+                                                        <input type="text" id="Goal" name="subject" class="form-control">
 
-			<div class="panel-body">
-				<div class="tab-content">
+                                                        @Html.HiddenFor(model => model.ID, new { @id = Model.ID })
+                                                    </div>
+                                                </div>
 
-					<div class="tab-pane fade in active" id="tab1default">
-						<div class="row">
+                                                <div class="col-md-12" style="margin-bottom:20px">
+                                                    <div class="md-form">
+                                                        <label for="subject" class="">Job Title</label>
+                                                        <input type="text" id="Status" name="subject" class="form-control">
+                                                    </div>
+                                                </div>
 
-							@Html.Partial("Employment", Model)
+                                                <div class="col-md-12" style="margin-bottom:20px">
+                                                    <div class="md-form">
+                                                        <label for="subject" class="">Experience</label>
+                                                        <input type="text" id="Status" name="subject" class="form-control">
+                                                    </div>
+                                                </div>
 
-						</div>
+                                                <div class="col-md-12" style="margin-bottom:20px">
+                                                    <div class="md-form">
+                                                        <label for="subject" class="">Technical Level</label>
+                                                        @Html.DropDownListFor(model => model.technicalLevelsID, Model.TechnicianLevelList, "Technician Level", new { @class = "form-control", @id = "ddlTechnicialLevel" })
+                                                    </div>
+                                                </div>
 
-					</div>
+                                                <div class="col-md-12" style="margin-bottom:20px">
+                                                    <div class="md-form">
+                                                        <label for="subject" class="">Skill Rate</label>
+                                                        <input type="text" id="Status" name="subject" class="form-control">
+                                                    </div>
+                                                </div>
 
-					<div class="tab-pane fade" id="tab2default">
+                                            </form>
+                                        </div>
+                                        <div class="modal-footer" style="background-color:lightgray">
 
-						<div class="form-group row well">
+                                            <div class="btn-group btn-group-justified" role="group" aria-label="group button">
+                                                <div class="btn-group" role="group">
+                                                    <input type="submit" class="btn btn-primary btn-hover-green" value="Add" onclick="CreateResourcePerformanceGoal()" style="border:none" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
-							@Html.Partial("Personal", Model)
+                        </div>
+                    </div>
 
-						</div>
+                    <div class="tab-pane fade" id="tab4default" style="font:x-small">
+                        <div class="col-md-12">
 
-					</div>
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <strong>RESUME</strong>
+                                    <small> </small>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="input-group image-preview">
+                                        @Html.Hidden("Resume", null, new { @id = "hiddenResume" })
+                                        <span class="input-group-btn-override">
+                                            <i class="fas fa-file-download"></i>
+                                            @Html.ActionLink("Resume", "DownloadFile", "Candidates", new { textval = "" }, new { @id = "resume", @class = "actionlink" })
+                                        </span>
 
-					<div class="tab-pane fade" id="tab3default">
+                                        @Html.Hidden("Resume", null, new { @id = "hiddenCertificate" })
+                                        <span class="input-group-btn-override">
+                                            <i class="fas fa-file-download"></i>
+                                            @Html.ActionLink("Certificates", "DownloadFile", "Candidates", new { textval = "" }, new { @id = "certificate", @class = "actionlink" })
+                                        </span>
+                                        @Html.Hidden("DL", null, new { @id = "hiddenResume" })
+                                        <span class="input-group-btn-override">
+                                            <i class="fas fa-file-download"></i>
+                                            @Html.ActionLink("DL", "DownloadFile", "Candidates", new { textval = "" }, new { @id = "resume", @class = "actionlink" })
+                                        </span>
 
-						<div class="row clearfix">
+                                        @Html.Hidden("POLICE CHECK", null, new { @id = "hiddenCertificate" })
+                                        <span class="input-group-btn-override">
+                                            <i class="fas fa-file-download"></i>
+                                            @Html.ActionLink("POLICE CHECK", "DownloadFile", "Candidates", new { textval = "" }, new { @id = "certificate", @class = "actionlink" })
+                                        </span>
+                                    </div>
+                                    <div class="col-md-3">
+                                        @Html.DropDownListFor(Model => Model.InactiveReason, new List<SelectListItem>
+                                        { new SelectListItem {Text="RESUME",Value="RESUME" },
+                                        new SelectListItem {Text="DRIVING LICENSE",Value="DL" },
+                                        new SelectListItem {Text="VISA",Value="VISA" },
+                                            new SelectListItem {Text="SUPER FORM",Value="SUPERFORM" },
+                                            new SelectListItem {Text="TNF",Value="TNF" },
+                                            new SelectListItem {Text="BANK DETAILS",Value="BANKDETAILS" },
+                                            new SelectListItem {Text="CODE OF CONDUCT",Value="CODEOFCONDUCT" },
+                                            new SelectListItem {Text="WHS",Value="WHS" },
+                                        }, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.InactiveReason, "", new { @class = "text-danger" })
+                                        <input id="Certificateimgupload" type="file" style="display:none;">
+                                        <button type="button" id="btnCertificates" class="btn btn-sm btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray">
+                                            <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Certificate
+                                        </button>
+                                    </div>
+                                </div>
 
-							@Html.Partial("VerserSkills", Model)
+                                <div class="panel-heading">
+                                    <strong>LEGAL</strong>
+                                    <small> </small>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="input-group image-preview">
+                                        @Html.Hidden("Resume", null, new { @id = "hiddenDL" })
+                                        <span class="input-group-btn-override">
+                                            <i class="fas fa-file-download"></i>
+                                            @Html.ActionLink("Driving License", "DownloadFile", "Candidates", new { textval = "" }, new { @id = "DL", @class = "actionlink" })
+                                        </span>
+                                        <!-- don't give a name === doesn't send on POST/GET -->
+                                        <span class="input-group-btn-override" style="padding-left:100px">
+                                            <input type="file" id="DLimgupload" style="display:none" onchange="ReadFileName(this,'DLimgupload');" />
+                                            <button id="btnDL" type="button" class="btn btn-labeled btn-sm btn-outline-secondary" style="padding-left:20px;border-color:gray">
+                                                <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>DL
+                                            </button>
 
-						</div>
-					</div>
+                                        </span>
+                                    </div>
+                                    <br>
+                                    <div class="input-group image-preview">
+                                        @Html.Hidden("Resume", null, new { @id = "hiddenPC" })
+                                        <span class="input-group-btn-override">
+                                            <i class="fas fa-file-download"></i>
+                                            @Html.ActionLink("Police Check", "DownloadFile", "Candidates", new { textval = "" }, new { @id = "PC", @class = "actionlink" })
+                                        </span>
+                                        <!-- don't give a name === doesn't send on POST/GET -->
+                                        <span class="input-group-btn-override" style="padding-left:110px">
+                                            <input type="file" id="PCimgupload" style="display:none" onchange="ReadFileName(this,'PCimgupload');" />
+                                            <button type="button" id="btnPC" class="btn btn-labeled btn-sm btn-outline-secondary" style="padding-left:20px;border-color:gray">
+                                                <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Police Check
+                                            </button>
 
-					<div class="tab-pane fade" id="tab4default" style="font:x-small">
-						<div class="col-md-12">
-							@Html.Partial("DocumentsAndPolicies", Model)
-						</div>
-					</div>
+                                        </span>
+                                    </div>
+                                    <br>
+                                    <div class="input-group image-preview">
+                                        @Html.Hidden("Resume", null, new { @id = "hiddenVisa" })
+                                        <span class="input-group-btn-override">
+                                            <i class="fas fa-file-download"></i>
+                                            @Html.ActionLink("Visa", "DownloadFile", "Candidates", new { textval = "" }, new { @id = "visa", @class = "actionlink" })
+                                        </span>
+                                        <!-- don't give a name === doesn't send on POST/GET -->
+                                        <span class="input-group-btn-override" style="padding-left:180px">
+                                            <input type="file" id="Visaimgupload" style="display:none" onchange="ReadFileName(this,'Visaimgupload');" />
+                                            <button type="button" id="btnVisa" class="btn btn-labeled btn-sm btn-outline-secondary" style="padding-left:20px;border-color:gray">
+                                                <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Visa
+                                            </button>
 
-					<div class="tab-pane fade" id="tab5default">
-						<div class="row">
-							@Html.Partial("Performance", Model)
-						</div>
-					</div>
+                                        </span>
+                                    </div>
+                                </div>
 
-					<div class="tab-pane fade" id="tab6default">
+                                <div class="panel-heading">
+                                    <strong>PERSONAL DETAILS</strong>
+                                    <small> </small>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="input-group image-preview">
+                                        @Html.Hidden("Resume", null, new { @id = "hiddenSuper" })
+                                        <span class="input-group-btn-override">
+                                            <i class="fas fa-file-download"></i>
+                                            @Html.ActionLink("Super Form", "DownloadFile", "Candidates", new { textval = "" }, new { @id = "super", @class = "actionlink" })
+                                        </span>
+                                        <!-- don't give a name === doesn't send on POST/GET -->
+                                        <span class="input-group-btn-override" style="padding-left:135px">
+                                            <input type="file" id="Superimgupload" style="display:none" onchange="ReadFileName(this,'Superimgupload');" />
+                                            <button type="button" id="btnSuper" class="btn btn-labeled btn-sm btn-outline-secondary" style="padding-left:20px;border-color:gray">
+                                                <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Super Form
+                                            </button>
+                                        </span>
+                                    </div>
+                                    <br>
+                                    <div class="input-group image-preview">
+                                        @Html.Hidden("Resume", null, new { @id = "hiddenTNF" })
+                                        <span class="input-group-btn-override">
+                                            <i class="fas fa-file-download"></i>
+                                            @Html.ActionLink("TNF", "DownloadFile", "Candidates", new { textval = "" }, new { @id = "tnf", @class = "actionlink" })
+                                        </span>
+                                        <!-- don't give a name === doesn't send on POST/GET -->
+                                        <span class="input-group-btn-override" style="padding-left:190px">
+                                            <input type="file" id="TNFimgupload" style="display:none" onchange="ReadFileName(this,'TNFimgupload');" />
+                                            <button type="button" id="btnTNF" class="btn btn-labeled btn-sm btn-outline-secondary" style="padding-left:20px;border-color:gray">
+                                                <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>TNF
+                                            </button>
 
-						<div class="row well" style="margin-left:-1px">
-							<div class="form-group row">
+                                        </span>
+                                    </div>
+                                    <br>
+                                    <div class="input-group image-preview">
+                                        @Html.Hidden("Resume", null, new { @id = "hiddenBank" })
+                                        <span class="input-group-btn-override">
+                                            <i class="fas fa-file-download"></i>
+                                            @Html.ActionLink("Bank Details", "DownloadFile", "Candidates", new { textval = "" }, new { @id = "bank", @class = "actionlink" })
+                                        </span>
+                                        <!-- don't give a name === doesn't send on POST/GET -->
+                                        <span class="input-group-btn-override" style="padding-left:120px">
+                                            <input type="file" id="Bankimgupload" style="display:none" onchange="ReadFileName(this,'Bankimgupload');" />
+                                            <button type="button" id="btnBank" class="btn btn-labeled btn-sm btn-outline-secondary" style="padding-left:20px;border-color:gray">
+                                                <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Bank Details
+                                            </button>
 
-								<div class="col-md-5" style="margin-left:10px;">
-									<label class="col-sm-9 col-form-label col-form-label-sm">Position</label>
-									<input type="text" id="txtADPEmployeeId" class="form-control form-control-sm" placeholder="">
-								</div>
-								<div class="col-md-5" style="margin-left:10px;">
-									<label class="col-sm-9 col-form-label col-form-label-sm">Facility</label>
-									<input type="text" id="txtADPEmployeeId" class="form-control form-control-sm" placeholder="">
-								</div><br /><br /><br /><br />
-								<div class="col-md-5" style="margin-left:10px;">
-									<label class="col-sm-9 col-form-label col-form-label-sm">StartDate</label>
-									<input type="text" id="txtADPEmployeeId" class="form-control form-control-sm" placeholder="ADP Employee Id">
-								</div>
-								<div class="col-md-5" style="margin-left:10px;">
-									<label class="col-sm-9 col-form-label col-form-label-sm">Annual Salary</label>
-									<input type="text" class="form-control form-control-sm" id="txtAnnualSalary" placeholder="Annual Salary">
-								</div>
+                                        </span>
+                                    </div>
+                                </div>
 
-							</div>
-						</div>
+                                <div class="panel-heading">
+                                    <strong>POLICIES</strong>
+                                    <small> </small>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="input-group image-preview">
+                                        @Html.Hidden("Resume", null, new { @id = "hiddenCode" })
+                                        <span class="input-group-btn-override">
+                                            <i class="fas fa-file-download"></i>
+                                            @Html.ActionLink("Code Of Conduct", "DownloadFile", "Candidates", new { textval = "" }, new { @id = "code", @class = "actionlink" })
+                                        </span>
+                                        <!-- don't give a name === doesn't send on POST/GET -->
+                                        <span class="input-group-btn-override" style="padding-left:100px">
+                                            <input type="file" id="Codeimgupload" style="display:none" onchange="ReadFileName(this,'Codeimgupload');" />
+                                            <button type="button" id="btnCode" class="btn btn-labeled btn-sm btn-outline-secondary" style="padding-left:20px;border-color:gray">
+                                                <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>Code-Of-Conduct
+                                            </button>
+                                        </span>
+                                    </div>
+                                    <br>
+                                    <div class="input-group image-preview">
+                                        @Html.Hidden("Resume", null, new { @id = "hiddenWhs" })
+                                        <span class="input-group-btn-override">
+                                            <i class="fas fa-file-download"></i>
+                                            @Html.ActionLink("WHS", "DownloadFile", "Candidates", new { textval = "" }, new { @id = "whs", @class = "actionlink" })
+                                        </span>
+                                        <!-- don't give a name === doesn't send on POST/GET -->
+                                        <span class="input-group-btn-override" style="padding-left:190px">
+                                            <input type="file" id="Whsimgupload" style="display:none" onchange="ReadFileName(this,'Whsimgupload');" />
+                                            <button type="button" id="btnWhs" class="btn btn-sm btn-labeled btn-outline-secondary" style="padding-left:20px;border-color:gray">
+                                                <span class="btn-label"><i class="glyphicon glyphicon-folder-open"></i> </span>WHS
+                                            </button>
+                                        </span>
+                                    </div>
+                                    <br>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-					</div>
+                    <div class="tab-pane fade" id="tab5default">
+                        <div class="row">
+                            @Html.Partial("Performance", Model)
+                        </div>
+                    </div>
 
-					<div class="tab-pane fade" id="tab7default">
-						<div class="row">
-							@Html.Partial("Documents")
-						</div>
-					</div>
+                    <div class="tab-pane fade" id="tab6default">
 
-					<div class="tab-pane fade" id="tab8default">
+                        <div class="row well" style="margin-left:-1px">
+                            <div class="form-group row">
 
-						<div class="form-group row well">
-							<div class="row col-md-4 well" style="height:250px; border:none">
-								<form>
-									<div class="form-group">
-										<input type="checkbox" id="laptopCheck">
-										<label for="html">LAPTOP SETUP</label>
-									</div>
-									<div class="form-group">
-										<input type="checkbox" id="deskCheck">
-										<label for="css">DESK SETUP</label>
-									</div>
-									<div class="form-group">
-										<input type="checkbox" id="mobileCheck">
-										<label for="javascript">OFFICE MOBILE</label>
-									</div>
-									<div class="form-group">
-										<input type="checkbox" id="ipadCheck">
-										<label for="javascript">OFFICE IPAD</label>
-									</div>
-									<div class="form-group">
-										<input type="checkbox" id="monitorsCheck">
-										<label for="javascript">ADDITIONAL MONITORS</label>
-									</div>
-								</form>
+                                <div class="col-md-5" style="margin-left:10px;">
+                                    <label class="col-sm-9 col-form-label col-form-label-sm">Position</label>
+                                    <input type="text" id="txtPosition" class="form-control form-control-sm" placeholder="">
+                                </div>
+                                <div class="col-md-5" style="margin-left:10px;">
+                                    <label class="col-sm-9 col-form-label col-form-label-sm">Facility</label>
+                                    <input type="text" id="txtFacility" class="form-control form-control-sm" placeholder="">
+                                </div>
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                <div class="col-md-5" style="margin-left:10px;">
+                                    <label class="col-sm-9 col-form-label col-form-label-sm">StartDate</label>
+                                    <input type="text" id="txtStartDate" class="form-control form-control-sm" placeholder="ADP Employee Id">
+                                </div>
+                                <div class="col-md-5" style="margin-left:10px;">
+                                    <label class="col-sm-9 col-form-label col-form-label-sm">Annual Salary</label>
+                                    <input type="text" class="form-control form-control-sm" id="txtAnnualSalary" placeholder="Annual Salary">
+                                </div>
+                            </div>
+                        </div>
 
-							</div>
+                    </div>
 
-							<div class=" row col-md-4 well" style="height:250px; border:none">
-								<form>
+                    <div class="tab-pane fade" id="tab7default">
+                        <div class="row">
+                            @Html.Partial("Documents")
+                        </div>
+                    </div>
 
-									<div class="form-group">
-										<input type="checkbox" id="jmsCheck">
-										<label for="javascript">NEW JMS USER ACCOUNT</label>
-									</div>
-									<div class="form-group">
-										<input type="checkbox" id="o365Check">
-										<label for="javascript">O365 ACCOUNT</label>
-									</div>
-									<div class="form-group">
-										<input type="checkbox" id="whsCheck">
-										<label for="javascript">WHS ACCOUNT</label>
-									</div>
-									<div class="form-group">
-										<input type="checkbox" id="userDomainCheck">
-										<label for="javascript">USER DOMAIN/AD ACCOUNT</label>
-									</div>
-									<div class="form-group">
-										<input type="checkbox" id="sharepointCheck">
-										<label for="javascript">SHAREPOINT FOLDER ACCESS</label>
-									</div>
-								</form>
+                    <div class="tab-pane fade" id="tab8default">
 
-							</div>
-							<div class=" row col-md-3 well" style="height:250px; border:none">
-								<form>
-									<div class="form-group">
-										<input type="checkbox" id="adpCheck">
-										<label for="html">ADP REGISTER</label>
-									</div>
-									<div class="form-group">
-										<input type="checkbox" id="salaryCheck">
-										<label for="css">SALARY ACCOUNT ADDITION</label>
-									</div>
-									<div class="form-group">
-										<input type="checkbox" id="tfsCheck">
-										<label for="javascript">TFS ACCOUNT UPDATE</label>
-									</div>
-									<div class="form-group">
-										<input type="checkbox" id="superCheck">
-										<label for="javascript">SUPER ACCOUNT ADD</label>
-									</div>
-									<div class="form-group">
-										<input type="checkbox" id="adpaccountCheck">
-										<label for="javascript">ADP USER ACCOUNT SETUP</label>
-									</div>
-								</form>
+                        <div class="form-group row well">
+                            <div class="row col-md-4 well" style="height:250px; border:none">
+                                <form>
+                                    <div class="form-group">
+                                        <input type="checkbox" id="laptopCheck">
+                                        <label for="html">LAPTOP SETUP</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="checkbox" id="deskCheck">
+                                        <label for="css">DESK SETUP</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="checkbox" id="mobileCheck">
+                                        <label for="javascript">OFFICE MOBILE</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="checkbox" id="ipadCheck">
+                                        <label for="javascript">OFFICE IPAD</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="checkbox" id="monitorsCheck">
+                                        <label for="javascript">ADDITIONAL MONITORS</label>
+                                    </div>
+                                </form>
 
-							</div>
-						</div>
+                            </div>
 
-					</div>
+                            <div class=" row col-md-4 well" style="height:250px; border:none">
+                                <form>
 
-					<div class="tab-pane fade" id="tab9default">
-						<div class="row">
-							COMING SOON
-						</div>
-					</div>
-				</div>
-			</div>
+                                    <div class="form-group">
+                                        <input type="checkbox" id="jmsCheck">
+                                        <label for="javascript">NEW JMS USER ACCOUNT</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="checkbox" id="o365Check">
+                                        <label for="javascript">O365 ACCOUNT</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="checkbox" id="whsCheck">
+                                        <label for="javascript">WHS ACCOUNT</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="checkbox" id="userDomainCheck">
+                                        <label for="javascript">USER DOMAIN/AD ACCOUNT</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="checkbox" id="sharepointCheck">
+                                        <label for="javascript">SHAREPOINT FOLDER ACCESS</label>
+                                    </div>
+                                </form>
 
-			@*Footer Code Here *@
-			<div class="panel-footer primary" align="left" style="height:40px;vertical-align:top;background-color:lightgrey;margin-bottom:0px">
-				@if (UserRoles.UserCanEdit() == true)
-				{
-					<input type="submit" value="SAVE CHANGES" class="btn btn-primary pull-right"
-						   style="background-color:orange;border:none;"
-						   id="updateEmploymentDetailsBtn" />
-				}
-			</div>
-		</div>
+                            </div>
+                            <div class=" row col-md-3 well" style="height:250px; border:none">
+                                <form>
+                                    <div class="form-group">
+                                        <input type="checkbox" id="adpCheck">
+                                        <label for="html">ADP REGISTER</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="checkbox" id="salaryCheck">
+                                        <label for="css">SALARY ACCOUNT ADDITION</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="checkbox" id="tfsCheck">
+                                        <label for="javascript">TFS ACCOUNT UPDATE</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="checkbox" id="superCheck">
+                                        <label for="javascript">SUPER ACCOUNT ADD</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="checkbox" id="adpaccountCheck">
+                                        <label for="javascript">ADP USER ACCOUNT SETUP</label>
+                                    </div>
+                                </form>
 
-	</main>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="tab-pane fade" id="tab9default">
+                        <div class="row">
+                            COMING SOON
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            @*Footer Code Here *@
+            <div class="panel-footer primary" align="left" style="height:40px;vertical-align:top;background-color:lightgrey;margin-bottom:0px">
+                @if (UserRoles.UserCanEdit() == true)
+                {
+                    <input type="submit" value="SAVE CHANGES" class="btn btn-primary"
+                           style="background-color:orange;border:none;"
+                           id="updateEmploymentDetailsBtn" />
+                }
+            </div>
+        </div>
+
+    </main>
 
 </div>
 <div id="myRatingModal" class="modal fade bs-modal-sm" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div id="myRatingModalContent"></div>
-		</div>
-	</div>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div id="myRatingModalContent"></div>
+        </div>
+    </div>
 </div>
 <body>
-	<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.15/js/jquery.dataTables.js"></script>
-	<script src="https://cdn.datatables.net/plug-ins/1.10.15/api/row().show().js"></script>
+    <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.15/js/jquery.dataTables.js"></script>
+    <script src="https://cdn.datatables.net/plug-ins/1.10.15/api/row().show().js"></script>
 </body>
 
 
 <script type="text/javascript">
-		$(document).ready(function () {
+    $(document).ready(function ()
+    {
 	  var i=1;
+    hiddenModelId
 	 $("#add_row").click(function(){
 	  $('#addr'+i).html("<td><input name='name"+i+"' type='text' placeholder='New Goal' class='form-control input-md'  /> </td><td><input  name='mail"+i+"' type='Date' placeholder='Date'  class='form-control input-md'></td><td><input  name='mobile"+i+"' type='text' placeholder='Description'  class='form-control input-md'></td>");
 
@@ -306,7 +1022,9 @@
 		 $("#addr"+(i-1)).html('');
 		 i--;
 		 }
-	 });
+     });
+
+
 
 			$('#mainTable').DataTable({
 				"scrollX": true,
@@ -340,7 +1058,11 @@
 					$(this).addClass('selected');
 				}
 			});
-			$('#ddlInactiveReason').hide();
+        $('#ddlInactiveReason').hide();
+
+        //$('#ddlInactiveReason').change(function () {
+        //    alert('changed')
+        //});
 		});
 		$(function () {
 		  //  $('#feature').scrollForever({ delayTime: 30,dir:"top" });
@@ -350,9 +1072,11 @@
 		function ResourceChange (val) {
 		   // alert('text');
 			if ($(val).is(':checked')) {
-				$('#ddlInactiveReason').hide(); //.prop("disabled", true);
+                $('#ddlInactiveReason').hide(); //.prop("disabled", true);
+
 			} else {
-				$('#ddlInactiveReason').show(); //.prop("disabled", false);
+                $('#ddlInactiveReason').show(); //.prop("disabled", false);
+
 			}
 		}
 		function PeopleManagerCBChange(val) {
@@ -363,7 +1087,6 @@
 				$('#CandidateNameId').next().hide();
 			}
 		}
-
 		function ExportData() {
 			var data = {};
 			$.ajax({
@@ -372,11 +1095,11 @@
 				json: data
 
 			});
-		}
-		function LoadAddressData(ID, CandidateName, DateCreated, Address, City, state, postcode, Email, Phone, logo, dob, age, gender, maritalstatus, isactive, warehouseId, resourceCategoriesId, drivingLicenseId, inactivereason, resourceReporting) {
+    }
 
-			$("#reportingDiv").empty();
-
+    function LoadAddressData(ID, CandidateName, DateCreated, Address, City, state, postcode, Email, Phone, logo, dob, age, gender, maritalstatus,isactive, warehouseId, resourceCategoriesId, drivingLicenseId, inactivereason, resourceReporting, EmployeementTypeId, HourlyRate, DailyRate,noticePeriod, payFrequenciesID, ADP_EmployeeID, WorkRights, AssignResource, EmployeeStatusSetID, Annualsalary, isPeopleManager, ResourceReporting,CandidateSkills,Experience,JobTitle,technicalLevelsID,RateOfSkillExperties)
+    {
+        $("#reportingDiv").empty();
 			$("#reportingDiv").append('<a href="#" class="list-group-item list-group-item-action list-group-item-warning active">DIRECT REPORTIES</a>');
 			for (var i = 0; i < resourceReporting.length; i++) {
 				$("#reportingDiv").append('<a href="#" class="list-group-item list-group-item-action list-group-item-warning">'+resourceReporting[i]+'</a>');
@@ -387,6 +1110,8 @@
 			else {
 				$("#reportingDiv").hide();
 			}
+    $("#hiddenModelId").val(ID)
+   // $("#txtCandidateID").val(ID);
 		   // alert(resourceReporting);
 			$("#txtfName").val(CandidateName.split(' ')[0]);
 			$("#txtlName").val(CandidateName.split(' ')[1]);
@@ -400,8 +1125,25 @@
 			$("#txtMobile").val(Phone);
 			$("#txtDOB").val(dob);
 			$("#txtAge").val(age);
-			$("#txtGender").val(gender);
-			$("#chkIsActive").prop('checked', isactive).change();
+            $("#txtGender").val(gender);
+        $("#txtHourlyRate").val(HourlyRate);
+        $("#txtDailyRate").val(DailyRate);
+        $("#txtNoticePeriod").val(noticePeriod);
+        $("#ddlPayFrequencyId").val(payFrequenciesID);
+        $("#txtADPEmployeeId").val(ADP_EmployeeID);
+        $("#ddlWorkRights").val(WorkRights);
+        $("#ddlResourceAssigned").val(AssignResource);
+        $("#ddlEmployeeStatusId").val(EmployeeStatusSetID);
+        $("#txtAnnualSalary").val(Annualsalary);
+        $("#candidateskills").val(CandidateSkills);
+        $("#experience").val(Experience);
+        $("#JobTitle").val(JobTitle);
+        $("#ddlTechnicialLevel").val(technicalLevelsID);
+        $("#skillrate").val(RateOfSkillExperties);
+        $("#hiddenModelId").val(id);
+       // alert(isactive)
+          //  $("#chkIsActive").prop('checked', isactive).change();
+      // $("#chkIsActive").prop('checked', isactive).change();
 			$("#txtStatus").val(maritalstatus);
 			if (logo != "") {
 				$("#previewImage").hide();
@@ -414,8 +1156,22 @@
 			}
 			$("#ddlWarehouseId").val(warehouseId);
 			$("#ddlResourcesCatId").val(resourceCategoriesId);
-			$("#ddlDrivingLicenseID").val(drivingLicenseId);
-		}
+        $("#ddlDrivingLicenseID").val(drivingLicenseId);
+        $("#ddlEmploymentTypeId").val(EmployeementTypeId);
+
+    }
+
+    function LoadEmployment(id, Annualsalary,  DailyRate,
+        EmployeeStatus,  isPeopleManager, resources) {
+        for (i = 0; i < resources.length; i++) {
+            $("#CandidateNameId option[value='" + resources[i] + "']").attr("selected", 1);
+        }
+        $("#CandidateNameId").multiselect("refresh");
+        // boolean ispeoplemgr = isPeopleManager;
+        $("#chkIsPeopleManager").prop('checked', isPeopleManager == 'true' ? true : false).change();
+        $("#txtDailyRate").val(DailyRate);
+        $("#hiddenModelId").val(id);
+    }
 		function LoadDocuments(id,FilePath, certificate1, DriverLicense, PoliceCheckReport, Visa, SuperChoice, TFNDeclaration, BankDetails, CodeOFConduct, WHS) {
 		//alert(FilePath);
 
@@ -441,7 +1197,24 @@
 		$("#skillrate").val(RateOfSkillExperties);
 		$("#hiddenModelId").val(id);
 		}
-		function LoadRating(id) {
+
+    function LoadUserActiveStatus(isActive)
+    {
+      //  $("#chkIsActive").prop('checked', isActive).trigger("change");
+       // $("#chkIsActive").prop("checked", "False").trigger("change");
+
+        if (isActive == "true") {
+
+            $("#chkIsActive").prop("checked", "true").change();
+            $("#lblActiveState").text("Resource Is Active");
+            $("#lblActiveState").css("color", "green");
+        } else {
+            $("#chkIsActive").prop("checked", "False");
+            $("#lblActiveState").text("Resource Is Not Active");
+            $("#lblActiveState").css("color", "orange");
+        }
+    }
+    function LoadRating(id) {
 			$("#ratingdiv").empty();
 			$("#ratingheader").empty();
 			$("#ratingtotal").empty();
@@ -1047,28 +1820,8 @@
 			}
 		});
 
-		function LoadEmployment(id, PayFrequency, ADP_EmployeeID, AssignResource, Annualsalary, HourlyRate, DailyRate, WorkRights,
-			EmployeeStatus, EmployementType, NoticePeriod, isPeopleManager,resources) {
 
-			for (i = 0; i < resources.length; i++) {
-				$("#CandidateNameId option[value='" + resources[i] + "']").attr("selected", 1);
-			}
-			$("#CandidateNameId").multiselect("refresh");
-		   // boolean ispeoplemgr = isPeopleManager;
-			$("#ddlPayFrequencyId").val(PayFrequency);
-		   // $("#ddlPayFrequencyId").val(PayFrequency);
-			$("#txtADPEmployeeId").val(ADP_EmployeeID);
-			$("#chkIsPeopleManager").prop('checked', isPeopleManager == 'true'?true:false).change();
-			$("#ddlResourceAssigned").val(AssignResource);
-			$("#txtAnnualSalary").val(Annualsalary);
-			$("#txtHourlyRate").val(HourlyRate);
-			$("#txtDailyRate").val(DailyRate);
-			$("#ddlWorkRights").val(WorkRights);
-			$("#ddlEmployeeStatusId").val(EmployeeStatus);
-			$("#ddlEmploymentType").val(EmployementType);
-			$("#txtNoticePeriod").val(NoticePeriod);
-			$("#hiddenModelId").val(id);
-		}
+
 		function LoadAccessAndDevices(CandidateAllcaotedResouces) {
 
 			$("#deskCheck").prop('checked', CandidateAllcaotedResouces == null?false:CandidateAllcaotedResouces.DESKSETUP);
@@ -1139,7 +1892,6 @@
 			CandidateEdit.CandidateAllcaotedResouces.TFSACCOUNT = $("#tfsCheck").prop('checked');
 			CandidateEdit.CandidateAllcaotedResouces.SUPERACCOUNT = $("#superCheck").prop('checked');
 
-
 			var updateCandidateData = '@Url.Action("UpdateCandidate", "Candidates")';
 			$.ajax({
 				type: "POST",
@@ -1147,27 +1899,16 @@
 				contentType: "application/json; charset=utf-8",
 				data: JSON.stringify(CandidateEdit),
 				datatype: "json",
-				success: function (result) {
+                success: function (result) {
+                 //   alert("Update is successful.");
+                     var _IndexUrl='@Url.Action("Index", "Candidates")';
+                    window.location.href = _IndexUrl;
 
-				$.confirm({
-				title:'',
-				content: 'Update is successful.',
-				boxWidth: '370px',
-				useBootstrap: false,
-				buttons: {
-					OK: function () {
-
-					}
-				}
-					});
-					window.location.href = result.Url;
 				},
 				error: function () {
 					alert("Dynamic content load failed.");
 				},
-
 			});
-
 		});
 
 	function calculateAge(dateString) {
@@ -1221,28 +1962,34 @@
 
 
 		}
-		var updateInactiveReason = '@Url.Action("InActivateResource", "Candidates")';
-		function UpdateInactiveReason() {
 
+    var updateInactiveReason = '@Url.Action("InActivateResource", "Candidates")';
+
+
+    function UpdateInactiveReason() {
+
+            var inactivereasonId = $("#ddlInactiveReason").val();
+            var candidateId = $("#hiddenModelId").val();
+            var updateInactiveReason = '@Url.Action("InActivateResource", "Candidates")';
 			$.ajax({
 				type: "GET",
 				url: updateInactiveReason,
 				contentType: "application/json; charset=utf-8",
-				data: { 'candidateId': $("#hiddenModelId").val(), 'reasonId': $("#ddlInactiveReason").val()},
+                data: { 'candidateId': candidateId, 'reasonId': inactivereasonId},
 				datatype: "json",
 				success: function (result) {
+                    alert('Resource InActivated');
+					//$.confirm({
+					//	title: '',
+					//	content: result,
+					//	boxWidth: '370px',
+					//	useBootstrap: false,
+					//	buttons: {
+					//		OK: function () {
 
-					$.confirm({
-						title: '',
-						content: result,
-						boxWidth: '370px',
-						useBootstrap: false,
-						buttons: {
-							OK: function () {
-
-							}
-						}
-					});
+					//		}
+					//	}
+					//});
 
 				},
 				error: function () {
@@ -1250,421 +1997,422 @@
 				},
 
 			});
-		}
+    }
+
 </script>
 
 <style>
-	.list-group-item.active {
-		background-color:orange !important;
-		border:none;
-	}
-
-	div.dataTables_wrapper {
-		width: 100%;
-		margin: 0 auto;
-	}
-
-	.glyphicon {
-		font-size: 6px;
-		color: black;
-	}
-
-	.multiselect-container > li > a > label.checkbox {
-		width: 220px;
-	}
-
-	.btn-group > .btn:first-child {
-		width: 220px;
-	}
-
-	.well-sm {
-		margin-bottom: 0px;
-		margin-top: 0px;
-		padding: 0px
-	}
-
-	.well {
-		margin-left: 2px;
-		margin-right: 2px;
-		padding-top: 10px
-	}
-
-	.row.vdivide [class*='col-']:not(:last-child):after {
-		background: #e0e0e0;
-		width: 1px;
-		content: "";
-		display: block;
-		position: absolute;
-		top: 0;
-		bottom: 0;
-		right: 0;
-		min-height: 70px;
-	}
-
-	.body {
-		margin-top: 20px;
-	}
-
-	.glyphicon {
-		margin-right: 2px;
-	}
-
-	.rating .glyphicon {
-		font-size: 12px;
-	}
-
-	.rating-num {
-		margin-top: 0px;
-		font-size: 32px;
-	}
-
-	.progress {
-		height: 6px;
-		/*margin-bottom: 5px;*/
-	}
-
-	.progress-bar {
-		height: 8px
-	}
-
-	.rating-desc .col-md-3 {
-		padding-right: 0px;
-	}
-
-	.sr-only {
-		margin-left: 5px;
-		overflow: visible;
-		clip: auto;
-	}
-
-	.block {
-		display: block;
-		width: 100%;
-		border: none;
-		background-color: #4CAF50;
-		padding: 14px 28px;
-		font-size: 16px;
-		cursor: pointer;
-		text-align: center;
-	}
-
-	.image-preview-input {
-		position: relative;
-		overflow: hidden;
-		margin: 0px;
-		color: #333;
-		background-color: #fff;
-		border-color: #ccc;
-	}
-
-		.image-preview-input input[type=file] {
-			position: absolute;
-			top: 0;
-			right: 0;
-			margin: 0;
-			padding: 0;
-			font-size: 20px;
-			cursor: pointer;
-			opacity: 0;
-			filter: alpha(opacity=0);
-		}
-
-	.image-preview-input-title {
-		margin-left: 2px;
-	}
-
-	.col-padding {
-		padding: 0 15px;
-	}
-
-	.panel-footer {
-		padding: 3px 20px;
-		background-color: #f5f5f5;
-		border-top: 1px solid #dddddd;
-		border-bottom-right-radius: 0px;
-		border-bottom-left-radius: 0px;
-		width: 100%
-	}
-
-	.glyphicon {
-		font-size: 14px;
-		color: black;
-	}
-
-	.grid-divider {
-		position: relative;
-		padding: 0;
-		width: 900px;
-	}
-
-	image-border {
-		padding: 1px;
-		border: 1px solid #021a40;
-	}
-
-	.grid-divider > [class*='col-'] {
-		position: static;
-	}
-
-		.grid-divider > [class*='col-']:nth-child(n+2):before {
-			content: "";
-			border-left: 1px solid #DDD;
-			position: absolute;
-			top: 0;
-			bottom: 0;
-		}
-
-	.col-padding {
-		padding: 0 15px;
-	}
-
-	.btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
-		background-color: #FFA500;
-		border-color: white;
-	}
-
-	.btn-warning {
-		background-color: #FFA500;
-	}
-
-	.black {
-		color: black;
-	}
-
-	body {
-		padding-top: 40px;
-		padding-bottom: 5px;
-		/*margin-left:5px;*/
-	}
-
-	/* Set padding to keep content from hitting the edges */
-	.body-content {
-		padding-left: 0px;
-		padding-right: 5px;
-		margin-left: 5px;
-	}
-
-	.dataTables_filter {
-		float: right;
-		margin-top:10px;
-		font-size:smaller;
-	}
-
-	#mainTable_length {
-		margin-top: 10px;
-		font-size: smaller;
-	}
-
-	#mainTable_info {
-		font-size: smaller;
-	}
-
-	#mainTable_paginate {
-		font-size: smaller;
-	}
-
-	.container {
-		font-size: 12px;
-		padding-left: 5px;
-		padding-right: 5px;
-	}
-
-	.page-item.active .page-link {
-		color: white !important;
-		background-color: orange !important;
-		border-color: gray !important;
-	}
-
-	.btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
-		background-color: #FFA500;
-		border-color: white;
-	}
-
-		.btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
-			background-color: #FFA500;
-			border-color: white;
-		}
-
-	.tab-pane {
-		border-color: lightgray
-	}
-
-	.page-item.active .page-link {
-		color: white !important;
-		background-color: orange !important;
-		border-color: gray !important;
-	}
-
-	.col-md-6 {
-		-webkit-box-flex: 0;
-		-ms-flex: 0 0 50%;
-		flex: 0 0 50%;
-		max-width: 50%
-	}
-
-	.col-md-6 {
-		position: relative;
-		width: 100%;
-		min-height: 1px;
-		padding-top: 10px;
-		padding-bottom: 10px;
-		padding-right: 15px;
-		padding-left: 5px
-	}
-
-	.table-hover tbody tr:hover > td {
-		background-color: gra;
-	}
-
-	.datatable tr:nth-child(odd) {
-		background-color: #dfe7f2;
-		color: #000;
-	}
-
-	table.dataTable.row-border tbody th, table.dataTable.row-border tbody td, table.dataTable.display tbody th, table.dataTable.display tbody td {
-		border-top: 1px solid #ddd;
-	}
-
-	table.dataTable, table.dataTable th, table.dataTable td {
-		box-sizing: content-box;
-	}
-
-		table.dataTable tbody th, table.dataTable tbody td {
-			padding: 8px 10px;
-		}
-
-	.with-nav-tabs.panel-default .nav-tabs > li > a,
-	.with-nav-tabs.panel-default .nav-tabs > li > a:hover,
-	.with-nav-tabs.panel-default .nav-tabs > li > a:focus {
-		color: #777;
-	}
-
-		.with-nav-tabs.panel-default .nav-tabs > .open > a,
-		.with-nav-tabs.panel-default .nav-tabs > .open > a:hover,
-		.with-nav-tabs.panel-default .nav-tabs > .open > a:focus,
-		.with-nav-tabs.panel-default .nav-tabs > li > a:hover,
-		.with-nav-tabs.panel-default .nav-tabs > li > a:focus {
-			color: #777;
-			background-color: #ddd;
-			border-color: transparent;
-		}
-
-	.with-nav-tabs.panel-default .nav-tabs > li.active > a,
-	.with-nav-tabs.panel-default .nav-tabs > li.active > a:hover,
-	.with-nav-tabs.panel-default .nav-tabs > li.active > a:focus {
-		color: #FFFFFF;
-		background-color: orange;
-		border-color: #FFFFFF;
-		border-bottom-color: transparent;
-	}
-
-	.with-nav-tabs.panel-default .nav-tabs > li.dropdown .dropdown-menu {
-		background-color: #f5f5f5;
-		border-color: #ddd;
-	}
-
-		.with-nav-tabs.panel-default .nav-tabs > li.dropdown .dropdown-menu > li > a {
-			color: #777;
-		}
-
-			.with-nav-tabs.panel-default .nav-tabs > li.dropdown .dropdown-menu > li > a:hover,
-			.with-nav-tabs.panel-default .nav-tabs > li.dropdown .dropdown-menu > li > a:focus {
-				background-color: #ddd;
-			}
-
-		.with-nav-tabs.panel-default .nav-tabs > li.dropdown .dropdown-menu > .active > a,
-		.with-nav-tabs.panel-default .nav-tabs > li.dropdown .dropdown-menu > .active > a:hover,
-		.with-nav-tabs.panel-default .nav-tabs > li.dropdown .dropdown-menu > .active > a:focus {
-			color: #fff;
-			background-color: #555;
-		}
-	/********************************************************************/
-	/*** PANEL PRIMARY ***/
-	.with-nav-tabs.panel-primary .nav-tabs > li > a,
-	.with-nav-tabs.panel-primary .nav-tabs > li > a:hover,
-	.with-nav-tabs.panel-primary .nav-tabs > li > a:focus {
-		color: #fff;
-	}
-
-		.with-nav-tabs.panel-primary .nav-tabs > .open > a,
-		.with-nav-tabs.panel-primary .nav-tabs > .open > a:hover,
-		.with-nav-tabs.panel-primary .nav-tabs > .open > a:focus,
-		.with-nav-tabs.panel-primary .nav-tabs > li > a:hover,
-		.with-nav-tabs.panel-primary .nav-tabs > li > a:focus {
-			color: #fff;
-			background-color: #FFFFFF;
-			border-color: transparent;
-		}
-
-	.with-nav-tabs.panel-primary .nav-tabs > li.active > a,
-	.with-nav-tabs.panel-primary .nav-tabs > li.active > a:hover,
-	.with-nav-tabs.panel-primary .nav-tabs > li.active > a:focus {
-		color: #428bca;
-		background-color: orange;
-		border-color: #428bca;
-		border-bottom-color: transparent;
-	}
-
-	.with-nav-tabs.panel-primary .nav-tabs > li.dropdown .dropdown-menu {
-		background-color: #FFFFFF;
-		border-color: #3071a9;
-	}
-
-		.with-nav-tabs.panel-primary .nav-tabs > li.dropdown .dropdown-menu > li > a {
-			color: #FFFFFF;
-		}
-
-			.with-nav-tabs.panel-primary .nav-tabs > li.dropdown .dropdown-menu > li > a:hover,
-			.with-nav-tabs.panel-primary .nav-tabs > li.dropdown .dropdown-menu > li > a:focus {
-				background-color: orange;
-			}
-
-		.with-nav-tabs.panel-primary .nav-tabs > li.dropdown .dropdown-menu > .active > a,
-		.with-nav-tabs.panel-primary .nav-tabs > li.dropdown .dropdown-menu > .active > a:hover,
-		.with-nav-tabs.panel-primary .nav-tabs > li.dropdown .dropdown-menu > .active > a:focus {
-			background-color: orange;
-		}
-
-	.form-control-override {
-		display: block;
-		width: 70%;
-		height: 30px;
-		padding: 6px 8px;
-		font-size: 12px;
-		line-height: 1.428571429;
-		color: #555555;
-		vertical-align: middle;
-		background-color: #ffffff;
-		border: 1px solid #cccccc;
-		border-radius: 4px;
-	}
-
-
-	.input-group-btn-override {
-		height: 25px;
-		padding: 15px 18px;
-		font-size: 15px;
-		line-height: 1.33;
-		border-radius: 6px;
-	}
-
-	.actionlink {
-		font-size: larger;
-		color: seagreen;
-	}
-
-	panel-body {
-		padding: 5px;
-	}
-
-	.feature-list {
-		font-weight: bold;
-	}
-
-	.serif {
-		font-family: serif;
-		font-size: 10px;
-		color: darkgray;
-		/*background-color: #428BCA;*/
-	}
+    .list-group-item.active {
+        background-color: orange !important;
+        border: none;
+    }
+
+    div.dataTables_wrapper {
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    .glyphicon {
+        font-size: 6px;
+        color: black;
+    }
+
+    .multiselect-container > li > a > label.checkbox {
+        width: 220px;
+    }
+
+    .btn-group > .btn:first-child {
+        width: 220px;
+    }
+
+    .well-sm {
+        margin-bottom: 0px;
+        margin-top: 0px;
+        padding: 0px
+    }
+
+    .well {
+        margin-left: 2px;
+        margin-right: 2px;
+        padding-top: 10px
+    }
+
+    .row.vdivide [class*='col-']:not(:last-child):after {
+        background: #e0e0e0;
+        width: 1px;
+        content: "";
+        display: block;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        min-height: 70px;
+    }
+
+    .body {
+        margin-top: 20px;
+    }
+
+    .glyphicon {
+        margin-right: 2px;
+    }
+
+    .rating .glyphicon {
+        font-size: 12px;
+    }
+
+    .rating-num {
+        margin-top: 0px;
+        font-size: 32px;
+    }
+
+    .progress {
+        height: 6px;
+        /*margin-bottom: 5px;*/
+    }
+
+    .progress-bar {
+        height: 8px
+    }
+
+    .rating-desc .col-md-3 {
+        padding-right: 0px;
+    }
+
+    .sr-only {
+        margin-left: 5px;
+        overflow: visible;
+        clip: auto;
+    }
+
+    .block {
+        display: block;
+        width: 100%;
+        border: none;
+        background-color: #4CAF50;
+        padding: 14px 28px;
+        font-size: 16px;
+        cursor: pointer;
+        text-align: center;
+    }
+
+    .image-preview-input {
+        position: relative;
+        overflow: hidden;
+        margin: 0px;
+        color: #333;
+        background-color: #fff;
+        border-color: #ccc;
+    }
+
+        .image-preview-input input[type=file] {
+            position: absolute;
+            top: 0;
+            right: 0;
+            margin: 0;
+            padding: 0;
+            font-size: 20px;
+            cursor: pointer;
+            opacity: 0;
+            filter: alpha(opacity=0);
+        }
+
+    .image-preview-input-title {
+        margin-left: 2px;
+    }
+
+    .col-padding {
+        padding: 0 15px;
+    }
+
+    .panel-footer {
+        padding: 3px 20px;
+        background-color: #f5f5f5;
+        border-top: 1px solid #dddddd;
+        border-bottom-right-radius: 0px;
+        border-bottom-left-radius: 0px;
+        width: 100%
+    }
+
+    .glyphicon {
+        font-size: 14px;
+        color: black;
+    }
+
+    .grid-divider {
+        position: relative;
+        padding: 0;
+        width: 900px;
+    }
+
+    image-border {
+        padding: 1px;
+        border: 1px solid #021a40;
+    }
+
+    .grid-divider > [class*='col-'] {
+        position: static;
+    }
+
+        .grid-divider > [class*='col-']:nth-child(n+2):before {
+            content: "";
+            border-left: 1px solid #DDD;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+        }
+
+    .col-padding {
+        padding: 0 15px;
+    }
+
+    .btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
+        background-color: #FFA500;
+        border-color: white;
+    }
+
+    .btn-warning {
+        background-color: #FFA500;
+    }
+
+    .black {
+        color: black;
+    }
+
+    body {
+        padding-top: 40px;
+        padding-bottom: 5px;
+        /*margin-left:5px;*/
+    }
+
+    /* Set padding to keep content from hitting the edges */
+    .body-content {
+        padding-left: 0px;
+        padding-right: 5px;
+        margin-left: 5px;
+    }
+
+    .dataTables_filter {
+        float: right;
+        margin-top: 10px;
+        font-size: smaller;
+    }
+
+    #mainTable_length {
+        margin-top: 10px;
+        font-size: smaller;
+    }
+
+    #mainTable_info {
+        font-size: smaller;
+    }
+
+    #mainTable_paginate {
+        font-size: smaller;
+    }
+
+    .container {
+        font-size: 12px;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+
+    .page-item.active .page-link {
+        color: white !important;
+        background-color: orange !important;
+        border-color: gray !important;
+    }
+
+    .btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
+        background-color: #FFA500;
+        border-color: white;
+    }
+
+        .btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
+            background-color: #FFA500;
+            border-color: white;
+        }
+
+    .tab-pane {
+        border-color: lightgray
+    }
+
+    .page-item.active .page-link {
+        color: white !important;
+        background-color: orange !important;
+        border-color: gray !important;
+    }
+
+    .col-md-6 {
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 50%;
+        flex: 0 0 50%;
+        max-width: 50%
+    }
+
+    .col-md-6 {
+        position: relative;
+        width: 100%;
+        min-height: 1px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        padding-right: 15px;
+        padding-left: 5px
+    }
+
+    .table-hover tbody tr:hover > td {
+        background-color: gra;
+    }
+
+    .datatable tr:nth-child(odd) {
+        background-color: #dfe7f2;
+        color: #000;
+    }
+
+    table.dataTable.row-border tbody th, table.dataTable.row-border tbody td, table.dataTable.display tbody th, table.dataTable.display tbody td {
+        border-top: 1px solid #ddd;
+    }
+
+    table.dataTable, table.dataTable th, table.dataTable td {
+        box-sizing: content-box;
+    }
+
+        table.dataTable tbody th, table.dataTable tbody td {
+            padding: 8px 10px;
+        }
+
+    .with-nav-tabs.panel-default .nav-tabs > li > a,
+    .with-nav-tabs.panel-default .nav-tabs > li > a:hover,
+    .with-nav-tabs.panel-default .nav-tabs > li > a:focus {
+        color: #777;
+    }
+
+        .with-nav-tabs.panel-default .nav-tabs > .open > a,
+        .with-nav-tabs.panel-default .nav-tabs > .open > a:hover,
+        .with-nav-tabs.panel-default .nav-tabs > .open > a:focus,
+        .with-nav-tabs.panel-default .nav-tabs > li > a:hover,
+        .with-nav-tabs.panel-default .nav-tabs > li > a:focus {
+            color: #777;
+            background-color: #ddd;
+            border-color: transparent;
+        }
+
+    .with-nav-tabs.panel-default .nav-tabs > li.active > a,
+    .with-nav-tabs.panel-default .nav-tabs > li.active > a:hover,
+    .with-nav-tabs.panel-default .nav-tabs > li.active > a:focus {
+        color: #FFFFFF;
+        background-color: orange;
+        border-color: #FFFFFF;
+        border-bottom-color: transparent;
+    }
+
+    .with-nav-tabs.panel-default .nav-tabs > li.dropdown .dropdown-menu {
+        background-color: #f5f5f5;
+        border-color: #ddd;
+    }
+
+        .with-nav-tabs.panel-default .nav-tabs > li.dropdown .dropdown-menu > li > a {
+            color: #777;
+        }
+
+            .with-nav-tabs.panel-default .nav-tabs > li.dropdown .dropdown-menu > li > a:hover,
+            .with-nav-tabs.panel-default .nav-tabs > li.dropdown .dropdown-menu > li > a:focus {
+                background-color: #ddd;
+            }
+
+        .with-nav-tabs.panel-default .nav-tabs > li.dropdown .dropdown-menu > .active > a,
+        .with-nav-tabs.panel-default .nav-tabs > li.dropdown .dropdown-menu > .active > a:hover,
+        .with-nav-tabs.panel-default .nav-tabs > li.dropdown .dropdown-menu > .active > a:focus {
+            color: #fff;
+            background-color: #555;
+        }
+    /********************************************************************/
+    /*** PANEL PRIMARY ***/
+    .with-nav-tabs.panel-primary .nav-tabs > li > a,
+    .with-nav-tabs.panel-primary .nav-tabs > li > a:hover,
+    .with-nav-tabs.panel-primary .nav-tabs > li > a:focus {
+        color: #fff;
+    }
+
+        .with-nav-tabs.panel-primary .nav-tabs > .open > a,
+        .with-nav-tabs.panel-primary .nav-tabs > .open > a:hover,
+        .with-nav-tabs.panel-primary .nav-tabs > .open > a:focus,
+        .with-nav-tabs.panel-primary .nav-tabs > li > a:hover,
+        .with-nav-tabs.panel-primary .nav-tabs > li > a:focus {
+            color: #fff;
+            background-color: #FFFFFF;
+            border-color: transparent;
+        }
+
+    .with-nav-tabs.panel-primary .nav-tabs > li.active > a,
+    .with-nav-tabs.panel-primary .nav-tabs > li.active > a:hover,
+    .with-nav-tabs.panel-primary .nav-tabs > li.active > a:focus {
+        color: #428bca;
+        background-color: orange;
+        border-color: #428bca;
+        border-bottom-color: transparent;
+    }
+
+    .with-nav-tabs.panel-primary .nav-tabs > li.dropdown .dropdown-menu {
+        background-color: #FFFFFF;
+        border-color: #3071a9;
+    }
+
+        .with-nav-tabs.panel-primary .nav-tabs > li.dropdown .dropdown-menu > li > a {
+            color: #FFFFFF;
+        }
+
+            .with-nav-tabs.panel-primary .nav-tabs > li.dropdown .dropdown-menu > li > a:hover,
+            .with-nav-tabs.panel-primary .nav-tabs > li.dropdown .dropdown-menu > li > a:focus {
+                background-color: orange;
+            }
+
+        .with-nav-tabs.panel-primary .nav-tabs > li.dropdown .dropdown-menu > .active > a,
+        .with-nav-tabs.panel-primary .nav-tabs > li.dropdown .dropdown-menu > .active > a:hover,
+        .with-nav-tabs.panel-primary .nav-tabs > li.dropdown .dropdown-menu > .active > a:focus {
+            background-color: orange;
+        }
+
+    .form-control-override {
+        display: block;
+        width: 70%;
+        height: 30px;
+        padding: 6px 8px;
+        font-size: 12px;
+        line-height: 1.428571429;
+        color: #555555;
+        vertical-align: middle;
+        background-color: #ffffff;
+        border: 1px solid #cccccc;
+        border-radius: 4px;
+    }
+
+
+    .input-group-btn-override {
+        height: 25px;
+        padding: 15px 18px;
+        font-size: 15px;
+        line-height: 1.33;
+        border-radius: 6px;
+    }
+
+    .actionlink {
+        font-size: larger;
+        color: seagreen;
+    }
+
+    panel-body {
+        padding: 5px;
+    }
+
+    .feature-list {
+        font-weight: bold;
+    }
+
+    .serif {
+        font-family: serif;
+        font-size: 10px;
+        color: darkgray;
+        /*background-color: #428BCA;*/
+    }
 </style>
