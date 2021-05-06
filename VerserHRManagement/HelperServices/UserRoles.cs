@@ -72,5 +72,11 @@ namespace VerserHRManagement.HelperServices
             }
             return false;
         }
+
+        public static string UserId()
+        {
+            string user = HttpContext.Current.Session["FullUserName"].ToString();           
+            return user;
+        }
     }
 }

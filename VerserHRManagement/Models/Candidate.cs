@@ -62,7 +62,7 @@ namespace VerserHRManagement.Models
         public Nullable<System.DateTime> DateCreated { get; set; }
         public string RateOfSkillExperties { get; set; }
         [Required(ErrorMessage = "PayFrequency Field is Mandatory")]
-        public int? PayFrequenciesID { get; set; }
+        public int? payFrequenciesID { get; set; }
         public string PayFrequency { get; set; }
         public SelectList PayFrequencyList { get; set; }
         public SelectList AssignResourceList { get; set; }
@@ -112,8 +112,8 @@ namespace VerserHRManagement.Models
         public string[] ResourceReportees { get; set; }
         public string[] CurrentBirthdays { get; set; }
         public string Manager { get; set; }
+        public string LoginUser { get; set; }
     }
-
     public class ResourcePerformanceGoalsModel
     {
         public int Id { get; set; }

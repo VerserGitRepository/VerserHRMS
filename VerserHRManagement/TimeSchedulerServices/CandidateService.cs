@@ -111,7 +111,6 @@ namespace VerserHRManagement.TimeSchedulerServices
                 HttpResponseMessage response = client.PostAsJsonAsync(string.Format("Resource/HRMSResourceEdit"), CandidateModel).Result;
                 if (response.IsSuccessStatusCode)
                 {
-
                     HttpContext.Current.Session["SuccessMessage"] = "Changes Updated Successfully !";
                     return true;
                 }

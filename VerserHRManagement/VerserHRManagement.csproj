@@ -417,7 +417,8 @@
     <Content Include="Images\excel.png" />
     <Content Include="Images\pencil.png" />
     <Content Include="Images\plus.png" />
-    <Content Include="Images\Verser.PNG" />
+    <Content Include="Images\Verser.jpg" />
+    <Content Include="Images\Verser_bg.jpg" />
     <Content Include="Scripts\bootstrap-multiselect.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
