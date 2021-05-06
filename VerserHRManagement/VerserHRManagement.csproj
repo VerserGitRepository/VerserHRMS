@@ -482,6 +482,10 @@
     <Content Include="Views\Candidates\GridViewPartial.cshtml" />
     <Content Include="Views\Candidates\Performance.cshtml" />
     <Content Include="Views\Candidates\Documents.cshtml" />
+    <Content Include="Views\Candidates\VerserSkills.cshtml" />
+    <Content Include="Views\Candidates\Employment.cshtml" />
+    <Content Include="Views\Candidates\Personal.cshtml" />
+    <Content Include="Views\Candidates\DocumentsAndPolicies.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
