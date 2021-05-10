@@ -1,9 +1,42 @@
 ﻿@model VerserHRManagement.Models.Candidate
 
 <div class="col-md-12 column" style="padding-left: 0px; padding-right: 0px">
-    <table class="table table-bordered table-hover" id="productTable">
+    <form>
+        <div class="col-md-6" style="padding-left:20px">
+            <label for="subject" class="">Skills</label>
+            <input type="text" id="Skills" name="Skills" class="form-control">
+            @Html.HiddenFor(model => model.ID, new { @id = Model.ID })
+        </div>
+
+        <div class="col-md-6" style="padding-left:20px">
+            <label for="subject" class="">Job Title</label>
+            <input type="text" id="JobTitle" name="JobTitle" class="form-control">
+        </div>
+
+        <div class="col-md-6" style="padding-left:20px">
+            <label for="subject" class="">Experience</label>
+            <input type="text" id="Experience" name="Experience" class="form-control">
+        </div>
+
+        <div class="col-md-6" style="padding-left:20px">
+            <label for="subject" class="">Technical Level</label>
+            @Html.DropDownListFor(model => model.technicalLevelsID, Model.TechnicianLevelList, "Technician Level", new { @class = "form-control", @id = "ddlTechnicialLevel" })
+        </div>
+
+        <div class="col-md-6" style="padding-left:20px">
+            <label for="subject" class="">Skill Rate</label>
+            <input type="text" id="SkillRate" name="SkillRate" class="form-control">
+        </div>
+
+        <div class="col-md-6" style="padding-left:20px">
+            <input type="button" id="add-row" class="btn btn-warning btn-sm" value="Add Row" style="margin-top:20px">
+        </div>
+    </form>
+
+    <table class="table table-bordered table-hover">
         <thead style="background-color:lightgray">
             <tr>
+                <th>Select</th>
                 <th class="text-center" style="width:20%">
                     Skills
                 <th class="text-center" style="width:20%">
@@ -18,37 +51,16 @@
                 <th class="text-center" style="width:20%">
                     Skill Rate
                 </th>
-                <th class="text-center" style="width:20%">
-                    <button data-toggle="modal" data-target="#SkillsModal" class="btn btn-primary center-block" style="border:none">Add Skills</button>
-                </th>
             </tr>
         </thead>
-        @*<tbody>
-            <tr>
-                <td>
-                    <input id="candidateskills" placeholder="Skills" class="form-control" required="true" value="" type="text">
-                </td>
-                <td>
-                    <input id="JobTitle" placeholder="Job Title" class="form-control" required="true" value="" type="text">
-                </td>
-                <td>
-                    <input id="experience" placeholder="Experience" class="form-control" required="true" value="" type="text">
-                </td>
-                <td>
-                    @Html.DropDownListFor(model => model.technicalLevelsID, Model.TechnicianLevelList, "Technician Level", new { @class = "form-control", @id = "ddlTechnicialLevel" })
-                </td>
-                <td>
-                    <input id="skillrate" placeholder="Skill Rate" class="form-control" required="true" value="" type="text">
-                </td>
-                <td>
-                </td>
-            </tr>
-        </tbody>*@
+        <tbody>
+        </tbody>
     </table>
+    <button type="button" id="delete-row" class="btn btn-warning btn-sm pull-right" style="margin-right:10px">Delete Row</button>
 </div>
 
 
-<div class="modal fade" id="SkillsModal" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+<!--<div class="modal fade" id="SkillsModal" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
     <div class="modal-dialog" style="width:600px">
         <div class="modal-content">
             <div class="modal-header" style="background-color:lightgray">
@@ -60,7 +72,7 @@
 
                     <div class="col-md-12" style="margin-bottom:10px">
                         <div class="md-form">
-                            <label for="subject" class="">	Skills</label>
+                            <label for="subject" class="">Skills</label>
                             <input type="text" id="Skills" name="subject" class="form-control">
 
                             @Html.HiddenFor(model => model.ID, new { @id = Model.ID })
@@ -100,59 +112,42 @@
             <div class="modal-footer" style="background-color:lightgray">
 
                 <div class="btn-group btn-group-justified" role="group" aria-label="group button">
-                    <div class="btn-group pull-right" role="group">
-                        @*<input type="submit" class="btn btn-primary btn-hover-green" value="Add" onclick="productsAdd();" style="border:none" />*@
-                        <button type="button" id="updateButton" class="btn btn-primary" onclick="productUpdate();">Add</button>
+                    <div class="btn-group pull-right" role="group">-->
+@*<input type="submit" class="btn btn-primary btn-hover-green" value="Add" onclick="productsAdd();" style="border:none" />*@
+<!--<button type="button" id="updateButton" class="btn btn-primary" onclick="productUpdate();">Add</button>
 
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+</div>-->
 
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script>
-    function productUpdate() {
-        if ($("#Skills").val() != null && $("#Skills").val() != '') {
-            // Add product to Table
-            productAddToTable();
+    $(document).ready(function () {
+        $("#add-row").click(function () {
+            var Skills = $("#Skills").val();
+            var JobTitle = $("#JobTitle").val();
+            var Experience = $("#Experience").val();
+            var ddlTechnicialLevel = $("#ddlTechnicialLevel").val();
+            var SkillRate = $("#SkillRate").val();
+            var markup = "<tr><td><input type='checkbox' name='record'></td><td>"
+                + Skills + "</td><td>"
+                + JobTitle + "</td><td>"
+                + Experience + "</td><td>"
+                + ddlTechnicialLevel + "</td><td>"
+                + SkillRate + "</td></tr>";
+            $("table tbody").append(markup);
+        });
 
-            // Clear form fields
-            //formClear();
-
-            // Focus to product name field
-            //$("#Skills").focus();
-        }
-    }
-    function productAddToTable() {
-        // First check if a <tbody> tag exists, add one if not
-        if ($("#productTable tbody").length == 0) {
-            $("#productTable").append("<tbody></tbody>");
-        }
-
-        // Append product to the table
-        $("#productTable tbody").append("<tr>" +
-            "<td>" + $("#Skills").val() + "</td>" +
-            "<td>" + $("#JobTitle").val() + "</td>" +
-            "<td>" + $("#Experience").val() + "</td>" +
-            "<td>" + $("#ddlTechnicialLevel").val() + "</td>" +
-            "<td>" + $("#SkillRate").val() + "</td>" +
-            "<td>" +
-            "<button type='button' onclick='productDelete(this);' class='btn btn-default'>" +
-            "<span class='glyphicon glyphicon-remove' />" +
-            "</button>" +
-            "</td>" +
-            "</tr>");
-    }
-    function formClear() {
-        $("#Skills").val("");
-        $("#JobTitle").val("");
-        $("#Experience").val("");
-        $("#ddlTechnicialLevel").val("");
-        $("#SkillRate").val("");
-    }
-
-    function productDelete(ctl) {
-        $(ctl).parents("tr").remove();
-    }
+        // Find and remove selected table rows
+        $("#delete-row").click(function () {
+            $("table tbody").find('input[name="record"]').each(function () {
+                if ($(this).is(":checked")) {
+                    $(this).parents("tr").remove();
+                }
+            });
+        });
+    });
 </script>
