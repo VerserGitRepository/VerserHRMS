@@ -55,35 +55,34 @@
 
     <div class="col-md-12 column">
         <form>
-            <div class="col-md-4" style="margin-bottom:10px">
+            <div class="col-md-6" style="padding-left:0">
                 <label for="subject" class="">Goal</label>
                 <input type="text" id="Goal" name="subject" class="form-control">
                 @Html.HiddenFor(model => model.ID, new { @id = Model.ID })
             </div>
 
-            <div class="col-md-6" style="margin-bottom:20px">
+            <div class="col-md-6" style="padding-left:0">
                 <label for="subject" class="">Status</label>
                 <input type="text" id="Status" name="subject" class="form-control">
             </div>
 
-            <div class="col-md-4" style="margin-bottom:10px">
+            <div class="col-md-6" style="margin-top:15px; padding-left:0">
+                <label for="exampleInputFile">Start Date</label>
+                <input type="date" id="GoalStartDate" class="form-control">
+            </div>
+
+            <div class="col-md-6" style="margin-top:15px; padding-left:0">
+                <label for="exampleInputFile">End Date</label>
+                <input type="date" id="GoalEndtDate" class="form-control">
+            </div>
+
+            <div class="col-md-6" style="margin-top:15px; padding-left:0">
                 <label for="message">Description</label>
                 <textarea type="text" id="Description" name="message" rows="3" class="form-control md-textarea"></textarea>
             </div>
 
-            <div class="col-md-6" style="margin-top:25px">
-                <div class="col-md-12" style="margin-bottom:10px; padding-left:0">
-                    <label for="exampleInputFile">Start Date</label>
-                    <input type="date" id="GoalStartDate">
-                </div>
-
-                <div class="col-md-12" style="margin-bottom:10px; padding-left:0">
-                    <label for="exampleInputFile">End Date</label>
-                    <input type="date" id="GoalEndtDate">
-                </div>
-            </div>
-            <div class="col-md-8" style="margin-bottom:10px">
-                <input type="button" id="add_row" class="btn btn-warning btn-sm pull-right" value="Add Row" style="margin-top:10px">
+            <div class="col-md-6" style="margin-top:50px">
+                <input type="button" id="add_row" class="btn btn-warning btn-sm" value="Add Row" style="margin-top:10px">
             </div>
         </form>
     </div>
