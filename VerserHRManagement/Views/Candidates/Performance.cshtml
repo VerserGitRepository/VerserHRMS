@@ -4,15 +4,18 @@
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
-<div class="row clearfix">
+<div class="col-md-12 column" style="padding-left: 0px; padding-right: 0px">
 
-    <div class="col-md-12 column">
-        <table class="table table-bordered table-hover" id="tab_logic">
+    <!--<div class="col-md-12 column">
+        <table class="table table-bordered table-hover" id="SkillTable">
             <thead style="background-color:lightgray">
                 <tr>
-
+                    <th>
+                        Select
+                    </th>
                     <th class="text-center" style="width:20%">
                         Skills
+                    </th>
                     <th class="text-center" style="width:20%">
                         Job Title
                     </th>
@@ -24,55 +27,89 @@
                     </th>
                     <th class="text-center" style="width:20%">
                         Skill Rate
-                    </th>
-                    <th class="text-center" style="width:20%">
-                        <button data-toggle="modal" data-target="#PerformanceSkillModal" class="btn btn-primary center-block" style="border:none">Add Skills</button>
-                    </th>
-                </tr>
+                    </th>-->
+                    @*<th class="text-center" style="width:20%">
+                            <button data-toggle="modal" data-target="#PerformanceSkillModal" class="btn btn-primary center-block" style="border:none">Add Skills</button>
+                        </th>*@
+                <!--</tr>
             </thead>
-            <tbody>
-                <tr>
-                    <td>
-                    </td>
-                    <td>
-                    </td>
-                    <td>
-                    </td>
-                    <td>
-                    </td>
-                    <td>
-                    </td>
-                    <td>
-                    </td>
-                </tr>
-                <tr id='addr1'></tr>
-            </tbody>
+            <tbody>-->
+                @*<tr>
+                        <td>
+                        </td>
+                        <td>
+                        </td>
+                        <td>
+                        </td>
+                        <td>
+                        </td>
+                        <td>
+                        </td>
+                        <td>
+                        </td>
+                    </tr>
+                    <tr id='addr1'></tr>*@
+            <!--</tbody>
         </table>
-    </div>
+    </div>-->
 
     <div class="col-md-12 column">
-        <table class="table table-bordered table-hover" id="tab_logic">
-            <thead style="background-color:lightgray">
-                <tr>
+        <form>
+            <div class="col-md-4" style="margin-bottom:10px">
+                <label for="subject" class="">Goal</label>
+                <input type="text" id="Goal" name="subject" class="form-control">
+                @Html.HiddenFor(model => model.ID, new { @id = Model.ID })
+            </div>
 
-                    <th class="text-center" style="width:30%">
-                        Goal
-                    <th class="text-center" style="width:20%">
-                        Start Date
-                    </th>
-                    <th class="text-center" style="width:20%">
-                        End Date
-                    </th>
-                    <th class="text-center" style="width:50%">
-                        Description
-                    </th>
-                    <th class="text-center" style="width:50%">
-                        <button data-toggle="modal" data-target="#squarespaceModal" class="btn btn-primary center-block" style="border:none">Add Tasks</button>
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
+            <div class="col-md-6" style="margin-bottom:20px">
+                <label for="subject" class="">Status</label>
+                <input type="text" id="Status" name="subject" class="form-control">
+            </div>
+
+            <div class="col-md-4" style="margin-bottom:10px">
+                <label for="message">Description</label>
+                <textarea type="text" id="Description" name="message" rows="3" class="form-control md-textarea"></textarea>
+            </div>
+
+            <div class="col-md-6" style="margin-top:25px">
+                <div class="col-md-12" style="margin-bottom:10px; padding-left:0">
+                    <label for="exampleInputFile">Start Date</label>
+                    <input type="date" id="GoalStartDate">
+                </div>
+
+                <div class="col-md-12" style="margin-bottom:10px; padding-left:0">
+                    <label for="exampleInputFile">End Date</label>
+                    <input type="date" id="GoalEndtDate">
+                </div>
+            </div>
+            <div class="col-md-8" style="margin-bottom:10px">
+                <input type="button" id="add_row" class="btn btn-warning btn-sm pull-right" value="Add Row" style="margin-top:10px">
+            </div>
+        </form>
+    </div>
+
+    <table class="table table-bordered table-hover" id="GoalTable">
+        <thead style="background-color:lightgray">
+            <tr>
+                <th>
+                    select
+                </th>
+                <th class="text-center" style="width:30%">
+                    Goal
+                </th>
+                <th class="text-center" style="width:20%">
+                    Start Date
+                </th>
+                <th class="text-center" style="width:20%">
+                    End Date
+                </th>
+                <th class="text-center" style="width:50%">
+                    Description
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @*<tr>
                     <td>
                     </td>
                     <td>
@@ -84,13 +121,13 @@
                     <td>
                     </td>
                 </tr>
-                <tr id='addr1'></tr>
-            </tbody>
-        </table>
-    </div>
+                <tr id='addr1'></tr>*@
+        </tbody>
+    </table>
+    <button type="button" id="delete_row" class="btn btn-warning btn-sm pull-right" style="margin-right:10px">Delete Row</button>
 </div>
 
-<div class="modal fade" id="PerformanceSkillModal" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+@*<div class="modal fade" id="PerformanceSkillModal" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
     <div class="modal-dialog" style="width:600px">
         <div class="modal-content">
             <div class="modal-header" style="background-color:lightgray">
@@ -149,7 +186,7 @@
             </div>
         </div>
     </div>
-</div>
+</div>*@
 
 <div class="modal fade" id="squarespaceModal" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
     <div class="modal-dialog" style="width:600px">
@@ -171,7 +208,7 @@
                     </div>
 
 
-                    <div class="col-md-12" style="margin-bottom:10px">
+                    <div class="col-md-12">
                         <div class="md-form">
                             <label for="message">Description</label>
                             <textarea type="text" id="Description" name="message" rows="3" class="form-control md-textarea"></textarea>
@@ -179,7 +216,7 @@
                     </div>
 
 
-                    <div class="col-md-12" style="margin-bottom:20px">
+                    <div class="col-md-12">
                         <div class="md-form">
                             <label for="subject" class="">Status</label>
                             <input type="text" id="Status" name="subject" class="form-control">
@@ -188,7 +225,7 @@
 
 
 
-                    <div class="col-md-12" style="margin-bottom:10px">
+                    <div class="col-md-12">
                         <div class="md-form">
                             <label for="exampleInputFile">Start Date</label>
                             <input type="date" id="GoalStartDate">
@@ -203,15 +240,13 @@
                             <input type="date" id="GoalEndtDate">
                         </div>
                     </div>
-
-
                 </form>
             </div>
             <div class="modal-footer" style="background-color:lightgray">
 
                 <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                     <div class="btn-group" role="group">
-                        <input type="submit" class="btn btn-primary btn-hover-green" value="Add" onclick="CreateResourcePerformanceGoal()" style="border:none" />
+                        <input type="submit" class="btn btn-primary btn-hover-green pull-right" value="Add" onclick="CreateResourcePerformanceGoal()" style="border:none" />
                     </div>
                 </div>
             </div>
@@ -219,41 +254,68 @@
     </div>
 </div>
 
-<script type="text/javascript">
-    function CreateResourcePerformanceGoal() {
-
-        var ResourceGoalModel = {};
-        ResourceGoalModel.FK_CandidateID = $("#id").val();
-        ResourceGoalModel.Goal = $("#Goal").val();
-        ResourceGoalModel.Description = $("#Description").val();
-        ResourceGoalModel.Status = $("#Status").val();
-        ResourceGoalModel.GoalStartDate = $("#GoalStartDate").val();
-        ResourceGoalModel.GoalEndtDate = $("#GoalEndtDate").val();
-        var json = JSON.stringify(SalesForceOpportunity);
-        $.ajax({
-            type: "POST",
-            url: "./CreateResourcePerformanceGoal",
-            data: json,
-            contentType: "application/json; charset=utf-8",
-            dataType: "json",
-            success: function (data) {
-                debugger;
-                $.confirm({
-                    boxWidth: '600px',
-                    useBootstrap: false,
-                    title: '',
-                    content: data,
-                    closeIcon: true,
-                    buttons: {
-                        yes: { isHidden: true }
-                    }
-                });
-                var str = data;
-                str = str.replace("Goal Added successfully");
-            },
-            error: function () {
-                alert("Dynamic content load failed.");
-            }
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#add_row").click(function () {
+            var Goal = $("#Goal").val();
+            var Status = $("#Status").val();
+            var GoalStartDate = $("#GoalStartDate").val();
+            var GoalEndtDate = $("#GoalEndtDate").val();
+            var markup = "<tr><td><input type='checkbox' name='record'></td><td>"
+                + Goal + "</td><td>"
+                + Status + "</td><td>"
+                + GoalStartDate + "</td><td>"
+                + GoalEndtDate + "</td></tr>";
+            $("#GoalTable tbody").append(markup);
         });
-    }
+
+        // Find and remove selected table rows
+        $("#delete_row").click(function () {
+            $("#GoalTable tbody").find('input[name="record"]').each(function () {
+                if ($(this).is(":checked")) {
+                    $(this).parents("tr").remove();
+                }
+            });
+        });
+    });
 </script>
+
+@*<script type="text/javascript">
+        function CreateResourcePerformanceGoal() {
+
+            var ResourceGoalModel = {};
+            ResourceGoalModel.FK_CandidateID = $("#id").val();
+            ResourceGoalModel.Goal = $("#Goal").val();
+            ResourceGoalModel.Description = $("#Description").val();
+            ResourceGoalModel.Status = $("#Status").val();
+            ResourceGoalModel.GoalStartDate = $("#GoalStartDate").val();
+            ResourceGoalModel.GoalEndtDate = $("#GoalEndtDate").val();
+            var json = JSON.stringify(SalesForceOpportunity);
+            $.ajax({
+                type: "POST",
+                url: "./CreateResourcePerformanceGoal",
+                data: json,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (data) {
+                    debugger;
+                    $.confirm({
+                        boxWidth: '600px',
+                        useBootstrap: false,
+                        title: '',
+                        content: data,
+                        closeIcon: true,
+                        buttons: {
+                            yes: { isHidden: true }
+                        }
+                    });
+                    var str = data;
+                    str = str.replace("Goal Added successfully");
+                },
+                error: function () {
+                    alert("Dynamic content load failed.");
+                }
+            });
+        }
+    </script>*@

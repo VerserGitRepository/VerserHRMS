@@ -33,7 +33,7 @@
         </div>
     </form>
 
-    <table class="table table-bordered table-hover">
+    <table class="table table-bordered table-hover" id="SkillTable">
         <thead style="background-color:lightgray">
             <tr>
                 <th>Select</th>
@@ -138,12 +138,12 @@
                 + Experience + "</td><td>"
                 + ddlTechnicialLevel + "</td><td>"
                 + SkillRate + "</td></tr>";
-            $("table tbody").append(markup);
+            $("#SkillTable tbody").append(markup);
         });
 
         // Find and remove selected table rows
         $("#delete-row").click(function () {
-            $("table tbody").find('input[name="record"]').each(function () {
+            $("#SkillTable tbody").find('input[name="record"]').each(function () {
                 if ($(this).is(":checked")) {
                     $(this).parents("tr").remove();
                 }
